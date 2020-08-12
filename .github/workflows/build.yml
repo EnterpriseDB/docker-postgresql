@@ -1,0 +1,46 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Generate stackbrew library
+      run: |
+        git clone --depth 1 https://github.com/docker-library/bashbrew.git -b master ~/bashbrew
+        (
+          cd ~/bashbrew
+          GO111MODULE=on go build -o bin/bashbrew ./cmd/bashbrew
+        )
+        export PATH="$HOME/bashbrew/bin:$PATH"
+        mkdir ~/library
+        ./generate-stackbrew-library.sh > ~/library/postgres
+    - name: Build image
+      env:
+        BASHBREW_NAMESPACE: quay.io/2ndquadrant/
+      run: |
+        export PATH="$HOME/bashbrew/bin:$PATH"
+        bashbrew --library "$HOME/library" build postgres
+    - name: Docker Login
+      if: success()
+      env:
+        QUAY_USER: ${{ secrets.QUAY_USER }}
+        QUAY_KEY: ${{ secrets.QUAY_KEY }}
+        QUAY_REPO: ${{ secrets.QUAY_REPO }}
+      run: |
+        echo "${QUAY_KEY}" | docker login --username "${QUAY_USER}" --password-stdin "${QUAY_REPO}"
+    - name: Push image
+      if: success()
+      env:
+        BASHBREW_NAMESPACE: quay.io/2ndquadrant/
+      run: |
+        export PATH="$HOME/bashbrew/bin:$PATH"
+        bashbrew --library "$HOME/library" push postgres
+    - name: Clear
+      if: always()
+      run: |
+        rm -f "${HOME}/.docker/config.json"

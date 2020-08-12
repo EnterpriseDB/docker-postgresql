@@ -1,0 +1,32 @@
+name: Automatic Updates
+
+on:
+  schedule:
+    - cron: 0 0 * * *
+
+defaults:
+  run:
+    shell: 'bash -Eeuo pipefail -x {0}'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run update script
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ./update.sh
+      - name: Diff
+        run: |
+          git status
+          git diff
+      - uses: EndBug/add-and-commit@v4
+        with:
+          author_name: 2ndQuadrant CI
+          author_email: 2ndquadrant-ci@2ndquandrant.com
+          message: 'Daily automatic update'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
