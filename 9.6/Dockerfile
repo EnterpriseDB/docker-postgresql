@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi8/ubi:8.2-343
 LABEL name="PostgreSQL Container Images" \
       vendor="2ndQuadrant" \
       url="https://www.2ndquadrant.com/" \
-      version="9.6.18-1PGDG.rhel8" \
+      version="9.6.19-1PGDG.rhel8" \
       release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud  \
@@ -17,10 +17,10 @@ RUN set -xe ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql96-9.6.18-1PGDG.rhel8 \
-		postgresql96-contrib-9.6.18-1PGDG.rhel8 \
-		postgresql96-server-9.6.18-1PGDG.rhel8 \
-		postgresql96-libs-9.6.18-1PGDG.rhel8 ; \
+		postgresql96-9.6.19-1PGDG.rhel8 \
+		postgresql96-contrib-9.6.19-1PGDG.rhel8 \
+		postgresql96-server-9.6.19-1PGDG.rhel8 \
+		postgresql96-libs-9.6.19-1PGDG.rhel8 ; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud
