@@ -2,7 +2,11 @@ name: Continuous Delivery
 
 on:
   push:
-    branches: master
+    branches:
+      - main
+  repository_dispatch:
+    types:
+      - trigger-build
 
 jobs:
   build:
@@ -18,13 +22,13 @@ jobs:
         )
         export PATH="$HOME/bashbrew/bin:$PATH"
         mkdir ~/library
-        ./generate-stackbrew-library.sh > ~/library/postgres
+        ./generate-stackbrew-library.sh > ~/library/postgresql
     - name: Build image
       env:
-        BASHBREW_NAMESPACE: quay.io/2ndquadrant/
+        BASHBREW_NAMESPACE: quay.io/enterprisedb/
       run: |
         export PATH="$HOME/bashbrew/bin:$PATH"
-        bashbrew --library "$HOME/library" build postgres
+        bashbrew --library "$HOME/library" build postgresql
     - name: Docker Login
       if: success()
       env:
@@ -36,10 +40,10 @@ jobs:
     - name: Push image
       if: success()
       env:
-        BASHBREW_NAMESPACE: quay.io/2ndquadrant/
+        BASHBREW_NAMESPACE: quay.io/enterprisedb/
       run: |
         export PATH="$HOME/bashbrew/bin:$PATH"
-        bashbrew --library "$HOME/library" push postgres
+        bashbrew --library "$HOME/library" push postgresql
     - name: Clear
       if: always()
       run: |

@@ -2,7 +2,7 @@
 set -eu
 
 declare -A aliases=(
-	[12]='latest'
+	[13]='latest'
 	[9.6]='9'
 )
 
@@ -38,10 +38,10 @@ dirCommit() {
 }
 
 cat <<-EOH
-# this file is generated via https://github.com/2ndquadrant/docker-postgres/blob/$(fileCommit "$self")/$self
+# this file is generated via https://github.com/EnterpriseDB/docker-postgresql/blob/$(fileCommit "$self")/$self
 
-Maintainers: Marco Nenciarini <marco.nenciarini@2ndquadrant.com> (@mnencia)
-GitRepo: https://github.com/2ndquadrant/docker-postgres.git
+Maintainers: Marco Nenciarini <marco.nenciarini@enterprisedb.com> (@mnencia)
+GitRepo: https://github.com/EnterpriseDB/docker-postgresql.git
 EOH
 
 # prints "$2$1$3$1...$N"
@@ -55,8 +55,8 @@ for version in "${versions[@]}"; do
 	commit="$(dirCommit "$version")"
 
 	fullVersion="$(awk '/-server-/ {print $1}' "$version/Dockerfile" | cut -d- -f 3)"
-	if [ "$fullVersion" = 13 ]; then
-		fullVersion="$(awk '/-server-/{print $1}' 13/Dockerfile | cut -d- -f 3- | cut -d_ -f 1)"
+	if [ "$fullVersion" = 14 ]; then
+		fullVersion="$(awk '/-server-/{print $1}' 14/Dockerfile | cut -d- -f 3- | cut -d_ -f 1)"
 	fi
 	versionArches="x86_64"
 

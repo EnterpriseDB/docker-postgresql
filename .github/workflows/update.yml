@@ -3,6 +3,7 @@ name: Automatic Updates
 on:
   schedule:
     - cron: 0 0 * * *
+  workflow_dispatch:
 
 defaults:
   run:
@@ -23,10 +24,18 @@ jobs:
         run: |
           git status
           git diff
-      - uses: EndBug/add-and-commit@v4
+      - uses: EndBug/add-and-commit@master
+        id: commit
         with:
-          author_name: 2ndQuadrant CI
-          author_email: 2ndquadrant-ci@2ndquandrant.com
+          author_name: EnterpriseDB Automated Updates
+          author_email: noreply@enterprisedb.com
           message: 'Daily automatic update'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Dispatch trigger-e2e event
+        if: steps.commit.outputs.committed == 'true'
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_GHA_PAT }}
+          repository: ${{ github.repository }}
+          event-type: trigger-build

@@ -32,7 +32,7 @@ get_postgresql_version() {
 	local pg_major="$1"; shift
 
 	local base_url="https://yum.postgresql.org"
-	if [ "$pg_major" = 13 ]; then
+	if [ "$pg_major" = 14 ]; then
 		base_url="$base_url/testing"
 	fi
 
