@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM registry.access.redhat.com/ubi8/ubi:8.3-199
+FROM registry.access.redhat.com/ubi8/ubi:8.3-227
 
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
