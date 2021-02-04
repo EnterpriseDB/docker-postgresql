@@ -47,8 +47,22 @@ get_latest_barman_version() {
 
 for version in "${versions[@]}"; do
 	ubiVersion=$(get_latest_ubi_tag "8")
+	if [ -z "$ubiVersion" ]; then
+	    echo "Unable to retrieve latest UBI8 version"
+	    exit 1
+	fi
+
 	postgresqlVersion=$(get_postgresql_version '8' 'x86_64' "$version")
+	if [ -z "$postgresqlVersion" ]; then
+	    echo "Unable to retrieve latest PostgreSQL $version version"
+	    exit 1
+	fi
+
 	barmanVersion=$(get_latest_barman_version)
+	if [ -z "$barmanVersion" ]; then
+	    echo "Unable to retrieve latest Barman version"
+	    exit 1
+	fi
 
 	yumOptions=""
 	if [ "$version" == 13 ]; then
