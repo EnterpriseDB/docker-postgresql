@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run update script
-        uses: nick-invision/retry@v1
+        uses: nick-invision/retry@v2.4.0
         with:
           timeout_minutes: 10
           max_attempts: 3
