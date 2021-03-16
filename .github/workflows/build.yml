@@ -30,6 +30,7 @@ jobs:
         export PATH="$HOME/bashbrew/bin:$PATH"
         bashbrew --library "$HOME/library" build postgresql
     - uses: hands-lab/dockle-action@v1
+      name: Dockle scan
       if: success()
       with:
         image: postgresql
