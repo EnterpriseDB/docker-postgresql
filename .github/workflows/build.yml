@@ -33,6 +33,7 @@ jobs:
     - name: Dockle Scan
       if: success()
       run: |
+        echo "docker images availables:" && docker images
         DOCKLEVERSION=$(
           curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
           grep '"tag_name":' | \
@@ -45,6 +46,7 @@ jobs:
         fi
         imagestoscan=( "${imagestoscan[@]%/}" )
         for imagetoscan in "${imagestoscan[@]}"; do
+          echo "scanning postgresql:${imagetoscan} image..."
           ./dockle --exit-code 1 --exit-level warn postgresql:${imagetoscan}
         done
     - name: Docker Login
