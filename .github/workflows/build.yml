@@ -47,7 +47,7 @@ jobs:
         imagestoscan=( "${imagestoscan[@]%/}" )
         for imagetoscan in "${imagestoscan[@]}"; do
           echo "scanning postgresql:${imagetoscan} image..."
-          ./dockle --exit-code 1 --exit-level warn ***:${imagetoscan}
+          ./dockle --exit-code 1 --exit-level warn bashbrew/cache:$(docker images | grep "$(docker images | grep ' ${imagetoscan} ' | awk '{print $3}')" | grep 'bashbrew/cache' | awk '{print $2}')
         done
     - name: Docker Login
       if: success()
