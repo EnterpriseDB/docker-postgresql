@@ -30,11 +30,23 @@ jobs:
       run: |
         export PATH="$HOME/bashbrew/bin:$PATH"
         bashbrew --library "$HOME/library" build postgresql
-    - uses: hands-lab/dockle-action@v1
-      name: Dockle scan
+    - name: Dockle Scan
       if: success()
-      with:
-        image: postgresql:13.2
+      run: |
+        DOCKLEVERSION=$(
+          curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
+          grep '"tag_name":' | \
+          sed -E 's/.*"v([^"]+)".*/\1/' \
+        ) && curl -L -o dockle.tar.gz https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.tar.gz
+        tar zxvf dockle.tar.gz
+        imagestoscan=( "$@" )
+        if [ ${#imagestoscan[@]} -eq 0 ]; then
+                imagestoscan=( $(ls -d */ | grep -v ^src/) )
+        fi
+        imagestoscan=( "${imagestoscan[@]%/}" )
+        for imagetoscan in "${imagestoscan[@]}"; do
+          ./dockle --exit-code 1 --exit-level warn postgresql:${imagetoscan}
+        done
     - name: Docker Login
       if: success()
       env:
