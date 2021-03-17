@@ -40,7 +40,7 @@ jobs:
           curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
           grep '"tag_name":' | \
           sed -E 's/.*"v([^"]+)".*/\1/' \
-        ) && curl -L -o dockle.tar.gz https://github.com/goodwithtech/dockle/releases/download/v${DOCKLEVERSION}/dockle_${DOCKLEVERSION}_Linux-64bit.tar.gz
+        ) && curl -s -L -o dockle.tar.gz https://github.com/goodwithtech/dockle/releases/download/v${DOCKLEVERSION}/dockle_${DOCKLEVERSION}_Linux-64bit.tar.gz
         tar zxf dockle.tar.gz
         imagestoscan=( "$@" )
         if [ ${#imagestoscan[@]} -eq 0 ]; then
