@@ -31,23 +31,26 @@ jobs:
         export PATH="$HOME/bashbrew/bin:$PATH"
         bashbrew --library "$HOME/library" build postgresql
     - name: Dockle Scan
+      env:
+        DOCKLE_EXIT_CODE: 1
+        DOCKLE_EXIT_LEVEL: WARN
       if: success()
       run: |
-        echo "docker images availables:" && docker images
         DOCKLEVERSION=$(
           curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
           grep '"tag_name":' | \
           sed -E 's/.*"v([^"]+)".*/\1/' \
         ) && curl -L -o dockle.tar.gz https://github.com/goodwithtech/dockle/releases/download/v${DOCKLEVERSION}/dockle_${DOCKLEVERSION}_Linux-64bit.tar.gz
-        tar zxvf dockle.tar.gz
+        tar zxf dockle.tar.gz
         imagestoscan=( "$@" )
         if [ ${#imagestoscan[@]} -eq 0 ]; then
                 imagestoscan=( $(ls -d */ | grep -v ^src/) )
         fi
         imagestoscan=( "${imagestoscan[@]%/}" )
         for imagetoscan in "${imagestoscan[@]}"; do
-          echo "scanning postgresql:${imagetoscan} image..."
-          ./dockle --exit-code 1 --exit-level warn bashbrew/cache:$(docker images | grep "$(docker images | grep ' ${imagetoscan} ' | awk '{print $3}')" | grep 'bashbrew/cache' | awk '{print $2}')
+          echo "Scanning postgresql:${imagetoscan} image..."
+          ./dockle --exit-code ${DOCKLE_EXIT_CODE} --exit-level ${DOCKLE_EXIT_LEVEL} \
+          bashbrew/cache:$(docker images | grep "$(docker images | grep ' ${imagetoscan} ' | awk '{print $3}')" | grep 'bashbrew/cache' | awk '{print $2}')
         done
     - name: Docker Login
       if: success()
