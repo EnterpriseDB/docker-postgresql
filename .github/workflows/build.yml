@@ -34,7 +34,7 @@ jobs:
       name: Dockle scan
       if: success()
       with:
-        image: postgresql
+        image: postgresql:13.2
     - name: Docker Login
       if: success()
       env:
