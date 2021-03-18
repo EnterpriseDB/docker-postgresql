@@ -50,8 +50,17 @@ jobs:
         for imagetoscan in "${imagestoscan[@]}"; do
           echo "Scanning postgresql:${imagetoscan} image..."
           ./dockle --exit-code ${DOCKLE_EXIT_CODE} --exit-level ${DOCKLE_EXIT_LEVEL} \
-          bashbrew/cache:$(docker images | grep "$(docker images | grep ' ${imagetoscan} ' | awk '{print $3}')" | grep 'bashbrew/cache' | awk '{print $2}')
+          bashbrew/cache:$(docker images | grep "$(docker images | grep ' ${imagetoscan} ' | awk '{print $3}')" | grep 'bashbrew/cache' | awk '{print $2}') \
+          2>&1 | tee -a dockle-scans-results.log
         done
+    - name: Archive Dockle Scans results
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: dockle-scans-results
+        path: dockle-scans-results.log
+        retention-days: 7
+        if-no-files-found: ignore
     - name: Docker Login
       if: success()
       env:
