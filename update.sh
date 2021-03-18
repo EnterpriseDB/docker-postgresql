@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
+cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 
 versions=( "$@" )
 if [ ${#versions[@]} -eq 0 ]; then
@@ -45,8 +45,24 @@ get_latest_barman_version() {
 	curl -s https://pypi.org/pypi/barman/json | jq -r '.releases | keys[]' | sort -Vr | head -n1
 }
 
-for version in "${versions[@]}"; do
-	ubiVersion=$(get_latest_ubi_tag "8")
+record_version() {
+    local versionFile="$1"
+    local component="$2"
+    local componentVersion="$3"
+
+    jq --arg component "${component}" \
+       --arg componentVersion "${componentVersion}" \
+       '.[$component] = $componentVersion' < "${versionFile}" >> "${versionFile}.new"
+
+    mv "${versionFile}.new" "${versionFile}"
+}
+
+generate() {
+  local version="$1"
+  shift
+  ubiRelease="8"
+
+	ubiVersion=$(get_latest_ubi_tag "${ubiRelease}")
 	if [ -z "$ubiVersion" ]; then
 	    echo "Unable to retrieve latest UBI8 version"
 	    exit 1
@@ -69,16 +85,69 @@ for version in "${versions[@]}"; do
 		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
 	fi
 
-	echo "$version: $postgresqlVersion"
+  createVersions="false"
+  if [ -f "${version}/versions.json" ]; then
+      oldUbiVersion=$(jq -r '.UBI_VERSION' "${version}/versions.json")
+      oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${version}/versions.json")
+      oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${version}/versions.json")
+      oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${version}/versions.json")
+  else
+      createVersions="true"
+  fi
 
-	rm -fr "$version"/*
-	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g;' \
-	    -e 's/%%PG_MAJOR%%/'"$version"'/g' \
-	    -e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
-	    -e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
-		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
-		Dockerfile.template \
-		> "$version/Dockerfile"
+  rm -fr "${version:?}"/*
+  sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g;' \
+      -e 's/%%PG_MAJOR%%/'"$version"'/g' \
+      -e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
+      -e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
+      -e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
+      -e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
+      Dockerfile.template \
+      > "$version/Dockerfile"
 	cp -r src/* "$version/"
+
+  if [ "$createVersions" ]; then
+      oldUbiVersion=${ubiVersion}
+      oldPostgresqlVersion=${postgresqlVersion}
+      oldBarmanVersion=${barmanVersion}
+
+      imageReleaseVersion=1
+      oldImageReleaseVersion=$imageReleaseVersion
+
+      echo "{}" > "${version}/versions.json"
+
+      record_version "${version}/versions.json" "UBI_VERSION" "${ubiVersion}"
+      record_version "${version}/versions.json" "POSTGRES_VERSION" "${postgresqlVersion}"
+      record_version "${version}/versions.json" "BARMAN_VERSION" "${barmanVersion}"
+      record_version "${version}/versions.json" "IMAGE_RELEASE_VERSION" "${imageReleaseVersion}"
+  fi
+
+  newRelease="false"
+
+  if [ "$oldUbiVersion" != "$ubiVersion" ]; then
+      echo "UBI changed from $oldUbiVersion to $ubiVersion"
+      newRelease="true"
+      record_version "${version}/versions.json" "UBI_VERSION" "${ubiVersion}"
+  fi
+
+  if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
+      echo "UBI changed from $oldPostgresqlVersion to $postgresqlVersion"
+      newRelease="true"
+      record_version "${version}/versions.json" "POSTGRES_VERSION" "${postgresqlVersion}"
+  fi
+
+  if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
+      echo "UBI changed from $oldBarmanVersion to $barmanVersion"
+      newRelease="true"
+      record_version "${version}/versions.json" "BARMAN_VERSION" "${barmanVersion}"
+  fi
+
+  if [ "$newRelease" == "true" ]; then
+      imageReleaseVersion=$((oldImageReleaseVersion + 1))
+      record_version "${version}/versions.json" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
+  fi
+}
+
+for version in "${versions[@]}"; do
+    generate "${version}"
 done

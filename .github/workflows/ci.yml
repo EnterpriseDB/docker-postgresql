@@ -10,6 +10,10 @@ defaults:
   run:
     shell: 'bash -Eeuo pipefail -x {0}'
 
+env:
+  IMAGE_NAME: docker-postgresql
+
+
 jobs:
 
   generate-jobs:
@@ -21,28 +25,36 @@ jobs:
       - uses: actions/checkout@v2
       - id: generate-jobs
         name: Generate Jobs
-        run: |
-          git clone --depth 1 https://github.com/docker-library/bashbrew.git -b master ~/bashbrew
-          strategy="$(~/bashbrew/scripts/github-actions/generate.sh)"
-          jq . <<<"$strategy" # sanity check / debugging aid
-          echo "::set-output name=strategy::$strategy"
+        run: .github/generate-strategy.sh
 
   test:
     needs: generate-jobs
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
-    name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}
+    name: PostgreSQL ${{ matrix.version }}
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Prepare Environment
-        run: ${{ matrix.runs.prepare }}
-      - name: Pull Dependencies
-        run: ${{ matrix.runs.pull }}
-      - name: Build ${{ matrix.name }}
-        run: ${{ matrix.runs.build }}
-      - name: History ${{ matrix.name }}
-        run: ${{ matrix.runs.history }}
-      - name: Test ${{ matrix.name }}
-        run: ${{ matrix.runs.test }}
+        run: |
+          git clone --depth 1 https://github.com/docker-library/official-images.git -b master ~/oi
+          # create a dummy empty image/layer so we can --filter since= later to get a meaningful image list
+          { echo FROM busybox:latest; echo RUN :; } | docker build --no-cache --tag image-list-marker -
+          # PGP Happy Eyeballs
+          git clone --depth 1 https://github.com/tianon/pgp-happy-eyeballs.git ~/phe
+          ~/phe/hack-my-builds.sh
+          rm -rf ~/phe
+      - name: Build ${{ matrix.version }}
+        env:
+          TAGS: ${{ toJson(matrix.tags) }}
+        run: |
+          for tag in $(jq -r '.[]' <<< "${TAGS}")
+          do
+            ARGS+=(--tag "${IMAGE_NAME}:${tag}")
+          done
+          docker build ${ARGS[@]} '${{ matrix.version }}'
+      - name: History ${{ matrix.version }}
+        run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
+      - name: Test ${{ matrix.version }}
+        run: ~/oi/test/run.sh "${IMAGE_NAME}:${{ matrix.tags[0] }}"
       - name: '"docker images"'
-        run: ${{ matrix.runs.images }}
+        run: docker image ls --filter since=image-list-marker
