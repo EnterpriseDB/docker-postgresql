@@ -1,7 +1,6 @@
 name: Continuous Integration
 
 on:
-  pull_request:
   push:
   schedule:
     - cron: 0 0 * * 0
@@ -12,7 +11,6 @@ defaults:
 
 env:
   IMAGE_NAME: docker-postgresql
-
 
 jobs:
 

@@ -17,14 +17,14 @@ jobs:
       - name: Run update script
         uses: nick-invision/retry@v2.4.0
         with:
-          timeout_minutes: 10
+          timeout_minutes: 15
           max_attempts: 3
           command: ./update.sh
       - name: Diff
         run: |
           git status
           git diff
-      - uses: EndBug/add-and-commit@master
+      - uses: EndBug/add-and-commit@v7
         id: commit
         with:
           author_name: EnterpriseDB Automated Updates

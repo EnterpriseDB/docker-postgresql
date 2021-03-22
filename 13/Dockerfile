@@ -16,7 +16,7 @@ RUN set -xe ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
-	yum -y --setopt=tsflags=nodocs install --enablerepo=pgdg13-updates-testing \
+	yum -y --setopt=tsflags=nodocs install \
 		postgresql13-13.2-1PGDG.rhel8 \
 		postgresql13-contrib-13.2-1PGDG.rhel8 \
 		postgresql13-server-13.2-1PGDG.rhel8 \

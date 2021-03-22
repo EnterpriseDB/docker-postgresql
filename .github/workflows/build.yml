@@ -8,6 +8,9 @@ on:
     types:
       - trigger-build
 
+env:
+  IMAGE_NAME: quay.io/enterprisedb/docker-postgresql
+
 jobs:
   generate-jobs:
     name: Generate Jobs
@@ -58,4 +61,3 @@ jobs:
         push: true
         tags: ${{ steps.docker-meta.outputs.tags }}
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
-
