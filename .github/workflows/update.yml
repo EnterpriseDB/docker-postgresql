@@ -19,7 +19,10 @@ jobs:
         with:
           timeout_minutes: 15
           max_attempts: 3
-          command: ./update.sh
+          command: |
+            # pip-tools provides pip-compile used by update.sh
+            pip install pip-tools
+            ./update.sh
       - name: Diff
         run: |
           git status

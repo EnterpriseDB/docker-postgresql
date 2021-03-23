@@ -155,6 +155,30 @@ generate() {
 
 }
 
+update_requirements() {
+    barmanVersion=$(get_latest_barman_version)
+    if [ -z "$barmanVersion" ]; then
+        echo "Unable to retrieve latest Barman version"
+        exit 1
+    fi
+    currentVersion=$(sed 's/.*== \(.*\)$/\1/' requirements.in)
+
+    if [ "$barmanVersion" != "$currentVersion" ]; then
+        # If there's a new version we need to recreate the requirements files
+        echo "barman == $barmanVersion" > requirements.in
+
+        # This will take the requirements.in file en generate a file
+        # requirements.txt with the hashes for the requiered packages
+        pip-compile --generate-hashes 2> /dev/null
+
+        # Then the file needs to be moved into the src/root/ that will
+        # be added to every container later
+        mv requirements.txt src/root
+    fi
+}
+
+update_requirements
+
 for version in "${versions[@]}"; do
 	generate "${version}"
 done
