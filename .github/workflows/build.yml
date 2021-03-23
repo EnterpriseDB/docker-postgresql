@@ -30,37 +30,6 @@ jobs:
       run: |
         export PATH="$HOME/bashbrew/bin:$PATH"
         bashbrew --library "$HOME/library" build postgresql
-    - name: Dockle Scan
-      env:
-        DOCKLE_EXIT_CODE: 1
-        DOCKLE_EXIT_LEVEL: WARN
-      if: success()
-      run: |
-        DOCKLEVERSION=$(
-          curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
-          grep '"tag_name":' | \
-          sed -E 's/.*"v([^"]+)".*/\1/' \
-        ) && curl -s -L -o dockle.tar.gz https://github.com/goodwithtech/dockle/releases/download/v${DOCKLEVERSION}/dockle_${DOCKLEVERSION}_Linux-64bit.tar.gz
-        tar zxf dockle.tar.gz
-        imagestoscan=( "$@" )
-        if [ ${#imagestoscan[@]} -eq 0 ]; then
-                imagestoscan=( $(ls -d */ | grep -v ^src/) )
-        fi
-        imagestoscan=( "${imagestoscan[@]%/}" )
-        for imagetoscan in "${imagestoscan[@]}"; do
-          echo "Scanning postgresql:${imagetoscan} image..."
-          ./dockle --exit-code ${DOCKLE_EXIT_CODE} --exit-level ${DOCKLE_EXIT_LEVEL} \
-          bashbrew/cache:$(docker images | grep "$(docker images | grep ' ${imagetoscan} ' | awk '{print $3}')" | grep 'bashbrew/cache' | awk '{print $2}') \
-          2>&1 | tee -a dockle-scans-results.log
-        done
-    - name: Archive Dockle Scans results
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: dockle-scans-results
-        path: dockle-scans-results.log
-        retention-days: 7
-        if-no-files-found: ignore
     - name: Docker Login
       if: success()
       env:
@@ -80,3 +49,8 @@ jobs:
       if: always()
       run: |
         rm -f "${HOME}/.docker/config.json"
+    - name: Dockle scan
+      uses: hands-lab/dockle-action@v1
+      if: success()
+      with:
+        image: "${{ env.IMAGE_NAME }}:${{ matrix.tags[0] }}"
