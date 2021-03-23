@@ -9,7 +9,7 @@ on:
       - trigger-build
 
 env:
-  IMAGE_NAME: quay.io/enterprisedb/docker-postgresql
+  IMAGE_NAME: quay.io/enterprisedb/postgresql
 
 jobs:
   generate-jobs:
