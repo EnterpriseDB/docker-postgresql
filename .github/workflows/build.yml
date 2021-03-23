@@ -8,43 +8,56 @@ on:
     types:
       - trigger-build
 
+env:
+  IMAGE_NAME: quay.io/enterprisedb/postgresql
+
 jobs:
+  generate-jobs:
+    name: Generate Jobs
+    runs-on: ubuntu-20.04
+    outputs:
+      strategy: ${{ steps.generate-jobs.outputs.strategy }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: generate-jobs
+        name: Generate Jobs
+        run: .github/generate-strategy.sh
+
   build:
+    needs: generate-jobs
+    strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
+    name: ${{ matrix.version }}
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - name: Generate stackbrew library
-      run: |
-        git clone --depth 1 https://github.com/docker-library/bashbrew.git -b master ~/bashbrew
-        (
-          cd ~/bashbrew
-          GO111MODULE=on go build -o bin/bashbrew ./cmd/bashbrew
-        )
-        export PATH="$HOME/bashbrew/bin:$PATH"
-        mkdir ~/library
-        ./generate-stackbrew-library.sh > ~/library/postgresql
-    - name: Build image
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    - name: Docker meta
+      id: docker-meta
       env:
-        BASHBREW_NAMESPACE: quay.io/enterprisedb/
+        TAGS: ${{ toJson(matrix.tags) }}
       run: |
-        export PATH="$HOME/bashbrew/bin:$PATH"
-        bashbrew --library "$HOME/library" build postgresql
-    - name: Docker Login
-      if: success()
-      env:
-        QUAY_USER: ${{ secrets.QUAY_USER }}
-        QUAY_KEY: ${{ secrets.QUAY_KEY }}
-        QUAY_REPO: ${{ secrets.QUAY_REPO }}
-      run: |
-        echo "${QUAY_KEY}" | docker login --username "${QUAY_USER}" --password-stdin "${QUAY_REPO}"
-    - name: Push image
-      if: success()
-      env:
-        BASHBREW_NAMESPACE: quay.io/enterprisedb/
-      run: |
-        export PATH="$HOME/bashbrew/bin:$PATH"
-        bashbrew --library "$HOME/library" push postgresql
-    - name: Clear
-      if: always()
-      run: |
-        rm -f "${HOME}/.docker/config.json"
+        RESULT=""
+        for tag in $(jq -r '.[]' <<< "${TAGS}")
+        do
+          RESULT="${RESULT},${IMAGE_NAME}:${tag}"
+        done
+        echo "::set-output name=tags::${RESULT%,}"
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Login to quay.io
+      uses: docker/login-action@v1
+      with:
+        registry: quay.io/enterprisedb
+        username: ${{ secrets.QUAY_USERNAME }}
+        password: ${{ secrets.QUAY_TOKEN }}
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: ${{ matrix.version }}
+        # Available architecture on UBI8 are: linux/amd64, linux/arm64, linux/ppc64le
+        platforms: linux/amd64
+        push: true
+        tags: ${{ steps.docker-meta.outputs.tags }}
+        labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
