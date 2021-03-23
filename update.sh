@@ -1,26 +1,30 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
+cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 
-versions=( "$@" )
+versions=("$@")
 if [ ${#versions[@]} -eq 0 ]; then
-	versions=( $(ls -d */ | grep -v ^src/) )
+	for version in */; do
+		[[ $version = src/ ]] && continue
+		versions+=("$version")
+	done
 fi
-versions=( "${versions[@]%/}" )
+versions=("${versions[@]%/}")
 
 declare -A lastTagList=()
 _raw_ubi_tags() {
-	local name="$1"; shift
+	local version="$1"; shift
 	local data
-	data=$(curl -sL "https://registry.access.redhat.com/v2/ubi8/ubi/tags/list")
-	jq -r '.tags[] | select(startswith("'"$name"'"))' <<<"$data"
+	data=$(curl -sL "https://registry.access.redhat.com/v2/ubi${version}/ubi/tags/list")
+	jq -r '.tags[] | select(startswith("'"$version"'"))' <<<"$data" |
+		grep -v -- "-source" | sort -rV | head -n 1
 }
 get_latest_ubi_tag() {
 	local version="$1"; shift
 	if [ -z "${lastTagList["$version"]:+isset}" ]; then
 		local lastTag
-		lastTag="$(_raw_ubi_tags "$version" | grep -v -- "-source" | sort -rV | head -n 1)"
+		lastTag="$(_raw_ubi_tags "$version")"
 		lastTagList["$version"]="$lastTag"
 	fi
 	echo "${lastTagList["$version"]}"
@@ -41,44 +45,116 @@ get_postgresql_version() {
 		sort -rV | head -n1
 }
 
-get_latest_barman_version() {
+latest_barman_version=
+_raw_get_latest_barman_version() {
 	curl -s https://pypi.org/pypi/barman/json | jq -r '.releases | keys[]' | sort -Vr | head -n1
 }
+get_latest_barman_version() {
+	if [ -z "$latest_barman_version" ]; then
+		latest_barman_version=$(_raw_get_latest_barman_version)
+	fi
+	echo "$latest_barman_version"
+}
 
-for version in "${versions[@]}"; do
-	ubiVersion=$(get_latest_ubi_tag "8")
+record_version() {
+	local versionFile="$1"; shift
+	local component="$1"; shift
+	local componentVersion="$1"; shift
+
+	jq -S --arg component "${component}" \
+		--arg componentVersion "${componentVersion}" \
+		'.[$component] = $componentVersion' <"${versionFile}" >>"${versionFile}.new"
+
+	mv "${versionFile}.new" "${versionFile}"
+}
+
+generate() {
+	local version="$1"; shift
+	ubiRelease="8"
+
+	local versionFile="${version}/.versions.json"
+
+	# cache the result
+	get_latest_ubi_tag "${ubiRelease}" >/dev/null
+	get_latest_barman_version >/dev/null
+
+	ubiVersion=$(get_latest_ubi_tag "${ubiRelease}")
 	if [ -z "$ubiVersion" ]; then
-	    echo "Unable to retrieve latest UBI8 version"
-	    exit 1
+		echo "Unable to retrieve latest UBI8 version"
+		exit 1
 	fi
 
 	postgresqlVersion=$(get_postgresql_version '8' 'x86_64' "$version")
 	if [ -z "$postgresqlVersion" ]; then
-	    echo "Unable to retrieve latest PostgreSQL $version version"
-	    exit 1
+		echo "Unable to retrieve latest PostgreSQL $version version"
+		exit 1
 	fi
 
 	barmanVersion=$(get_latest_barman_version)
 	if [ -z "$barmanVersion" ]; then
-	    echo "Unable to retrieve latest Barman version"
-	    exit 1
+		echo "Unable to retrieve latest Barman version"
+		exit 1
 	fi
 
+	# Unreleased PostgreSQL versions
 	yumOptions=""
-	if [ "$version" == 13 ]; then
+	if [ "$version" = 14 ]; then
 		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
 	fi
 
-	echo "$version: $postgresqlVersion"
-
-	rm -fr "$version"/*
+	rm -fr "${version:?}"/*
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g;' \
-	    -e 's/%%PG_MAJOR%%/'"$version"'/g' \
-	    -e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
-	    -e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
+		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
+		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
+		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
 		Dockerfile.template \
-		> "$version/Dockerfile"
+		>"$version/Dockerfile"
 	cp -r src/* "$version/"
+
+	if [ -f "${versionFile}" ]; then
+		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
+		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
+		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
+		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+	else
+		imageReleaseVersion=1
+
+		echo "{}" > "${versionFile}"
+		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
+		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
+		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" "${imageReleaseVersion}"
+
+		return
+	fi
+
+	newRelease="false"
+
+	if [ "$oldUbiVersion" != "$ubiVersion" ]; then
+		echo "UBI changed from $oldUbiVersion to $ubiVersion"
+		newRelease="true"
+		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
+	fi
+
+	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
+		echo "UBI changed from $oldBarmanVersion to $barmanVersion"
+		newRelease="true"
+		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+	fi
+
+	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
+		echo "UBI changed from $oldPostgresqlVersion to $postgresqlVersion"
+		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
+		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" 1
+	elif  [ "$newRelease" = "true" ]; then
+		imageReleaseVersion=$((oldImageReleaseVersion + 1))
+		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
+	fi
+
+}
+
+for version in "${versions[@]}"; do
+	generate "${version}"
 done
