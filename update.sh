@@ -149,21 +149,21 @@ generate() {
 
 	newRelease="false"
 
-        # Detect an update of UBI image
+	# Detect an update of UBI image
 	if [ "$oldUbiVersion" != "$ubiVersion" ]; then
 		echo "UBI changed from $oldUbiVersion to $ubiVersion"
 		newRelease="true"
 		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
 	fi
 
-        # Detect an update of Barman
+	# Detect an update of Barman
 	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
 		echo "UBI changed from $oldBarmanVersion to $barmanVersion"
 		newRelease="true"
 		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
 	fi
 
-        # Detect an update of PostgreSQL
+	# Detect an update of PostgreSQL
 	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
 		echo "UBI changed from $oldPostgresqlVersion to $postgresqlVersion"
 		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
