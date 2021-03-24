@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+#
+# This script, given the PostgreSQL versions defined in the root of
+# the project, generates a json object that will be used inside the
+# Github workflows as a strategy to create a matrix of jobs.
+# The json object contains for each PostgreSQL version the tags of
+# the container image to be built.
+
 set -eu
 
 declare -A aliases=(

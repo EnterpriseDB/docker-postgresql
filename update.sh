@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+#
+# This script fetches the latest version of each component defined
+# in the versionFile of every PostgreSQL version present in the root of
+# the project, and automatically updates the versionFile and the
+# Dockerfile when a new version is available.
+# If any of the component's version is updated, the ReleaseVersion
+# of the image will be increased by one.
+
 set -Eeuo pipefail
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
@@ -56,6 +64,11 @@ get_latest_barman_version() {
 	echo "$latest_barman_version"
 }
 
+# record_version(versionFile, component, componentVersion)
+# Parameters:
+#   versionFile: the file containing the version of each component
+#   component: the component to be updated
+#   componentVersion: the new component version to be set
 record_version() {
 	local versionFile="$1"; shift
 	local component="$1"; shift
