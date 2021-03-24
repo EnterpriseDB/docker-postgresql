@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 #
-# This script, given the PostgreSQL versions defined in the root of
-# the project, generates a json object that will be used inside the
-# Github workflows as a strategy to create a matrix of jobs.
-# The json object contains for each PostgreSQL version the tags of
-# the container image to be built.
+# Given a list of PostgreSQL versions (defined as directories in the root
+# folder of the project), this script generates a JSON object that will be used
+# inside the Github workflows as a strategy to create a matrix of jobs to run.
+# The JSON object contains, for each PostgreSQL version, the tags of the
+# container image to be built.
+#
 
 set -eu
 
@@ -15,13 +16,14 @@ declare -A aliases=(
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}/..")")"
 
+# Retrieve the PostgreSQL versions
 for version in */; do
 	[[ $version == src/ ]] && continue
 	versions+=("$version")
 done
 versions=("${versions[@]%/}")
 
-# sort version numbers with highest first
+# Sort the version numbers with highest first
 mapfile -t versions < <(IFS=$'\n'; sort -rV <<< "${versions[*]}")
 
 # prints "$2$1$3$1...$N"
@@ -56,6 +58,7 @@ for version in "${versions[@]}"; do
 	)
 done
 
+# Build the strategy as a JSON object
 strategy="{\"fail-fast\": false, \"matrix\": {\"include\": [$(join ', ' "${entries[@]}")]}}"
 jq -C . <<<"$strategy" # sanity check / debugging aid
 echo "::set-output name=strategy::$(jq -c . <<<"$strategy")"

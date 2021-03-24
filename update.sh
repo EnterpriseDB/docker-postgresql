@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# This script fetches the latest version of each component defined
-# in the versionFile of every PostgreSQL version present in the root of
-# the project, and automatically updates the versionFile and the
-# Dockerfile when a new version is available.
-# If any of the component's version is updated, the ReleaseVersion
-# of the image will be increased by one.
+# This script fetches the latest version of each component defined in the
+# `versionFile` of every PostgreSQL version present in the root of the project,
+# and automatically updates the `versionFile` and the `Dockerfile` when a new
+# version is available. If any of the components' version is updated, the
+# `ReleaseVersion` of the image will be increased by one.
+#
 
 set -Eeuo pipefail
 
@@ -28,6 +28,8 @@ _raw_ubi_tags() {
 	jq -r '.tags[] | select(startswith("'"$version"'"))' <<<"$data" |
 		grep -v -- "-source" | sort -rV | head -n 1
 }
+
+# Get the latest UBI tag
 get_latest_ubi_tag() {
 	local version="$1"; shift
 	if [ -z "${lastTagList["$version"]:+isset}" ]; then
@@ -38,6 +40,7 @@ get_latest_ubi_tag() {
 	echo "${lastTagList["$version"]}"
 }
 
+# Get the latest PostgreSQL minor version package
 get_postgresql_version() {
 	local os_version="$1"; shift
 	local arch="$1"; shift
@@ -53,6 +56,7 @@ get_postgresql_version() {
 		sort -rV | head -n1
 }
 
+# Get the latest Barman version
 latest_barman_version=
 _raw_get_latest_barman_version() {
 	curl -s https://pypi.org/pypi/barman/json | jq -r '.releases | keys[]' | sort -Vr | head -n1
@@ -145,18 +149,21 @@ generate() {
 
 	newRelease="false"
 
+        # Detect an update of UBI image
 	if [ "$oldUbiVersion" != "$ubiVersion" ]; then
 		echo "UBI changed from $oldUbiVersion to $ubiVersion"
 		newRelease="true"
 		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
 	fi
 
+        # Detect an update of Barman
 	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
 		echo "UBI changed from $oldBarmanVersion to $barmanVersion"
 		newRelease="true"
 		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
 	fi
 
+        # Detect an update of PostgreSQL
 	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
 		echo "UBI changed from $oldPostgresqlVersion to $postgresqlVersion"
 		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
