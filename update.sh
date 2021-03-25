@@ -175,6 +175,25 @@ generate() {
 
 }
 
+update_requirements() {
+    barmanVersion=$(get_latest_barman_version)
+    # If there's a new version we need to recreate the requirements files
+    echo "barman == $barmanVersion" > requirements.in
+
+    # This will take the requirements.in file en generate a file
+    # requirements.txt with the hashes for the requiered packages
+    pip-compile --generate-hashes 2> /dev/null
+
+    # Removes psycopg from the list of packages to install
+    sed -i '/psycopg/{:a;N;/barman/!ba};/via barman/d' requirements.txt
+
+    # Then the file needs to be moved into the src/root/ that will
+    # be added to every container later
+    mv requirements.txt src/root
+}
+
+update_requirements
+
 for version in "${versions[@]}"; do
 	generate "${version}"
 done

@@ -19,7 +19,11 @@ jobs:
         with:
           timeout_minutes: 15
           max_attempts: 3
-          command: ./update.sh
+          command: |
+            # pip-tools provides pip-compile used by update.sh
+            export PATH=$HOME/.local/bin:$PATH
+            pip3 install pip-tools
+            ./update.sh
       - name: Diff
         run: |
           git status
