@@ -14,15 +14,24 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # pip-tools provides pip-compile used by update.sh on the next step
+          pip install pip-tools
       - name: Run update script
         uses: nick-invision/retry@v2.4.0
         with:
           timeout_minutes: 15
           max_attempts: 3
-          command: |
-            # pip-tools provides pip-compile used by update.sh
-            pip install pip-tools
-            ./update.sh
+          command: ./update.sh
       - name: Diff
         run: |
           git status
