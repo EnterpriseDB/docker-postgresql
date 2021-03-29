@@ -1,1 +1,1 @@
-barman == 2.12
+barman[cloud] == 2.12

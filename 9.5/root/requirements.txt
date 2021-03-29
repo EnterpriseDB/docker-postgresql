@@ -7,14 +7,40 @@
 argh==0.26.2 \
     --hash=sha256:a9b3aaa1904eeb78e32394cd46c6f37ac0fb4af6dc488daa58971bdc7d7fcaf3 \
     --hash=sha256:e9535b8c84dc9571a48999094fda7f33e63c3f1b74f3e5f3ac0105a58405bb65
-barman==2.12 \
+barman[cloud]==2.12 \
     --hash=sha256:0b70efb6d967d09088e420550dfffbf9f7284f6f63d25692e802132e1e0fc515 \
     --hash=sha256:4ecf08ead94fd86469f7438820a5f2f9c4565af50edd29bceb3ab676d54fe581
     # via -r requirements.in
+boto3==1.17.39 \
+    --hash=sha256:6ec718f5a75724f6117a47944a3b2dd79aef02ed75b356060cede74fb91e2616 \
+    --hash=sha256:b5814ff73b5b8fc8601c1b73b70675807f9ce64713562e183a08415a2516eed4
+botocore==1.20.39 \
+    --hash=sha256:28506d23ffa9abf5666c2c909c7edc83a1112cd44fe74eb1a4960df561531e98 \
+    --hash=sha256:54587d3c9d0d98ac579681245ea36f547cd5048e2bb9212e5e7166a963bcb562
+    # via
+    #   boto3
+    #   s3transfer
+jmespath==0.10.0 \
+    --hash=sha256:b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9 \
+    --hash=sha256:cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
+    # via
+    #   boto3
+    #   botocore
 python-dateutil==2.8.1 \
     --hash=sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c \
     --hash=sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a
+    # via
+    #   barman
+    #   botocore
+s3transfer==0.3.6 \
+    --hash=sha256:5d48b1fd2232141a9d5fb279709117aaba506cacea7f86f11bc392f06bfa8fc2 \
+    --hash=sha256:c5dadf598762899d8cfaecf68eba649cd25b0ce93b6c954b156aaa3eed160547
+    # via boto3
 six==1.15.0 \
     --hash=sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259 \
     --hash=sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced
     # via python-dateutil
+urllib3==1.26.4 \
+    --hash=sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df \
+    --hash=sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937
+    # via botocore

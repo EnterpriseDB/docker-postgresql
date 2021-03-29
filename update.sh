@@ -158,7 +158,7 @@ generate() {
 
 	# Detect an update of Barman
 	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
-		echo "UBI changed from $oldBarmanVersion to $barmanVersion"
+		echo "Barman changed from $oldBarmanVersion to $barmanVersion"
 		newRelease="true"
 		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
 	fi
@@ -178,7 +178,7 @@ generate() {
 update_requirements() {
     barmanVersion=$(get_latest_barman_version)
     # If there's a new version we need to recreate the requirements files
-    echo "barman == $barmanVersion" > requirements.in
+    echo "barman[cloud] == $barmanVersion" > requirements.in
 
     # This will take the requirements.in file en generate a file
     # requirements.txt with the hashes for the requiered packages
