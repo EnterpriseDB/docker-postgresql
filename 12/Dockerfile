@@ -54,7 +54,7 @@ VOLUME /var/lib/postgresql/data
 RUN mkdir /docker-entrypoint-initdb.d
 
 # DoD 2.3 - remove setuid/setgid from any binary that not strictly requires it, and before doing that list them on the stdout
-RUN find / -perm /6000 -type f -exec ls -ld {} \; -exec chmod a-s {} \; || true
+RUN find / -not -path "/proc/*" -perm /6000 -type f -exec ls -ld {} \; -exec chmod a-s {} \; || true
 
 USER 26
 
