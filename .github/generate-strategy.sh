@@ -45,6 +45,7 @@ for version in "${versions[@]}"; do
 	versionAliases=()
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
 		versionAliases+=("${fullVersion}"-"${releaseVersion}")
+		versionAliases+=("$fullVersion")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
