@@ -42,9 +42,8 @@ for version in "${versions[@]}"; do
 	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
 	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
-	versionAliases=()
+	versionAliases=("${fullVersion}"-"${releaseVersion}")
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("${fullVersion}"-"${releaseVersion}")
 		versionAliases+=("$fullVersion")
 		fullVersion="${fullVersion%[.-]*}"
 	done
