@@ -9,6 +9,7 @@
 
 set -eu
 
+# Define an optional aliases for some major versions
 declare -A aliases=(
 	[13]='latest'
 	[9.6]='9'
@@ -38,21 +39,27 @@ join() {
 entries=()
 for version in "${versions[@]}"; do
 
+	# Read versions from the definition file
 	versionFile="${version}/.versions.json"
 	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
 	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
-	versionAliases=()
+	# Initial aliases are "major version", "optional alias", "full version with release"
+	# i.e. "13", "latest", "13.2-1"
+	versionAliases=(
+		"${version}"
+		${aliases[$version]:+"${aliases[$version]}"}
+		"${fullVersion}"-"${releaseVersion}"
+	)
+
+	# Add all the version prefixes between full version and major version
+	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("${fullVersion}"-"${releaseVersion}")
+		versionAliases+=("$fullVersion")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	versionAliases+=(
-		"${version}"
-		${aliases[$version]:+"${aliases[$version]}"}
-	)
-
+	# Build the json entry
 	entries+=(
 		"{\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 	)
