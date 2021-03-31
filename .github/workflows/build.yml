@@ -10,7 +10,8 @@ on:
       - trigger-build
 
 env:
-  IMAGE_NAME: quay.io/enterprisedb/postgresql
+  IMAGE_NAME: quay.io/enterprisedb/postgresql-testing
+  IMAGE_PROD: quay.io/enterprisedb/postgresql
 
 jobs:
   generate-jobs:
@@ -42,6 +43,11 @@ jobs:
         for tag in $(jq -r '.[]' <<< "${TAGS}")
         do
           RESULT="${RESULT},${IMAGE_NAME}:${tag}"
+          # If we are running the pipeline in the main branch images are pushed in both -testing and PROD repo
+          if [ "${GITHUB_REF#refs/heads/}" == main ]
+          then
+            RESULT="${RESULT},${IMAGE_PROD}:${tag}"
+          fi
         done
         echo "::set-output name=tags::${RESULT%,}"
     - name: Set up Docker Buildx
@@ -67,3 +73,6 @@ jobs:
       if: success()
       with:
         image: "${{ env.IMAGE_NAME }}:${{ matrix.tags[0] }}"
+      env:
+        DOCKLE_USERNAME: ${{ secrets.QUAY_USERNAME }}
+        DOCKLE_PASSWORD: ${{ secrets.QUAY_TOKEN }}
