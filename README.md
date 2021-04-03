@@ -5,7 +5,7 @@ for all PostgreSQL versions based on Red Hat Universal Base
 Images (UBI) 8.
 
 These images are customised to work with [Cloud
-Native PostgreSQL operators by EDB](https://www.enterprisedb.com/)
+Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
 for Kubernetes and Red Hat Openshift.
 
 It is also possible to run them directly with Docker, for PostgreSQL evaluation and testing purposes only.
