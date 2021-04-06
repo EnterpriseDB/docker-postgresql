@@ -97,11 +97,11 @@ generate() {
 
 	ubiVersion=$(get_latest_ubi_tag "${ubiRelease}")
 	if [ -z "$ubiVersion" ]; then
-		echo "Unable to retrieve latest UBI8 version"
+		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
 	fi
 
-	postgresqlVersion=$(get_postgresql_version '8' 'x86_64' "$version")
+	postgresqlVersion=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
 	if [ -z "$postgresqlVersion" ]; then
 		echo "Unable to retrieve latest PostgreSQL $version version"
 		exit 1
@@ -119,8 +119,11 @@ generate() {
 		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
 	fi
 
+	# Output the full Postgresql package name
+	echo "$version: ${postgresqlVersion}"
+
 	rm -fr "${version:?}"/*
-	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g;' \
+	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
@@ -167,7 +170,7 @@ generate() {
 		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlVersion"
 		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" 1
-	elif  [ "$newRelease" = "true" ]; then
+	elif [ "$newRelease" = "true" ]; then
 		imageReleaseVersion=$((oldImageReleaseVersion + 1))
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
@@ -175,20 +178,20 @@ generate() {
 }
 
 update_requirements() {
-    barmanVersion=$(get_latest_barman_version)
-    # If there's a new version we need to recreate the requirements files
-    echo "barman[cloud] == $barmanVersion" > requirements.in
+	barmanVersion=$(get_latest_barman_version)
+	# If there's a new version we need to recreate the requirements files
+	echo "barman[cloud] == $barmanVersion" > requirements.in
 
-    # This will take the requirements.in file and generate a file
-    # requirements.txt with the hashes for the required packages
-    pip-compile --generate-hashes 2> /dev/null
+	# This will take the requirements.in file and generate a file
+	# requirements.txt with the hashes for the required packages
+	pip-compile --generate-hashes 2> /dev/null
 
-    # Removes psycopg from the list of packages to install
-    sed -i '/psycopg/{:a;N;/barman/!ba};/via barman/d' requirements.txt
+	# Removes psycopg from the list of packages to install
+	sed -i '/psycopg/{:a;N;/barman/!ba};/via barman/d' requirements.txt
 
-    # Then the file needs to be moved into the src/root/ that will
-    # be added to every container later
-    mv requirements.txt src/root
+	# Then the file needs to be moved into the src/root/ that will
+	# be added to every container later
+	mv requirements.txt src/root
 }
 
 update_requirements
