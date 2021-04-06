@@ -125,7 +125,6 @@ generate() {
 		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
-		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
 		Dockerfile.template \
 		>"$version/Dockerfile"
 	cp -r src/* "$version/"
@@ -165,7 +164,7 @@ generate() {
 
 	# Detect an update of PostgreSQL
 	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
-		echo "UBI changed from $oldPostgresqlVersion to $postgresqlVersion"
+		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlVersion"
 		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" 1
 	elif  [ "$newRelease" = "true" ]; then
@@ -180,8 +179,8 @@ update_requirements() {
     # If there's a new version we need to recreate the requirements files
     echo "barman[cloud] == $barmanVersion" > requirements.in
 
-    # This will take the requirements.in file en generate a file
-    # requirements.txt with the hashes for the requiered packages
+    # This will take the requirements.in file and generate a file
+    # requirements.txt with the hashes for the required packages
     pip-compile --generate-hashes 2> /dev/null
 
     # Removes psycopg from the list of packages to install
