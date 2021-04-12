@@ -70,9 +70,19 @@ jobs:
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
     - name: Dockle scan
       uses: hands-lab/dockle-action@v1
-      if: success()
+      if: ${{ success() }}
       with:
         image: "${{ env.IMAGE_STAGING }}:${{ matrix.tags[0] }}"
+        exit-code: '1'
+        exit-level: WARN
       env:
         DOCKLE_USERNAME: ${{ secrets.QUAY_USERNAME }}
         DOCKLE_PASSWORD: ${{ secrets.QUAY_TOKEN }}
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      if: ${{ failure() }}
+      env:
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_ICON: https://avatars.githubusercontent.com/u/44036562?size=48
+        SLACK_USERNAME: ghBot
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
