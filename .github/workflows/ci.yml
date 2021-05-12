@@ -20,7 +20,7 @@ jobs:
     outputs:
       strategy: ${{ steps.generate-jobs.outputs.strategy }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
       - id: generate-jobs
         name: Generate Jobs
         run: .github/generate-strategy.sh
@@ -31,7 +31,7 @@ jobs:
     name: PostgreSQL ${{ matrix.version }}
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
       - name: Prepare Environment
         run: |
           git clone --depth 1 https://github.com/docker-library/official-images.git -b master ~/oi
