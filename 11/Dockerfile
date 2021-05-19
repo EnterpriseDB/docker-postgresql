@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi8/ubi:8.3-297.1618432833
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="11.12-1PGDG.rhel8" \
+      version="11.12-2PGDG.rhel8" \
       release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud  \
@@ -17,10 +17,10 @@ RUN set -xe ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql11-11.12-1PGDG.rhel8 \
-		postgresql11-contrib-11.12-1PGDG.rhel8 \
-		postgresql11-server-11.12-1PGDG.rhel8 \
-		postgresql11-libs-11.12-1PGDG.rhel8 ; \
+		postgresql11-11.12-2PGDG.rhel8 \
+		postgresql11-contrib-11.12-2PGDG.rhel8 \
+		postgresql11-server-11.12-2PGDG.rhel8 \
+		postgresql11-libs-11.12-2PGDG.rhel8 ; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud
