@@ -85,7 +85,7 @@ record_version() {
 	mv "${versionFile}.new" "${versionFile}"
 }
 
-generate() {
+generate_redhat() {
 	local version="$1"; shift
 	ubiRelease="8"
 
@@ -197,5 +197,5 @@ update_requirements() {
 update_requirements
 
 for version in "${versions[@]}"; do
-	generate "${version}"
+  generate_redhat "${version}"
 done

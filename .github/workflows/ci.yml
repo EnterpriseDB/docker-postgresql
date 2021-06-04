@@ -49,7 +49,7 @@ jobs:
           do
             ARGS+=(--tag "${IMAGE_NAME}:${tag}")
           done
-          docker build ${ARGS[@]} '${{ matrix.version }}'
+          docker build ${ARGS[@]} '${{ matrix.dir }}'
       - name: History ${{ matrix.version }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
       - name: Test ${{ matrix.version }}

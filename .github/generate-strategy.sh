@@ -16,16 +16,26 @@ declare -A aliases=(
 )
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}/..")")"
+BASE_DIRECTORY="$(pwd)"
 
-# Retrieve the PostgreSQL versions
+# Retrieve the PostgreSQL versions for UBI
+cd $BASE_DIRECTORY/UBI/
 for version in */; do
 	[[ $version == src/ ]] && continue
-	versions+=("$version")
+	ubi_versions+=("$version")
 done
-versions=("${versions[@]%/}")
+ubi_versions=("${ubi_versions[@]%/}")
+
+
+# Retrieve the PostgreSQL versions for Debian
+cd $BASE_DIRECTORY/Debian/
+for version in */; do
+	debian_versions+=("$version")
+done
+debian_versions=("${debian_versions[@]%/}")
 
 # Sort the version numbers with highest first
-mapfile -t versions < <(IFS=$'\n'; sort -rV <<< "${versions[*]}")
+#mapfile -t versions < <(IFS=$'\n'; sort -rV <<< "${versions[*]}")
 
 # prints "$2$1$3$1...$N"
 join() {
@@ -36,8 +46,9 @@ join() {
 	echo "${out#$sep}"
 }
 
+cd $BASE_DIRECTORY/UBI/
 entries=()
-for version in "${versions[@]}"; do
+for version in "${ubi_versions[@]}"; do
 
 	# Read versions from the definition file
 	versionFile="${version}/.versions.json"
@@ -61,7 +72,66 @@ for version in "${versions[@]}"; do
 
 	# Build the json entry
 	entries+=(
-		"{\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+		"{\"name\": \"UBI ${fullVersion}\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+	)
+done
+
+
+cd $BASE_DIRECTORY/Debian/
+
+for version in "${debian_versions[@]}"; do
+
+	# Read versions from the definition file
+	versionFile="${version}/.versions.json"
+	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
+	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+
+	# Initial aliases are "major version", "optional alias", "full version with release"
+	# i.e. "13", "latest", "13.2-1"
+	versionAliases=(
+		"debian-${version}"
+		${aliases[$version]:+"debian-${aliases[$version]}"}
+		"debian-${fullVersion}"-"${releaseVersion}"
+	)
+
+	# Add all the version prefixes between full version and major version
+	# i.e "13.2"
+	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
+		versionAliases+=("debian-$fullVersion")
+		fullVersion="${fullVersion%[.-]*}"
+	done
+
+	# Build the json entry
+	entries+=(
+		"{\"name\": \"Debian ${fullVersion}\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+	)
+done
+
+for version in "${debian_versions[@]}"; do
+
+	# Read versions from the definition file
+	versionFile="${version}/.versions.json"
+	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
+	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+
+	# Initial aliases are "major version", "optional alias", "full version with release"
+	# i.e. "13", "latest", "13.2-1"
+	versionAliases=(
+		"debian-postgis-${version}"
+		${aliases[$version]:+"debian-postgis-${aliases[$version]}"}
+		"debian-postgis-${fullVersion}"-"${releaseVersion}"
+	)
+
+	# Add all the version prefixes between full version and major version
+	# i.e "13.2"
+	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
+		versionAliases+=("debian-postgis-$fullVersion")
+		fullVersion="${fullVersion%[.-]*}"
+	done
+
+	# Build the json entry
+	entries+=(
+		"{\"name\": \"Debian PostGIS ${fullVersion}\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 	)
 done
 
