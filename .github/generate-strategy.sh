@@ -19,7 +19,8 @@ cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}/..")")"
 BASE_DIRECTORY="$(pwd)"
 
 # Retrieve the PostgreSQL versions for UBI
-cd $BASE_DIRECTORY/UBI/
+cd "$BASE_DIRECTORY"/UBI/
+
 for version in */; do
 	[[ $version == src/ ]] && continue
 	ubi_versions+=("$version")
@@ -28,14 +29,15 @@ ubi_versions=("${ubi_versions[@]%/}")
 
 
 # Retrieve the PostgreSQL versions for Debian
-cd $BASE_DIRECTORY/Debian/
+cd "$BASE_DIRECTORY"/Debian/
 for version in */; do
 	debian_versions+=("$version")
 done
 debian_versions=("${debian_versions[@]%/}")
 
 # Sort the version numbers with highest first
-#mapfile -t versions < <(IFS=$'\n'; sort -rV <<< "${versions[*]}")
+mapfile -t ubi_versions < <(IFS=$'\n'; sort -rV <<< "${ubi_versions[*]}")
+mapfile -t debian_versions < <(IFS=$'\n'; sort -rV <<< "${debian_versions[*]}")
 
 # prints "$2$1$3$1...$N"
 join() {
@@ -46,7 +48,7 @@ join() {
 	echo "${out#$sep}"
 }
 
-cd $BASE_DIRECTORY/UBI/
+cd "$BASE_DIRECTORY"/UBI/
 entries=()
 for version in "${ubi_versions[@]}"; do
 
@@ -77,7 +79,7 @@ for version in "${ubi_versions[@]}"; do
 done
 
 
-cd $BASE_DIRECTORY/Debian/
+cd "$BASE_DIRECTORY"/Debian/
 
 for version in "${debian_versions[@]}"; do
 
@@ -91,7 +93,7 @@ for version in "${debian_versions[@]}"; do
 	versionAliases=(
 		"debian-${version}"
 		${aliases[$version]:+"debian-${aliases[$version]}"}
-		"debian-${fullVersion}"-"${releaseVersion}"
+		"debian-${fullVersion}-${releaseVersion}"
 	)
 
 	# Add all the version prefixes between full version and major version
@@ -119,7 +121,7 @@ for version in "${debian_versions[@]}"; do
 	versionAliases=(
 		"debian-postgis-${version}"
 		${aliases[$version]:+"debian-postgis-${aliases[$version]}"}
-		"debian-postgis-${fullVersion}"-"${releaseVersion}"
+		"debian-postgis-${fullVersion}-${releaseVersion}"
 	)
 
 	# Add all the version prefixes between full version and major version
