@@ -91,15 +91,15 @@ for version in "${debian_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	versionAliases=(
-		"debian-${version}"
-		${aliases[$version]:+"debian-${aliases[$version]}"}
-		"debian-${fullVersion}-${releaseVersion}"
+		"${version}-debian"
+		${aliases[$version]:+"${aliases[$version]}-debian"}
+		"${fullVersion}-${releaseVersion}-debian"
 	)
 
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("debian-$fullVersion")
+		versionAliases+=("$fullVersion-debian")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
@@ -119,15 +119,15 @@ for version in "${debian_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	versionAliases=(
-		"debian-postgis-${version}"
-		${aliases[$version]:+"debian-postgis-${aliases[$version]}"}
-		"debian-postgis-${fullVersion}-${releaseVersion}"
+		"${version}-debian-postgis"
+		${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
+		"${fullVersion}-${releaseVersion}-debian-postgis"
 	)
 
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("debian-postgis-$fullVersion")
+		versionAliases+=("$fullVersion-debian-postgis")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 

@@ -84,6 +84,7 @@ RUN set -ex; \
 
 ENV PG_MAJOR 12
 ENV PG_VERSION 12.7-1.pgdg100+1
+ENV BARMAN_VERSION 2.12-1.pgdg100+1
 
 RUN set -ex; \
 	\
@@ -126,7 +127,7 @@ RUN set -ex; \
 				apt-get source --compile \
 					postgresql-common pgdg-keyring \
           "postgresql-$PG_MAJOR=$PG_VERSION" \
-          "barman-cloud-cli" \
+          "barman-cli-cloud" \
 			; \
 # we don't remove APT lists here because they get re-downloaded and removed later
 			\
@@ -152,6 +153,7 @@ RUN set -ex; \
 	sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf; \
 	apt-get install -y --no-install-recommends \
 		"postgresql-$PG_MAJOR=$PG_VERSION" \
+		"barman-cli-cloud=$BARMAN_VERSION" \
 	; \
 	\
 	rm -rf /var/lib/apt/lists/*; \

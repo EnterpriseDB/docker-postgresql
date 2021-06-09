@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -Eeuo pipefail
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
@@ -92,7 +92,7 @@ for version in "${versions[@]}"; do
 	suite="${tag%%-slim}"
 	majorVersion="${version%%.*}"
 
-  versionFile="${version}/.versions.json"
+	versionFile="${version}/.versions.json"
 
 	fetch_suite_package_list "$suite" "$version" 'amd64'
 	fullVersion="$(
@@ -125,7 +125,14 @@ for version in "${versions[@]}"; do
 
 	echo "$version: $fullVersion ($versionArches)"
 
-	cp docker-entrypoint.sh "$version/"
+	barmanVersion="$(
+		awk_package_list "$suite" "$version" 'amd64' '
+			$1 == "Package" { pkg = $2 }
+			$1 == "Version" && pkg == "barman-cli-cloud" { print $2; exit }
+		'
+	)"
+
+  cp docker-entrypoint.sh "$version/"
   cp initdb-postgis.sh "$version/"
   cp update-postgis.sh "$version/"
 
@@ -134,6 +141,7 @@ for version in "${versions[@]}"; do
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
 		-e 's/%%ARCH_LIST%%/'"$versionArches"'/g' \
+		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
 		Dockerfile-debian.template \
 		> "$version/Dockerfile"
 
@@ -142,6 +150,7 @@ for version in "${versions[@]}"; do
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
 		-e 's/%%ARCH_LIST%%/'"$versionArches"'/g' \
+		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
     -e 's/%%POSTGIS_MAJOR%%/"3"/g' \
 		Dockerfile-postgis.template \
 		> "$version/Dockerfile.postgis"
@@ -170,12 +179,14 @@ for version in "${versions[@]}"; do
   if [ -f "${versionFile}" ]; then
 		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
 	else
 		imageReleaseVersion=1
 
 		echo "{}" > "${versionFile}"
 		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" "${imageReleaseVersion}"
+		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
 
 		exit 1
 	fi
@@ -192,6 +203,12 @@ for version in "${versions[@]}"; do
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
+	# Detect an update of Barman
+	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
+		echo "Barman changed from $oldBarmanVersion to $barmanVersion"
+		newRelease="true"
+		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+	fi
 
 	# TODO figure out what to do with odd version numbers here, like release candidates
 	srcVersion="${fullVersion%%-*}"
