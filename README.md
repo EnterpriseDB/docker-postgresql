@@ -1,8 +1,12 @@
 # PostgreSQL Container Images by EnterpriseDB
 
 Maintenance scripts to generate Immutable Application Containers
-for all PostgreSQL versions based on Red Hat Universal Base
-Images (UBI) 8.
+for all PostgreSQL versions based on:
+
+- Red Hat Universal Base Images (UBI) 8 - default
+- Debian Slim base images, with and without the PostGIS extension:
+    - PostgreSQL 10 and 11 on Debian Stretch (9) Slim
+    - PostgreSQL 12 and 13 on Debian Buster (10) Slim
 
 These images are customised to work with [Cloud
 Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
@@ -14,10 +18,13 @@ The images include:
 
 - PostgreSQL
 - Barman Cloud
+- PostGIS 3.1 (optional, on Debian based images only)
 
 PostgreSQL is distributed by the PGDG under the [PostgreSQL License](https://www.postgresql.org/about/licence/).
 
 Barman Cloud is distributed by EnterpriseDB under the [GNU GPL 3 License](https://github.com/2ndquadrant-it/barman/blob/master/LICENSE).
+
+PostGIS is distributed under the [GNU GPL 2 License](https://git.osgeo.org/gitea/postgis/postgis/src/branch/master/COPYING).
 
 Images are available via [Quay.io](https://quay.io/repository/enterprisedb/postgresql).
 
@@ -30,17 +37,24 @@ The image can be pulled with the `docker pull` command, following the instructio
 find in the Quay.io repository.
 
 For example you can pull the latest minor version of the latest major version of PostgreSQL
-with the following command:
+based on RedHat UBI with the following command:
 
 ```console
 docker pull quay.io/enterprisedb/postgresql
 ```
 
 If you want to use the latest minor version of a particular major version of PostgreSQL,
-for example 12, you can type:
+for example 12, on UBI you can type:
 
 ```console
 docker pull quay.io/enterprisedb/postgresql:12
+```
+
+In order to install the latest minor version of PostgreSQL 12 on a Debian based image,
+you can type:
+
+```console
+docker pull quay.io/enterprisedb/postgresql:12-debian
 ```
 
 **IMPORTANT:** in the examples below we assume that the latest minor of the latest major version is used.

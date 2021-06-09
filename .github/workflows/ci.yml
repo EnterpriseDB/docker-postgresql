@@ -28,7 +28,7 @@ jobs:
   test:
     needs: generate-jobs
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
-    name: PostgreSQL ${{ matrix.version }}
+    name: PostgreSQL ${{ matrix.name }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
           git clone --depth 1 https://github.com/tianon/pgp-happy-eyeballs.git ~/phe
           ~/phe/hack-my-builds.sh
           rm -rf ~/phe
-      - name: Build ${{ matrix.version }}
+      - name: Build ${{ matrix.name }}
         env:
           TAGS: ${{ toJson(matrix.tags) }}
         run: |
@@ -49,10 +49,10 @@ jobs:
           do
             ARGS+=(--tag "${IMAGE_NAME}:${tag}")
           done
-          docker build ${ARGS[@]} '${{ matrix.version }}'
-      - name: History ${{ matrix.version }}
+          docker build ${ARGS[@]} '${{ matrix.dir }}'
+      - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
-      - name: Test ${{ matrix.version }}
+      - name: Test ${{ matrix.name }}
         run: ~/oi/test/run.sh "${IMAGE_NAME}:${{ matrix.tags[0] }}"
       - name: '"docker images"'
         run: docker image ls --filter since=image-list-marker

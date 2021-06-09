@@ -23,7 +23,10 @@ jobs:
             # pip-tools provides pip-compile used by update.sh
             export PATH=$HOME/.local/bin:$PATH
             pip3 install pip-tools
-            ./update.sh
+            echo "Updating UBI images"
+            ./UBI/update.sh
+            echo "Updating Debian Images"
+            ./Debian/update.sh
       - name: Diff
         run: |
           git status

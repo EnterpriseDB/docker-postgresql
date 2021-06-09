@@ -1,0 +1,5 @@
+{
+  "BARMAN_VERSION": "2.12-1.pgdg90+1",
+  "IMAGE_RELEASE_VERSION": "1",
+  "POSTGRES_VERSION": "11.12-1.pgdg90+1"
+}
