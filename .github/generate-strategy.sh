@@ -93,7 +93,7 @@ for version in "${debian_versions[@]}"; do
 	versionAliases=(
 		"${version}-debian"
 		${aliases[$version]:+"${aliases[$version]}-debian"}
-		"${fullVersion}-${releaseVersion}-debian"
+		"${fullVersion}-debian-${releaseVersion}"
 	)
 
 	# Add all the version prefixes between full version and major version
@@ -121,7 +121,7 @@ for version in "${debian_versions[@]}"; do
 	versionAliases=(
 		"${version}-debian-postgis"
 		${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
-		"${fullVersion}-${releaseVersion}-debian-postgis"
+		"${fullVersion}-debian-postgis-${releaseVersion}"
 	)
 
 	# Add all the version prefixes between full version and major version
