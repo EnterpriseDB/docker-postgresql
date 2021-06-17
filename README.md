@@ -102,3 +102,4 @@ postgres=# SELECT 1;
 ![Continuous Integration](https://github.com/EnterpriseDB/docker-postgresql/workflows/Continuous%20Integration/badge.svg?branch=master)
 ![Continuous Delivery](https://github.com/EnterpriseDB/docker-postgresql/workflows/Continuous%20Delivery/badge.svg?branch=master)
 ![Automatic Updates](https://github.com/EnterpriseDB/docker-postgresql/workflows/Automatic%20Updates/badge.svg?branch=master)
+![CI Score](https://meercode.io/badge/EnterpriseDB/docker-postgresql?type=ci-score&lastDay=7)
