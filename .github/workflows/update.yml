@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_GHA_PAT }}
       - name: Run update script
         uses: nick-invision/retry@v2.4.1
         with:
@@ -37,12 +39,3 @@ jobs:
           author_name: EnterpriseDB Automated Updates
           author_email: noreply@enterprisedb.com
           message: 'Daily automatic update'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Dispatch trigger-e2e event
-        if: steps.commit.outputs.committed == 'true'
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.REPO_GHA_PAT }}
-          repository: ${{ github.repository }}
-          event-type: trigger-build
