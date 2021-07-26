@@ -20,7 +20,8 @@ RUN set -xe ; \
 		postgresql13-13.3-2PGDG.rhel8 \
 		postgresql13-contrib-13.3-2PGDG.rhel8 \
 		postgresql13-server-13.3-2PGDG.rhel8 \
-		postgresql13-libs-13.3-2PGDG.rhel8 ; \
+		postgresql13-libs-13.3-2PGDG.rhel8 \
+		pgaudit15_13 ; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud
