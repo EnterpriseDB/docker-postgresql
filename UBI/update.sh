@@ -69,18 +69,18 @@ get_latest_barman_version() {
 }
 
 get_pgaudit_version() {
-  local pg_major="$1"; shift
+	local pg_major="$1"; shift
 
-  case $pg_major in
-      9.6) pgaudit_version=11 ;;
-      10) pgaudit_version=12 ;;
-      11) pgaudit_version=13 ;;
-      12) pgaudit_version=14 ;;
-      13) pgaudit_version=15 ;;
-      14) pgaudit_version=16 ;;
-  esac
+	case $pg_major in
+		9.6) pgaudit_version=11 ;;
+		10) pgaudit_version=12 ;;
+		11) pgaudit_version=13 ;;
+		12) pgaudit_version=14 ;;
+		13) pgaudit_version=15 ;;
+		14) pgaudit_version=16 ;;
+	esac
 
-  echo "$pgaudit_version"
+	echo "$pgaudit_version"
 }
 
 # record_version(versionFile, component, componentVersion)
@@ -128,11 +128,11 @@ generate_redhat() {
 		exit 1
 	fi
 
-  pgauditVersion=$(get_pgaudit_version "$version")
-  if [ -z "$pgauditVersion" ]; then
-      echo "Unable to get the pgAudit version"
-      exit 1
-  fi
+	pgauditVersion=$(get_pgaudit_version "$version")
+	if [ -z "$pgauditVersion" ]; then
+		echo "Unable to get the pgAudit version"
+		exit 1
+	fi
 
 	# Unreleased PostgreSQL versions
 	yumOptions=""
