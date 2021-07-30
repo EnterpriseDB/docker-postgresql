@@ -12,13 +12,8 @@ versions=( "${versions[@]%/}" )
 defaultDebianSuite='buster-slim'
 declare -A debianSuite=(
 	# https://github.com/docker-library/postgres/issues/582
-	[9.6]='stretch-slim'
 	[10]='stretch-slim'
 	[11]='stretch-slim'
-)
-defaultAlpineVersion='3.13'
-declare -A alpineVersion=(
-	#[9.6]='3.5'
 )
 
 packagesBase='http://apt.postgresql.org/pub/repos/apt/dists/'
@@ -90,8 +85,6 @@ record_version() {
 for version in "${versions[@]}"; do
 	tag="${debianSuite[$version]:-$defaultDebianSuite}"
 	suite="${tag%%-slim}"
-	majorVersion="${version%%.*}"
-
 	versionFile="${version}/.versions.json"
 
 	fetch_suite_package_list "$suite" "$version" 'amd64'
@@ -105,7 +98,6 @@ for version in "${versions[@]}"; do
 		echo >&2 "error: missing postgresql-$version package!"
 		exit 1
 	fi
-
 
 	fetch_suite_arches "$suite"
 	versionArches=
@@ -123,8 +115,6 @@ for version in "${versions[@]}"; do
 		fi
 	done
 
-	echo "$version: $fullVersion ($versionArches)"
-
 	barmanVersion="$(
 		awk_package_list "$suite" "$version" 'amd64' '
 			$1 == "Package" { pkg = $2 }
@@ -132,15 +122,16 @@ for version in "${versions[@]}"; do
 		'
 	)"
 
-  cp docker-entrypoint.sh "$version/"
-  cp initdb-postgis.sh "$version/"
-  cp update-postgis.sh "$version/"
+	echo "$version: $fullVersion ($versionArches)"
+
+	cp docker-entrypoint.sh "$version/"
+	cp initdb-postgis.sh "$version/"
+	cp update-postgis.sh "$version/"
 
 	sed -e 's/%%PG_MAJOR%%/'"$version"'/g;' \
 		-e 's/%%PG_VERSION%%/'"$fullVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
-		-e 's/%%ARCH_LIST%%/'"$versionArches"'/g' \
 		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
 		Dockerfile-debian.template \
 		> "$version/Dockerfile"
@@ -149,30 +140,10 @@ for version in "${versions[@]}"; do
 		-e 's/%%PG_VERSION%%/'"$fullVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
-		-e 's/%%ARCH_LIST%%/'"$versionArches"'/g' \
 		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
-    -e 's/%%POSTGIS_MAJOR%%/"3"/g' \
+		-e 's/%%POSTGIS_MAJOR%%/"3"/g' \
 		Dockerfile-postgis.template \
 		> "$version/Dockerfile.postgis"
-
-	if [ "$majorVersion" = '9' ]; then
-		sed -i -e 's/WALDIR/XLOGDIR/g' \
-			-e 's/waldir/xlogdir/g' \
-			"$version/docker-entrypoint.sh"
-		# ICU support was introduced in PostgreSQL 10 (https://www.postgresql.org/docs/10/static/release-10.html#id-1.11.6.9.5.13)
-		sed -i -e '/icu/d' "$version/Dockerfile"
-	else
-		# postgresql-contrib-10 package does not exist, but is provided by postgresql-10
-		# Packages.gz:
-		# Package: postgresql-10
-		# Provides: postgresql-contrib-10
-		  sed -i -e '/postgresql-contrib-/d' "$version/Dockerfile"
-      sed -i -e '/postgresql-contrib-/d' "$version/Dockerfile.postgis"
-	fi
-
-	if [ "$majorVersion" != '13' ]; then
-		sed -i -e '/DEBIAN_FRONTEND/d' "$version/Dockerfile"
-	fi
 
   postgresqlVersion=$fullVersion
 
@@ -210,40 +181,4 @@ for version in "${versions[@]}"; do
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
-
-	# TODO figure out what to do with odd version numbers here, like release candidates
-	srcVersion="${fullVersion%%-*}"
-	# change "10~beta1" to "10beta1" for ftp urls
-	tilde='~'
-	srcVersion="${srcVersion//$tilde/}"
-	srcSha256="$(curl -fsSL "https://ftp.postgresql.org/pub/source/v${srcVersion}/postgresql-${srcVersion}.tar.bz2.sha256" | cut -d' ' -f1)"
-	for variant in alpine; do
-		if [ ! -d "$version/$variant" ]; then
-			continue
-		fi
-
-		cp docker-entrypoint.sh "$version/$variant/"
-		sed -i 's/gosu/su-exec/g' "$version/$variant/docker-entrypoint.sh"
-		sed -e 's/%%PG_MAJOR%%/'"$version"'/g' \
-			-e 's/%%PG_VERSION%%/'"$srcVersion"'/g' \
-			-e 's/%%PG_SHA256%%/'"$srcSha256"'/g' \
-			-e 's/%%ALPINE-VERSION%%/'"${alpineVersion[$version]:-$defaultAlpineVersion}"'/g' \
-			"Dockerfile-$variant.template" \
-			> "$version/$variant/Dockerfile"
-		if [ "$majorVersion" = '9' ]; then
-			sed -i -e 's/WALDIR/XLOGDIR/g' \
-				-e 's/waldir/xlogdir/g' \
-				"$version/$variant/docker-entrypoint.sh"
-			# ICU support was introduced in PostgreSQL 10 (https://www.postgresql.org/docs/10/static/release-10.html#id-1.11.6.9.5.13)
-			sed -i -e '/icu/d' "$version/$variant/Dockerfile"
-		fi
-
-		if [ "$majorVersion" -gt 11 ]; then
-			sed -i '/backwards compat/d' "$version/$variant/Dockerfile"
-		fi
-		if [ "$majorVersion" -lt 11 ]; then
-			# JIT / LLVM is only supported in PostgreSQL 11+ (https://github.com/docker-library/postgres/issues/475)
-			sed -i '/llvm/d' "$version/$variant/Dockerfile"
-		fi
-	done
 done
