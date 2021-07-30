@@ -193,6 +193,13 @@ for version in "${versions[@]}"; do
 
 	newRelease="false"
 
+	# Detect an update of Barman
+	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
+		echo "Barman changed from $oldBarmanVersion to $barmanVersion"
+		newRelease="true"
+		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+	fi
+
 	# Detect an update of PostgreSQL
 	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
 		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlVersion"
@@ -203,12 +210,6 @@ for version in "${versions[@]}"; do
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
-	# Detect an update of Barman
-	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
-		echo "Barman changed from $oldBarmanVersion to $barmanVersion"
-		newRelease="true"
-		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
-	fi
 
 	# TODO figure out what to do with odd version numbers here, like release candidates
 	srcVersion="${fullVersion%%-*}"
