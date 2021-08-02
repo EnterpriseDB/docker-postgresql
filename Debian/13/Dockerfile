@@ -1,6 +1,8 @@
 # vim:set ft=dockerfile:
 FROM debian:buster-slim
 
+COPY root/ /
+
 RUN set -ex; \
 	if ! command -v gpg > /dev/null; then \
 		apt-get update; \
@@ -84,7 +86,6 @@ RUN set -ex; \
 
 ENV PG_MAJOR 13
 ENV PG_VERSION 13.3-1.pgdg100+1
-ENV BARMAN_VERSION 2.13-1.pgdg100+1
 
 RUN set -ex; \
 	echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main $PG_MAJOR" > /etc/apt/sources.list.d/pgdg.list; \
@@ -93,10 +94,20 @@ RUN set -ex; \
 	sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf; \
 	apt-get install -y --no-install-recommends \
 		"postgresql-$PG_MAJOR=$PG_VERSION" \
-		"barman-cli-cloud=$BARMAN_VERSION" \
 		"postgresql-$PG_MAJOR-pgaudit" \
 	; \
 	\
+	rm -rf /var/lib/apt/lists/*;
+
+# Install barman-cloud
+RUN set -xe; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		python3-pip \
+		python3-psycopg2 \
+	; \
+	pip3 install --upgrade pip; \
+	pip3 install -r requirements.txt; \
 	rm -rf /var/lib/apt/lists/*;
 
 # make the sample config easier to munge (and "correct by default")
@@ -115,7 +126,6 @@ ENV PGDATA /var/lib/postgresql/data
 RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA"
 VOLUME /var/lib/postgresql/data
 
-COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
 
 # DoD 2.3 - remove setuid/setgid from any binary that not strictly requires it, and before doing that list them on the stdout

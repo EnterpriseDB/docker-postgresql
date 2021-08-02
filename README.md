@@ -4,9 +4,7 @@ Maintenance scripts to generate Immutable Application Containers
 for all PostgreSQL versions based on:
 
 - Red Hat Universal Base Images (UBI) 8 - default
-- Debian Slim base images, with and without the PostGIS extension:
-    - PostgreSQL 10 and 11 on Debian Stretch (9) Slim
-    - PostgreSQL 12 and 13 on Debian Buster (10) Slim
+- Debian Buster (10) Slim base images, with and without the PostGIS extension
 
 These images are customised to work with [Cloud
 Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
