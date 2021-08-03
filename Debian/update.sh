@@ -3,17 +3,20 @@ set -Eeuo pipefail
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
-versions=( "$@" )
+versions=("$@")
 if [ ${#versions[@]} -eq 0 ]; then
-	versions=( */ )
+	for version in */; do
+		[[ $version = src/ ]] && continue
+		versions+=("$version")
+	done
 fi
-versions=( "${versions[@]%/}" )
+versions=("${versions[@]%/}")
 
 defaultDebianSuite='buster-slim'
 declare -A debianSuite=(
 	# https://github.com/docker-library/postgres/issues/582
-	[10]='stretch-slim'
-	[11]='stretch-slim'
+	# [10]='stretch-slim'
+	# [11]='stretch-slim'
 )
 
 packagesBase='http://apt.postgresql.org/pub/repos/apt/dists/'
@@ -65,6 +68,18 @@ fetch_suite_arches() {
 	fi
 }
 
+# Get the latest Barman version
+latest_barman_version=
+_raw_get_latest_barman_version() {
+	curl -s https://pypi.org/pypi/barman/json | jq -r '.releases | keys[]' | sort -Vr | head -n1
+}
+get_latest_barman_version() {
+	if [ -z "$latest_barman_version" ]; then
+		latest_barman_version=$(_raw_get_latest_barman_version)
+	fi
+	echo "$latest_barman_version"
+}
+
 # record_version(versionFile, component, componentVersion)
 # Parameters:
 #   versionFile: the file containing the version of each component
@@ -82,7 +97,8 @@ record_version() {
 	mv "${versionFile}.new" "${versionFile}"
 }
 
-for version in "${versions[@]}"; do
+generate_debian() {
+	local version="$1"; shift
 	tag="${debianSuite[$version]:-$defaultDebianSuite}"
 	suite="${tag%%-slim}"
 	versionFile="${version}/.versions.json"
@@ -115,16 +131,11 @@ for version in "${versions[@]}"; do
 		fi
 	done
 
-	barmanVersion="$(
-		awk_package_list "$suite" "$version" 'amd64' '
-			$1 == "Package" { pkg = $2 }
-			$1 == "Version" && pkg == "barman-cli-cloud" { print $2; exit }
-		'
-	)"
-
 	echo "$version: $fullVersion ($versionArches)"
 
-	cp docker-entrypoint.sh "$version/"
+	barmanVersion=$(get_latest_barman_version)
+
+	cp -r src/* "$version/"
 	cp initdb-postgis.sh "$version/"
 	cp update-postgis.sh "$version/"
 
@@ -132,7 +143,6 @@ for version in "${versions[@]}"; do
 		-e 's/%%PG_VERSION%%/'"$fullVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
-		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
 		Dockerfile-debian.template \
 		> "$version/Dockerfile"
 
@@ -140,7 +150,6 @@ for version in "${versions[@]}"; do
 		-e 's/%%PG_VERSION%%/'"$fullVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
-		-e 's/%%BARMAN_VERSION%%/'"$barmanVersion"'/g' \
 		-e 's/%%POSTGIS_MAJOR%%/"3"/g' \
 		Dockerfile-postgis.template \
 		> "$version/Dockerfile.postgis"
@@ -181,4 +190,27 @@ for version in "${versions[@]}"; do
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
+}
+
+update_requirements() {
+	barmanVersion=$(get_latest_barman_version)
+	# If there's a new version we need to recreate the requirements files
+	echo "barman[cloud,azure] == $barmanVersion" > requirements.in
+
+	# This will take the requirements.in file and generate a file
+	# requirements.txt with the hashes for the required packages
+	pip-compile --generate-hashes 2> /dev/null
+
+	# Removes psycopg from the list of packages to install
+	sed -i '/psycopg/{:a;N;/barman/!ba};/via barman/d' requirements.txt
+
+	# Then the file needs to be moved into the src/root/ that will
+	# be added to every container later
+	mv requirements.txt src/root
+}
+
+update_requirements
+
+for version in "${versions[@]}"; do
+  generate_debian "${version}"
 done

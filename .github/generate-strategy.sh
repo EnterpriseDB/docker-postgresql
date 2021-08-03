@@ -31,6 +31,7 @@ ubi_versions=("${ubi_versions[@]%/}")
 # Retrieve the PostgreSQL versions for Debian
 cd "$BASE_DIRECTORY"/Debian/
 for version in */; do
+	[[ $version == src/ ]] && continue
 	debian_versions+=("$version")
 done
 debian_versions=("${debian_versions[@]%/}")
