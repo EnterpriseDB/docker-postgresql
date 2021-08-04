@@ -105,6 +105,7 @@ RUN set -xe; \
 	apt-get install -y --no-install-recommends \
 		python3-pip \
 		python3-psycopg2 \
+		python3-setuptools \
 	; \
 	pip3 install --upgrade pip; \
 	pip3 install -r requirements.txt; \
