@@ -5,10 +5,9 @@ LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="13.3-2PGDG.rhel8" \
-      release="1" \
+      release="7" \
       summary="PostgreSQL Container images." \
-      description="This Docker image contains PostgreSQL and Barman Cloud  \
-                   based on RedHat Universal Base Images (UBI) 8."
+      description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
 COPY root/ /
 

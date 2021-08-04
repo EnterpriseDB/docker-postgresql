@@ -104,6 +104,7 @@ generate_redhat() {
 	local version="$1"; shift
 	ubiRelease="8"
 
+	local imageReleaseVersion=1
 	local versionFile="${version}/.versions.json"
 
 	# cache the result
@@ -143,22 +144,12 @@ generate_redhat() {
 	# Output the full Postgresql package name
 	echo "$version: ${postgresqlVersion}"
 
-	rm -fr "${version:?}"/*
-	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
-		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
-		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
-		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
-		Dockerfile.template \
-		>"$version/Dockerfile"
-	cp -r src/* "$version/"
-
 	if [ -f "${versionFile}" ]; then
 		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
 		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+		imageReleaseVersion=$oldImageReleaseVersion
 	else
 		imageReleaseVersion=1
 
@@ -197,6 +188,17 @@ generate_redhat() {
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
+  rm -fr "${version:?}"/*
+	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
+		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
+		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
+		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
+		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
+    -e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
+		Dockerfile.template \
+		>"$version/Dockerfile"
+	cp -r src/* "$version/"
 }
 
 update_requirements() {
