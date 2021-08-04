@@ -199,6 +199,11 @@ generate_redhat() {
 		Dockerfile.template \
 		>"$version/Dockerfile"
 	cp -r src/* "$version/"
+
+	# PgAudit packages doesn't exists yet for v14
+	if [ "$version" = '14' ]; then
+		sed -i -e '/pgaudit/d' "$version/Dockerfile"
+	fi
 }
 
 update_requirements() {

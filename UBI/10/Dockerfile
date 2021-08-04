@@ -21,7 +21,8 @@ RUN set -xe ; \
 		postgresql10-contrib-10.17-1PGDG.rhel8 \
 		postgresql10-server-10.17-1PGDG.rhel8 \
 		postgresql10-libs-10.17-1PGDG.rhel8 \
-		pgaudit12_10 ; \
+		pgaudit12_10 \
+	; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud
