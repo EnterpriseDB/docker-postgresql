@@ -1,7 +1,7 @@
 # vim:set ft=dockerfile:
 FROM debian:buster-slim
 
-# Do not split the description, otherwise, we will see a bug blank space in the labels
+# Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \

@@ -103,7 +103,7 @@ generate_debian() {
 	suite="${tag%%-slim}"
 	versionFile="${version}/.versions.json"
 
-	local imageReleaseVersion=1
+	imageReleaseVersion=1
 
 	fetch_suite_package_list "$suite" "$version" 'amd64'
 	fullVersion="$(
@@ -133,13 +133,12 @@ generate_debian() {
 		fi
 	done
 
-	echo "$version: $fullVersion ($versionArches)"
-
 	barmanVersion=$(get_latest_barman_version)
 
-  postgresqlVersion=$fullVersion
+	echo "$version: $fullVersion ($versionArches)"
+	postgresqlVersion=$fullVersion
 
-  if [ -f "${versionFile}" ]; then
+	if [ -f "${versionFile}" ]; then
 		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
@@ -179,20 +178,18 @@ generate_debian() {
 	cp update-postgis.sh "$version/"
 
 	sed -e 's/%%PG_MAJOR%%/'"$version"'/g;' \
-		-e 's/%%PG_VERSION%%/'"$fullVersion"'/g' \
+		-e 's/%%PG_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-debian.template \
 		> "$version/Dockerfile"
 
 	sed -e 's/%%PG_MAJOR%%/'"$version"'/g;' \
-		-e 's/%%PG_VERSION%%/'"$fullVersion"'/g' \
+		-e 's/%%PG_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
 		-e 's/%%POSTGIS_MAJOR%%/"3"/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-postgis.template \
 		> "$version/Dockerfile.postgis"

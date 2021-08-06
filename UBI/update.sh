@@ -103,9 +103,9 @@ record_version() {
 generate_redhat() {
 	local version="$1"; shift
 	ubiRelease="8"
-
-	local imageReleaseVersion=1
 	local versionFile="${version}/.versions.json"
+
+	imageReleaseVersion=1
 
 	# cache the result
 	get_latest_ubi_tag "${ubiRelease}" >/dev/null
@@ -188,14 +188,14 @@ generate_redhat() {
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
-  rm -fr "${version:?}"/*
+	rm -fr "${version:?}"/*
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
-    -e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
+		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile.template \
 		>"$version/Dockerfile"
 	cp -r src/* "$version/"
@@ -221,5 +221,5 @@ update_requirements() {
 update_requirements
 
 for version in "${versions[@]}"; do
-  generate_redhat "${version}"
+	generate_redhat "${version}"
 done
