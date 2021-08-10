@@ -56,3 +56,5 @@ jobs:
         run: ~/oi/test/run.sh "${IMAGE_NAME}:${{ matrix.tags[0] }}"
       - name: '"docker images"'
         run: docker image ls --filter since=image-list-marker
+      - name: docker images labels
+        run: docker image ls --filter since=image-list-marker --format "{{.Repository}}:{{.Tag}}" | xargs docker inspect | jq -r '.[] | "\(.RepoTags[]) \(.Config.Labels)"'
