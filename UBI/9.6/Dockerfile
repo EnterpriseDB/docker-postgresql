@@ -21,7 +21,8 @@ RUN set -xe ; \
 		postgresql96-contrib-9.6.22-1PGDG.rhel8 \
 		postgresql96-server-9.6.22-1PGDG.rhel8 \
 		postgresql96-libs-9.6.22-1PGDG.rhel8 \
-		pgaudit11_96 ; \
+		pgaudit11_96 \
+	; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud

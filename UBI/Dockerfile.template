@@ -21,7 +21,8 @@ RUN set -xe ; \
 		postgresql%%PG_MAJOR_NODOT%%-contrib-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR_NODOT%%-server-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR_NODOT%%-libs-%%POSTGRES_VERSION%% \
-		pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR_NODOT%% ; \
+		pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR_NODOT%% \
+	; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud

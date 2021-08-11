@@ -60,12 +60,20 @@ for version in "${ubi_versions[@]}"; do
 
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
-	versionAliases=(
-		"${version}"
-		${aliases[$version]:+"${aliases[$version]}"}
-		"${fullVersion}"-"${releaseVersion}"
-	)
-
+	# A "-beta" suffix will be appended to the beta images.
+	if [ "${version%%.*}" -gt '13' ]; then
+		versionAliases=(
+			"${version}-beta"
+			${aliases[$version]:+"${aliases[$version]}"}
+			"${fullVersion}-beta-${releaseVersion}"
+		)
+	else
+		versionAliases=(
+			"${version}"
+			${aliases[$version]:+"${aliases[$version]}"}
+			"${fullVersion}"-"${releaseVersion}"
+		)
+	fi
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
@@ -91,11 +99,21 @@ for version in "${debian_versions[@]}"; do
 
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
-	versionAliases=(
-		"${version}-debian"
-		${aliases[$version]:+"${aliases[$version]}-debian"}
-		"${fullVersion}-debian-${releaseVersion}"
-	)
+	# A "-beta" suffix will be appended to the beta images.
+	if [ "${version}" -gt '13' ]; then
+		fullVersion="${fullVersion%%~*}"
+		versionAliases=(
+			"${version}-beta-debian"
+			${aliases[$version]:+"${aliases[$version]}-debian"}
+			"${fullVersion}-beta-debian-${releaseVersion}"
+		)
+	else
+		versionAliases=(
+			"${version}-debian"
+			${aliases[$version]:+"${aliases[$version]}-debian"}
+			"${fullVersion}-debian-${releaseVersion}"
+		)
+	fi
 
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
@@ -119,11 +137,21 @@ for version in "${debian_versions[@]}"; do
 
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
-	versionAliases=(
-		"${version}-debian-postgis"
-		${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
-		"${fullVersion}-debian-postgis-${releaseVersion}"
-	)
+	# A "-beta" suffix will be appended to the beta images.
+	if [ "${version}" -gt '13' ]; then
+		fullVersion="${fullVersion%%~*}"
+		versionAliases=(
+			"${version}-beta-debian-postgis"
+			${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
+			"${fullVersion}-beta-debian-postgis-${releaseVersion}"
+		)
+	else
+		versionAliases=(
+			"${version}-debian-postgis"
+			${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
+			"${fullVersion}-debian-postgis-${releaseVersion}"
+		)
+	fi
 
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"

@@ -6,7 +6,7 @@ LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="13.3-2PGDG.rhel8" \
-      release="8" \
+      release="7" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -21,7 +21,8 @@ RUN set -xe ; \
 		postgresql13-contrib-13.3-2PGDG.rhel8 \
 		postgresql13-server-13.3-2PGDG.rhel8 \
 		postgresql13-libs-13.3-2PGDG.rhel8 \
-		pgaudit15_13 ; \
+		pgaudit15_13 \
+	; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud

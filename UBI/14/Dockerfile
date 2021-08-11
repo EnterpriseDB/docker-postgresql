@@ -1,12 +1,12 @@
 # vim:set ft=dockerfile:
-FROM registry.access.redhat.com/ubi8/ubi:8.4-209
+FROM registry.access.redhat.com/ubi8/ubi:8.4-206.1626828523
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="10.17-1PGDG.rhel8" \
-      release="8" \
+      version="14-beta2_1PGDG.rhel8" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -16,12 +16,11 @@ RUN set -xe ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
-	yum -y --setopt=tsflags=nodocs install \
-		postgresql10-10.17-1PGDG.rhel8 \
-		postgresql10-contrib-10.17-1PGDG.rhel8 \
-		postgresql10-server-10.17-1PGDG.rhel8 \
-		postgresql10-libs-10.17-1PGDG.rhel8 \
-		pgaudit12_10 \
+	yum -y --setopt=tsflags=nodocs install --enablerepo=pgdg14-updates-testing \
+		postgresql14-14-beta2_1PGDG.rhel8 \
+		postgresql14-contrib-14-beta2_1PGDG.rhel8 \
+		postgresql14-server-14-beta2_1PGDG.rhel8 \
+		postgresql14-libs-14-beta2_1PGDG.rhel8 \
 	; \
 	yum -y clean all --enablerepo='*'
 
@@ -33,8 +32,8 @@ RUN set -xe ; \
 
 # make the sample config easier to munge (and "correct by default")
 RUN set -eux; \
-	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-10/share/postgresql.conf.sample; \
-	grep -F "listen_addresses = '*'" /usr/pgsql-10/share/postgresql.conf.sample
+	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-14/share/postgresql.conf.sample; \
+	grep -F "listen_addresses = '*'" /usr/pgsql-14/share/postgresql.conf.sample
 
 # prepare the environment and make sure postgres user has the correct UID
 RUN set -xeu ; \
@@ -44,7 +43,7 @@ RUN set -xeu ; \
 	chown postgres:postgres /var/run/postgresql ; \
 	chmod 0755 /var/run/postgresql
 
-ENV PATH $PATH:/usr/pgsql-10/bin
+ENV PATH $PATH:/usr/pgsql-14/bin
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
 
