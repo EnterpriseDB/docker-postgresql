@@ -70,7 +70,7 @@ jobs:
         context: ${{ matrix.dir }}
         file: ${{ matrix.file }}
         # Available architecture on UBI8 are: linux/amd64, linux/arm64, linux/ppc64le
-        platforms: linux/amd64
+        platforms: linux/amd64, linux/ppc64le
         push: true
         tags: ${{ steps.docker-meta.outputs.tags }}
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}

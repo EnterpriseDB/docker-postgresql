@@ -109,6 +109,7 @@ RUN set -ex; \
 
 # Install barman-cloud
 RUN set -xe; \
+    export CRYPTOGRAPHY_DONT_BUILD_RUST=1; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		python3-pip \
