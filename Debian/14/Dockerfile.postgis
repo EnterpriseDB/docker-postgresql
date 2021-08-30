@@ -109,11 +109,15 @@ RUN set -ex; \
 
 # Install barman-cloud
 RUN set -xe; \
+	export CRYPTOGRAPHY_DONT_BUILD_RUST=1; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		python3-pip \
 		python3-psycopg2 \
 		python3-setuptools \
+		build-essential \
+		libpython3-all-dev \
+		libssl-dev \
 	; \
 	pip3 install --upgrade pip; \
 	pip3 install -r requirements.txt; \
