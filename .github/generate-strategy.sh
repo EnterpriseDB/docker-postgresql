@@ -62,10 +62,11 @@ for version in "${ubi_versions[@]}"; do
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
 	if [ "${version%%.*}" -gt '13' ]; then
+		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
 			"${version}-beta"
 			${aliases[$version]:+"${aliases[$version]}"}
-			"${fullVersion}-beta-${releaseVersion}"
+			"${fullVersion}-${releaseVersion}"
 		)
 	else
 		versionAliases=(
@@ -101,11 +102,11 @@ for version in "${debian_versions[@]}"; do
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
 	if [ "${version}" -gt '13' ]; then
-		fullVersion="${fullVersion%%~*}"
+		fullVersion="${fullVersion//'~'/-}"
 		versionAliases=(
 			"${version}-beta-debian"
 			${aliases[$version]:+"${aliases[$version]}-debian"}
-			"${fullVersion}-beta-debian-${releaseVersion}"
+			"${fullVersion}-debian-${releaseVersion}"
 		)
 	else
 		versionAliases=(
@@ -139,11 +140,11 @@ for version in "${debian_versions[@]}"; do
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
 	if [ "${version}" -gt '13' ]; then
-		fullVersion="${fullVersion%%~*}"
+		fullVersion="${fullVersion//'~'/-}"
 		versionAliases=(
 			"${version}-beta-debian-postgis"
 			${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
-			"${fullVersion}-beta-debian-postgis-${releaseVersion}"
+			"${fullVersion}-debian-postgis-${releaseVersion}"
 		)
 	else
 		versionAliases=(
