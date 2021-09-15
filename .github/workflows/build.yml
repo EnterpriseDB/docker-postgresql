@@ -17,10 +17,14 @@ jobs:
     outputs:
       strategy: ${{ steps.generate-jobs.outputs.strategy }}
     steps:
-      - uses: actions/checkout@v2
-      - id: generate-jobs
-        name: Generate Jobs
-        run: .github/generate-strategy.sh
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: GenerateJoibs
+        id: generate-jobs
+        shell: bash
+        run: |
+          bash .github/generate-strategy.sh
 
   build:
     needs: generate-jobs
@@ -76,11 +80,14 @@ jobs:
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
 
     - name: Dockle scan
-      uses: hands-lab/dockle-action@v1
+      uses: erzz/dockle-action@v1.1.0
       with:
         image: "quay.io/${{ env.IMAGE_STAGING }}:${{ matrix.tags[0] }}"
         exit-code: '1'
-        exit-level: WARN
+        failure-threshold: WARN
+        dockle-version: 0.4.2
+        accept-filenames: settings.py
+        accept-extensions: pem,pfx,p12,key,asc
       env:
         DOCKLE_USERNAME: ${{ secrets.QUAY_USERNAME }}
         DOCKLE_PASSWORD: ${{ secrets.QUAY_TOKEN }}
