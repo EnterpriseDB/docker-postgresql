@@ -16,6 +16,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.REPO_GHA_PAT }}
+      - name: Update docker-entrypoint
+        uses: nick-invision/retry@v2.4.1
+        with:
+          timeout_seconds: 20
+          max_attempts: 3
+          command: |
+            echo "Updating Debian docker-entrypoint"
+            curl -fsSo ./Debian/src/root/usr/local/bin/docker-entrypoint.sh https://raw.githubusercontent.com/docker-library/postgres/master/docker-entrypoint.sh
+            echo "Updating UBI docker-entrypoint"
+            cp ./Debian/src/root/usr/local/bin/docker-entrypoint.sh ./UBI/src/root/usr/local/bin/docker-entrypoint.sh
       - name: Run update script
         uses: nick-invision/retry@v2.4.1
         with:
@@ -27,7 +37,7 @@ jobs:
             pip3 install pip-tools
             echo "Updating UBI images"
             ./UBI/update.sh
-            echo "Updating Debian Images"
+            echo "Updating Debian images"
             ./Debian/update.sh
       - name: Diff
         run: |
