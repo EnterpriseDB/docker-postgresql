@@ -17,10 +17,13 @@ jobs:
     outputs:
       strategy: ${{ steps.generate-jobs.outputs.strategy }}
     steps:
-      - uses: actions/checkout@v2
-      - id: generate-jobs
-        name: Generate Jobs
-        run: .github/generate-strategy.sh
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Generate Jobs
+        id: generate-jobs
+        shell: bash
+        run: |
+          bash .github/generate-strategy.sh
 
   build:
     needs: generate-jobs
@@ -28,7 +31,8 @@ jobs:
     name: ${{ matrix.name }}
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Code
+      uses: actions/checkout@v2
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1.2.0
     - name: Docker meta
@@ -76,11 +80,12 @@ jobs:
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
 
     - name: Dockle scan
-      uses: hands-lab/dockle-action@v1
+      uses: erzz/dockle-action@v1.1.1
       with:
         image: "quay.io/${{ env.IMAGE_STAGING }}:${{ matrix.tags[0] }}"
         exit-code: '1'
-        exit-level: WARN
+        failure-threshold: WARN
+        accept-filenames: usr/share/cmake/Templates/Windows/Windows_TemporaryKey.pfx,etc/trusted-key.key,usr/share/doc/perl-IO-Socket-SSL/certs/server_enc.p12,usr/share/doc/perl-IO-Socket-SSL/certs/server.p12,usr/local/lib/python3.8/site-packages/azure/core/settings.py,usr/share/postgresql-common/pgdg/apt.postgresql.org.asc,usr/local/lib/python3.7/dist-packages/azure/core/settings.py,etc/ssl/private/ssl-cert-snakeoil.key
       env:
         DOCKLE_USERNAME: ${{ secrets.QUAY_USERNAME }}
         DOCKLE_PASSWORD: ${{ secrets.QUAY_TOKEN }}
