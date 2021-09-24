@@ -168,6 +168,7 @@ generate_debian() {
 		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlVersion"
 		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" 1
+		imageReleaseVersion=1
 	elif [ "$newRelease" = "true" ]; then
 		imageReleaseVersion=$((oldImageReleaseVersion + 1))
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
