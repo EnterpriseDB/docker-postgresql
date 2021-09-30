@@ -47,7 +47,7 @@ get_postgresql_version() {
 	local pg_major="$1"; shift
 
 	local base_url="https://yum.postgresql.org"
-	if [ "$pg_major" = 14 ]; then
+	if [ "$pg_major" = 15 ]; then
 		base_url="$base_url/testing"
 	fi
 
@@ -137,7 +137,7 @@ generate_redhat() {
 
 	# Unreleased PostgreSQL versions
 	yumOptions=""
-	if [ "$version" = 14 ]; then
+	if [ "$version" = 15 ]; then
 		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
 	fi
 
@@ -200,11 +200,6 @@ generate_redhat() {
 		Dockerfile.template \
 		>"$version/Dockerfile"
 	cp -r src/* "$version/"
-
-	# PgAudit packages doesn't exists yet for v14
-	if [ "$version" = '14' ]; then
-		sed -i -e '/pgaudit/d' "$version/Dockerfile"
-	fi
 }
 
 update_requirements() {

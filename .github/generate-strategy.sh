@@ -11,7 +11,7 @@ set -eu
 
 # Define an optional aliases for some major versions
 declare -A aliases=(
-	[13]='latest'
+	[14]='latest'
 	[9.6]='9'
 )
 
@@ -61,7 +61,7 @@ for version in "${ubi_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version%%.*}" -gt '13' ]; then
+	if [ "${version%%.*}" -gt '14' ]; then
 		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
 			"${version}-beta"
@@ -101,7 +101,7 @@ for version in "${debian_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '13' ]; then
+	if [ "${version}" -gt '14' ]; then
 		fullVersion="${fullVersion//'~'/-}"
 		versionAliases=(
 			"${version}-beta-debian"
@@ -139,7 +139,7 @@ for version in "${debian_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '13' ]; then
+	if [ "${version}" -gt '14' ]; then
 		fullVersion="${fullVersion//'~'/-}"
 		versionAliases=(
 			"${version}-beta-debian-postgis"
