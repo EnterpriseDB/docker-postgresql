@@ -194,12 +194,6 @@ generate_debian() {
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-postgis.template \
 		> "$version/Dockerfile.postgis"
-
-	# PgAudit packages doesn't exists yet for v14
-	if [ "$version" = '14' ]; then
-		sed -i -e '/pgaudit/d' "$version/Dockerfile"
-		sed -i -e '/pgaudit/d' "$version/Dockerfile.postgis"
-	fi
 }
 
 update_requirements() {
