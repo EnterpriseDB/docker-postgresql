@@ -45,11 +45,13 @@ jobs:
         env:
           TAGS: ${{ toJson(matrix.tags) }}
         run: |
+          CS_SCRIPT_FILE=$(mktemp)
+          echo '${{ secrets.CS_SCRIPT }}' > ${CS_SCRIPT_FILE}
           for tag in $(jq -r '.[]' <<< "${TAGS}")
           do
             ARGS+=(--tag "${IMAGE_NAME}:${tag}")
           done
-          docker build ${ARGS[@]} '${{ matrix.dir }}'
+          DOCKER_BUILDKIT=1 docker build --secret id=cs_script,src=${CS_SCRIPT_FILE} ${ARGS[@]} '${{ matrix.dir }}'
       - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
       - name: Test ${{ matrix.name }}

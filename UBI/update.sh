@@ -51,9 +51,34 @@ get_postgresql_version() {
 		base_url="$base_url/testing"
 	fi
 
-	curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
+	pgx86_64=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
 		perl -ne '/<a.*href="postgresql'"${pg_major/./}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
-		sort -rV | head -n1
+		sort -rV | head -n1)
+
+	# For MultiArch images make sure the new package is available for all the architectures before updating
+	if [[ "${version}" =~ ^("11"|"12"|"13")$ ]]; then
+		pgs390x=$(check_cloudsmith_pkgs "${os_version}" 's390x' "$pg_major")
+		pgppc64le=$(check_cloudsmith_pkgs "${os_version}" 'ppc64le' "$pg_major")
+		if [[ ${pgx86_64} != ${pgppc64le} || ${pgx86_64} != ${pgs390x} ]]; then
+			echo "Version discrepancy between the architectures. Exiting." >&2
+			echo "x86_64: ${pgx86_64}" >&2
+			echo "ppc64le: ${pgppc64le}" >&2
+			echo "s390x: ${pgs390x}" >&2
+			exit 1
+		fi
+	fi
+	echo "${pgx86_64}"
+}
+
+check_cloudsmith_pkgs() {
+	local os_version="$1"; shift
+	local arch="$1"; shift
+	local pg_major="$1"; shift
+
+	cloudsmith ls pkgs enterprisedb/edb -q "name:postgresql*-server$ distribution:el/${os_version} version:latest architecture:${arch}" -F json | \
+			jq '.data[].filename' | \
+			sed -n 's/.*postgresql'"${pg_major}"'-server-\([0-9].*\)\.'"${arch}"'.*/\1/p' | \
+			sort -V
 }
 
 # Get the latest Barman version

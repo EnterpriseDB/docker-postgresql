@@ -12,10 +12,15 @@ LABEL name="PostgreSQL Container Images" \
 
 COPY root/ /
 
-RUN set -xe ; \
+ARG TARGETARCH
+RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
+	set -xe ; \
+	bash /tmp/cs_script.sh ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
-	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
+	if [ "$TARGETARCH" == 'amd64' ]; then \
+		yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
+	fi ; \
 	yum -y --setopt=tsflags=nodocs install \
 		postgresql96-9.6.23-1PGDG.rhel8 \
 		postgresql96-contrib-9.6.23-1PGDG.rhel8 \
@@ -23,12 +28,16 @@ RUN set -xe ; \
 		postgresql96-libs-9.6.23-1PGDG.rhel8 \
 		pgaudit11_96 \
 	; \
+	rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud
 RUN set -xe ; \
-	yum -y install python38-pip python38-psycopg2 ; \
+	export CRYPTOGRAPHY_DONT_BUILD_RUST=1 ; \
+	yum -y install python38-pip python38-psycopg2 python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config ; \
+	pip3.8 install --upgrade pip ; \
 	pip3.8 install -r requirements.txt ; \
+	yum -y remove python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config ; \
 	yum -y clean all --enablerepo='*'
 
 # make the sample config easier to munge (and "correct by default")
