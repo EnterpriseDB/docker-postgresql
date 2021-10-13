@@ -19,16 +19,16 @@ azure-identity==1.6.1 \
 azure-storage-blob==12.9.0 \
     --hash=sha256:859195b4850dcfe77ffafbe53500abb74b001e52e77fe6d9492fa73639a22127 \
     --hash=sha256:cff66a115c73c90e496c8c8b3026898a3ce64100840276e9245434e28a864225
-barman[azure,cloud]==2.14 \
-    --hash=sha256:0f8ac846c70bc54671f18088f93d85632c334e54d2b621d7da02685052611ca7 \
-    --hash=sha256:a9783ca16139722dd8568b9e4155b0f713e3dc969c63258e6e74e740fb343f81
+barman[azure,cloud]==2.15 \
+    --hash=sha256:6808da33dccb0d9c4c71e34f7db6fa20c4089d87d5b8c6c96ba1a93e558acc4b \
+    --hash=sha256:a0c32603dc5c3ec8f13681f9bd3e735c69aca33796006acbe5d79a894103d1f5
     # via -r requirements.in
-boto3==1.18.59 \
-    --hash=sha256:40e948276010e5eb23f0625afe9b323146e16a45dbeade0acd558eababd8b8ce \
-    --hash=sha256:daa721ccad79ed8e23a4b662eedce59ba0585e5b336bd6a9cd8e4fec40cd2db6
-botocore==1.21.59 \
-    --hash=sha256:c947215f45653609682dc448195a3bfcf0f7da193fd7b17b739656db5442221a \
-    --hash=sha256:ebcb8f0b0e9b56d275073746ea9bb8b60597517b2bfa4d6ebdc64b9bcf4422e0
+boto3==1.18.60 \
+    --hash=sha256:45709a04ec5fb67ce5a8eaade3eb0ab24d6eb08d9a9ca6bdb2153047896197fc \
+    --hash=sha256:8f3face72d2ac6ad36bd7724410548891ce338b350e6f98574890a7b1d425d78
+botocore==1.21.60 \
+    --hash=sha256:3e746ca75fb7539ba3f001169264fa54dfaded2477ffc8bd979ce1e1df200620 \
+    --hash=sha256:890a5835ac00415ff78f1c7118a774aae83c0c70742284b68abd1176f9d05761
     # via
     #   boto3
     #   s3transfer
@@ -115,9 +115,9 @@ cryptography==35.0.0 \
     #   azure-storage-blob
     #   msal
     #   pyjwt
-idna==3.2 \
-    --hash=sha256:14475042e284991034cb48e06f6851428fb14c4dc953acd9be9a5e95c7b6dd7a \
-    --hash=sha256:467fbad99067910785144ce333826c71fb0e63a425657295239737f7ecd125f3
+idna==3.3 \
+    --hash=sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff \
+    --hash=sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d
     # via requests
 isodate==0.6.0 \
     --hash=sha256:2e364a3d5759479cdb2d37cce6b9376ea504db2ff90252a2e5b7cc89cc9ff2d8 \
