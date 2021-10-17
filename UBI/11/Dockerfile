@@ -34,9 +34,9 @@ RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
 # Install barman-cloud
 RUN set -xe ; \
 	export CRYPTOGRAPHY_DONT_BUILD_RUST=1 ; \
-	yum -y install python38-pip python38-psycopg2 python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config ; \
-	pip3.8 install --upgrade pip ; \
-	pip3.8 install -r requirements.txt ; \
+	yum -y install python38-pip python38-psycopg2 python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config redhat-lsb-core ; \
+	python3 -m pip install --upgrade pip ; \
+	pip3 install -r requirements.txt ; \
 	yum -y remove python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config ; \
 	yum -y clean all --enablerepo='*'
 
