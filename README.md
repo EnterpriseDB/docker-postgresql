@@ -6,6 +6,8 @@ for all PostgreSQL versions based on:
 - Red Hat Universal Base Images (UBI) 8 - default
 - Debian Buster (10) Slim base images, with and without the PostGIS extension
 
+UBI8 based images of versions 11,12 and 13 are available for amd64, ppc64le and s390x architectures.
+
 These images are customised to work with [Cloud
 Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
 for Kubernetes and Red Hat Openshift.

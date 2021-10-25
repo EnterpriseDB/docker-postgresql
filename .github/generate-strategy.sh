@@ -82,9 +82,15 @@ for version in "${ubi_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
+	if [[ "${version}" =~ ^("9.6"|"10"|"14")$ ]]; then
+			platforms="linux/amd64"
+	else
+			platforms="linux/amd64, linux/ppc64le, linux/s390x"
+	fi
+
 	# Build the json entry
 	entries+=(
-		"{\"name\": \"UBI ${fullVersion}\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+		"{\"name\": \"UBI ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 	)
 done
 
@@ -123,9 +129,11 @@ for version in "${debian_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
+	platforms="linux/amd64"
+
 	# Build the json entry
 	entries+=(
-		"{\"name\": \"Debian ${fullVersion}\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+		"{\"name\": \"Debian ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 	)
 done
 
@@ -161,9 +169,11 @@ for version in "${debian_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
+	platforms="linux/amd64"
+
 	# Build the json entry
 	entries+=(
-		"{\"name\": \"Debian PostGIS ${fullVersion}\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+		"{\"name\": \"Debian PostGIS ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 	)
 done
 
