@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM registry.access.redhat.com/ubi8/ubi:8.4-211
+FROM quay.io/enterprisedb/edb-ubi:8.4-211
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \

@@ -40,6 +40,12 @@ get_latest_ubi_tag() {
 	echo "${lastTagList["$version"]}"
 }
 
+# Get the latest UBI base image
+get_latest_ubi_base() {
+	rawContent=$(curl -s -L https://quay.io/api/v1/repository/enterprisedb/edb-ubi/tag/?onlyActiveTags=true)
+	echo $rawContent | jq -r '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true) | .name' | tail -n1
+}
+
 # Get the latest PostgreSQL minor version package
 get_postgresql_version() {
 	local os_version="$1"; shift
@@ -133,10 +139,10 @@ generate_redhat() {
 	imageReleaseVersion=1
 
 	# cache the result
-	get_latest_ubi_tag "${ubiRelease}" >/dev/null
+	get_latest_ubi_base >/dev/null
 	get_latest_barman_version >/dev/null
 
-	ubiVersion=$(get_latest_ubi_tag "${ubiRelease}")
+	ubiVersion=$(get_latest_ubi_base)
 	if [ -z "$ubiVersion" ]; then
 		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
