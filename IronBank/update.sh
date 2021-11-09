@@ -20,25 +20,7 @@ if [ ${#versions[@]} -eq 0 ]; then
 fi
 versions=("${versions[@]%/}")
 
-declare -A lastTagList=()
-_raw_ubi_tags() {
-	local version="$1"; shift
-	local data
-	data=$(curl -sL "https://registry.access.redhat.com/v2/ubi${version}/ubi/tags/list")
-	jq -r '.tags[] | select(startswith("'"$version"'"))' <<<"$data" |
-		grep -v -- "-source" | sort -rV | head -n 1
-}
-
-# Get the latest UBI tag
-get_latest_ubi_tag() {
-	local version="$1"; shift
-	if [ -z "${lastTagList["$version"]:+isset}" ]; then
-		local lastTag
-		lastTag="$(_raw_ubi_tags "$version")"
-		lastTagList["$version"]="$lastTag"
-	fi
-	echo "${lastTagList["$version"]}"
-}
+# unused 
 
 # Get the latest UBI base image
 get_latest_ubi_base() {
@@ -63,8 +45,8 @@ get_postgresql_version() {
 
 	# For MultiArch images make sure the new package is available for all the architectures before updating
 	if [[ "${version}" =~ ^("11"|"12"|"13")$ ]]; then
-		pgs390x=$(check_cloudsmith_pkgs "${os_version}" 's390x' "$pg_major")
-		pgppc64le=$(check_cloudsmith_pkgs "${os_version}" 'ppc64le' "$pg_major")
+		# Unused: pgs390x=$(check_cloudsmith_pkgs "${os_version}" 's390x' "$pg_major")
+		# Unused: pgppc64le=$(check_cloudsmith_pkgs "${os_version}" 'ppc64le' "$pg_major")
 		if [[ ${pgx86_64} != ${pgppc64le} || ${pgx86_64} != ${pgs390x} ]]; then
 			echo "Version discrepancy between the architectures. Exiting." >&2
 			echo "x86_64: ${pgx86_64}" >&2
