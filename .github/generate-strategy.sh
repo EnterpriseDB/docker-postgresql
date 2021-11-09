@@ -36,9 +36,20 @@ for version in */; do
 done
 debian_versions=("${debian_versions[@]%/}")
 
+# Retrieve the PostgreSQL versions for IronBank
+cd "$BASE_DIRECTORY"/IronBank/
+for version in */; do
+	[[ $version == src/ ]] && continue
+	ironbank_versions+=("$version")
+done
+ironbank_versions=("${debian_versions[@]%/}")
+
+
 # Sort the version numbers with highest first
 mapfile -t ubi_versions < <(IFS=$'\n'; sort -rV <<< "${ubi_versions[*]}")
 mapfile -t debian_versions < <(IFS=$'\n'; sort -rV <<< "${debian_versions[*]}")
+mapfile -t ironbank_versions < <(IFS=$'\n'; sort -rV <<< "${ironbank_versions[*]}")
+
 
 # prints "$2$1$3$1...$N"
 join() {
@@ -49,8 +60,8 @@ join() {
 	echo "${out#$sep}"
 }
 
-cd "$BASE_DIRECTORY"/UBI/
 entries=()
+cd "$BASE_DIRECTORY"/UBI/
 for version in "${ubi_versions[@]}"; do
 
 	# Read versions from the definition file
@@ -94,6 +105,49 @@ for version in "${ubi_versions[@]}"; do
 	)
 done
 
+cd "$BASE_DIRECTORY"/IronBank/
+for version in "${ironbank_versions[@]}"; do
+
+	# Read versions from the definition file
+	versionFile="${version}/.versions.json"
+	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
+	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+
+	# Initial aliases are "major version", "optional alias", "full version with release"
+	# i.e. "13", "latest", "13.2-1"
+	# A "-beta" suffix will be appended to the beta images.
+	if [ "${version%%.*}" -gt '14' ]; then
+		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
+		versionAliases=(
+			"${version}-beta"
+			${aliases[$version]:+"${aliases[$version]}"}
+			"${fullVersion}-${releaseVersion}"
+		)
+	else
+		versionAliases=(
+			"${version}"
+			${aliases[$version]:+"${aliases[$version]}"}
+			"${fullVersion}"-"${releaseVersion}"
+		)
+	fi
+	# Add all the version prefixes between full version and major version
+	# i.e "13.2"
+	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
+		versionAliases+=("$fullVersion")
+		fullVersion="${fullVersion%[.-]*}"
+	done
+
+	if [[ "${version}" =~ ^("9.6"|"10"|"14")$ ]]; then
+			platforms="linux/amd64"
+	else
+			platforms="linux/amd64, linux/ppc64le, linux/s390x"
+	fi
+
+	# Build the json entry
+	entries+=(
+		"{\"name\": \"IronBank ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"IronBank/$version\", \"file\": \"IronBank/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+	)
+done
 
 cd "$BASE_DIRECTORY"/Debian/
 
