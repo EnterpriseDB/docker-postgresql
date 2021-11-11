@@ -66,11 +66,11 @@ get_postgresql_version() {
 		pgs390x=$(check_cloudsmith_pkgs "${os_version}" 's390x' "$pg_major")
 		pgppc64le=$(check_cloudsmith_pkgs "${os_version}" 'ppc64le' "$pg_major")
 		if [[ ${pgx86_64} != ${pgppc64le} || ${pgx86_64} != ${pgs390x} ]]; then
-			echo "Version discrepancy between the architectures. Exiting." >&2
+			echo "Version discrepancy between the architectures." >&2
 			echo "x86_64: ${pgx86_64}" >&2
 			echo "ppc64le: ${pgppc64le}" >&2
 			echo "s390x: ${pgs390x}" >&2
-			exit 1
+			return
 		fi
 	fi
 	echo "${pgx86_64}"
@@ -151,7 +151,7 @@ generate_redhat() {
 	postgresqlVersion=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
 	if [ -z "$postgresqlVersion" ]; then
 		echo "Unable to retrieve latest PostgreSQL $version version"
-		exit 1
+		return
 	fi
 
 	barmanVersion=$(get_latest_barman_version)
