@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.5-200
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="13.4-1PGDG.rhel8" \
-      release="6" \
+      version="13.5-1PGDG.rhel8" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -22,10 +22,10 @@ RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
 		yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
 	fi ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql13-13.4-1PGDG.rhel8 \
-		postgresql13-contrib-13.4-1PGDG.rhel8 \
-		postgresql13-server-13.4-1PGDG.rhel8 \
-		postgresql13-libs-13.4-1PGDG.rhel8 \
+		postgresql13-13.5-1PGDG.rhel8 \
+		postgresql13-contrib-13.5-1PGDG.rhel8 \
+		postgresql13-server-13.5-1PGDG.rhel8 \
+		postgresql13-libs-13.5-1PGDG.rhel8 \
 		pgaudit15_13 \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
