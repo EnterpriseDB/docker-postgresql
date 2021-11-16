@@ -19,11 +19,11 @@ ARG PG_GROUP_NAME="postgres"
 ARG PG_VERSION=%%PG_MAJO_NODOT%%
 
 COPY ./RPM-GPG-KEY-PGDG-12 \
-	./postgresql%%PG_MAJOR_NODOT%%-%%POSTGRES_VERSION%%.x86_64.rpm \
-	./postgresql%%PG_MAJOR_NODOT%%-contrib-%%POSTGRES_VERSION%%.x86_64.rpm \
-	./postgresql%%PG_MAJOR_NODOT%%-server-%%POSTGRES_VERSION%%.x86_64.rpm \
-	./postgresql%%PG_MAJOR_NODOT%%-libs-%%POSTGRES_VERSION%%.x86_64.rpm \
-	./pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR_NODOT%%.x86_64.rpm \
+	./postgresql14-14.1-1PGDG.rhel8.x86_64.rpm \
+	./postgresql14-contrib-14.1-1PGDG.rhel8.x86_64.rpm \
+	./postgresql14-server-14.1-1PGDG.rhel8.x86_64.rpm \
+	./postgresql14-libs-14.1-1PGDG.rhel8.x86_64.rpm \
+	./pgaudit16_14.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -57,11 +57,11 @@ RUN rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
 	redhat-lsb-core \
 	redhat-rpm-config \
 	rsync \
-	/tmp/postgresql%%PG_MAJOR_NODOT%%-%%POSTGRES_VERSION%%.x86_64.rpm \
-	/tmp/postgresql%%PG_MAJOR_NODOT%%-contrib-%%POSTGRES_VERSION%%.x86_64.rpm \
-	/tmp/postgresql%%PG_MAJOR_NODOT%%-server-%%POSTGRES_VERSION%%.x86_64.rpm \
-	/tmp/postgresql%%PG_MAJOR_NODOT%%-libs-%%POSTGRES_VERSION%%.x86_64.rpm \
-	/tpm/pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR_NODOT%%.x86_64.rpm \
+	/tmp/postgresql14-14.1-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql14-contrib-14.1-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql14-server-14.1-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql14-libs-14.1-1PGDG.rhel8.x86_64.rpm \
+	/tpm/pgaudit16_14.x86_64.rpm \
 	dnf clean all && \
 	rm -rf /var/cache/dnf
 
@@ -75,8 +75,8 @@ RUN rm -rf /tmp/*.{rpm,whl} && \
 
 # make the sample config easier to munge (and "correct by default")
 RUN set -eux; \
-	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-%%PG_MAJOR%%/share/postgresql.conf.sample; \
-	grep -F "listen_addresses = '*'" /usr/pgsql-%%PG_MAJOR%%/share/postgresql.conf.sample
+	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-14/share/postgresql.conf.sample; \
+	grep -F "listen_addresses = '*'" /usr/pgsql-14/share/postgresql.conf.sample
 
 # prepare the environment and make sure postgres user has the correct UID
 RUN set -xeu ; \
@@ -86,7 +86,7 @@ RUN set -xeu ; \
 	chown postgres:postgres /var/run/postgresql ; \
 	chmod 0755 /var/run/postgresql
 
-ENV PATH $PATH:/usr/pgsql-%%PG_MAJOR%%/bin
+ENV PATH $PATH:/usr/pgsql-14/bin
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
 

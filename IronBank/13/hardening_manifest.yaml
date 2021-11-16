@@ -12,7 +12,7 @@ labels:
   org.opencontainers.image.title: docker-postgresql
   org.opencontainers.image.url: https://docs.enterprisedb.io/docker-postgresql/
   org.opencontainers.image.vendor: EnterpriseDB
-  org.opencontainers.image.version: '%%PG_MAJOR_NODOT%%'
+  org.opencontainers.image.version: '13'
 maintainers:
 - cht_member: true
   email: adrian.noland@enterprisedb.com
@@ -24,7 +24,7 @@ maintainers:
   username: rahill59
 name: enterprisedb/docker-postgresql
 tags:
-- '%%POSTGRES_VERSION%%'
+- '13.5-1PGDG.rhel8'
 - latest
 resources:
 - filename: PyJWT-2.3.0-py3-none-any.whl
@@ -277,32 +277,32 @@ resources:
   validation:
     type: sha256
     value: a84da9fa891848e0270e8e04dcca073bc9046441eeb47069f5c0e36783debbea
-- filename: postgresql14-14.1-1PGDG.rhel8.x86_64.rpm \
-  url: https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-14.1-1PGDG.rhel8.x86_64.rpm
+- filename: postgresql13-13.5-1PGDG.rhel8.x86_64.rpm \
+  url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-13.5-1PGDG.rhel8.x86_64.rpm
     \
   validation:
     type: sha256
     value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql14-contrib-14.1-1PGDG.rhel8.x86_64.rpm \
-  url: https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-contrib-14.1-1PGDG.rhel8.x86_64.rpm
+- filename: postgresql13-contrib-13.5-1PGDG.rhel8.x86_64.rpm \
+  url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-contrib-13.5-1PGDG.rhel8.x86_64.rpm
     \
   validation:
     type: sha256
     value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql14-server-14.1-1PGDG.rhel8.x86_64.rpm \
-  url: https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-server-14.1-1PGDG.rhel8.x86_64.rpm
+- filename: postgresql13-server-13.5-1PGDG.rhel8.x86_64.rpm \
+  url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-server-13.5-1PGDG.rhel8.x86_64.rpm
     \
   validation:
     type: sha256
     value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql14-libs-14.1-1PGDG.rhel8.x86_64.rpm \
-  url: https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-libs-14.1-1PGDG.rhel8.x86_64.rpm
+- filename: postgresql13-libs-13.5-1PGDG.rhel8.x86_64.rpm \
+  url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-libs-13.5-1PGDG.rhel8.x86_64.rpm
     \
   validation:
     type: sha256
     value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: pgaudit16_14.x86_64.rpm \
-  url: https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgaudit16_14.x86_64.rpm
+- filename: pgaudit15_13.x86_64.rpm \
+  url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/pgaudit15_13.x86_64.rpm
     \
   validation:
     type: sha256

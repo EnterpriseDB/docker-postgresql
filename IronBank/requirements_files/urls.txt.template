@@ -1,5 +1,0 @@
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR_NODOT%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR_NODOT-%%POSTGRES_VERSION%%.8-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR_NODOT%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR_NODOT-contrib-%%POSTGRES_VERSION%%.8-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR_NODOT%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR_NODOT-server-%%POSTGRES_VERSION%%.8-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR_NODOT%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR_NODOT-libs-%%POSTGRES_VERSION%%.8-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR_NODOT%%/redhat/rhel-8-x86_64/pgaudit14_%%PG_MAJOR_NODOT-1.4.1-1.rhel8.x86_64.rpm

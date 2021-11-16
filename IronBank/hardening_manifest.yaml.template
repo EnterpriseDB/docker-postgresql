@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+args:
+  BASE_IMAGE: redhat/ubi/ubi8
+  BASE_TAG: '8.4'
+labels:
+  mil.dso.ironbank.image.keywords: k8s,postgres,db
+  mil.dso.ironbank.image.type: opensource
+  mil.dso.ironbank.product.name: docker-postgreqsql
+  org.opencontainers.image.description: PostgreSQL Containers from EDB
+  org.opencontainers.image.licenses: PostgreSQL
+  org.opencontainers.image.title: docker-postgresql
+  org.opencontainers.image.url: https://docs.enterprisedb.io/docker-postgresql/
+  org.opencontainers.image.vendor: EnterpriseDB
+  org.opencontainers.image.version: '%%PG_MAJOR_NODOT%%'
+maintainers:
+- cht_member: true
+  email: adrian.noland@enterprisedb.com
+  name: Adrian Noland
+  username: anoland-edb
+- cht_member: false
+  email: rick.hill@enterprisedb.com
+  name: Rick Hill
+  username: rahill59
+name: enterprisedb/docker-postgresql
+tags:
+- '%%POSTGRES_VERSION%%'
+- latest

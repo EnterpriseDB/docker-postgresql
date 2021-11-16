@@ -12,7 +12,7 @@ labels:
   org.opencontainers.image.title: docker-postgresql
   org.opencontainers.image.url: https://docs.enterprisedb.io/docker-postgresql/
   org.opencontainers.image.vendor: EnterpriseDB
-  org.opencontainers.image.version: '%%PG_MAJOR_NODOT%%'
+  org.opencontainers.image.version: '14'
 maintainers:
 - cht_member: true
   email: adrian.noland@enterprisedb.com
@@ -24,7 +24,7 @@ maintainers:
   username: rahill59
 name: enterprisedb/docker-postgresql
 tags:
-- '%%POSTGRES_VERSION%%'
+- '14.1-1PGDG.rhel8'
 - latest
 resources:
 - filename: PyJWT-2.3.0-py3-none-any.whl
