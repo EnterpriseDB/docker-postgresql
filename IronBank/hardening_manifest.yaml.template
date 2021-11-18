@@ -26,3 +26,5 @@ name: enterprisedb/docker-postgresql
 tags:
 - '%%POSTGRES_VERSION%%'
 - latest
+resources:
+
