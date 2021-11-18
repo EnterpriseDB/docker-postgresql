@@ -61,7 +61,7 @@ RUN rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
 	/tmp/postgresql13-contrib-13.5-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql13-server-13.5-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql13-libs-13.5-1PGDG.rhel8.x86_64.rpm \
-	/tpm/pgaudit15_13-1.5.0-1.rhel8.x86_64.rpm \
+	/tmp/pgaudit15_13-1.5.0-1.rhel8.x86_64.rpm \
 	dnf clean all && \
 	rm -rf /var/cache/dnf
 

@@ -61,7 +61,7 @@ RUN rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
 	/tmp/postgresql10-contrib-10.19-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql10-server-10.19-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql10-libs-10.19-1PGDG.rhel8.x86_64.rpm \
-	/tpm/pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm \
+	/tmp/pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm \
 	dnf clean all && \
 	rm -rf /var/cache/dnf
 
