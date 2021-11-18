@@ -167,36 +167,31 @@ resources:
   validation:
     type: sha256
     value: a84da9fa891848e0270e8e04dcca073bc9046441eeb47069f5c0e36783debbea
-- filename: postgresql10-10.19-1PGDG.rhel8.x86_64.rpm \
+- filename: postgresql10-10.19-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-10.19-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql10-contrib-10.19-1PGDG.rhel8.x86_64.rpm \
+    value: c87e296bc3a21708b2745206d03815f86fb6f0bd6d494056d35d3ca3101f929c
+- filename: postgresql10-contrib-10.19-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-contrib-10.19-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql10-server-10.19-1PGDG.rhel8.x86_64.rpm \
+    value: ac1bede3cfe6190f4cf63e7e69ec2bea81c3ea7c8da93e3bfb7536ad0a961fe8
+- filename: postgresql10-server-10.19-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-server-10.19-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql10-libs-10.19-1PGDG.rhel8.x86_64.rpm \
+    value: 7d53583b843af73544b9ba727c5da4bee8a6ac322a56a912c3393d474d2e535b
+- filename: postgresql10-libs-10.19-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-libs-10.19-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: pgaudit12_10.x86_64.rpm \
-  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/pgaudit12_10.x86_64.rpm
-    \
+    value: be062b59daebd98db2bf604293c60dcb08dc5e47dae330ee88a68bf94ed35aa6
+- filename: pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
+    value: 7cfe43fcbaf4fee0645e9ad3833461650740a0717eb20f4df0e29cbdf963be04
 - filename: RPM-GPG-KEY-PGDG-10
   url: https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-10
   validation:

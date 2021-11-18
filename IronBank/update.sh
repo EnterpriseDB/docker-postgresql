@@ -6,6 +6,7 @@
 # version is available. If any of the components' version is updated, the
 # `ReleaseVersion` of the image will be increased by one.
 #
+
 set -Eeuo pipefail
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
@@ -72,18 +73,29 @@ get_latest_barman_version() {
 }
 
 get_pgaudit_version() {
+	local os_version="$1"; shift
+	local arch="$1"; shift
 	local pg_major="$1"; shift
 
+	local base_url="https://yum.postgresql.org"
+	if [ "$pg_major" = 15 ]; then
+		base_url="$base_url/testing"
+	fi
+
 	case $pg_major in
-		9.6) pgaudit_version=11 ;;
-		10) pgaudit_version=12 ;;
-		11) pgaudit_version=13 ;;
-		12) pgaudit_version=14 ;;
-		13) pgaudit_version=15 ;;
-		14) pgaudit_version=16 ;;
+		9.6) ver=11 ;;
+		10) ver=12 ;;
+		11) ver=13 ;;
+		12) ver=14 ;;
+		13) ver=15 ;;
+		14) ver=16 ;;
 	esac
 
-	echo "$pgaudit_version"
+	pgaudit_version=$(curl -s -L "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
+		perl -ne '/<a.*href="pgaudit'"${ver}"_"${pg_major/./}"'-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
+		sort -rV | head -n1)
+
+	echo "${ver}_${pg_major}-${pgaudit_version}"
 }
 
 # record_version(versionFile, component, componentVersion)
@@ -132,7 +144,7 @@ generate_ironbank() {
 		exit 1
 	fi
 
-	pgauditVersion=$(get_pgaudit_version "$version")
+	pgauditVersion=$(get_pgaudit_version "${ironbankRelease}" 'x86_64' "$version")
 	if [ -z "$pgauditVersion" ]; then
 		echo "Unable to get the pgAudit version"
 		exit 1

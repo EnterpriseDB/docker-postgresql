@@ -167,36 +167,31 @@ resources:
   validation:
     type: sha256
     value: a84da9fa891848e0270e8e04dcca073bc9046441eeb47069f5c0e36783debbea
-- filename: postgresql13-13.5-1PGDG.rhel8.x86_64.rpm \
+- filename: postgresql13-13.5-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-13.5-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql13-contrib-13.5-1PGDG.rhel8.x86_64.rpm \
+    value: 25af8f6d9da5397c11ffadadb2dc3aedb4b2df1322dee33fe1fb183de053c902
+- filename: postgresql13-contrib-13.5-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-contrib-13.5-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql13-server-13.5-1PGDG.rhel8.x86_64.rpm \
+    value: 02485d9d3e174bc5f578487c4cff75ce03fd278d6887ced1fb1b51790d27eda7
+- filename: postgresql13-server-13.5-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-server-13.5-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: postgresql13-libs-13.5-1PGDG.rhel8.x86_64.rpm \
+    value: 15c44016643fc3edd67c8c95ebc89549ca3ddb674f43c60d0ae17922c5dc7ecd
+- filename: postgresql13-libs-13.5-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-libs-13.5-1PGDG.rhel8.x86_64.rpm
-    \
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
-- filename: pgaudit15_13.x86_64.rpm \
-  url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/pgaudit15_13.x86_64.rpm
-    \
+    value: d747f534bcaf5a129992450e3b15b143c09dfc6c30297f9cda03cc798fe2fc91
+- filename: pgaudit15_13-1.5.0-1.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/pgaudit15_13-1.5.0-1.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0
+    value: 6bbbba02f940f4e66b66f644fb208a95b0d046bb975ed951204637401728134b
 - filename: RPM-GPG-KEY-PGDG-13
   url: https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-13
   validation:
