@@ -23,7 +23,7 @@ COPY ./RPM-GPG-KEY-PGDG-12 \
 	./postgresql12-contrib-12.9-1PGDG.rhel8.x86_64.rpm \
 	./postgresql12-server-12.9-1PGDG.rhel8.x86_64.rpm \
 	./postgresql12-libs-12.9-1PGDG.rhel8.x86_64.rpm \
-	./pgaudit14_12-1.4.1-1.rhel8_12.x86_64.rpm \
+	./pgaudit14_12-1.4.1-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -61,7 +61,7 @@ RUN rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
 	/tmp/postgresql12-contrib-12.9-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql12-server-12.9-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql12-libs-12.9-1PGDG.rhel8.x86_64.rpm \
-	/tpm/pgaudit14_12-1.4.1-1.rhel8_12.x86_64.rpm \
+	/tpm/pgaudit14_12-1.4.1-1.rhel8.x86_64.rpm \
 	dnf clean all && \
 	rm -rf /var/cache/dnf
 
