@@ -27,8 +27,7 @@ COPY ./RPM-GPG-KEY-PGDG-12 \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
-	/tmp/ && \
-	yum -y clean all --enablerepo='*'
+	/tmp/
 
 # Install from local copies of RPMs
 RUN rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
@@ -62,8 +61,7 @@ RUN rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
 	/tmp/postgresql12-server-12.9-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql12-libs-12.9-1PGDG.rhel8.x86_64.rpm \
 	/tmp/pgaudit14_12-1.4.1-1.rhel8.x86_64.rpm \
-	dnf clean all && \
-	rm -rf /var/cache/dnf
+	&& rm -rf /var/cache/dnf
 
 # Install barman-cloud
 ENV CRYPTOGRAPHY_DONT_BUILD_RUST 1 

@@ -132,11 +132,6 @@ resources:
   validation:
     type: sha256
     value: 42bf6354c2ed8c6acb54d971fce6f88193d97297e18602a3a886603f9d7730cc
-- filename: botocore-1.23.8-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/73/54/cf99aea233c9de1ea7870446a3f9660b8600678db3e35c834bb5aa76cd5c/botocore-1.23.8-py3-none-any.whl
-  validation:
-    type: sha256
-    value: a0c7cfea155a0202ab197a016736dd4e6a26f9e416bdd9cdd2c9a3fb88ffa5a8
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
@@ -152,6 +147,11 @@ resources:
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
+- filename: botocore-1.23.9-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ce/a3/8f3f71b66fe17c4af0598f0b6d31d98cd4f97a3897670bc3f794ee9e7974/botocore-1.23.9-py3-none-any.whl
+  validation:
+    type: sha256
+    value: e36c5831c971150777845519a3c5dbb2e924e54ac4cc7126b1360129f0512d8a
 - filename: s3transfer-0.5.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ab/84/fc3717a7b7f0f6bb08af593127171f08e3e0087c197922da09c01bfe7c3a/s3transfer-0.5.0-py3-none-any.whl
   validation:
@@ -167,6 +167,11 @@ resources:
   validation:
     type: sha256
     value: a84da9fa891848e0270e8e04dcca073bc9046441eeb47069f5c0e36783debbea
+- filename: pip-21.3.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a4/6d/6463d49a933f547439d6b5b98b46af8742cc03ae83543e4d7688c2420f8b/pip-21.3.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: deaf32dcd9ab821e359cd8330786bcd077604b5c5730c0b096eda46f95c24a2d
 - filename: postgresql13-13.5-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-13.5-1PGDG.rhel8.x86_64.rpm
   validation:

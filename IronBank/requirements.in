@@ -1,1 +1,2 @@
 barman[cloud,azure] == 2.15
+pip == 21.3.1

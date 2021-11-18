@@ -246,11 +246,14 @@ update_requirements() {
 	barmanVersion=$(get_latest_barman_version)
 	# If there's a new version we need to recreate the requirements files
 	echo "barman[cloud,azure] == $barmanVersion" > requirements.in
+	# ugly hack; not very proud of this
+	echo "pip == 21.3.1" >> requirements.in
 
 	# This will take the requirements.in file and generate a file
 	# requirements.txt with the hashes for the required packages
+	# --allow-unsafe is used for pip. This gets re-installed to fix crypto/rust issues
     # --no-annotation is required for IronBank hardening_maifest.yaml conversion
-	pip-compile --no-annotate --output-file=requirements.txt 2>/dev/null
+	pip-compile --allow-unsafe --no-annotate --output-file=requirements.txt 2>/dev/null
 
 	# Removes psycopg from the list of packages to install
 	sed -i '/psycopg/{:a;N;/barman/!ba};/via barman/d' requirements.txt
