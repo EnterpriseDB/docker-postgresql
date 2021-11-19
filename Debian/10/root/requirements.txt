@@ -26,9 +26,9 @@ barman[azure,cloud]==2.15 \
 boto3==1.20.8 \
     --hash=sha256:81ebdcabc534a52e2b7a2bfcbe1a1d7f1e34f028f7fe1cb16ccd80e34cea867a \
     --hash=sha256:c0ac23cc36dc484edd1edd28903b5712cb07507af1ae19b2e8d6db176416d9e2
-botocore==1.23.8 \
-    --hash=sha256:a0c7cfea155a0202ab197a016736dd4e6a26f9e416bdd9cdd2c9a3fb88ffa5a8 \
-    --hash=sha256:ae4ed9666199020a9e53c3d3efc0a7d417315cd2313b70cb013282afe70ac358
+botocore==1.23.9 \
+    --hash=sha256:810e259776bdc233c60333ff9d5f4d14b48ca5adefb9198d5ac8410c1d90efc4 \
+    --hash=sha256:e36c5831c971150777845519a3c5dbb2e924e54ac4cc7126b1360129f0512d8a
     # via
     #   boto3
     #   s3transfer
