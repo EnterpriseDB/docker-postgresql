@@ -80,6 +80,7 @@ jobs:
           "cs_script=${{ secrets.CS_SCRIPT }}"
         # Available architecture on UBI8 are: linux/amd64, linux/s390x, linux/ppc64le
         platforms: ${{ matrix.platforms }}
+        build-args: BASE_REGISTRY=registry.access.redhat.com, BASE_IMAGE=ubi8
         push: true
         tags: ${{ steps.docker-meta.outputs.tags }}
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
