@@ -30,6 +30,8 @@ jobs:
         uses: nick-invision/retry@v2.5.1
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+          BASE_REGISTRY: "registry.access.redhat.com"
+          BASE_IMAGE: "ubi8"
         with:
           timeout_minutes: 15
           max_attempts: 3
@@ -41,6 +43,8 @@ jobs:
             ./UBI/update.sh
             echo "Updating Debian images"
             ./Debian/update.sh
+            echo "Updating IronBank images"
+            ./IronBank/update.sh
       - name: Diff
         run: |
           git status
