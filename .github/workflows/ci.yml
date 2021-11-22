@@ -44,18 +44,18 @@ jobs:
           rm -rf ~/phe
       - name: Build ${{ matrix.name }}
         env:
-          TAGS: ${{ toJson(matrix.tags) }}
           BUILD_ARGS: ${{ toJson(matrix.build_args) }}
+          TAGS: ${{ toJson(matrix.tags) }}
         run: |
           CS_SCRIPT_FILE=$(mktemp)
           echo '${{ secrets.CS_SCRIPT }}' > ${CS_SCRIPT_FILE}
+          if [[ -z "${BUILD_ARGS}" ]]; then
+           ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"')
+          fi
           for tag in $(jq -r '.[]' <<< "${TAGS}")
           do
             ARGS+=(--tag "${IMAGE_NAME}:${tag}")
           done
-          if [[ -n "${BUILD_ARGS}" ]]; then
-           ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"')
-          fi          
           DOCKER_BUILDKIT=1 docker build --secret id=cs_script,src=${CS_SCRIPT_FILE} ${ARGS[@]} '${{ matrix.dir }}'
       - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
