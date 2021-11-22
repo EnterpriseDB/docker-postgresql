@@ -44,7 +44,7 @@ jobs:
       - name: Build ${{ matrix.name }}
         env:
           TAGS: ${{ toJson(matrix.tags) }}
-          BUILD_ARGS: ${{ toJson(matrix.build-args) }}
+          BUILD_ARGS: ${{ toJson(matrix.build_args) }}
         run: |
           CS_SCRIPT_FILE=$(mktemp)
           echo '${{ secrets.CS_SCRIPT }}' > ${CS_SCRIPT_FILE}
@@ -54,7 +54,7 @@ jobs:
           done
           for build-arg in $(jq -r '.[]' <<< "${BUILD_ARGS}")
           do
-            BUILD_ARGS+=( jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_REPO=\(.BASE_IMAGE)"' )
+            BUILD_ARGS+=( jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"' )
           done
           DOCKER_BUILDKIT=1 docker build --secret id=cs_script,src=${CS_SCRIPT_FILE} ${BUILD_ARGS[@]} ${TAGS[@]} '${{ matrix.dir }}'
       - name: History ${{ matrix.name }}
