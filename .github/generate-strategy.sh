@@ -137,16 +137,21 @@ for version in "${ironbank_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	if [[ "${version}" =~ ^("9.6"|"10"|"14")$ ]]; then
-			platforms="linux/amd64"
-	else
-			platforms="linux/amd64, linux/ppc64le, linux/s390x"
-	fi
+	# Only 
+	platforms="linux/amd64"
+	IB_BASE_REGISTRY="registry.access.redhat.com"
+	IB_BASE_IMAGE="ubi8"
 
 	# Build the json entry
 	entries+=(
-		"{\"name\": \"IronBank ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"IronBank/$version\", \"file\": \"IronBank/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
-	)
+	"{ \"name\": \"IronBank ${fullVersion}\", 
+		\"platforms\": \"$platforms\", 
+		\"dir\": \"IronBank/$version\", 
+		\"file\": \"IronBank/$version/Dockerfile\", 
+		\"version\": \"$version\", 
+		\"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"],
+		\"build_args\": {\"BASE_REGISTRY\": \"${IB_BASE_REGISTRY}\", \"BASE_IMAGE\": \"${IB_BASE_IMAGE}\"}
+	}" )
 done
 
 cd "$BASE_DIRECTORY"/Debian/
