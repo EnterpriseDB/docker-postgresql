@@ -30,11 +30,13 @@ COPY ./RPM-GPG-KEY-PGDG-12 \
 	/tmp/
 
 # Install from local copies of RPMs
-RUN rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
+RUN dnf update -y --nodocs && \
+    dnf clean all && \
+	rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
 	dnf -y reinstall \
 	tar \
 	glibc-common  && \
-	dnf -y install \
+	dnf -y install --nodocs \
 	bind-utils \
 	cargo \
 	gcc \ 
