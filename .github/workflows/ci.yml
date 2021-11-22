@@ -54,7 +54,7 @@ jobs:
             ARGS+=(--tag "${IMAGE_NAME}:${tag}")
           done
           if [[ -n "${BUILD_ARGS}" ]]; then
-           ARGS+=(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"' )
+           ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"')
           fi          
           DOCKER_BUILDKIT=1 docker build --secret id=cs_script,src=${CS_SCRIPT_FILE} ${ARGS[@]} '${{ matrix.dir }}'
       - name: History ${{ matrix.name }}
