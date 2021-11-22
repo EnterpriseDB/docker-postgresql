@@ -50,13 +50,10 @@ jobs:
           echo '${{ secrets.CS_SCRIPT }}' > ${CS_SCRIPT_FILE}
           for tag in $(jq -r '.[]' <<< "${TAGS}")
           do
-            TAGS+=(--tag "${IMAGE_NAME}:${tag}")
+            ARGS+=(--tag "${IMAGE_NAME}:${tag}")
           done
-          for build-arg in $(jq -r '.[]' <<< "${BUILD_ARGS}")
-          do
-            BUILD_ARGS+=( jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"' )
-          done
-          DOCKER_BUILDKIT=1 docker build --secret id=cs_script,src=${CS_SCRIPT_FILE} ${BUILD_ARGS[@]} ${TAGS[@]} '${{ matrix.dir }}'
+          ARGS+=(cat "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"' )
+          DOCKER_BUILDKIT=1 docker build --secret id=cs_script,src=${CS_SCRIPT_FILE} ${ARGS[@]} '${{ matrix.dir }}'
       - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
       - name: Test ${{ matrix.name }}
