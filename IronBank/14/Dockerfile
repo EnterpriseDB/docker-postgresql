@@ -18,7 +18,7 @@ ARG PG_GROUP_NAME="postgres"
 
 ARG PG_VERSION=14
 
-COPY ./RPM-GPG-KEY-PGDG-12 \
+COPY ./RPM-GPG-KEY-PGDG-14 \
 	./postgresql14-14.1-1PGDG.rhel8.x86_64.rpm \
 	./postgresql14-contrib-14.1-1PGDG.rhel8.x86_64.rpm \
 	./postgresql14-server-14.1-1PGDG.rhel8.x86_64.rpm \
@@ -32,7 +32,7 @@ COPY ./RPM-GPG-KEY-PGDG-12 \
 # Install from local copies of RPMs
 RUN dnf update -y --nodocs && \
     dnf clean all && \
-	rpm --import /tmp/RPM-GPG-KEY-PGDG-12 && \
+	rpm --import /tmp/RPM-GPG-KEY-PGDG-14 && \
 	dnf -y reinstall \
 	tar \
 	glibc-common  && \
@@ -101,13 +101,13 @@ RUN mkdir /docker-entrypoint-initdb.d && \
     mkdir -p "$PGDATA" && \
     chown -R postgres:postgres "$PGDATA" && \
     chmod 775 "$PGDATA" && \
-    sed -ri s/"#?(listen_addresses)\s*=\s*\S+.*"/"listen_addresses = '*'"/ /usr/pgsql-12/share/postgresql.conf.sample && \
-    grep -F "listen_addresses = '*'" /usr/pgsql-12/share/postgresql.conf.sample
+    sed -ri s/"#?(listen_addresses)\s*=\s*\S+.*"/"listen_addresses = '*'"/ /usr/pgsql-14/share/postgresql.conf.sample && \
+    grep -F "listen_addresses = '*'" /usr/pgsql-14/share/postgresql.conf.sample
 
 # DoD 2.3 - remove setuid/setgid from any binary that not strictly requires it, and before doing that list them on the stdout
 RUN find / -not -path "/proc/*" -perm /6000 -type f -exec ls -ld {} \; -exec chmod a-s {} \; || true
 
-HEALTHCHECK --interval=5s --timeout=3s CMD /usr/pgsql-12/bin/pg_isready -U postgres
+HEALTHCHECK --interval=5s --timeout=3s CMD /usr/pgsql-14/bin/pg_isready -U postgres
 USER ${PG_USER_ID}
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
@@ -122,10 +122,10 @@ ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 # Shutdown mode" in which any existing sessions are allowed to finish and the
 # server stops when all sessions are terminated.
 #
-# See https://www.postgresql.org/docs/12/server-shutdown.html for more details
+# See https://www.postgresql.org/docs/14/server-shutdown.html for more details
 # about available PostgreSQL server shutdown signals.
 #
-# See also https://www.postgresql.org/docs/12/server-start.html for further
+# See also https://www.postgresql.org/docs/14/server-start.html for further
 # justification of this as the default value, namely that the example (and
 # shipped) systemd service files use the "Fast Shutdown mode" for service
 # termination.
@@ -138,7 +138,7 @@ STOPSIGNAL SIGINT
 # STOPSIGNAL and sending SIGKILL (which is likely to cause data corruption).
 #
 # The default in most runtimes (such as Docker) is 10 seconds, and the
-# documentation at https://www.postgresql.org/docs/12/server-start.html notes
+# documentation at https://www.postgresql.org/docs/14/server-start.html notes
 # that even 90 seconds may not be long enough in many instances.
 
 EXPOSE 5432
