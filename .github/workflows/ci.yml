@@ -51,7 +51,7 @@ jobs:
           echo '${{ secrets.CS_SCRIPT }}' > ${CS_SCRIPT_FILE}
           if [[ -n "${BUILD_ARGS}" ]]; then
            ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"')
-           for u in $(cat "${{ matrix.dir }}/urls.txt"); do curl -fsSL -o "${{ martix.dir}}"/$(basename $u) $u ;done
+           for u in $(cat "${{ matrix.dir }}/urls.txt"); do curl -fsSL -o "${{ matrix.dir}}"/$(basename $u) $u ;done
            python3 -m pip download -r "${{ matrix.dir }}/requirements.txt" -d "${{ matrix.dir }}"
           fi
           for tag in $(jq -r '.[]' <<< "${TAGS}")
