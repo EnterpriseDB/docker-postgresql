@@ -52,7 +52,7 @@ for version in */; do
 	[[ $version == src/ ]] && continue
 	ironbank_versions+=("$version")
 done
-ironbank_versions=("${debian_versions[@]%/}")
+ironbank_versions=("${ironbank_versions[@]%/}")
 
 
 # Sort the version numbers with highest first
