@@ -1,6 +1,4 @@
 *.rpm
 *.tar.ga
 *.whl
-requirements_files/*
-hardening_manifest/*
 scripts/__pycache__/*
