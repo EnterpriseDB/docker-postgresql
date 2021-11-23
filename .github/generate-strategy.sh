@@ -8,6 +8,16 @@
 #
 
 set -eu
+declare BUILD_IRONBANK=false
+# Want to get the IronBank during the Continuous Integration step 
+# but not during the Continuous Delivery step.
+while getopts "i" option; do
+	case $option in
+		i)
+		BUILD_IRONBANK=true
+		;; 
+	esac
+done
 
 # Define an optional aliases for some major versions
 declare -A aliases=(
@@ -143,15 +153,17 @@ for version in "${ironbank_versions[@]}"; do
 	IB_BASE_IMAGE="ubi8"
 
 	# Build the json entry
-	entries+=(
-	"{ \"name\": \"IronBank ${fullVersion}\", 
-		\"platforms\": \"$platforms\", 
-		\"dir\": \"IronBank/$version\", 
-		\"file\": \"IronBank/$version/Dockerfile\", 
-		\"version\": \"$version\", 
-		\"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"],
-		\"build_args\": {\"BASE_REGISTRY\": \"${IB_BASE_REGISTRY}\", \"BASE_IMAGE\": \"${IB_BASE_IMAGE}\"}
-	}" )
+	if [[ "$BUILD_IRONBANK" == "true" ]]; then
+		entries+=(
+		"{ \"name\": \"IronBank ${fullVersion}\", 
+			\"platforms\": \"$platforms\", 
+			\"dir\": \"IronBank/$version\", 
+			\"file\": \"IronBank/$version/Dockerfile\", 
+			\"version\": \"$version\", 
+			\"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"],
+			\"build_args\": {\"BASE_REGISTRY\": \"${IB_BASE_REGISTRY}\", \"BASE_IMAGE\": \"${IB_BASE_IMAGE}\"}
+		}" )
+	fi 
 done
 
 cd "$BASE_DIRECTORY"/Debian/
