@@ -51,6 +51,9 @@ cd "$BASE_DIRECTORY"/IronBank/
 for version in $(find  -maxdepth 1 -type d -regex "^./[0-9].*" | sort -n) ; do
 	ironbank_versions+=("$version")
 done
+#trim the beginning slash
+ironbank_versions=("${ironbank_versions[@]#./}")
+#trim the ending slash
 ironbank_versions=("${ironbank_versions[@]%/}")
 
 
