@@ -227,8 +227,6 @@ generate_ironbank() {
 	cp hardening_manifest.yaml.template hardening_manifest/hardening_manifest.yaml
  	# Add the python requirements and urls to the manifest file used by IronBank
  	python3 generate_hardening_manifest.py -f -p -u 2> /dev/null
-	# match the UBI/Debian repo structure
-	cp requirements_files/pip-packages.txt src/root/requirements.txt
     # parse template and copy to version
 	sed -e 's/%%IRONBANK_VERSION%%/'"$ironbankVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
@@ -238,6 +236,9 @@ generate_ironbank() {
 		hardening_manifest/hardening_manifest.yaml \
 		>"${version}/hardening_manifest.yaml"
 
+	# match the UBI/Debian repo structure
+	cp requirements_files/pip-packages.txt src/root/requirements.txt
+	cp requirements_files/urls.txt	src/root/urls.txt
 	# requirement that certain dirs exist, such as config and scripts
 	cp -r src/root/* "${version}/"
 }

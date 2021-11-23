@@ -51,6 +51,8 @@ jobs:
           echo '${{ secrets.CS_SCRIPT }}' > ${CS_SCRIPT_FILE}
           if [[ -n "${BUILD_ARGS}" ]]; then
            ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"')
+           for u in $(cat urls.txt); do curl -sS -o temp/$(basename $u $u) $u ;done
+           python3 -m pip download -r requirements.txt
           fi
           for tag in $(jq -r '.[]' <<< "${TAGS}")
           do
