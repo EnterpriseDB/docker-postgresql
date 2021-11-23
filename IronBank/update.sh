@@ -17,7 +17,9 @@ if [ ${#versions[@]} -eq 0 ]; then
 		versions+=("$version")
 	done
 fi
+#trim the beginning slash
 versions=("${versions[@]%/}") 
+#trim the ending slash
 versions=("${versions[@]#./}") 
 # unused 
 

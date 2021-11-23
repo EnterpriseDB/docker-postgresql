@@ -48,8 +48,7 @@ debian_versions=("${debian_versions[@]%/}")
 
 # Retrieve the PostgreSQL versions for IronBank
 cd "$BASE_DIRECTORY"/IronBank/
-for version in */; do
-	[[ $version == src/ ]] && continue
+for version in $(find  -maxdepth 1 -type d -regex "^./[0-9].*" | sort -n) ; do
 	ironbank_versions+=("$version")
 done
 ironbank_versions=("${ironbank_versions[@]%/}")
