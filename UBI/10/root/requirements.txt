@@ -4,9 +4,9 @@
 #
 #    pip-compile --generate-hashes
 #
-argh==0.26.2 \
-    --hash=sha256:a9b3aaa1904eeb78e32394cd46c6f37ac0fb4af6dc488daa58971bdc7d7fcaf3 \
-    --hash=sha256:e9535b8c84dc9571a48999094fda7f33e63c3f1b74f3e5f3ac0105a58405bb65
+argcomplete==1.12.3 \
+    --hash=sha256:291f0beca7fd49ce285d2f10e4c1c77e9460cf823eef2de54df0c0fec88b0d81 \
+    --hash=sha256:2c7dbffd8c045ea534921e63b0be6fe65e88599990d8dc408ac8c542b72a5445
 azure-core==1.20.1 \
     --hash=sha256:21d06311c9c373e394ed9f9db035306773334a0181932e265889eca34d778d17 \
     --hash=sha256:5e5df1850ef6eff2b481a4a5fefa7d73ec74b6a2e0b27b179341f73f655fa4bf
@@ -19,16 +19,16 @@ azure-identity==1.7.1 \
 azure-storage-blob==12.9.0 \
     --hash=sha256:859195b4850dcfe77ffafbe53500abb74b001e52e77fe6d9492fa73639a22127 \
     --hash=sha256:cff66a115c73c90e496c8c8b3026898a3ce64100840276e9245434e28a864225
-barman[azure,cloud]==2.15 \
-    --hash=sha256:6808da33dccb0d9c4c71e34f7db6fa20c4089d87d5b8c6c96ba1a93e558acc4b \
-    --hash=sha256:a0c32603dc5c3ec8f13681f9bd3e735c69aca33796006acbe5d79a894103d1f5
+barman[azure,cloud]==2.16 \
+    --hash=sha256:3c347af6b77da12fafe463e452ca3e7bc9dc42171b34dee5816c45323cfde0cf \
+    --hash=sha256:fd651214aa30f2244528070d860ac6959bb22529cebaf275887d7cc6ad0f141c
     # via -r requirements.in
-boto3==1.20.13 \
-    --hash=sha256:879ee87037ad51317483ba175dcb982fffbc32de207e033287875b042765d750 \
-    --hash=sha256:bbf53a077d6a0575ddec8026f0475ca6ee6f41b227914bf315bf3e049a3d653a
-botocore==1.23.13 \
-    --hash=sha256:35792b2196049ef900f538cae51fb8359c940156eef187962aa9e3bd2c0b8e8c \
-    --hash=sha256:9b9385e61058eb0e7fc43013e4b43a710c9abafa2b28c340c45978d5a65c7113
+boto3==1.20.14 \
+    --hash=sha256:97bbb57d9e37ee24e013d022a2b39b21b131a7b1364d4a44a1e2a16c3a66979f \
+    --hash=sha256:df6f0c7f57a4463c9827080690046eb9381c6216d3a2f539ba74ba5c7dc84ef5
+botocore==1.23.14 \
+    --hash=sha256:28d5b0efa2d6a22232551b0b2df88a2978cbe9b1faa7ed0821dd012550b0aed6 \
+    --hash=sha256:e8d52cbf2e73c6268cf2c207f47e3cfb3ede0983f93e8b59674b54628e7ef1f1
     # via
     #   boto3
     #   s3transfer
