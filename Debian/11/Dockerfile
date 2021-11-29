@@ -117,7 +117,8 @@ RUN set -xe; \
 		python3-setuptools \
 	; \
 	pip3 install --upgrade pip; \
-	pip3 install -r requirements.txt; \
+# TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
+	pip3 install --no-deps -r requirements.txt; \
 	rm -rf /var/lib/apt/lists/*;
 
 # make the sample config easier to munge (and "correct by default")
