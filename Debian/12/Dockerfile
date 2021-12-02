@@ -6,7 +6,7 @@ LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="12.9-1.pgdg100+1" \
-      release="2" \
+      release="3" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Debian buster-slim."
 
@@ -116,9 +116,9 @@ RUN set -xe; \
 		python3-psycopg2 \
 		python3-setuptools \
 	; \
-	pip3 install --upgrade pip; \
+	pip3.7 install --upgrade pip; \
 # TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
-	pip3 install --no-deps -r requirements.txt; \
+	pip3.7 install --no-deps -r requirements.txt; \
 	rm -rf /var/lib/apt/lists/*;
 
 # make the sample config easier to munge (and "correct by default")
