@@ -116,9 +116,9 @@ RUN set -xe; \
 		python3-psycopg2 \
 		python3-setuptools \
 	; \
-	pip3.7 install --upgrade pip; \
+	pip3 install --upgrade pip; \
 # TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
-	pip3.7 install --no-deps -r requirements.txt; \
+	pip3 install --no-deps -r requirements.txt; \
 	rm -rf /var/lib/apt/lists/*;
 
 # make the sample config easier to munge (and "correct by default")
