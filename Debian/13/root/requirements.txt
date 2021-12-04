@@ -7,9 +7,9 @@
 argcomplete==1.12.3 \
     --hash=sha256:291f0beca7fd49ce285d2f10e4c1c77e9460cf823eef2de54df0c0fec88b0d81 \
     --hash=sha256:2c7dbffd8c045ea534921e63b0be6fe65e88599990d8dc408ac8c542b72a5445
-azure-core==1.20.1 \
-    --hash=sha256:21d06311c9c373e394ed9f9db035306773334a0181932e265889eca34d778d17 \
-    --hash=sha256:5e5df1850ef6eff2b481a4a5fefa7d73ec74b6a2e0b27b179341f73f655fa4bf
+azure-core==1.21.0 \
+    --hash=sha256:84c58cb1194c34bb6c4b4f41dcf0430c11d316b84a0b978b28879577c422c5b6 \
+    --hash=sha256:875419a1d2a373ed596ab517871a53b1006a5322d091d3c0ae8df3f92b82bbfa
     # via
     #   azure-identity
     #   azure-storage-blob
@@ -23,12 +23,12 @@ barman[azure,cloud]==2.17 \
     --hash=sha256:c0224641407d1cc55b3f4ada414ecd53bdeec093c0c49180ea28a0b8812839d0 \
     --hash=sha256:cc7b2d14d4f312d7ba993469170d0c7aa1e32b1837333dfdf1b0ca767550dd2b
     # via -r requirements.in
-boto3==1.20.19 \
-    --hash=sha256:555680f12dd5cf6aa040d5693a45e14f991f05a5d81f84736653ff19b0de7e83 \
-    --hash=sha256:d917b4d2c47e02398e2815c31de8c667fb6bc840f28f1f3f54b1bb3ba4f617b2
-botocore==1.23.19 \
-    --hash=sha256:9cbae6aa8cd56cd9b2347d130a889bb6b557f95ec928c518f31464c791f6b90c \
-    --hash=sha256:ba676114d8aaeb6d37c333f7094d050b27354c6b4c4fb54407520f1ecd139328
+boto3==1.20.20 \
+    --hash=sha256:2c5377b6ab74eeccccd16f0f21537ede87b05c8322b0ccc852a68f36ea6c16c9 \
+    --hash=sha256:6c173ffaf0604e34d6865edf7a9a71e1b3e79bd441b8b465ca4b2d44f840806d
+botocore==1.23.20 \
+    --hash=sha256:22e1c7b4b2b8b11d7001ca5ef2b41bda9a8be46fb3cb994a2948462666ac5ef1 \
+    --hash=sha256:98275e47c941cada6507089ecfe91e420972209b1deeceaf55a89ea50d046347
     # via
     #   boto3
     #   s3transfer
@@ -90,9 +90,9 @@ cffi==1.15.0 \
     --hash=sha256:fd8a250edc26254fe5b33be00402e6d287f562b6a5b2152dec302fa15bb3e997 \
     --hash=sha256:ffaa5c925128e29efbde7301d8ecaf35c8c60ffbcd6a1ffd3a552177c8e5e796
     # via cryptography
-charset-normalizer==2.0.8 \
-    --hash=sha256:735e240d9a8506778cd7a453d97e817e536bb1fc29f4f6961ce297b9c7a917b0 \
-    --hash=sha256:83fcdeb225499d6344c8f7f34684c2981270beacc32ede2e669e94f7fa544405
+charset-normalizer==2.0.9 \
+    --hash=sha256:1eecaa09422db5be9e29d7fc65664e6c33bd06f9ced7838578ba40d58bdf3721 \
+    --hash=sha256:b0b883e8e874edfdece9c28f314e3dd5badf067342e42fb162203335ae61aa2c
     # via requests
 cryptography==36.0.0 \
     --hash=sha256:2049f8b87f449fc6190350de443ee0c1dd631f2ce4fa99efad2984de81031681 \
