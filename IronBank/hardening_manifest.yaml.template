@@ -6,7 +6,7 @@ args:
 labels:
   mil.dso.ironbank.image.keywords: k8s,postgres,db
   mil.dso.ironbank.image.type: opensource
-  mil.dso.ironbank.product.name: docker-postgreqsql
+  mil.dso.ironbank.product.name: docker-postgresql
   org.opencontainers.image.description: PostgreSQL Containers from EDB
   org.opencontainers.image.licenses: PostgreSQL
   org.opencontainers.image.title: docker-postgresql
@@ -18,6 +18,10 @@ maintainers:
   email: adrian.noland@enterprisedb.com
   name: Adrian Noland
   username: anoland-edb
+- cht_member: true
+  email: jaime.silvela@enterprisedb.com
+  name: Jaime Silvela
+  username: jsilvela-edb
 - cht_member: false
   email: rick.hill@enterprisedb.com
   name: Rick Hill

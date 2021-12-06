@@ -3,6 +3,7 @@
 Contains the base files for creating the IronBank versions.
 
 This has IronBank specific changes in order to meet their requirements.
+See [docs/ subdirectory](docs/ironbank.md) for further detail.
 
 Noteably: 
  - The requirments.txt that is generated can't have annotations from pip-compile
