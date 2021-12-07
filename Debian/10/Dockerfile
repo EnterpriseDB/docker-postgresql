@@ -106,6 +106,7 @@ RUN set -ex; \
 		"postgresql-$PG_MAJOR-pgaudit" \
 	; \
 	\
+	rm -fr /tmp/* ; \
 	rm -rf /var/lib/apt/lists/*;
 
 # Install barman-cloud

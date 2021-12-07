@@ -13,9 +13,9 @@ LABEL name="PostgreSQL Container Images" \
 COPY root/ /
 
 ARG TARGETARCH
-RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
+RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 	set -xe ; \
-	bash /tmp/cs_script.sh ; \
+	bash /run/secrets/cs_script.sh ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	if [ "$TARGETARCH" == 'amd64' ]; then \
@@ -29,6 +29,7 @@ RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
 		pgaudit14_12 \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
+	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud
