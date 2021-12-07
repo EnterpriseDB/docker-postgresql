@@ -1,2 +1,2 @@
-barman[cloud,azure] == 2.15
+barman[cloud,azure] == 2.17
 pip == 21.3.1
