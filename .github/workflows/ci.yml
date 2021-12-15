@@ -48,9 +48,14 @@ jobs:
           BUILD_ARGS: ${{ toJson(matrix.build_args) }}
           TAGS: ${{ toJson(matrix.tags) }}
         run: |
+          ARGS=""
+          # Only Ironbank builds use build-args. We get here the packages
+          # required in the case
           if [[ "${BUILD_ARGS}" != "null" ]]; then
-           ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"')
-           for u in $(cat "${{ matrix.dir }}/urls.txt"); do curl -fsSL -o "${{ matrix.dir}}"/$(basename $u) $u ;done
+           ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "BASE_REGISTRY=\(.BASE_REGISTRY)\nBASE_IMAGE=\(.BASE_IMAGE)"')
+           for u in $(cat "${{ matrix.dir }}/urls.txt")
+             do curl -fsSL -o "${{ matrix.dir}}"/$(basename $u) $u
+           done
            python3 -m pip download -r "${{ matrix.dir }}/requirements.txt" -d "${{ matrix.dir }}"
           fi
           RESULT=""
@@ -58,6 +63,10 @@ jobs:
           do
             RESULT="${RESULT},${IMAGE_NAME}:${tag}"            
           done
+          ARGS="${ARGS//'%'/'%25'}"
+          ARGS="${ARGS//$'\n'/'%0A'}"
+          ARGS="${ARGS//$'\r'/'%0D'}"
+          echo "::set-output name=build-args::${ARGS}"
           echo "::set-output name=tags::${RESULT%,}"
 
       - name: Build ${{ matrix.name }}
@@ -70,6 +79,8 @@ jobs:
           push: false
           tags: ${{ steps.docker-meta.outputs.tags }}
           load: true
+          build-args: |
+            ${{ steps.docker-meta.outputs.build-args }}
 
       - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
