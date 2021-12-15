@@ -33,7 +33,7 @@ The Ironbank images are developed and stored in a gitlab repo.
 You should get acces to it, at:
 https://repo1.dso.mil/users/sign_in
 
-You should enable 2FA on it (use your authenticator - 1Password wors fine)
+You should enable 2FA on it (use your authenticator - 1Password works fine)
 
 The entry point for the Ironbank Containers is https://repo1.dso.mil/dsop
 You should click the `Request Access` link -- though it doesn't seem a hard requirement.
