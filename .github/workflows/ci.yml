@@ -41,23 +41,36 @@ jobs:
           git clone --depth 1 https://github.com/tianon/pgp-happy-eyeballs.git ~/phe
           ~/phe/hack-my-builds.sh
           rm -rf ~/phe
-      - name: Build ${{ matrix.name }}
+
+      - name: Docker meta
+        id: docker-meta
         env:
           BUILD_ARGS: ${{ toJson(matrix.build_args) }}
           TAGS: ${{ toJson(matrix.tags) }}
         run: |
-          CS_SCRIPT_FILE=$(mktemp)
-          echo '${{ secrets.CS_SCRIPT }}' > ${CS_SCRIPT_FILE}
           if [[ "${BUILD_ARGS}" != "null" ]]; then
            ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "--build-arg BASE_REGISTRY=\(.BASE_REGISTRY) --build-arg BASE_IMAGE=\(.BASE_IMAGE)"')
            for u in $(cat "${{ matrix.dir }}/urls.txt"); do curl -fsSL -o "${{ matrix.dir}}"/$(basename $u) $u ;done
            python3 -m pip download -r "${{ matrix.dir }}/requirements.txt" -d "${{ matrix.dir }}"
           fi
+          RESULT=""
           for tag in $(jq -r '.[]' <<< "${TAGS}")
           do
-            ARGS+=(--tag "${IMAGE_NAME}:${tag}")
+            RESULT="${RESULT},${IMAGE_NAME}:${tag}"            
           done
-          DOCKER_BUILDKIT=1 docker build --secret id=cs_script,src=${CS_SCRIPT_FILE} ${ARGS[@]} '${{ matrix.dir }}'
+          echo "::set-output name=tags::${RESULT%,}"
+
+      - name: Build ${{ matrix.name }}
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: ${{ matrix.dir }}
+          file: ${{ matrix.file }}
+          secrets: |
+            "cs_script=${{ secrets.CS_SCRIPT }}"
+          push: false
+          tags: ${{ steps.docker-meta.outputs.tags }}
+          load: true
+
       - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
       - name: Test ${{ matrix.name }}
