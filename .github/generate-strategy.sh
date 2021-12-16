@@ -8,6 +8,16 @@
 #
 
 set -eu
+declare BUILD_IRONBANK=false
+# Want to get the IronBank during the Continuous Integration step 
+# but not during the Continuous Delivery step.
+while getopts "i" option; do
+	case $option in
+		i)
+		BUILD_IRONBANK=true
+		;; 
+	esac
+done
 
 # Define an optional aliases for some major versions
 declare -A aliases=(
@@ -36,9 +46,22 @@ for version in */; do
 done
 debian_versions=("${debian_versions[@]%/}")
 
+# Retrieve the PostgreSQL versions for IronBank
+cd "$BASE_DIRECTORY"/IronBank/
+for version in $(find  -maxdepth 1 -type d -regex "^./[0-9].*" | sort -n) ; do
+	ironbank_versions+=("$version")
+done
+#trim the beginning slash
+ironbank_versions=("${ironbank_versions[@]#./}")
+#trim the ending slash
+ironbank_versions=("${ironbank_versions[@]%/}")
+
+
 # Sort the version numbers with highest first
 mapfile -t ubi_versions < <(IFS=$'\n'; sort -rV <<< "${ubi_versions[*]}")
 mapfile -t debian_versions < <(IFS=$'\n'; sort -rV <<< "${debian_versions[*]}")
+mapfile -t ironbank_versions < <(IFS=$'\n'; sort -rV <<< "${ironbank_versions[*]}")
+
 
 # prints "$2$1$3$1...$N"
 join() {
@@ -49,8 +72,8 @@ join() {
 	echo "${out#$sep}"
 }
 
-cd "$BASE_DIRECTORY"/UBI/
 entries=()
+cd "$BASE_DIRECTORY"/UBI/
 for version in "${ubi_versions[@]}"; do
 
 	# Read versions from the definition file
@@ -94,6 +117,56 @@ for version in "${ubi_versions[@]}"; do
 	)
 done
 
+cd "$BASE_DIRECTORY"/IronBank/
+for version in "${ironbank_versions[@]}"; do
+
+	# Read versions from the definition file
+	versionFile="${version}/.versions.json"
+	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
+	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+
+	# Initial aliases are "major version", "optional alias", "full version with release"
+	# i.e. "13", "latest", "13.2-1"
+	# A "-beta" suffix will be appended to the beta images.
+	if [ "${version%%.*}" -gt '14' ]; then
+		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
+		versionAliases=(
+			"${version}-beta"
+			${aliases[$version]:+"${aliases[$version]}"}
+			"${fullVersion}-${releaseVersion}"
+		)
+	else
+		versionAliases=(
+			"${version}"
+			${aliases[$version]:+"${aliases[$version]}"}
+			"${fullVersion}"-"${releaseVersion}"
+		)
+	fi
+	# Add all the version prefixes between full version and major version
+	# i.e "13.2"
+	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
+		versionAliases+=("$fullVersion")
+		fullVersion="${fullVersion%[.-]*}"
+	done
+
+	# Only 
+	platforms="linux/amd64"
+	IB_BASE_REGISTRY="registry.access.redhat.com"
+	IB_BASE_IMAGE="ubi8"
+
+	# Build the json entry
+	if [[ "$BUILD_IRONBANK" == "true" ]]; then
+		entries+=(
+		"{ \"name\": \"IronBank ${fullVersion}\", 
+			\"platforms\": \"$platforms\", 
+			\"dir\": \"IronBank/$version\", 
+			\"file\": \"IronBank/$version/Dockerfile\", 
+			\"version\": \"$version\", 
+			\"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"],
+			\"build_args\": {\"BASE_REGISTRY\": \"${IB_BASE_REGISTRY}\", \"BASE_IMAGE\": \"${IB_BASE_IMAGE}\"}
+		}" )
+	fi 
+done
 
 cd "$BASE_DIRECTORY"/Debian/
 
