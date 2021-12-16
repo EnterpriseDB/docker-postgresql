@@ -152,13 +152,6 @@ generate_ironbank() {
 		exit 1
 	fi
 
-    # extra repos not available without extra work: e.g. adding to hardening_manifest.yaml
-	# Unreleased PostgreSQL versions 
-	yumOptions=""
-	if [ "$version" = 15 ]; then
-		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
-	fi	
-
 	# Output the full Postgresql package name
 	echo "$version: ${postgresqlVersion}"
 

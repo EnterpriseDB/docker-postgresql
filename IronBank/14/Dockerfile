@@ -71,7 +71,7 @@ ENV CARGO_NET_OFFLINE true
 RUN python3 -m pip install --no-index --find-links=/tmp --upgrade /tmp/pip-21.3.1-py3-none-any.whl
 RUN pip3 install --no-index --find-links=/tmp -r /tmp/requirements.txt
 RUN rm -rf /tmp/*.{rpm,whl} && \
-	yum -y remove python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config ; \
+	dnf -y remove python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config
 
 # make the sample config easier to munge (and "correct by default")
 RUN set -eux; \
