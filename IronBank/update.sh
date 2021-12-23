@@ -17,12 +17,13 @@ if [ ${#versions[@]} -eq 0 ]; then
 		versions+=("$version")
 	done
 fi
+
 #trim the beginning slash
 versions=("${versions[@]%/}") 
 #trim the ending slash
 versions=("${versions[@]#./}") 
-# unused 
 
+# Currently Unused. At the moment we only save the tag in the VersionFile.
 # Get the latest UBI base image and use it for IRONBANK # different that what UBI does. TBD change this later after published.
 get_latest_ironbank_base() {
 	rawContent=$(curl -s -L https://quay.io/api/v1/repository/enterprisedb/edb-ubi/tag/?onlyActiveTags=true)
@@ -45,22 +46,7 @@ get_postgresql_version() {
 		sort -rV | head -n1)
 
 	echo ${pgx86_64}
-
-	# For MultiArch images make sure the new package is available for all the architectures before updating
-	#if [[ "${version}" =~ ^("11"|"12"|"13")$ ]]; then
-	#	pgs390x=$(check_cloudsmith_pkgs "${os_version}" 's390x' "$pg_major")
-	#	pgppc64le=$(check_cloudsmith_pkgs "${os_version}" 'ppc64le' "$pg_major")
-	#	if [[ ${pgx86_64} != ${pgppc64le} || ${pgx86_64} != ${pgs390x} ]]; then
-	#		echo "Version discrepancy between the architectures. Exiting." >&2
-	#		echo "x86_64: ${pgx86_64}" >&2
-	#		echo "ppc64le: ${pgppc64le}" >&2
-	#		echo "s390x: ${pgs390x}" >&2
-	#		exit 1
-	#	fi
-	#fi
 }
-
-# cloudsmith not used in this repo
 
 # Get the latest Barman version
 latest_barman_version=
@@ -85,7 +71,6 @@ get_pgaudit_version() {
 	fi
 
 	case $pg_major in
-		9.6) ver=11 ;;
 		10) ver=12 ;;
 		11) ver=13 ;;
 		12) ver=14 ;;
@@ -94,7 +79,7 @@ get_pgaudit_version() {
 	esac
 
 	pgaudit_version=$(curl -s -L "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
-		perl -ne '/<a.*href="pgaudit'"${ver}"_"${pg_major/./}"'-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
+		perl -ne '/<a.*href="pgaudit'"${ver}"_"${pg_major}"'-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
 		sort -rV | head -n1)
 
 	echo "${ver}_${pg_major}-${pgaudit_version}"
@@ -156,7 +141,7 @@ generate_ironbank() {
 	echo "$version: ${postgresqlVersion}"
 
 	if [ -f "${versionFile}" ]; then
-		oldUbiVersion=$(jq -r '.IRONBANK_VERSION' "${versionFile}")
+		oldIronbankVersion=$(jq -r '.IRONBANK_VERSION' "${versionFile}")
 		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
@@ -176,8 +161,8 @@ generate_ironbank() {
 	newRelease="false"
 
 	# Detect an update of IRONBANK image
-	if [ "$oldUbiVersion" != "$ironbankVersion" ]; then
-		echo "IRONBANK changed from $oldUbiVersion to $ironbankVersion"
+	if [ "$oldIronbankVersion" != "$ironbankVersion" ]; then
+		echo "IRONBANK changed from $oldIronbankVersion to $ironbankVersion"
 		newRelease="true"
 		record_version "${versionFile}" "IRONBANK_VERSION" "${ironbankVersion}"
 	fi
@@ -201,19 +186,15 @@ generate_ironbank() {
 	fi
 
 	rm -fr "${version:?}"/*
-	sed -e 's/%%IRONBANK_VERSION%%/'"$ironbankVersion"'/g' \
-		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
-		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
+	sed -e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
-		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile.template \
 		>"$version/Dockerfile"
 
 	# Generates urls.txt file for each PG version. This is used by
 	# generate_hardened_manifest.py to set up RPM downloads in IronBank build service
-	sed	-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
+	sed	-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
 		urls.txt.template \
@@ -223,11 +204,8 @@ generate_ironbank() {
  	# Add the python requirements and urls to the manifest file used by IronBank
  	python3 generate_hardening_manifest.py -f -p -u 2> /dev/null
     # parse template and copy to version
-	sed -e 's/%%IRONBANK_VERSION%%/'"$ironbankVersion"'/g' \
-		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
+	sed -e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
-		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		hardening_manifest/hardening_manifest.yaml \
 		>"${version}/hardening_manifest.yaml"
 
