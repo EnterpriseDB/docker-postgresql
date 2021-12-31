@@ -108,7 +108,7 @@ for version in "${ubi_versions[@]}"; do
 	if [[ "${version}" =~ ^("9.6"|"10"|"14")$ ]]; then
 			platforms="linux/amd64"
 	else
-			platforms="linux/amd64, linux/ppc64le, linux/s390x"
+			platforms="linux/amd64, linux/arm64, linux/ppc64le, linux/s390x"
 	fi
 
 	# Build the json entry
@@ -202,7 +202,7 @@ for version in "${debian_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	platforms="linux/amd64"
+	platforms="linux/arm64, linux/amd64"
 
 	# Build the json entry
 	entries+=(
@@ -242,7 +242,7 @@ for version in "${debian_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	platforms="linux/amd64"
+	platforms="linux/amd64, linux/arm64"
 
 	# Build the json entry
 	entries+=(
