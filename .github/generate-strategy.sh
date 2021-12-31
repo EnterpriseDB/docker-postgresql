@@ -108,7 +108,7 @@ for version in "${ubi_versions[@]}"; do
 	if [[ "${version}" =~ ^("9.6"|"10"|"14")$ ]]; then
 			platforms="linux/amd64"
 	else
-			platforms="linux/amd64, linux/arm64, linux/ppc64le, linux/s390x"
+			platforms="linux/amd64, linux/ppc64le, linux/s390x"
 	fi
 
 	# Build the json entry
