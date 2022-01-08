@@ -56,16 +56,16 @@ resources:
   validation:
     type: sha256
     value: 8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
-- filename: urllib3-1.26.7-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/af/f4/524415c0744552cce7d8bf3669af78e8a069514405ea4fcbd0cc44733744/urllib3-1.26.7-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844
 - filename: azure_core-1.21.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a6/07/95105c0c1cc46a5c8b14e43c66fa8b50fe1e7f0918e8809a7422cb67a1cf/azure_core-1.21.1-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 3d70e9ec64de92dfae330c15bc69085caceb2d83813ef6c01cc45326f2a4be83
+- filename: urllib3-1.26.8-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/4e/b8/f5a25b22e803f0578e668daa33ba3701bb37858ec80e08a150bd7d2cf1b1/urllib3-1.26.8-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed
 - filename: idna-3.3-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/04/a2/d918dcd22354d8958fe113e1a3630137e0fc8b44859ade3063982eacd2a4/idna-3.3-py3-none-any.whl
   validation:
@@ -151,21 +151,21 @@ resources:
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
+- filename: boto3-1.20.31-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/81/f3/bba1e2f2199166453c4dca0c1000d16e0ada5a4c45ec456b07d9e13cca1f/boto3-1.20.31-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 948e81af347085e6bc5ff08368d7901afec9e7628adf180c9cc856c7b0ae3395
 - filename: barman-2.17-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/1b/d275db7539550c8edb430f4a8e31a75829f0b3623b1f38d5cc7315b8160e/barman-2.17-py2.py3-none-any.whl
   validation:
     type: sha256
     value: cc7b2d14d4f312d7ba993469170d0c7aa1e32b1837333dfdf1b0ca767550dd2b
-- filename: botocore-1.23.30-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a3/9e/27afa39b41c11828ab89227b0d4e4c74ca1141b5d2ed654d9f50cc9933f3/botocore-1.23.30-py3-none-any.whl
+- filename: botocore-1.23.31-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/bd/8c/e594c6d5fedbb8d40a2d12596898f4fd0da69e8b03a4bd67844f3774eb9b/botocore-1.23.31-py3-none-any.whl
   validation:
     type: sha256
-    value: 30c6566e68e680116a1949dd3a490a1f50ddaf9c195b1c85bada9d8af4163ad0
-- filename: boto3-1.20.30-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/53/d8/78376ac7254906d34ae8d631ef02330de5ecc2af6d5337b6c54e6e6473cc/boto3-1.20.30-py3-none-any.whl
-  validation:
-    type: sha256
-    value: e50827ccb217cadf61744fad3c0e4c7455bbbd6ed447868d04914cc5c8e6a978
+    value: 187c736ce242bbea3d1440c580d270e0fd839276c5cc3938a85b8c59366c1803
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
