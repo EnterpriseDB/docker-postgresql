@@ -146,26 +146,26 @@ resources:
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+- filename: botocore-1.23.32-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c1/79/79a2917a73d1d0d5344878ba73b3a686b3fa8ab584519b2e709d671eec0b/botocore-1.23.32-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a33e6b30c5d64156d10ec6986fc96dfdf5c723ad7dc83e0d60af6407192b16b4
 - filename: jmespath-0.10.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/07/cb/5f001272b6faeb23c1c9e0acc04d48eaaf5c862c17709d20e3469c6e0139/jmespath-0.10.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
-- filename: boto3-1.20.31-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/81/f3/bba1e2f2199166453c4dca0c1000d16e0ada5a4c45ec456b07d9e13cca1f/boto3-1.20.31-py3-none-any.whl
+- filename: boto3-1.20.32-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/cc/09/53a72e877b097cf309a4c5e49b543a12efa1e24e60eabc39acd154a2600f/boto3-1.20.32-py3-none-any.whl
   validation:
     type: sha256
-    value: 948e81af347085e6bc5ff08368d7901afec9e7628adf180c9cc856c7b0ae3395
+    value: b427f103f7d1488ad360b665687a032741d0a0c9ebe6f1a40dcdda95b646859a
 - filename: barman-2.17-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/1b/d275db7539550c8edb430f4a8e31a75829f0b3623b1f38d5cc7315b8160e/barman-2.17-py2.py3-none-any.whl
   validation:
     type: sha256
     value: cc7b2d14d4f312d7ba993469170d0c7aa1e32b1837333dfdf1b0ca767550dd2b
-- filename: botocore-1.23.31-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/bd/8c/e594c6d5fedbb8d40a2d12596898f4fd0da69e8b03a4bd67844f3774eb9b/botocore-1.23.31-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 187c736ce242bbea3d1440c580d270e0fd839276c5cc3938a85b8c59366c1803
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
