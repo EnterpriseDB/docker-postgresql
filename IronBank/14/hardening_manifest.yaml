@@ -151,6 +151,11 @@ resources:
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
+- filename: barman-2.18-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/e0/13/63644dab5fe2d96ac5c36a0c4ba7d114f48c9a794fc3b836c1bd50b66649/barman-2.18-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: d6a184673332923696813a3c6cbef8ea3ab961bd1471e77189383481beca8365
 - filename: boto3-1.20.41-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fa/9b/42fce3bcb2699ed1596d8b1ea7a84e273b7fec39d893b4ed20d3bd2fc68d/boto3-1.20.41-py3-none-any.whl
   validation:
@@ -161,11 +166,6 @@ resources:
   validation:
     type: sha256
     value: 41104e1c976c9c410387b3c7d265466b314f287a1c13fd4b543768135301058a
-- filename: barman-2.17-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/6e/1b/d275db7539550c8edb430f4a8e31a75829f0b3623b1f38d5cc7315b8160e/barman-2.17-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: cc7b2d14d4f312d7ba993469170d0c7aa1e32b1837333dfdf1b0ca767550dd2b
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
