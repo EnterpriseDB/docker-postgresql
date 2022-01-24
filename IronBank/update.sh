@@ -19,9 +19,9 @@ if [ ${#versions[@]} -eq 0 ]; then
 fi
 
 #trim the beginning slash
-versions=("${versions[@]%/}") 
+versions=("${versions[@]%/}")
 #trim the ending slash
-versions=("${versions[@]#./}") 
+versions=("${versions[@]#./}")
 
 # Currently Unused. At the moment we only save the tag in the VersionFile.
 # Get the latest UBI base image and use it for IRONBANK # different that what UBI does. TBD change this later after published.
@@ -219,7 +219,7 @@ generate_ironbank() {
 update_requirements() {
 	barmanVersion=$(get_latest_barman_version)
 	# If there's a new version we need to recreate the requirements files
-	echo "barman[cloud,azure] == $barmanVersion" > requirements.in
+	echo "barman[cloud,azure,snappy] == $barmanVersion" > requirements.in
 	# ugly hack; not very proud of this
 	echo "pip == 21.3.1" >> requirements.in
 
