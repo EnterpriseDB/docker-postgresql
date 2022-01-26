@@ -30,6 +30,9 @@ jobs:
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
     name: ${{ matrix.name }}
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      packages: write
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
@@ -45,11 +48,12 @@ jobs:
         RESULT=""
         for tag in $(jq -r '.[]' <<< "${TAGS}")
         do
-          RESULT="${RESULT},quay.io/${IMAGE_STAGING}:${tag},${IMAGE_STAGING}:${tag}"
+          # TODO: Need to remove the Docker Hub entry once we really done with the migration
+          RESULT="${RESULT},quay.io/${IMAGE_STAGING}:${tag},${IMAGE_STAGING}:${tag},ghcr.io/${IMAGE_STAGING}:${tag}"
           # If we are running the pipeline in the main branch images are pushed in both -testing and PROD repo
           if [ "${GITHUB_REF#refs/heads/}" == main ]
           then
-            RESULT="${RESULT},quay.io/${IMAGE_RELEASE}:${tag},${IMAGE_RELEASE}:${tag}"
+            RESULT="${RESULT},quay.io/${IMAGE_RELEASE}:${tag},${IMAGE_RELEASE}:${tag},ghcr.io/${IMAGE_RELEASE}"
           fi
         done
         echo "::set-output name=tags::${RESULT%,}"
@@ -65,11 +69,19 @@ jobs:
         username: ${{ secrets.QUAY_USERNAME }}
         password: ${{ secrets.QUAY_TOKEN }}
 
+    # TODO: Need to remove this once we're really done with the migration from Docker Hub
     - name: Login to Docker Hub
       uses: docker/login-action@v1.12.0
       with:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_SECRET }}
+
+    - name: Log in to the GitHub Container registry
+      uses: docker/login-action@v1.12.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push
       uses: docker/build-push-action@v2.9.0
