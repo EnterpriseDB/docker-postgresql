@@ -111,16 +111,16 @@ resources:
   validation:
     type: sha256
     value: a421a43413335099228f1d9ad93f7491d7c7c40044108290e4923fe58f41a332
-- filename: oauthlib-3.1.1-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e8/5d/9dd1c29e5a786525f6342f6c1d812ed2e37edc653ad297048c1668988053/oauthlib-3.1.1-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 42bf6354c2ed8c6acb54d971fce6f88193d97297e18602a3a886603f9d7730cc
 - filename: msrest-0.6.21-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e8/cc/6c96bfb3d3cf4c3bdedfa6b46503223f4c2a4fa388377697e0f8082a4fed/msrest-0.6.21-py2.py3-none-any.whl
   validation:
     type: sha256
     value: c840511c845330e96886011a236440fafc2c9aff7b2df9c0a92041ee2dee3782
+- filename: oauthlib-3.2.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/1d/46/5ee2475e1b46a26ca0fa10d3c1d479577fde6ee289f8c6aa6d7ec33e31fd/oauthlib-3.2.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 6db33440354787f9b7f3a6dbd4febf5d0f93758354060e802f6c06cb493022fe
 - filename: azure_storage_blob-12.9.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/41/f3/e2b3fa9de629ab76031588daf54b4c28d71bd3c209d8a3d4f470d87e98a7/azure_storage_blob-12.9.0-py2.py3-none-any.whl
   validation:
@@ -131,11 +131,11 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: requests_oauthlib-1.3.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a3/12/b92740d845ab62ea4edf04d2f4164d82532b5a0b03836d4d4e71c6f3d379/requests_oauthlib-1.3.0-py2.py3-none-any.whl
+- filename: requests_oauthlib-1.3.1-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/6f/bb/5deac77a9af870143c684ab46a7934038a53eb4aa975bc0687ed6ca2c610/requests_oauthlib-1.3.1-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 7f71572defaecd16372f9006f33c2ec8c077c3cfa6f5911a9a90202beb513f3d
+    value: 2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
