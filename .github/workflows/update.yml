@@ -39,7 +39,8 @@ jobs:
           command: |
             # pip-tools provides pip-compile used by update.sh
             export PATH=$HOME/.local/bin:$PATH
-            pip3 install --upgrade pip-tools cloudsmith-cli
+            # TODO: Remove pip workaround once https://github.com/jazzband/pip-tools/issues/1558 is fixed
+            pip3 install --upgrade pip-tools cloudsmith-cli 'pip<22'
             echo "Updating UBI images"
             ./UBI/update.sh
             echo "Updating Debian images"
