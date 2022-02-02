@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM debian:%%DEBIAN_TAG%%
+FROM debian:%%DEBIAN_VERSION%%
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \

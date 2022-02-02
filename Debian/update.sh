@@ -19,6 +19,14 @@ declare -A debianSuite=(
 	# [11]='stretch-slim'
 )
 
+get_latest_debian_version() {
+	local suite="$1"; shift
+
+	curl -SsL "https://registry.hub.docker.com/v2/repositories/library/debian/tags/?name=$suite-20&ordering=last_updated&" | \
+	  jq -r ".results[].name | match(\"$suite.*-slim\") | .string " | \
+	  head -n1
+}
+
 packagesBase='http://apt.postgresql.org/pub/repos/apt/dists/'
 declare -A suitePackageList=() suiteVersionPackageList=() suiteArches=()
 
@@ -133,7 +141,17 @@ generate_debian() {
 		fi
 	done
 
+	debianImageVersion=$(get_latest_debian_version "${suite}")
+	if [ -z "$debianImageVersion" ]; then
+		echo "Unable to retrieve latest $tag version"
+		exit 1
+	fi
+
 	barmanVersion=$(get_latest_barman_version)
+	if [ -z "$barmanVersion" ]; then
+		echo "Unable to retrieve latest barman-cli-cloud version"
+		exit 1
+	fi
 
 	echo "$version: $fullVersion ($versionArches)"
 	postgresqlVersion=$fullVersion
@@ -142,6 +160,7 @@ generate_debian() {
 		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
+		oldDebianImageVersion=$(jq -r '.DEBIAN_IMAGE_VERSION' "${versionFile}")
 		imageReleaseVersion=$oldImageReleaseVersion
 	else
 		imageReleaseVersion=1
@@ -150,11 +169,19 @@ generate_debian() {
 		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" "${imageReleaseVersion}"
 		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+		record_version "${versionFile}" "DEBIAN_IMAGE_VERSION" "${debianImageVersion}"
 
-		exit 1
+		return
 	fi
 
 	newRelease="false"
+
+	# Detect new Debian image version
+	if [ "$oldDebianImageVersion" != "$debianImageVersion" ]; then
+		echo "Debian Image changed from $oldDebianImageVersion to $debianImageVersion"
+		newRelease="true"
+		record_version "${versionFile}" "DEBIAN_IMAGE_VERSION" "${debianImageVersion}"
+	fi
 
 	# Detect an update of Barman
 	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
@@ -182,6 +209,7 @@ generate_debian() {
 		-e 's/%%PG_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
+		-e 's/%%DEBIAN_VERSION%%/'"$debianImageVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-debian.template \
 		> "$version/Dockerfile"
@@ -190,6 +218,7 @@ generate_debian() {
 		-e 's/%%PG_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
 		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
+		-e 's/%%DEBIAN_VERSION%%/'"$debianImageVersion"'/g' \
 		-e 's/%%POSTGIS_MAJOR%%/"3"/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-postgis.template \

@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM debian:buster-slim
+FROM debian:buster-20220125-slim
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
