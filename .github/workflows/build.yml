@@ -53,7 +53,7 @@ jobs:
           # If we are running the pipeline in the main branch images are pushed in both -testing and PROD repo
           if [ "${GITHUB_REF#refs/heads/}" == main ]
           then
-            RESULT="${RESULT},quay.io/${IMAGE_RELEASE}:${tag},${IMAGE_RELEASE}:${tag},ghcr.io/${IMAGE_RELEASE}"
+            RESULT="${RESULT},quay.io/${IMAGE_RELEASE}:${tag},${IMAGE_RELEASE}:${tag},ghcr.io/${IMAGE_RELEASE}:${tag}"
           fi
         done
         echo "::set-output name=tags::${RESULT%,}"
