@@ -7,9 +7,9 @@
 argcomplete==2.0.0 \
     --hash=sha256:6372ad78c89d662035101418ae253668445b391755cfe94ea52f1b9d22425b20 \
     --hash=sha256:cffa11ea77999bb0dd27bb25ff6dc142a6796142f68d45b1a26b11f58724561e
-azure-core==1.21.1 \
-    --hash=sha256:3d70e9ec64de92dfae330c15bc69085caceb2d83813ef6c01cc45326f2a4be83 \
-    --hash=sha256:88d2db5cf9a135a7287dc45fdde6b96f9ca62c9567512a3bb3e20e322ce7deb2
+azure-core==1.22.0 \
+    --hash=sha256:582699ad709f9b29870db41364bc3e46eac2a02368e336dc779b87772a6a227e \
+    --hash=sha256:a342ebe9866e59a998e4098c65dd0b543cea06a9a5d4cc19c23a239c568bbb60
     # via
     #   azure-identity
     #   azure-storage-blob
@@ -23,12 +23,12 @@ barman[azure,cloud,snappy]==2.18 \
     --hash=sha256:1955a570922bce2cb8fc1a346e0b3e7bee1c366ca16a2e92b1811240d89de29f \
     --hash=sha256:d6a184673332923696813a3c6cbef8ea3ab961bd1471e77189383481beca8365
     # via -r requirements.in
-boto3==1.20.46 \
-    --hash=sha256:a2ffce001160d7e7c72a90c3084700d50eb64ea4a3aae8afe21566971d1fd611 \
-    --hash=sha256:d7effba509d7298ef49316ba2da7a2ea115f2a7ff691f875f6354666663cf386
-botocore==1.23.46 \
-    --hash=sha256:354bce55e5adc8e2fe106acfd455ce448f9b920d7b697d06faa8cf200fd6566b \
-    --hash=sha256:38dd4564839f531725b667db360ba7df2125ceb3752b0ba12759c3e918015b95
+boto3==1.20.49 \
+    --hash=sha256:09d7ffbbfcc212d22c92acf127ebc8c8ab89a2c03fa6360ab35b14d52b0df8ab \
+    --hash=sha256:34d170d24d10adb8ffe2a907ff35878e22ed2ceb24d16d191f8070053f11fc18
+botocore==1.23.49 \
+    --hash=sha256:3f72d20c65c89b694d9c7d164eb499877331783577f0207739088d11eaf315e7 \
+    --hash=sha256:b013b2911379d1de896eb6ef375126bb2fc2b77b3e0af75821661b7ea817d029
     # via
     #   boto3
     #   s3transfer
@@ -253,9 +253,9 @@ requests-oauthlib==1.3.1 \
     --hash=sha256:2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5 \
     --hash=sha256:75beac4a47881eeb94d5ea5d6ad31ef88856affe2332b9aafb52c6452ccf0d7a
     # via msrest
-s3transfer==0.5.0 \
-    --hash=sha256:50ed823e1dc5868ad40c8dc92072f757aa0e653a192845c94a3b676f4a62da4c \
-    --hash=sha256:9c1dc369814391a6bda20ebbf4b70a0f34630592c9aa520856bf384916af2803
+s3transfer==0.5.1 \
+    --hash=sha256:25c140f5c66aa79e1ac60be50dcd45ddc59e83895f062a3aab263b870102911f \
+    --hash=sha256:69d264d3e760e569b78aaa0f22c97e955891cd22e32b10c51f784eeda4d9d10a
     # via boto3
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \

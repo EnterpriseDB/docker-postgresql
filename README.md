@@ -6,7 +6,7 @@ for all available PostgreSQL versions (10 to 14) based on:
 - Red Hat Universal Base Images (UBI) 8 - default
 - Debian Buster (10) Slim base images, with and without the PostGIS extension
 
-UBI8 based images of versions 11, 12 and 13 are available for amd64, ppc64le and s390x architectures.
+UBI8 based images of versions 11, 12, 13 and 14 are available for amd64, ppc64le and s390x architectures.
 
 These images are customised to work with [Cloud
 Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
@@ -29,7 +29,8 @@ PostGIS is distributed under the [GNU GPL 2 License](https://git.osgeo.org/gitea
 
 PGAudit is distributed under the [PostgreSQL License](https://github.com/pgaudit/pgaudit/blob/master/LICENSE).
 
-Images are available via [Quay.io](https://quay.io/repository/enterprisedb/postgresql).
+Images are available via [GitHub Container Registry](https://github.com/EnterpriseDB/docker-postgresql/pkgs/container/postgresql)
+and [Quay.io](https://quay.io/repository/enterprisedb/postgresql).
 
 The Docker entry point is based on [Docker Postgres](https://github.com/docker-library/postgres)
 distributed by the PostgreSQL Docker Community under MIT license.
@@ -37,27 +38,29 @@ distributed by the PostgreSQL Docker Community under MIT license.
 # How to pull the image
 
 The image can be pulled with the `docker pull` command, following the instructions you
-find in the Quay.io repository.
+find in the GitHub Container Registy (GHCR) or Quay.io.
 
 For example you can pull the latest minor version of the latest major version of PostgreSQL
-based on RedHat UBI with the following command:
+based on RedHat UBI from GHCR with the following command:
 
 ```console
-docker pull quay.io/enterprisedb/postgresql
+docker pull ghcr.io/enterprisedb/postgresql
 ```
+
+Note: replace `ghcr.io` with `quay.io` to download from Quay.io.
 
 If you want to use the latest minor version of a particular major version of PostgreSQL,
-for example 13, on UBI you can type:
+for example 14, on UBI you can type:
 
 ```console
-docker pull quay.io/enterprisedb/postgresql:13
+docker pull ghcr.io/enterprisedb/postgresql:14
 ```
 
-In order to install the latest minor version of PostgreSQL 13 on a Debian based image,
+In order to install the latest minor version of PostgreSQL 14 on a Debian based image,
 you can type:
 
 ```console
-docker pull quay.io/enterprisedb/postgresql:13-debian
+docker pull ghcr.io/enterprisedb/postgresql:14-debian
 ```
 
 **IMPORTANT:** in the examples below we assume that the latest minor of the latest major version is used.
@@ -70,7 +73,7 @@ docker pull quay.io/enterprisedb/postgresql:13-debian
 $ docker run -d \
    --name some-postgres \
    -e POSTGRES_PASSWORD=mysecretpassword \
-   quay.io/enterprisedb/postgresql
+   ghcr.io/enterprisedb/postgresql
 ```
 
 The default `postgres` user and database are created in the entrypoint with `initdb`.
@@ -87,7 +90,7 @@ psql command line client utility with:
 ```console
 $ docker run -it --rm \
    --network some-network \
-   quay.io/enterprisedb/postgresql \
+   ghcr.io/enterprisedb/postgresql \
    psql -h some-postgres -U postgres
 psql (14.1)
 Type "help" for help.

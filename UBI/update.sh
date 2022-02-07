@@ -62,7 +62,7 @@ get_postgresql_version() {
 		sort -rV | head -n1)
 
 	# For MultiArch images make sure the new package is available for all the architectures before updating
-	if [[ "${version}" =~ ^("11"|"12"|"13")$ ]]; then
+	if [[ "${version}" =~ ^("11"|"12"|"13"|"14")$ ]]; then
 		pgs390x=$(check_cloudsmith_pkgs "${os_version}" 's390x' "$pg_major")
 		pgppc64le=$(check_cloudsmith_pkgs "${os_version}" 'ppc64le' "$pg_major")
 		if [[ ${pgx86_64} != ${pgppc64le} || ${pgx86_64} != ${pgs390x} ]]; then
