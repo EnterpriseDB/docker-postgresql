@@ -53,14 +53,14 @@ If you want to use the latest minor version of a particular major version of Pos
 for example 14, on UBI you can type:
 
 ```console
-docker pull quay.io/enterprisedb/postgresql:14
+docker pull ghcr.io/enterprisedb/postgresql:14
 ```
 
 In order to install the latest minor version of PostgreSQL 14 on a Debian based image,
 you can type:
 
 ```console
-docker pull quay.io/enterprisedb/postgresql:14-debian
+docker pull ghcr.io/enterprisedb/postgresql:14-debian
 ```
 
 **IMPORTANT:** in the examples below we assume that the latest minor of the latest major version is used.
