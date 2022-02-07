@@ -6,7 +6,7 @@ for all available PostgreSQL versions (10 to 14) based on:
 - Red Hat Universal Base Images (UBI) 8 - default
 - Debian Buster (10) Slim base images, with and without the PostGIS extension
 
-UBI8 based images of versions 11, 12 and 13 are available for amd64, ppc64le and s390x architectures.
+UBI8 based images of versions 11, 12, 13 and 14 are available for amd64, ppc64le and s390x architectures.
 
 These images are customised to work with [Cloud
 Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
@@ -50,17 +50,17 @@ docker pull ghcr.io/enterprisedb/postgresql
 Note: replace `ghcr.io` with `quay.io` to download from Quay.io.
 
 If you want to use the latest minor version of a particular major version of PostgreSQL,
-for example 13, on UBI you can type:
+for example 14, on UBI you can type:
 
 ```console
-docker pull ghcr.io/enterprisedb/postgresql:13
+docker pull ghcr.io/enterprisedb/postgresql:14
 ```
 
-In order to install the latest minor version of PostgreSQL 13 on a Debian based image,
+In order to install the latest minor version of PostgreSQL 14 on a Debian based image,
 you can type:
 
 ```console
-docker pull ghcr.io/enterprisedb/postgresql:13-debian
+docker pull ghcr.io/enterprisedb/postgresql:14-debian
 ```
 
 **IMPORTANT:** in the examples below we assume that the latest minor of the latest major version is used.
