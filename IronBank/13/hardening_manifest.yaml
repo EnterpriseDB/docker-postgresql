@@ -141,16 +141,21 @@ resources:
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
-- filename: botocore-1.23.50-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d6/39/25ddb9f1fc0b47983c60572853493e9c38176c0e6e141edb8488bbce4822/botocore-1.23.50-py3-none-any.whl
-  validation:
-    type: sha256
-    value: aa953d9767ff99a7aa35dde770a1405c8877cef9caf280859b94104483b8368d
 - filename: s3transfer-0.5.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/17/7c/4b60191e38bed78c65e817f7506ef1038a4246a703cb36fb5390a5eaf7ce/s3transfer-0.5.1-py3-none-any.whl
   validation:
     type: sha256
     value: 25c140f5c66aa79e1ac60be50dcd45ddc59e83895f062a3aab263b870102911f
+- filename: botocore-1.23.51-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/58/b2/b65114d77422c20c04d04ab003324d1a88b42f0aab3a96f9d56bcc33a246/botocore-1.23.51-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 372428fb18ba813431b2301c9306b97c0bc0a888127725b427f227734e370c7e
+- filename: boto3-1.20.51-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/da/e4/88167af4c998f409d1a7198c876875fd89439026bf4a6fb0ed14d81c0031/boto3-1.20.51-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 6b1e78ac44956adb3909da2194ad8397da0fde615ba3029648663b18f2b776fd
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
@@ -161,11 +166,6 @@ resources:
   validation:
     type: sha256
     value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
-- filename: boto3-1.20.50-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b6/41/5c857fda021a3a2da49ff85314efbd29a08d85c8e1d4a6b9df2a3b6c5ef8/boto3-1.20.50-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 87994c3753ef386189a222556eaf7cb1ef63432d516b4344c7b2899ce544ad2a
 - filename: barman-2.18-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e0/13/63644dab5fe2d96ac5c36a0c4ba7d114f48c9a794fc3b836c1bd50b66649/barman-2.18-py2.py3-none-any.whl
   validation:
