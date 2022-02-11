@@ -19,10 +19,10 @@ ARG PG_GROUP_NAME="postgres"
 ARG PG_VERSION=10
 
 COPY ./RPM-GPG-KEY-PGDG-10 \
-	./postgresql10-10.19-1PGDG.rhel8.x86_64.rpm \
-	./postgresql10-contrib-10.19-1PGDG.rhel8.x86_64.rpm \
-	./postgresql10-server-10.19-1PGDG.rhel8.x86_64.rpm \
-	./postgresql10-libs-10.19-1PGDG.rhel8.x86_64.rpm \
+	./postgresql10-10.20-1PGDG.rhel8.x86_64.rpm \
+	./postgresql10-contrib-10.20-1PGDG.rhel8.x86_64.rpm \
+	./postgresql10-server-10.20-1PGDG.rhel8.x86_64.rpm \
+	./postgresql10-libs-10.20-1PGDG.rhel8.x86_64.rpm \
 	./pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
@@ -58,10 +58,10 @@ RUN dnf update -y --nodocs && \
 	redhat-lsb-core \
 	redhat-rpm-config \
 	rsync \
-	/tmp/postgresql10-10.19-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql10-contrib-10.19-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql10-server-10.19-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql10-libs-10.19-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql10-10.20-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql10-contrib-10.20-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql10-server-10.20-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql10-libs-10.20-1PGDG.rhel8.x86_64.rpm \
 	/tmp/pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
