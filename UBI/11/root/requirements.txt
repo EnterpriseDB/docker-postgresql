@@ -23,12 +23,12 @@ barman[azure,cloud,snappy]==2.18 \
     --hash=sha256:1955a570922bce2cb8fc1a346e0b3e7bee1c366ca16a2e92b1811240d89de29f \
     --hash=sha256:d6a184673332923696813a3c6cbef8ea3ab961bd1471e77189383481beca8365
     # via -r requirements.in
-boto3==1.20.52 \
-    --hash=sha256:6dc260f2fde87ffd31f60c0c6148aa2076ff4d8235d2f59a8a9d88f0123fe450 \
-    --hash=sha256:b734346326e3e3d40d79f0ac7d21e64f1cc50c7540fcb285bee8634ee27684d3
-botocore==1.23.52 \
-    --hash=sha256:35a1a950c2bd8dd2fcc648c5f4d16814bfd7e3efd7998d3978b2f11665eb1668 \
-    --hash=sha256:f35918d01e422d8760f02e2f686cde625b8fdf8be82b083f5a16336a70fa4fd4
+boto3==1.21.1 \
+    --hash=sha256:9ce450f97e0368cf2535acfbc562b6684ca2ef4c9f58e36dda3ab0bac91f2b5e \
+    --hash=sha256:d83e0f2dad07441c8d56542f5140e8cf264b05936e7bf64c88805ebda605cab9
+botocore==1.24.1 \
+    --hash=sha256:913542189e1df4487e354df942b9013ded7a5dc6c4e9f11af996a6c7d4aa6334 \
+    --hash=sha256:fbeb774c4542f4e85a3348c1e9928a31da4f9d743669686fbd5290bf94e8cc03
     # via
     #   boto3
     #   s3transfer
@@ -90,9 +90,9 @@ cffi==1.15.0 \
     --hash=sha256:fd8a250edc26254fe5b33be00402e6d287f562b6a5b2152dec302fa15bb3e997 \
     --hash=sha256:ffaa5c925128e29efbde7301d8ecaf35c8c60ffbcd6a1ffd3a552177c8e5e796
     # via cryptography
-charset-normalizer==2.0.11 \
-    --hash=sha256:2842d8f5e82a1f6aa437380934d5e1cd4fcf2003b06fed6940769c164a480a45 \
-    --hash=sha256:98398a9d69ee80548c762ba991a4728bfc3836768ed226b3945908d1a688371c
+charset-normalizer==2.0.12 \
+    --hash=sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597 \
+    --hash=sha256:6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df
     # via requests
 cryptography==36.0.1 \
     --hash=sha256:0a817b961b46894c5ca8a66b599c745b9a3d9f822725221f0e0fe49dc043a3a3 \
@@ -134,9 +134,9 @@ jmespath==0.10.0 \
     # via
     #   boto3
     #   botocore
-msal==1.16.0 \
-    --hash=sha256:240fb04dba46a27fd6a3178db8334412d0d02e0be85166f9e05bb45d03399084 \
-    --hash=sha256:a421a43413335099228f1d9ad93f7491d7c7c40044108290e4923fe58f41a332
+msal==1.17.0 \
+    --hash=sha256:04e3cb7bb75c51f56d290381f23056207df1f3eb594ed03d38551f3b16d2a36e \
+    --hash=sha256:5a52d78e70d2c451e267c1e8c2342e4c06f495c75c859aeafd9260d3974f09fe
     # via
     #   azure-identity
     #   msal-extensions
@@ -152,9 +152,9 @@ oauthlib==3.2.0 \
     --hash=sha256:23a8208d75b902797ea29fd31fa80a15ed9dc2c6c16fe73f5d346f83f6fa27a2 \
     --hash=sha256:6db33440354787f9b7f3a6dbd4febf5d0f93758354060e802f6c06cb493022fe
     # via requests-oauthlib
-portalocker==2.3.2 \
-    --hash=sha256:75cfe02f702737f1726d83e04eedfa0bda2cc5b974b1ceafb8d6b42377efbd5f \
-    --hash=sha256:d8c9f7c542e768dbef006a3e49875046ca170d2d41ca712080719110bd066cc4
+portalocker==2.4.0 \
+    --hash=sha256:a648ad761b8ea27370cb5915350122cd807b820d2193ed5c9cc28f163df637f4 \
+    --hash=sha256:b092f48e1e30a234ab3dd1cfd44f2f235e8a41f4e310e463fc8d6798d1c3c235
     # via msal-extensions
 pycparser==2.21 \
     --hash=sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9 \

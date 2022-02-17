@@ -22,7 +22,7 @@ msal==1.17.0
 msal-extensions==0.3.1
 msrest==0.6.21
 oauthlib==3.2.0
-portalocker==2.3.2
+portalocker==2.4.0
 psycopg2==2.9.3
 pycparser==2.21
 pyjwt[crypto]==2.3.0

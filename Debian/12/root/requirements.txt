@@ -152,9 +152,9 @@ oauthlib==3.2.0 \
     --hash=sha256:23a8208d75b902797ea29fd31fa80a15ed9dc2c6c16fe73f5d346f83f6fa27a2 \
     --hash=sha256:6db33440354787f9b7f3a6dbd4febf5d0f93758354060e802f6c06cb493022fe
     # via requests-oauthlib
-portalocker==2.3.2 \
-    --hash=sha256:75cfe02f702737f1726d83e04eedfa0bda2cc5b974b1ceafb8d6b42377efbd5f \
-    --hash=sha256:d8c9f7c542e768dbef006a3e49875046ca170d2d41ca712080719110bd066cc4
+portalocker==2.4.0 \
+    --hash=sha256:a648ad761b8ea27370cb5915350122cd807b820d2193ed5c9cc28f163df637f4 \
+    --hash=sha256:b092f48e1e30a234ab3dd1cfd44f2f235e8a41f4e310e463fc8d6798d1c3c235
     # via msal-extensions
 pycparser==2.21 \
     --hash=sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9 \
