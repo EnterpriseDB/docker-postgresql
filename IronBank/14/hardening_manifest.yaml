@@ -136,31 +136,31 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
+- filename: boto3-1.21.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/bb/4e/3383aaafcee95a1c70c3753611bc1de98443e9d130e4cdf803119ce15158/boto3-1.21.2-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 50de4ae3dc9cbc3065b184247580160540273b25e7eaf72cdc18b979294a1b54
 - filename: jmespath-0.10.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/07/cb/5f001272b6faeb23c1c9e0acc04d48eaaf5c862c17709d20e3469c6e0139/jmespath-0.10.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
+- filename: botocore-1.24.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ce/a0/7abe54d6a92445dbb526833b6bc8a0c01a8e038392f31f58faf98789a229/botocore-1.24.2-py3-none-any.whl
+  validation:
+    type: sha256
+    value: d1547d0bd8428df2dc1ad95b227e271914bb01f8edbd16a45766465c2090bc9b
 - filename: s3transfer-0.5.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/17/7c/4b60191e38bed78c65e817f7506ef1038a4246a703cb36fb5390a5eaf7ce/s3transfer-0.5.1-py3-none-any.whl
   validation:
     type: sha256
     value: 25c140f5c66aa79e1ac60be50dcd45ddc59e83895f062a3aab263b870102911f
-- filename: boto3-1.21.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e1/e5/95934774f9b5d5017670654cd32ab95fdaecd20d78385dda5dea04b0d972/boto3-1.21.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: d83e0f2dad07441c8d56542f5140e8cf264b05936e7bf64c88805ebda605cab9
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: botocore-1.24.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7a/29/f1d507f027578dcfb54bf16ccafb0eee323b39ce338ab50c93d4c85a994f/botocore-1.24.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: fbeb774c4542f4e85a3348c1e9928a31da4f9d743669686fbd5290bf94e8cc03
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
