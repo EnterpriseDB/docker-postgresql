@@ -220,7 +220,16 @@ generate_redhat() {
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
+	# Define PostGIS version
+	postgisVersion=32
+	if [ "${version/./}" -le 12 ]; then
+		postgisVersion=31
+	fi
+
 	rm -fr "${version:?}"/*
+	cp initdb-postgis.sh "$version/"
+	cp update-postgis.sh "$version/"
+
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
@@ -231,6 +240,17 @@ generate_redhat() {
 		Dockerfile.template \
 		>"$version/Dockerfile"
 	cp -r src/* "$version/"
+
+	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
+		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
+		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
+		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
+		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
+		-e 's/%%POSTGIS_MAJOR%%/'"$postgisVersion"'/g' \
+		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
+		Dockerfile-postgis.template \
+		>"$version/Dockerfile.postgis"
 }
 
 update_requirements() {

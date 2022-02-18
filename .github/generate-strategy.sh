@@ -9,13 +9,13 @@
 
 set -eu
 declare BUILD_IRONBANK=false
-# Want to get the IronBank during the Continuous Integration step 
+# Want to get the IronBank during the Continuous Integration step
 # but not during the Continuous Delivery step.
 while getopts "i" option; do
 	case $option in
 		i)
 		BUILD_IRONBANK=true
-		;; 
+		;;
 	esac
 done
 
@@ -117,6 +117,46 @@ for version in "${ubi_versions[@]}"; do
 	)
 done
 
+for version in "${ubi_versions[@]}"; do
+
+	# Read versions from the definition file
+	versionFile="${version}/.versions.json"
+	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
+	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+
+	# Initial aliases are "major version", "optional alias", "full version with release"
+	# i.e. "13", "latest", "13.2-1"
+	# A "-beta" suffix will be appended to the beta images.
+	if [ "${version}" -gt '14' ]; then
+		fullVersion="${fullVersion//'~'/-}"
+		versionAliases=(
+			"${version}-beta-postgis"
+			${aliases[$version]:+"${aliases[$version]}-postgis"}
+			"${fullVersion}-postgis-${releaseVersion}"
+		)
+	else
+		versionAliases=(
+			"${version}-postgis"
+			${aliases[$version]:+"${aliases[$version]}-postgis"}
+			"${fullVersion}-postgis-${releaseVersion}"
+		)
+	fi
+
+	# Add all the version prefixes between full version and major version
+	# i.e "13.2"
+	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
+		versionAliases+=("$fullVersion-postgis")
+		fullVersion="${fullVersion%[.-]*}"
+	done
+
+	platforms="linux/amd64"
+
+	# Build the json entry
+	entries+=(
+		"{\"name\": \"UBI PostGIS ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+	)
+done
+
 cd "$BASE_DIRECTORY"/IronBank/
 for version in "${ironbank_versions[@]}"; do
 
@@ -149,7 +189,7 @@ for version in "${ironbank_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	# Only 
+	# Only
 	platforms="linux/amd64"
 	IB_BASE_REGISTRY="registry.access.redhat.com"
 	IB_BASE_IMAGE="ubi8"
@@ -157,15 +197,15 @@ for version in "${ironbank_versions[@]}"; do
 	# Build the json entry
 	if [[ "$BUILD_IRONBANK" == "true" ]]; then
 		entries+=(
-		"{ \"name\": \"IronBank ${fullVersion}\", 
-			\"platforms\": \"$platforms\", 
-			\"dir\": \"IronBank/$version\", 
-			\"file\": \"IronBank/$version/Dockerfile\", 
-			\"version\": \"$version\", 
+		"{ \"name\": \"IronBank ${fullVersion}\",
+			\"platforms\": \"$platforms\",
+			\"dir\": \"IronBank/$version\",
+			\"file\": \"IronBank/$version/Dockerfile\",
+			\"version\": \"$version\",
 			\"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"],
 			\"build_args\": {\"BASE_REGISTRY\": \"${IB_BASE_REGISTRY}\", \"BASE_IMAGE\": \"${IB_BASE_IMAGE}\"}
 		}" )
-	fi 
+	fi
 done
 
 cd "$BASE_DIRECTORY"/Debian/
@@ -207,46 +247,6 @@ for version in "${debian_versions[@]}"; do
 	# Build the json entry
 	entries+=(
 		"{\"name\": \"Debian ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
-	)
-done
-
-for version in "${debian_versions[@]}"; do
-
-	# Read versions from the definition file
-	versionFile="${version}/.versions.json"
-	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
-	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
-
-	# Initial aliases are "major version", "optional alias", "full version with release"
-	# i.e. "13", "latest", "13.2-1"
-	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '14' ]; then
-		fullVersion="${fullVersion//'~'/-}"
-		versionAliases=(
-			"${version}-beta-debian-postgis"
-			${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
-			"${fullVersion}-debian-postgis-${releaseVersion}"
-		)
-	else
-		versionAliases=(
-			"${version}-debian-postgis"
-			${aliases[$version]:+"${aliases[$version]}-debian-postgis"}
-			"${fullVersion}-debian-postgis-${releaseVersion}"
-		)
-	fi
-
-	# Add all the version prefixes between full version and major version
-	# i.e "13.2"
-	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("$fullVersion-debian-postgis")
-		fullVersion="${fullVersion%[.-]*}"
-	done
-
-	platforms="linux/amd64"
-
-	# Build the json entry
-	entries+=(
-		"{\"name\": \"Debian PostGIS ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"Debian/$version\", \"file\": \"Debian/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 	)
 done
 
