@@ -151,26 +151,26 @@ resources:
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: botocore-1.24.4-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/3f/5e/e8f17d76071caf48e893ed8f11807f1074a95c0408dedab2d3e7ea73fcea/botocore-1.24.4-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 692fcad31733674c8faffc65da8ddc8ab4839f407ad8470c103e0e7aed9c7556
 - filename: boto3-1.21.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/bf/a7/b1240a84db67cf09d62567e5bcf534e32093cd31febd1912215edb9b4603/boto3-1.21.4-py3-none-any.whl
   validation:
     type: sha256
     value: 6ad9a2837fb89eb9084ed545af7f29a5e099db93776f1aafe5c08bc15933704a
-- filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
-  url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
+- filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+  url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
     type: sha256
-    value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
+    value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
 - filename: barman-2.18-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e0/13/63644dab5fe2d96ac5c36a0c4ba7d114f48c9a794fc3b836c1bd50b66649/barman-2.18-py2.py3-none-any.whl
   validation:
     type: sha256
     value: d6a184673332923696813a3c6cbef8ea3ab961bd1471e77189383481beca8365
+- filename: botocore-1.24.5-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/16/47/f22fdb58717c3ee1293695c193eb3d93eab16ccbd4b9aebff34966afe44f/botocore-1.24.5-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 9a15c25c7647adf1187b2a9c4b1426aca93851b969724c5e302a3b2e976904f1
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
