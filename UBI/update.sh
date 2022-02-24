@@ -222,7 +222,7 @@ generate_redhat() {
 
 	# Define PostGIS version
 	postgisVersion=32
-	if [ "${version/./}" -le 12 ]; then
+	if [ "${version/./}" -le 12 ] || [ "${version/./}" -eq 96 ]; then
 		postgisVersion=31
 	fi
 
