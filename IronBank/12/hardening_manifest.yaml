@@ -141,16 +141,16 @@ resources:
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
-- filename: s3transfer-0.5.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/17/7c/4b60191e38bed78c65e817f7506ef1038a4246a703cb36fb5390a5eaf7ce/s3transfer-0.5.1-py3-none-any.whl
+- filename: s3transfer-0.5.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7b/9c/f51775ebe7df5a7aa4e7c79ed671bde94e154bd968aca8d65bb24aba0c8c/s3transfer-0.5.2-py3-none-any.whl
   validation:
     type: sha256
-    value: 25c140f5c66aa79e1ac60be50dcd45ddc59e83895f062a3aab263b870102911f
-- filename: boto3-1.21.6-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/c5/24/3e6eafb86827388a42d7202a4ce99691f7619646e75a5b5dcd5be4d8931c/boto3-1.21.6-py3-none-any.whl
+    value: 7a6f4c4d1fdb9a2b640244008e142cbc2cd3ae34b386584ef044dd0f27101971
+- filename: boto3-1.21.7-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a0/b3/67a4b7cb769aa8b09c94307c54d619ad9b3902a4a96a69cf96990df91545/boto3-1.21.7-py3-none-any.whl
   validation:
     type: sha256
-    value: 0e8d4d814f94031947035a4c2bb2c23832d5de941a6a492fb85794a02bafc44d
+    value: af92931f65e33e7450c3389c6cc6ab6b3e2f619697ea5566aacc0f16f3b21f61
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
@@ -161,16 +161,16 @@ resources:
   validation:
     type: sha256
     value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
+- filename: botocore-1.24.7-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/73/91/550fba99371c7b012579346d3a6696e9c46037bfd21d1c85096c9b5bd32a/botocore-1.24.7-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a34118bfadc02903ab404148822fe5a6de7a3bb58943f1a6a19cc8b0446d2a50
 - filename: barman-2.18-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e0/13/63644dab5fe2d96ac5c36a0c4ba7d114f48c9a794fc3b836c1bd50b66649/barman-2.18-py2.py3-none-any.whl
   validation:
     type: sha256
     value: d6a184673332923696813a3c6cbef8ea3ab961bd1471e77189383481beca8365
-- filename: botocore-1.24.6-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/19/ab/a7cae9c1b58c82239f9ce4da21ed8f2d4508b8ebf78e24bfe7927b001353/botocore-1.24.6-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 69aaa5a78ac7371f573e463be51fb962213c42fab08ef82380e84b9a87386949
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
