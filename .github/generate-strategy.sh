@@ -22,7 +22,6 @@ done
 # Define an optional aliases for some major versions
 declare -A aliases=(
 	[14]='latest'
-	[9.6]='9'
 )
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}/..")")"
@@ -105,7 +104,7 @@ for version in "${ubi_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	if [[ "${version}" =~ ^("9.6"|"10")$ ]]; then
+	if [[ "${version}" =~ ^("10")$ ]]; then
 			platforms="linux/amd64"
 	else
 			platforms="linux/amd64, linux/ppc64le, linux/s390x"
