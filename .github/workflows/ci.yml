@@ -91,3 +91,14 @@ jobs:
         run: docker image ls --filter since=image-list-marker
       - name: docker images labels
         run: docker image ls --filter since=image-list-marker --format "{{.Repository}}:{{.Tag}}" | xargs docker inspect | jq -r '.[] | "\(.RepoTags[]) \(.Config.Labels)"'
+  check:
+    if: always()
+    needs:
+    - generate-jobs
+    - test
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}
