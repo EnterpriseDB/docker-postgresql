@@ -3,8 +3,8 @@
 Maintenance scripts to generate Immutable Application Containers
 for all available PostgreSQL versions (10 to 14) based on:
 
-- Red Hat Universal Base Images (UBI) 8 - default
-- Debian Buster (10) Slim base images, with and without the PostGIS extension
+- Red Hat Universal Base Images (UBI) 8 - default (with and without the PostGIS extension)
+- Debian Buster (10) Slim base images
 
 UBI8 based images of versions 11, 12, 13 and 14 are available for amd64, ppc64le and s390x architectures.
 
@@ -18,7 +18,7 @@ The images include:
 
 - PostgreSQL
 - Barman Cloud
-- PostGIS 3.1 (optional, on Debian based images only)
+- PostGIS 3.1 (optional, on UBI based images only)
 - PGAudit
 
 PostgreSQL is distributed by the PGDG under the [PostgreSQL License](https://www.postgresql.org/about/licence/).

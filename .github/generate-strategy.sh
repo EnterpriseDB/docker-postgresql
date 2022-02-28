@@ -83,7 +83,7 @@ for version in "${ubi_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version%%.*}" -gt '14' ]; then
+	if [ "${version}" -gt '14' ]; then
 		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
 			"${version}-beta"
@@ -127,7 +127,7 @@ for version in "${ubi_versions[@]}"; do
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
 	if [ "${version}" -gt '14' ]; then
-		fullVersion="${fullVersion//'~'/-}"
+		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
 			"${version}-beta-postgis"
 			${aliases[$version]:+"${aliases[$version]}-postgis"}
@@ -167,7 +167,7 @@ for version in "${ironbank_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version%%.*}" -gt '14' ]; then
+	if [ "${version}" -gt '14' ]; then
 		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
 			"${version}-beta"
