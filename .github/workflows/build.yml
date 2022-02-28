@@ -82,6 +82,7 @@ jobs:
         file: ${{ matrix.file }}
         secrets: |
           "cs_script=${{ secrets.CS_SCRIPT }}"
+          "subscription=${{ secrets.SUBSCRIPTION }}"
         push: false
         load: true
         tags: ${{ steps.docker-meta.outputs.tags }}
@@ -101,6 +102,7 @@ jobs:
         file: ${{ matrix.file }}
         secrets: |
           "cs_script=${{ secrets.CS_SCRIPT }}"
+          "subscription=${{ secrets.SUBSCRIPTION }}"
         # Available architecture on UBI8 are: linux/amd64, linux/s390x, linux/ppc64le
         platforms: ${{ matrix.platforms }}
         push: true

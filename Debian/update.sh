@@ -202,9 +202,6 @@ generate_debian() {
 	fi
 
 	cp -r src/* "$version/"
-	cp initdb-postgis.sh "$version/"
-	cp update-postgis.sh "$version/"
-
 	sed -e 's/%%PG_MAJOR%%/'"$version"'/g;' \
 		-e 's/%%PG_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
@@ -213,16 +210,6 @@ generate_debian() {
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-debian.template \
 		> "$version/Dockerfile"
-
-	sed -e 's/%%PG_MAJOR%%/'"$version"'/g;' \
-		-e 's/%%PG_VERSION%%/'"$postgresqlVersion"'/g' \
-		-e 's/%%DEBIAN_TAG%%/'"$tag"'/g' \
-		-e 's/%%DEBIAN_SUITE%%/'"$suite"'/g' \
-		-e 's/%%DEBIAN_VERSION%%/'"$debianImageVersion"'/g' \
-		-e 's/%%POSTGIS_MAJOR%%/"3"/g' \
-		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
-		Dockerfile-postgis.template \
-		> "$version/Dockerfile.postgis"
 }
 
 update_requirements() {
