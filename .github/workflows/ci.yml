@@ -96,9 +96,10 @@ jobs:
     needs:
     - generate-jobs
     - test
+    name: Check
     runs-on: ubuntu-20.04
     steps:
     - name: Decide whether the needed jobs succeeded or failed
-      uses: re-actors/alls-green@release/v1
+      uses: re-actors/alls-green@v1.1.0
       with:
         jobs: ${{ toJSON(needs) }}
