@@ -42,7 +42,7 @@ get_postgresql_version() {
 	fi
 
 	pgx86_64=$(curl -s -L "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
-		perl -ne '/<a.*href="postgresql'"${pg_major/./}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
+		perl -ne '/<a.*href="postgresql'"${pg_major}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
 		sort -rV | head -n1)
 
 	echo ${pgx86_64}

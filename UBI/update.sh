@@ -58,7 +58,7 @@ get_postgresql_version() {
 	fi
 
 	pgx86_64=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
-		perl -ne '/<a.*href="postgresql'"${pg_major/./}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
+		perl -ne '/<a.*href="postgresql'"${pg_major}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
 		sort -rV | head -n1)
 
 	# For MultiArch images make sure the new package is available for all the architectures before updating
@@ -103,7 +103,6 @@ get_pgaudit_version() {
 	local pg_major="$1"; shift
 
 	case $pg_major in
-		9.6) pgaudit_version=11 ;;
 		10) pgaudit_version=12 ;;
 		11) pgaudit_version=13 ;;
 		12) pgaudit_version=14 ;;
@@ -222,7 +221,7 @@ generate_redhat() {
 
 	# Define PostGIS version
 	postgisVersion=32
-	if [ "${version/./}" -le 12 ] || [ "${version/./}" -eq 96 ]; then
+	if [ "${version}" -le 12 ]; then
 		postgisVersion=31
 	fi
 
@@ -232,7 +231,6 @@ generate_redhat() {
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
@@ -243,7 +241,6 @@ generate_redhat() {
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%PG_MAJOR_NODOT%%/'"${version/./}"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
