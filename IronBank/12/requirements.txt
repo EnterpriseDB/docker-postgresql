@@ -6,11 +6,11 @@
 #
 argcomplete==2.0.0
 azure-core==1.22.1
-azure-identity==1.7.1
+azure-identity==1.8.0
 azure-storage-blob==12.9.0
 barman[azure,cloud,snappy]==2.18
-boto3==1.21.9
-botocore==1.24.9
+boto3==1.21.10
+botocore==1.24.10
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
