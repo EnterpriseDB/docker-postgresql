@@ -23,7 +23,7 @@ COPY ./RPM-GPG-KEY-PGDG-12 \
 	./postgresql12-contrib-12.10-1PGDG.rhel8.x86_64.rpm \
 	./postgresql12-server-12.10-1PGDG.rhel8.x86_64.rpm \
 	./postgresql12-libs-12.10-1PGDG.rhel8.x86_64.rpm \
-	./pgaudit14_12-1.4.1-1.rhel8.x86_64.rpm \
+	./pgaudit14_12-1.4.3-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -62,7 +62,7 @@ RUN dnf update -y --nodocs && \
 	/tmp/postgresql12-contrib-12.10-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql12-server-12.10-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql12-libs-12.10-1PGDG.rhel8.x86_64.rpm \
-	/tmp/pgaudit14_12-1.4.1-1.rhel8.x86_64.rpm \
+	/tmp/pgaudit14_12-1.4.3-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
 # Install barman-cloud

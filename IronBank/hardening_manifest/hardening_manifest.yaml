@@ -141,16 +141,16 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
+- filename: botocore-1.24.13-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a5/34/567e87ece4328f51a6db92db8c58584aa9525603c86aff5eb77bfc713b41/botocore-1.24.13-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 7b166096f9413b41caf7cc6f4edfd5b3c3ab9d7c61eb120a649e69485c98131a
 - filename: jmespath-0.10.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/07/cb/5f001272b6faeb23c1c9e0acc04d48eaaf5c862c17709d20e3469c6e0139/jmespath-0.10.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
-- filename: boto3-1.21.12-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/24/93/4d85c692b743a7f1a0704d0952e83949429fd666cfcdd5a484d84898c581/boto3-1.21.12-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 75709628320cea8ce137975dc33b75213c2e4f6e7cd09e55290de7245e2c79e2
 - filename: s3transfer-0.5.2-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/7b/9c/f51775ebe7df5a7aa4e7c79ed671bde94e154bd968aca8d65bb24aba0c8c/s3transfer-0.5.2-py3-none-any.whl
   validation:
@@ -161,11 +161,6 @@ resources:
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: botocore-1.24.12-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/3a/36/4fa06b4d59794fa81d365ba18982b7e4e123e94f320a7d525f302c5bfdca/botocore-1.24.12-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 0cd7395311a3fef4aad8df8f511b4f7d221c24ae30934bd5c03458b0fc096d0c
 - filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
@@ -176,6 +171,11 @@ resources:
   validation:
     type: sha256
     value: d6a184673332923696813a3c6cbef8ea3ab961bd1471e77189383481beca8365
+- filename: boto3-1.21.13-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/24/46/c64d337b6b6cac7ce4d75ffb43223f974b8095aafaf974d847e9d09c2cc1/boto3-1.21.13-py3-none-any.whl
+  validation:
+    type: sha256
+    value: e17d994d222162dac02ec32fde6ae910d819ebf239a94dddcee47def2c82b9c9
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
@@ -206,11 +206,11 @@ resources:
   validation:
     type: sha256
     value: bdd64cd5ecb813997763a2a574265c45a300d30ae5f5a800a55b5a81773aea53
-- filename: pgaudit16_14-1.6.0-1.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgaudit16_14-1.6.0-1.rhel8.x86_64.rpm
+- filename: pgaudit16_14-1.6.2-1.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgaudit16_14-1.6.2-1.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: e935e8903ac3e6541ec018b80d0425f5a5f117997a4d36a3140590e6a8d928f7
+    value: 80f15a3506d9409c1b200090af8c25dc22cff9389d7d958311ef972b9cb2f82d
 - filename: RPM-GPG-KEY-PGDG-14
   url: https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-14
   validation:

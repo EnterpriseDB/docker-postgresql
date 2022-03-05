@@ -23,7 +23,7 @@ COPY ./RPM-GPG-KEY-PGDG-13 \
 	./postgresql13-contrib-13.6-1PGDG.rhel8.x86_64.rpm \
 	./postgresql13-server-13.6-1PGDG.rhel8.x86_64.rpm \
 	./postgresql13-libs-13.6-1PGDG.rhel8.x86_64.rpm \
-	./pgaudit15_13-1.5.0-1.rhel8.x86_64.rpm \
+	./pgaudit15_13-1.5.2-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -62,7 +62,7 @@ RUN dnf update -y --nodocs && \
 	/tmp/postgresql13-contrib-13.6-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql13-server-13.6-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql13-libs-13.6-1PGDG.rhel8.x86_64.rpm \
-	/tmp/pgaudit15_13-1.5.0-1.rhel8.x86_64.rpm \
+	/tmp/pgaudit15_13-1.5.2-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
 # Install barman-cloud

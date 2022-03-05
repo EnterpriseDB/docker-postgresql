@@ -23,7 +23,7 @@ COPY ./RPM-GPG-KEY-PGDG-10 \
 	./postgresql10-contrib-10.20-1PGDG.rhel8.x86_64.rpm \
 	./postgresql10-server-10.20-1PGDG.rhel8.x86_64.rpm \
 	./postgresql10-libs-10.20-1PGDG.rhel8.x86_64.rpm \
-	./pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm \
+	./pgaudit12_10-1.2.4-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -62,7 +62,7 @@ RUN dnf update -y --nodocs && \
 	/tmp/postgresql10-contrib-10.20-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql10-server-10.20-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql10-libs-10.20-1PGDG.rhel8.x86_64.rpm \
-	/tmp/pgaudit12_10-1.2.2-1.rhel8.x86_64.rpm \
+	/tmp/pgaudit12_10-1.2.4-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
 # Install barman-cloud

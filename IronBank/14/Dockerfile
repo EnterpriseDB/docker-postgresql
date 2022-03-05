@@ -23,7 +23,7 @@ COPY ./RPM-GPG-KEY-PGDG-14 \
 	./postgresql14-contrib-14.2-1PGDG.rhel8.x86_64.rpm \
 	./postgresql14-server-14.2-1PGDG.rhel8.x86_64.rpm \
 	./postgresql14-libs-14.2-1PGDG.rhel8.x86_64.rpm \
-	./pgaudit16_14-1.6.0-1.rhel8.x86_64.rpm \
+	./pgaudit16_14-1.6.2-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -62,7 +62,7 @@ RUN dnf update -y --nodocs && \
 	/tmp/postgresql14-contrib-14.2-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql14-server-14.2-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql14-libs-14.2-1PGDG.rhel8.x86_64.rpm \
-	/tmp/pgaudit16_14-1.6.0-1.rhel8.x86_64.rpm \
+	/tmp/pgaudit16_14-1.6.2-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
 # Install barman-cloud

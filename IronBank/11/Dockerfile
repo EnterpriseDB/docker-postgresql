@@ -23,7 +23,7 @@ COPY ./RPM-GPG-KEY-PGDG-11 \
 	./postgresql11-contrib-11.15-1PGDG.rhel8.x86_64.rpm \
 	./postgresql11-server-11.15-1PGDG.rhel8.x86_64.rpm \
 	./postgresql11-libs-11.15-1PGDG.rhel8.x86_64.rpm \
-	./pgaudit13_11-1.3.2-1.rhel8.x86_64.rpm \
+	./pgaudit13_11-1.3.4-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -62,7 +62,7 @@ RUN dnf update -y --nodocs && \
 	/tmp/postgresql11-contrib-11.15-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql11-server-11.15-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql11-libs-11.15-1PGDG.rhel8.x86_64.rpm \
-	/tmp/pgaudit13_11-1.3.2-1.rhel8.x86_64.rpm \
+	/tmp/pgaudit13_11-1.3.4-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
 # Install barman-cloud
