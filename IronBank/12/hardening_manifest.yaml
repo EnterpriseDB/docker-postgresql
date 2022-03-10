@@ -141,16 +141,21 @@ resources:
   validation:
     type: sha256
     value: c840511c845330e96886011a236440fafc2c9aff7b2df9c0a92041ee2dee3782
+- filename: barman-2.19-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/e9/ae/05c55b298e7efce6e77d149c488f0b9168548895dc70a3ae742f60b0e42c/barman-2.19-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 43c2cfda1a3833cdea6e58702d033723036903f27597336a149b6d29249ae9b1
 - filename: botocore-1.24.16-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c0/c0/ee4f1a412d19ab097319d211ff8926bd8e367c6ddc21a5d517d841b43acf/botocore-1.24.16-py3-none-any.whl
   validation:
     type: sha256
     value: 0a809efb821d81dc29f2e6c404ed123176b8d2eb43103758f31d89b291af2a8b
-- filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
-  url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+- filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
+  url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
     type: sha256
-    value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
+    value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
@@ -161,11 +166,6 @@ resources:
   validation:
     type: sha256
     value: 15fa6d1acac422d2d34f7811e02acfc7ac222cea24db3f463d5c52f2f87baa52
-- filename: barman-2.18-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e0/13/63644dab5fe2d96ac5c36a0c4ba7d114f48c9a794fc3b836c1bd50b66649/barman-2.18-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: d6a184673332923696813a3c6cbef8ea3ab961bd1471e77189383481beca8365
 - filename: s3transfer-0.5.2-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/7b/9c/f51775ebe7df5a7aa4e7c79ed671bde94e154bd968aca8d65bb24aba0c8c/s3transfer-0.5.2-py3-none-any.whl
   validation:
