@@ -215,7 +215,7 @@ generate_debian() {
 update_requirements() {
 	barmanVersion=$(get_latest_barman_version)
 	# If there's a new version we need to recreate the requirements files
-	echo "barman[cloud,azure,snappy] == $barmanVersion" > requirements.in
+	echo "barman[cloud,azure,snappy,google] == $barmanVersion" > requirements.in
 
 	# This will take the requirements.in file and generate a file
 	# requirements.txt with the hashes for the required packages
