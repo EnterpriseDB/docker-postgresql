@@ -59,7 +59,7 @@ jobs:
           access_token: ${{ secrets.REPO_GHA_PAT }}
           branch: main
           enforce_admins: false
-      - uses: EndBug/add-and-commit@v8
+      - uses: EndBug/add-and-commit@v9
         id: commit
         with:
           author_name: EnterpriseDB Automated Updates
