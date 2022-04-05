@@ -191,26 +191,26 @@ resources:
   validation:
     type: sha256
     value: a7f9cbea4245ee36190f85fe1814e2d7b1e5f2186381b082f5d59f99b7f11328
-- filename: boto3-1.21.32-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/5d/f6/2d3dbc06f33bdba7897b7e055e5716f937e274cff7e9cdff2a346e00bc46/boto3-1.21.32-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 8e7a6d70cefa4e125466e0c467b489649cb72e3632997844bc3c382f948c46e4
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: botocore-1.24.32-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/37/f3/0e97d57176fdabe5b891af5c541e11cc94c63e9f1f70ec435438e476636d/botocore-1.24.32-py3-none-any.whl
+- filename: botocore-1.24.33-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7b/fd/e10ae4ac886a0919fa7c181951463e5270c4bd3fa42137e4c085a94584c1/botocore-1.24.33-py3-none-any.whl
   validation:
     type: sha256
-    value: 4f08eaaa93ee03f14de760031dd060cda3bd6aab734d194a916dbb8f7e5c7085
+    value: 16ca4a2b72fef8caaf0eeb423dbf6cd64938442c4b9f96deb672468229e5e3f9
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
+- filename: boto3-1.21.33-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/73/3f/c4556f782c1892f204c8245489ff205f45caa2d014d34d731a89cc7ad9e5/boto3-1.21.33-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 9d8ddfefe0c4a993423e2c40831034c78fcb7b3425bf3610cf0087301dd9098b
 - filename: google_api_core-2.7.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/3e/3b/2980076219eee0f6d821c023823be371d4814b1d12a8b3d09323949e92de/google_api_core-2.7.1-py3-none-any.whl
   validation:
