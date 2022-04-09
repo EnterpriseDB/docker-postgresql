@@ -201,21 +201,21 @@ resources:
   validation:
     type: sha256
     value: 5e079eb4d21df1853d55cf2b6766b77ef36f7f7bdaf7d4a70434aa97c7578d60
+- filename: botocore-1.24.37-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/69/06/d457a7f706a52b85592ae85663eea4b4a173ba48acd7b17cdf38bf5e551b/botocore-1.24.37-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 21e164a213beca36033c46026bffa62f2ee2cd2600777271f9a551fb34dba006
+- filename: boto3-1.21.37-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/83/49/24603e9a0e4b910c385e5d7405d6d1e7bff1b4f1a7809cd7f628dbbb4485/boto3-1.21.37-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 1e845aa92b3ad70b954329b98835135c28b3000e322ff8d3fc46a956bdb6e94b
 - filename: google_crc32c-1.3.0-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b5/c5/cc0a0e7c6650ef7a0df924930a7ab5f4d9328f3d63e37e6594e19e292f58/google_crc32c-1.3.0-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
     type: sha256
     value: a7f9cbea4245ee36190f85fe1814e2d7b1e5f2186381b082f5d59f99b7f11328
-- filename: botocore-1.24.36-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/cc/5e/0ad2f9124b4a55974e20a3567f5c530b9c51652b8fcd05ffaff54e28c51b/botocore-1.24.36-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 391d31768acafea59209a975a698f59f620e01f3bafd6a2a356203eba204bba8
-- filename: boto3-1.21.36-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/88/4e/363e5aa0337b5aec7ec63e34f2d498f9d4e2b960a05279a69f45b088d75e/boto3-1.21.36-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 727e5ec31692620d9de2f88d6c0438fb84002b1a1ad474cc4bd21fc07b2135e9
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
