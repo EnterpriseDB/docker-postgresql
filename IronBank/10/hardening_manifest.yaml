@@ -46,11 +46,11 @@ resources:
   validation:
     type: sha256
     value: c3e8a9a3ec9d89f59b5d5b2f19d19a30d76a5b5c0cee3788ecad3cb72b9bd028
-- filename: typing_extensions-4.1.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/45/6b/44f7f8f1e110027cf88956b59f2fad776cca7e1704396d043f89effd3a0e/typing_extensions-4.1.1-py3-none-any.whl
+- filename: typing_extensions-4.2.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/75/e1/932e06004039dd670c9d5e1df0cd606bf46e29a28e65d5bb28e894ea29c9/typing_extensions-4.2.0-py3-none-any.whl
   validation:
     type: sha256
-    value: 21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2
+    value: 6657594ee297170d19f67d55c05852a874e7eb634f4f753dbd667855e07c1708
 - filename: six-1.16.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl
   validation:
