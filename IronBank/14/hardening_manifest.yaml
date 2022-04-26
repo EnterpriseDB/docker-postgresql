@@ -146,6 +146,11 @@ resources:
   validation:
     type: sha256
     value: 43c2cfda1a3833cdea6e58702d033723036903f27597336a149b6d29249ae9b1
+- filename: botocore-1.25.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/23/31/7ad1804a4ed23050bfa3cfe1af37837e754f60c8ad25d66a943c73c9524a/botocore-1.25.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 38c04682e7554dbccb33cd37863d76eaff97922dfb72677d0b7a49f8dbadc373
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
@@ -201,6 +206,11 @@ resources:
   validation:
     type: sha256
     value: a7f9cbea4245ee36190f85fe1814e2d7b1e5f2186381b082f5d59f99b7f11328
+- filename: boto3-1.22.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/93/a4/0eaade8ba1b97fce571fc4b7aba9761ab3758ab7e1f23b49c377b2647994/boto3-1.22.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 75310f5bb2af8f51f15f790d95dc4a4725bcec286f83458980ee2c3286cc0a03
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
@@ -216,11 +226,6 @@ resources:
   validation:
     type: sha256
     value: 69ccfdf3657ba59569c64295b7d51325f91af586f8d5793b734260dfe2e94e2c
-- filename: boto3-1.21.46-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/f0/58/911753da74405a538cd81f2f51521a9c8ec0d927d0cfecdf9f58b7363e02/boto3-1.21.46-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 3b13d727854aba9dea900b6c7fa134c52396869d842460d14fab8b85b69645f7
 - filename: google_cloud_core-2.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a8/46/aa46ebd6fc4db7938ef7f7179a0959f1e33f914617c51fcea0bbd5ddfb8f/google_cloud_core-2.3.0-py2.py3-none-any.whl
   validation:
@@ -231,11 +236,6 @@ resources:
   validation:
     type: sha256
     value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
-- filename: botocore-1.24.46-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/96/cb/dd5b165bf3bf7e3da57db4372e481928a09e1fc1452e805328a805f90515/botocore-1.24.46-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 663d8f02b98641846eb959c54c840cc33264d5f2dee5b8fc09ee8adbef0f8dcf
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
