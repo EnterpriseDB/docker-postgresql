@@ -17,7 +17,7 @@ jobs:
         with:
           token: ${{ secrets.REPO_GHA_PAT }}
       - name: Update docker-entrypoint
-        uses: nick-fields/retry@v2.6.0
+        uses: nick-fields/retry@v2.7.0
         with:
           timeout_seconds: 20
           max_attempts: 3
@@ -28,7 +28,7 @@ jobs:
             cp ./Debian/src/root/usr/local/bin/docker-entrypoint.sh ./UBI/src/root/usr/local/bin/docker-entrypoint.sh
             cp ./Debian/src/root/usr/local/bin/docker-entrypoint.sh ./IronBank/src/root/scripts/docker-entrypoint.sh
       - name: Run update script
-        uses: nick-fields/retry@v2.6.0
+        uses: nick-fields/retry@v2.7.0
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
           BASE_REGISTRY: "registry.access.redhat.com"
