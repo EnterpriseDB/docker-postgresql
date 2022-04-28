@@ -9,13 +9,13 @@ azure-core==1.23.1
 azure-identity==1.9.0
 azure-storage-blob==12.11.0
 barman[azure,cloud,google,snappy]==2.19
-boto3==1.22.1
-botocore==1.25.1
+boto3==1.22.2
+botocore==1.25.2
 cachetools==5.0.0
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
-cryptography==37.0.0
+cryptography==37.0.1
 google-api-core==2.7.2
 google-auth==2.6.6
 google-cloud-core==2.3.0
