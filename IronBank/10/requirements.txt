@@ -6,11 +6,11 @@
 #
 argcomplete==2.0.0
 azure-core==1.23.1
-azure-identity==1.9.0
+azure-identity==1.10.0
 azure-storage-blob==12.11.0
 barman[azure,cloud,google,snappy]==2.19
-boto3==1.22.2
-botocore==1.25.2
+boto3==1.22.3
+botocore==1.25.3
 cachetools==5.0.0
 certifi==2021.10.8
 cffi==1.15.0
@@ -27,7 +27,7 @@ idna==3.3
 isodate==0.6.1
 jmespath==1.0.0
 msal==1.17.0
-msal-extensions==0.3.1
+msal-extensions==1.0.0
 msrest==0.6.21
 oauthlib==3.2.0
 portalocker==2.4.0
