@@ -141,11 +141,11 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: botocore-1.25.3-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/25/49/e1f3a9309f0e45fa6fc1d25131c1fc6c695ea78809eacd70a10e0be90b16/botocore-1.25.3-py3-none-any.whl
+- filename: boto3-1.22.4-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/d3/a8/8310b1109ff1a31d43c07c92a089605c89c5383dad111b043bf86c4dbe83/boto3-1.22.4-py3-none-any.whl
   validation:
     type: sha256
-    value: b63343736f1e778f9a658736afd9773ea38b3605d96556fb5585fc0c04a0d1e1
+    value: 13fe18ecefe342d2fe50ae7b4305d7423ec6e96bfaef19bc2f14212877a67727
 - filename: cachetools-5.0.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/19/99/ace1769546388976b45e93445bb04c6df95e96363f03fbb56f916da5ebde/cachetools-5.0.0-py3-none-any.whl
   validation:
@@ -166,6 +166,11 @@ resources:
   validation:
     type: sha256
     value: 8fcbe52dc129fd83dca4e638a76f22b3a11579c493e643134e50e9870b233302
+- filename: botocore-1.25.4-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0d/3d/aaa84292868e77ad2a879e84ddb1a1892fe2aeac503de3bf3440ae4447e5/botocore-1.25.4-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 0a7b56eda54af6cb210894113f59fb0e2aaf07893d839de292d9c7b07f626dde
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
@@ -186,11 +191,6 @@ resources:
   validation:
     type: sha256
     value: 9a7b1d07d53bc1df5384a9906c1e6d9c920a2bdb5ffa5982d2c1d2bdaacd70c8
-- filename: boto3-1.22.3-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b1/45/c548965b87a5928db2d827c49ad309b237b24c70e3b475efd45a1481f483/boto3-1.22.3-py3-none-any.whl
-  validation:
-    type: sha256
-    value: b291e9b8057158c4ee75a7df8ab22079b4ab915f032af59bcae22677f2a6ceda
 - filename: rsa-4.8-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/30/ab/8fd9e88e6fa5ec41afca995938bbefb72195278e0cfc5bd76a4f29b23fb2/rsa-4.8-py3-none-any.whl
   validation:
