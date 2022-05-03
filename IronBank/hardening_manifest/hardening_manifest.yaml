@@ -141,11 +141,11 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: boto3-1.22.4-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d3/a8/8310b1109ff1a31d43c07c92a089605c89c5383dad111b043bf86c4dbe83/boto3-1.22.4-py3-none-any.whl
+- filename: botocore-1.25.5-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/87/d9/f5f05a42a89f3b679a705523be38460e39f87ce52989263c63dede50e740/botocore-1.25.5-py3-none-any.whl
   validation:
     type: sha256
-    value: 13fe18ecefe342d2fe50ae7b4305d7423ec6e96bfaef19bc2f14212877a67727
+    value: bcbacc0ec0a1f44cbf7e6d8112af8096eed41bec75e90af06f8bf61f20d820aa
 - filename: cachetools-5.0.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/19/99/ace1769546388976b45e93445bb04c6df95e96363f03fbb56f916da5ebde/cachetools-5.0.0-py3-none-any.whl
   validation:
@@ -161,16 +161,6 @@ resources:
   validation:
     type: sha256
     value: 7a6f4c4d1fdb9a2b640244008e142cbc2cd3ae34b386584ef044dd0f27101971
-- filename: google_api_core-2.7.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ad/0b/297ed8e6fca8e1d9974fb55cd304129f4073b7bb210d9873076d8172f5f2/google_api_core-2.7.2-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 8fcbe52dc129fd83dca4e638a76f22b3a11579c493e643134e50e9870b233302
-- filename: botocore-1.25.4-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/0d/3d/aaa84292868e77ad2a879e84ddb1a1892fe2aeac503de3bf3440ae4447e5/botocore-1.25.4-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 0a7b56eda54af6cb210894113f59fb0e2aaf07893d839de292d9c7b07f626dde
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
@@ -211,6 +201,11 @@ resources:
   validation:
     type: sha256
     value: 35900f614045a33d5208e1d50f0d7945df98ce088388ce7237e7a2db12d5656e
+- filename: google_api_core-2.7.3-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/e9/88/6e9c4940ac46dbc772403309dc9b671e10ae4ba4e87f3595537caa822d53/google_api_core-2.7.3-py3-none-any.whl
+  validation:
+    type: sha256
+    value: bb40d2d6412c77c367943b88d08323091d724deaea96892fff4a1ebd06f6e5be
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
@@ -226,6 +221,11 @@ resources:
   validation:
     type: sha256
     value: a7f9cbea4245ee36190f85fe1814e2d7b1e5f2186381b082f5d59f99b7f11328
+- filename: boto3-1.22.5-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/dd/19/6f4569fc387acb868a60fdc22632a6ee038533f416babd3eff7a8f52edeb/boto3-1.22.5-py3-none-any.whl
+  validation:
+    type: sha256
+    value: e6b4a4970cb9210d455f348577d9e0485f86c44baf278b8220e8ab5587d03470
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
