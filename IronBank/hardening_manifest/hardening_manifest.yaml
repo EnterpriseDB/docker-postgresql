@@ -141,11 +141,11 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: botocore-1.25.5-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/87/d9/f5f05a42a89f3b679a705523be38460e39f87ce52989263c63dede50e740/botocore-1.25.5-py3-none-any.whl
+- filename: botocore-1.25.6-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/b3/bd/9f7686020c0c7ca672075fcfc13d482b92261ab0492c2f3140bb395f8d21/botocore-1.25.6-py3-none-any.whl
   validation:
     type: sha256
-    value: bcbacc0ec0a1f44cbf7e6d8112af8096eed41bec75e90af06f8bf61f20d820aa
+    value: 3d9b0384d1527a22ebb9a28653fdf95027c7fc7993f4f9572b0b65d1b4cba6de
 - filename: cachetools-5.0.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/19/99/ace1769546388976b45e93445bb04c6df95e96363f03fbb56f916da5ebde/cachetools-5.0.0-py3-none-any.whl
   validation:
@@ -191,6 +191,11 @@ resources:
   validation:
     type: sha256
     value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
+- filename: boto3-1.22.6-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/43/ed/34db76f96001b2c88f7b193743086193ef08d1fd8b867dd15157e78070ae/boto3-1.22.6-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 5df9979ce66b629877a235d4f252d81c048c7094edebaa9e0bea0f6619f59873
 - filename: googleapis_common_protos-1.56.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/bd/f7/3b5b207a008cf5a15d623c96c59c8bc3663d4ac2618e23602a0dc2b99808/googleapis_common_protos-1.56.0-py2.py3-none-any.whl
   validation:
@@ -221,11 +226,6 @@ resources:
   validation:
     type: sha256
     value: a7f9cbea4245ee36190f85fe1814e2d7b1e5f2186381b082f5d59f99b7f11328
-- filename: boto3-1.22.5-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/dd/19/6f4569fc387acb868a60fdc22632a6ee038533f416babd3eff7a8f52edeb/boto3-1.22.5-py3-none-any.whl
-  validation:
-    type: sha256
-    value: e6b4a4970cb9210d455f348577d9e0485f86c44baf278b8220e8ab5587d03470
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
