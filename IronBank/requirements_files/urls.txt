@@ -1,6 +1,6 @@
-https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-14.2-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-contrib-14.2-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-server-14.2-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-libs-14.2-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-14.2-4PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-contrib-14.2-4PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-server-14.2-4PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/postgresql14-libs-14.2-4PGDG.rhel8.x86_64.rpm
 https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgaudit16_14-1.6.2-1.rhel8.x86_64.rpm
 https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-14
