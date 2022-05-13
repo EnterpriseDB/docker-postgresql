@@ -28,7 +28,7 @@ maintainers:
   username: rahill59
 name: enterprisedb/docker-postgresql
 tags:
-- '12.10-3PGDG.rhel8'
+- '12.11-1PGDG.rhel8'
 - latest
 resources:
 - filename: argcomplete-2.0.0-py2.py3-none-any.whl
@@ -76,11 +76,6 @@ resources:
   validation:
     type: sha256
     value: 923e492e72d103c768a643dfad331ce6b8ec1669575c7d0832fed19bffd119f7
-- filename: PyJWT-2.3.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/2a/4d/67cc66a0c49003dc216fc73db2d05a3b80c7193167fd113da1f2c678ac2a/PyJWT-2.3.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f
 - filename: pycparser-2.21-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl
   validation:
@@ -106,6 +101,11 @@ resources:
   validation:
     type: sha256
     value: b386f1ccbea6a48b9ab7e7f162adc456793c345193a7c1a713959562b08dcbbd
+- filename: PyJWT-2.4.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/1c/fb/b82e9601b00d88cf8bbee1f39b855ae773f9d5bcbcedb3801b2f72460696/PyJWT-2.4.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 72d1d253f32dbd4f5c88eaf1fdc62f3a19f676ccbadb9dbc5d07e951b2b26daf
 - filename: msal-1.17.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c1/3b/39f25ecbb50681e52b8cd1a59f91242f8fffe6ffeabe9bdc42f6a923605e/msal-1.17.0-py2.py3-none-any.whl
   validation:
@@ -161,11 +161,6 @@ resources:
   validation:
     type: sha256
     value: 3c13f84813861ac8f5b6371254bdd437076bf1f3bac527a9f3fd123a70166f52
-- filename: boto3-1.22.12-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d0/c7/957f52cb7f8ef9b070edbe45a77be22ec5ea5ca6b388edfdf3a00002fabe/boto3-1.22.12-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 9830d7f8748c164a3f0929d8a0c5bb313cc62d7cf69ce55617108bed451a8520
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -186,11 +181,6 @@ resources:
   validation:
     type: sha256
     value: e8dcd576ed616f14ec02eed0005c85973b5890083313860136657e24784e4c04
-- filename: googleapis_common_protos-1.56.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/bd/f7/3b5b207a008cf5a15d623c96c59c8bc3663d4ac2618e23602a0dc2b99808/googleapis_common_protos-1.56.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 60220c89b8bd5272159bed4929ecdc1243ae1f73437883a499a44a1cbc084086
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
@@ -211,6 +201,16 @@ resources:
   validation:
     type: sha256
     value: bb40d2d6412c77c367943b88d08323091d724deaea96892fff4a1ebd06f6e5be
+- filename: googleapis_common_protos-1.56.1-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/00/11/2a8d766a5b2378e243fdce6b7e74cc961594a8cf1c3d6ddab1ef99cbb717/googleapis_common_protos-1.56.1-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: ddcd955b5bb6589368f659fa475373faa1ed7d09cde5ba25e88513d87007e174
+- filename: botocore-1.25.13-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/35/fe/a1ec1387bc0bc48e950ac2d2bc69a886d08185ed148a25ceabbb2976e6e3/botocore-1.25.13-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 79b7773b48c9c59acd42ceba0a05b27ab9e326e9ed9b0ca35f41ad8abad61808
 - filename: google_auth-2.6.6-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/04/ea9a945a6fbd7f7f977fcf7e300a715f1635939e5daf141b95068abaa5ec/google_auth-2.6.6-py2.py3-none-any.whl
   validation:
@@ -221,16 +221,16 @@ resources:
   validation:
     type: sha256
     value: 35900f614045a33d5208e1d50f0d7945df98ce088388ce7237e7a2db12d5656e
-- filename: botocore-1.25.12-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/9b/f7/8f1970d6c47380235bcdb18171bdeca7c0d8fdb9834eb12c063342010ae8/botocore-1.25.12-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 53e19890124be45e47ec4f7ffdaf587343d375dbd7c7a501e55aeff80680fec0
 - filename: s3transfer-0.5.2-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/7b/9c/f51775ebe7df5a7aa4e7c79ed671bde94e154bd968aca8d65bb24aba0c8c/s3transfer-0.5.2-py3-none-any.whl
   validation:
     type: sha256
     value: 7a6f4c4d1fdb9a2b640244008e142cbc2cd3ae34b386584ef044dd0f27101971
+- filename: boto3-1.22.13-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/e6/9a/0ea77f98a6018ae5a4fcb7fe74dd9369060dbedf2984612249007f08a834/boto3-1.22.13-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 240931d41341f30d3cc0bba72ede4dbfe9704721bf13ca19bcd31a435c235f8d
 - filename: rsa-4.8-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/30/ab/8fd9e88e6fa5ec41afca995938bbefb72195278e0cfc5bd76a4f29b23fb2/rsa-4.8-py3-none-any.whl
   validation:
@@ -246,26 +246,26 @@ resources:
   validation:
     type: sha256
     value: deaf32dcd9ab821e359cd8330786bcd077604b5c5730c0b096eda46f95c24a2d
-- filename: postgresql12-12.10-3PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-12.10-3PGDG.rhel8.x86_64.rpm
+- filename: postgresql12-12.11-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-12.11-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: e246a2db5ed7c41058db0e76b3fea729d6ad22020de8b868ce993f9cc652f26c
-- filename: postgresql12-contrib-12.10-3PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-contrib-12.10-3PGDG.rhel8.x86_64.rpm
+    value: 04da41af07a1dc63ac4fbcbe5ee6e002e85e6803a35c2d31390dbc8ae91adc14
+- filename: postgresql12-contrib-12.11-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-contrib-12.11-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 33ffbc2498f91230e92d6b50d69adad216aded59a00155476fec14f204abb26a
-- filename: postgresql12-server-12.10-3PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-server-12.10-3PGDG.rhel8.x86_64.rpm
+    value: e7ea54dbcfc10f18a43f09a2cec44a61c14f444493f2b6cf937bac6a6c75fb22
+- filename: postgresql12-server-12.11-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-server-12.11-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 8077698bdf9d06a9e49bcbdf5015ce2ae69bad99f7c9664ba6aad6cac8a5caf3
-- filename: postgresql12-libs-12.10-3PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-libs-12.10-3PGDG.rhel8.x86_64.rpm
+    value: 9d9f9dd32355c4af8173b7fd021b43725b8421d75514390ce92f5cb76ccd9898
+- filename: postgresql12-libs-12.11-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-libs-12.11-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 785d1ee2c107f6bcdd5f9657f9388f4489b8fdef92378329ea78bd23bf99aba0
+    value: a7fb1d194fe33ab09aa7f0086a77170f8bada0fc92602e0f61f0f3f14ad85da6
 - filename: pgaudit14_12-1.4.3-1.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/pgaudit14_12-1.4.3-1.rhel8.x86_64.rpm
   validation:
