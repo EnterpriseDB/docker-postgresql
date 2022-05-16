@@ -141,11 +141,6 @@ resources:
   validation:
     type: sha256
     value: 1eac4c364309ccc193c80ee26c78d25dfbf10926b1309095a448a7a0388526eb
-- filename: cachetools-5.0.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/19/99/ace1769546388976b45e93445bb04c6df95e96363f03fbb56f916da5ebde/cachetools-5.0.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 8fecd4203a38af17928be7b90689d8083603073622229ca7077b72d8e5a976e4
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
@@ -236,6 +231,11 @@ resources:
   validation:
     type: sha256
     value: 95c5d300c4e879ee69708c428ba566c59478fd653cc3a22243eeb8ed846950bb
+- filename: cachetools-5.1.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/99/33/c605db9880c7bf6d58db6bb2953860b1927d28dd033d3bea82323d4e7b25/cachetools-5.1.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 4ebbd38701cdfd3603d1f751d851ed248ab4570929f2d8a7ce69e30c420b141c
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
