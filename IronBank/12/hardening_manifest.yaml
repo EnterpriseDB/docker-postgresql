@@ -151,21 +151,11 @@ resources:
   validation:
     type: sha256
     value: 69ccfdf3657ba59569c64295b7d51325f91af586f8d5793b734260dfe2e94e2c
-- filename: botocore-1.26.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/3d/6f/9201a45b71e373949b910b92f730bd895530178c7fc5b8844a4caa47038b/botocore-1.26.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 25c43b8a7950d785daf3840bb10277378f36d41b208be3e01614537bdb419fe7
 - filename: google_resumable_media-2.3.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b5/70/92b07646d384f1de8544b9bee7ecc19ca567c3813e458b7fcc6a4b8168b1/google_resumable_media-2.3.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 3c13f84813861ac8f5b6371254bdd437076bf1f3bac527a9f3fd123a70166f52
-- filename: boto3-1.23.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/27/fa/539537a4519b54b2a026b679cea632ef6f5df72226998961b00ad95fcd8b/boto3-1.23.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: a5b7cce2473cb7f61a9684a68799f80b049236de62e63e7b4cd2bb0d1e9c58ad
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -211,6 +201,11 @@ resources:
   validation:
     type: sha256
     value: ddcd955b5bb6589368f659fa475373faa1ed7d09cde5ba25e88513d87007e174
+- filename: boto3-1.23.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/6e/25/dfc6aa74a82c46a7211663a3f420ffd97947921df14b8e6e44764b410c97/boto3-1.23.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 4e3ef99d211266175a97b35d78103c31e3d01af31fd02bf599185421e5873fc0
 - filename: google_auth-2.6.6-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/04/ea9a945a6fbd7f7f977fcf7e300a715f1635939e5daf141b95068abaa5ec/google_auth-2.6.6-py2.py3-none-any.whl
   validation:
@@ -226,6 +221,11 @@ resources:
   validation:
     type: sha256
     value: 7a6f4c4d1fdb9a2b640244008e142cbc2cd3ae34b386584ef044dd0f27101971
+- filename: botocore-1.26.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/08/c0/4e61e1bb1e4ec96f6334195466f7147f2d96d5bd962918d7edfa5ad78ad0/botocore-1.26.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 598304f20df607944c6db3870e005f2775230ec4558c8280d870f861a8003632
 - filename: rsa-4.8-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/30/ab/8fd9e88e6fa5ec41afca995938bbefb72195278e0cfc5bd76a4f29b23fb2/rsa-4.8-py3-none-any.whl
   validation:
