@@ -146,6 +146,11 @@ resources:
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
+- filename: boto3-1.23.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/fc/be/458a86192f13b5d510735ff30610e2023714750998639c825365603734c7/boto3-1.23.2-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 7889c3a07171b8a43468a8644d7c95948dc9e1389c4aac2b689a428ee1a98300
 - filename: protobuf-3.20.1-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.whl
   url: https://files.pythonhosted.org/packages/c1/4d/1d46234fbdff4ee05cb7ec6cb6ea9282769fa9fefd72d93de4b85fd3d8c4/protobuf-3.20.1-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.whl
   validation:
@@ -201,11 +206,6 @@ resources:
   validation:
     type: sha256
     value: ddcd955b5bb6589368f659fa475373faa1ed7d09cde5ba25e88513d87007e174
-- filename: boto3-1.23.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/6e/25/dfc6aa74a82c46a7211663a3f420ffd97947921df14b8e6e44764b410c97/boto3-1.23.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 4e3ef99d211266175a97b35d78103c31e3d01af31fd02bf599185421e5873fc0
 - filename: google_auth-2.6.6-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/04/ea9a945a6fbd7f7f977fcf7e300a715f1635939e5daf141b95068abaa5ec/google_auth-2.6.6-py2.py3-none-any.whl
   validation:
@@ -221,11 +221,11 @@ resources:
   validation:
     type: sha256
     value: 7a6f4c4d1fdb9a2b640244008e142cbc2cd3ae34b386584ef044dd0f27101971
-- filename: botocore-1.26.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/08/c0/4e61e1bb1e4ec96f6334195466f7147f2d96d5bd962918d7edfa5ad78ad0/botocore-1.26.1-py3-none-any.whl
+- filename: botocore-1.26.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/4e/07/527da85567ddbb5a8448e6425dcaca10207411ebd7b87102fe4487d41bf6/botocore-1.26.2-py3-none-any.whl
   validation:
     type: sha256
-    value: 598304f20df607944c6db3870e005f2775230ec4558c8280d870f861a8003632
+    value: 1977f2ad6b6263f4dd9e8b784e69b194988f16d6bd90c4eede15964f4eecf878
 - filename: rsa-4.8-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/30/ab/8fd9e88e6fa5ec41afca995938bbefb72195278e0cfc5bd76a4f29b23fb2/rsa-4.8-py3-none-any.whl
   validation:
