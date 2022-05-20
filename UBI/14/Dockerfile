@@ -1,12 +1,12 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:8.5-239.1651231664
+FROM quay.io/enterprisedb/edb-ubi:8.6-754
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="14.2-1PGDG.rhel8" \
-      release="8" \
+      version="14.3-1PGDG.rhel8" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -22,10 +22,10 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 		yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
 	fi ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql14-14.2-1PGDG.rhel8 \
-		postgresql14-contrib-14.2-1PGDG.rhel8 \
-		postgresql14-server-14.2-1PGDG.rhel8 \
-		postgresql14-libs-14.2-1PGDG.rhel8 \
+		postgresql14-14.3-1PGDG.rhel8 \
+		postgresql14-contrib-14.3-1PGDG.rhel8 \
+		postgresql14-server-14.3-1PGDG.rhel8 \
+		postgresql14-libs-14.3-1PGDG.rhel8 \
 		pgaudit16_14 \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
