@@ -9,8 +9,8 @@ azure-core==1.24.0
 azure-identity==1.10.0
 azure-storage-blob==12.12.0
 barman[azure,cloud,google,snappy]==2.19
-boto3==1.23.7
-botocore==1.26.7
+boto3==1.23.8
+botocore==1.26.8
 cachetools==5.1.0
 certifi==2022.5.18.1
 cffi==1.15.0
@@ -26,7 +26,7 @@ googleapis-common-protos==1.56.1
 idna==3.3
 isodate==0.6.1
 jmespath==1.0.0
-msal==1.17.0
+msal==1.16.0
 msal-extensions==1.0.0
 msrest==0.6.21
 oauthlib==3.2.0
