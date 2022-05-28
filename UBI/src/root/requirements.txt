@@ -26,9 +26,9 @@ barman[azure,cloud,google,snappy]==2.19 \
 boto3==1.23.9 \
     --hash=sha256:5b05d219db06cca7d372cef2cdbbee5acfec23cb1f8dcbbfa95c5fa098269c7f \
     --hash=sha256:9e44d22a9cfb72e84add3ce1580e6dfef6a67321da0b958f7f33411de468a7ea
-botocore==1.26.9 \
-    --hash=sha256:c5f33c814f8c5e1a0bec2084760fe00ea4d43cbfbb868b05fbb83bbeb6303844 \
-    --hash=sha256:fef3ae1aa9e214d9da7b44035f13afe1f7239a5b2724ed76c6ec9a0628102307
+botocore==1.26.10 \
+    --hash=sha256:5df2cf7ebe34377470172bd0bbc582cf98c5cbd02da0909a14e9e2885ab3ae9c \
+    --hash=sha256:8a4a984bf901ccefe40037da11ba2abd1ddbcb3b490a492b7f218509c99fc12f
     # via
     #   boto3
     #   s3transfer
