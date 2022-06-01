@@ -101,6 +101,11 @@ resources:
   validation:
     type: sha256
     value: 57e9ac9ccc3101fac9d6014fba037473e4358ef4e89f8e181f8951a2c0162024
+- filename: msal-1.18.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/61/71/3f65ae3c641706bc286bcfe09754b563b1b0ae3b3f8394e315fe552632aa/msal-1.18.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 9c10e6cb32e0b6b8eaafc1c9a68bc3b2ff71505e0c5b8200799582d8b9f22947
 - filename: azure_identity-1.10.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/84/d4/56eeaa097dd15123aaed85346e9ab3701c62650cf81e83d56600f5f30113/azure_identity-1.10.0-py3-none-any.whl
   validation:
@@ -111,11 +116,6 @@ resources:
   validation:
     type: sha256
     value: 0cc20f655157d4cfc7bada909dc5cc228211b075ba8407c46467f63597c78178
-- filename: msal-1.17.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/c1/3b/39f25ecbb50681e52b8cd1a59f91242f8fffe6ffeabe9bdc42f6a923605e/msal-1.17.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 5a52d78e70d2c451e267c1e8c2342e4c06f495c75c859aeafd9260d3974f09fe
 - filename: oauthlib-3.2.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/1d/46/5ee2475e1b46a26ca0fa10d3c1d479577fde6ee289f8c6aa6d7ec33e31fd/oauthlib-3.2.0-py3-none-any.whl
   validation:
@@ -196,11 +196,11 @@ resources:
   validation:
     type: sha256
     value: 39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d
-- filename: s3transfer-0.5.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7b/9c/f51775ebe7df5a7aa4e7c79ed671bde94e154bd968aca8d65bb24aba0c8c/s3transfer-0.5.2-py3-none-any.whl
+- filename: s3transfer-0.6.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5e/c6/af903b5fab3f9b5b1e883f49a770066314c6dcceb589cf938d48c89556c1/s3transfer-0.6.0-py3-none-any.whl
   validation:
     type: sha256
-    value: 7a6f4c4d1fdb9a2b640244008e142cbc2cd3ae34b386584ef044dd0f27101971
+    value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
 - filename: google_cloud_storage-2.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e2/9f/bccd70e26d4cec5a396e78943c45eb7d3280a7706fec08f27532c98bae4f/google_cloud_storage-2.3.0-py2.py3-none-any.whl
   validation:
@@ -216,16 +216,6 @@ resources:
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: boto3-1.23.10-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/75/ca/d917b244919f1ebf96f7bbd5a00e4641f7e9191b0d070258f5dc10f5eaad/boto3-1.23.10-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 40d08614f17a69075e175c02c5d5aab69a6153fd50e40fa7057b913ac7bf40e7
-- filename: botocore-1.26.10-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/09/b8/794e0bd260198538ded90c26b353ddb632eab01950d4e7e2e2b8ee510d12/botocore-1.26.10-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 8a4a984bf901ccefe40037da11ba2abd1ddbcb3b490a492b7f218509c99fc12f
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -236,6 +226,16 @@ resources:
   validation:
     type: sha256
     value: 43c2cfda1a3833cdea6e58702d033723036903f27597336a149b6d29249ae9b1
+- filename: botocore-1.27.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a8/fe/b8bc9ec77d0d8bcc4428b95458db972cc8f8f0a0826e34760195b7e90b00/botocore-1.27.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 40823d9c3e2e707e74112aa0b1073e9eeb6c7f6a7d123518b5f768fc11b250f7
+- filename: boto3-1.24.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/42/3f/719c092e618f1312346524eb285416ff4c440cee77d99568c49d3b4722d9/boto3-1.24.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a42900a0ea75600a76b371b03ac645461e4f3c97bb13ae5136bb4d3c87c6c110
 - filename: psycopg2-2.9.3.tar.gz
   url: https://files.pythonhosted.org/packages/d1/1e/b450599a27b1809bccbd4e369f397cb18dc56b875778d961f9ae180b54b7/psycopg2-2.9.3.tar.gz
   validation:
