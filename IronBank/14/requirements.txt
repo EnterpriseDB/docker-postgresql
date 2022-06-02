@@ -5,12 +5,12 @@
 #    pip-compile --allow-unsafe --no-annotate --output-file=requirements.txt
 #
 argcomplete==2.0.0
-azure-core==1.24.0
+azure-core==1.24.1
 azure-identity==1.10.0
 azure-storage-blob==12.12.0
 barman[azure,cloud,google,snappy]==2.19
-boto3==1.24.0
-botocore==1.27.0
+boto3==1.24.1
+botocore==1.27.1
 cachetools==5.2.0
 certifi==2022.5.18.1
 cffi==1.15.0
