@@ -106,6 +106,11 @@ resources:
   validation:
     type: sha256
     value: 0cc20f655157d4cfc7bada909dc5cc228211b075ba8407c46467f63597c78178
+- filename: azure_identity-1.10.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/84/d4/56eeaa097dd15123aaed85346e9ab3701c62650cf81e83d56600f5f30113/azure_identity-1.10.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: b386f1ccbea6a48b9ab7e7f162adc456793c345193a7c1a713959562b08dcbbd
 - filename: msal_extensions-1.0.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
   validation:
