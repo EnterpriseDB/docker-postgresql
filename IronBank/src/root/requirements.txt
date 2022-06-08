@@ -9,15 +9,15 @@ azure-core==1.24.1
 azure-identity==1.10.0
 azure-storage-blob==12.12.0
 barman[azure,cloud,google,snappy]==2.19
-boto3==1.24.3
-botocore==1.27.3
+boto3==1.24.4
+botocore==1.27.4
 cachetools==5.2.0
 certifi==2022.5.18.1
 cffi==1.15.0
 charset-normalizer==2.0.12
 cryptography==37.0.2
 google-api-core==2.8.1
-google-auth==2.6.6
+google-auth==2.7.0
 google-cloud-core==2.3.0
 google-cloud-storage==2.3.0
 google-crc32c==1.3.0
@@ -28,7 +28,7 @@ isodate==0.6.1
 jmespath==1.0.0
 msal==1.18.0
 msal-extensions==1.0.0
-msrest==0.6.21
+msrest==0.7.0
 oauthlib==3.2.0
 portalocker==2.4.0
 protobuf==3.20.1
