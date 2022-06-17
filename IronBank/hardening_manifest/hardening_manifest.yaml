@@ -186,11 +186,6 @@ resources:
   validation:
     type: sha256
     value: 93c6a91ccac79079ac6bbf8b74ee75db970cc899278b97d53bc012f35908cf50
-- filename: botocore-1.27.10-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e4/c8/2ec898daa6705fc56af530adf4854a25bfbd52a34bd7d9ae224f1fbc7cc2/botocore-1.27.10-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 24ec42b4f29a50f7ef78f9f863c3c25e00f65b5a48db669c8068457789a90803
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -206,11 +201,11 @@ resources:
   validation:
     type: sha256
     value: 5b52774ea7a829a8cdaa8bd2d4c3d4bc660c91b30857ab2668d0eb830f4ea8c5
-- filename: boto3-1.24.10-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/70/e4/c5c73767abcd6ccd65e3caa507a99ce69f40f059d0a8488d039a15123b43/boto3-1.24.10-py3-none-any.whl
+- filename: botocore-1.27.11-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5a/39/a966f3f8dfe9f7b0c9f808c59d6e6094f5cd3d55dd8e48ed0c8d40bd4070/botocore-1.27.11-py3-none-any.whl
   validation:
     type: sha256
-    value: 32ffc0fd50408acc710cf5ce40037aa3c14926d6e3f6fbf61ed5990fb63cd881
+    value: 8efab7f85156705cbe532aeb17b065b67ba32addc3270d9000964b98c07bb20a
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
@@ -226,6 +221,11 @@ resources:
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+- filename: boto3-1.24.11-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/4d/5d/51ddd05353c99262fe2d370009e9a68df346ddbe21fe98b06e3d53346a9a/boto3-1.24.11-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 19d6fb2b5e51f10e7b5d551a111cf9c64b9a5144b2838493ac41be0706e590cf
 - filename: cachetools-5.2.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/68/aa/5fc646cae6e997c3adf3b0a7e257cda75cff21fcba15354dffd67789b7bb/cachetools-5.2.0-py3-none-any.whl
   validation:
