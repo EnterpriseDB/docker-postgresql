@@ -9,8 +9,8 @@ azure-core==1.24.2
 azure-identity==1.10.0
 azure-storage-blob==12.12.0
 barman[azure,cloud,google,snappy]==3.0.1
-boto3==1.24.21
-botocore==1.27.21
+boto3==1.24.22
+botocore==1.27.22
 cachetools==5.2.0
 certifi==2022.6.15
 cffi==1.15.1
@@ -44,7 +44,7 @@ requests-oauthlib==1.3.1
 rsa==4.8
 s3transfer==0.6.0
 six==1.16.0
-typing-extensions==4.2.0
+typing-extensions==4.3.0
 urllib3==1.26.9
 
 # The following packages are considered to be unsafe in a requirements file:
