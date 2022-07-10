@@ -106,11 +106,11 @@ resources:
   validation:
     type: sha256
     value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
-- filename: portalocker-2.4.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/f1/4e/1030afbf2e64e676e968bbbc82014ce4ddf1cc1ed0b492585958768cf79a/portalocker-2.4.0-py2.py3-none-any.whl
+- filename: portalocker-2.5.1-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a9/0a/21422dc681e3e59ce5ec4051015de4c2074bd0e6759099c018471f3dc4e3/portalocker-2.5.1-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: b092f48e1e30a234ab3dd1cfd44f2f235e8a41f4e310e463fc8d6798d1c3c235
+    value: 400bae275366e7b840d4baad0654c6ec5994e07c40c423d78e9e1340279b8352
 - filename: azure_identity-1.10.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/84/d4/56eeaa097dd15123aaed85346e9ab3701c62650cf81e83d56600f5f30113/azure_identity-1.10.0-py3-none-any.whl
   validation:

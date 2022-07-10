@@ -30,7 +30,7 @@ msal==1.18.0
 msal-extensions==1.0.0
 msrest==0.7.1
 oauthlib==3.2.0
-portalocker==2.4.0
+portalocker==2.5.1
 protobuf==3.17.3
 psycopg2==2.9.3
 pyasn1==0.4.8
