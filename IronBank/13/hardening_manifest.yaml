@@ -146,11 +146,6 @@ resources:
   validation:
     type: sha256
     value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
-- filename: boto3-1.24.35-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b9/7f/c6bbd99f983b3af1096b37b13d66171b343b66ae393a008d964e0315d2b9/boto3-1.24.35-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 1822c1524c5be007b966498cd196a040a1bd414c8aca7b270431a10d3ade8294
 - filename: google_resumable_media-2.3.3-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/02/a3/19447ef22fdaccf773c395add9d200a6dacba3d39742d9ede0cc67c51874/google_resumable_media-2.3.3-py2.py3-none-any.whl
   validation:
@@ -161,11 +156,11 @@ resources:
   validation:
     type: sha256
     value: 8eb2cbc91b69feaf23e32452a7ae60e791e09967d81d4fcc7fc388182d1bd394
-- filename: botocore-1.27.35-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b9/0d/3563502f1455decd5cc9a172724d5421829fc19d4b72f43c3b23a123c112/botocore-1.27.35-py3-none-any.whl
+- filename: boto3-1.24.36-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/99/b4/8223246975101c9195e9ba1349028234e6ec0bc0dd510a6cba2cf2389f93/boto3-1.24.36-py3-none-any.whl
   validation:
     type: sha256
-    value: 9949d61959476b5a34408881bdb98f54b0642238ffb217c5260124ec58fb0c72
+    value: 8844bbcb69ac0afc68225b58abe105852231cf1b562e6c8c9eb6b2b97fd4757a
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -216,6 +211,11 @@ resources:
   validation:
     type: sha256
     value: 39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d
+- filename: botocore-1.27.36-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/9d/6f/888a9673d1a6fd4fe2094c458f8814c4523c3569fc4fe83d207815b4be84/botocore-1.27.36-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 3119ce186053b9bf6bd0bd0ad19a8cedeb626b205ce6ad26ea0894634f702cd5
 - filename: google_cloud_storage-2.4.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c2/2e/bded151e3de8bb381412e591fc52c30b929e041fee8b8a6106db0c155692/google_cloud_storage-2.4.0-py2.py3-none-any.whl
   validation:
