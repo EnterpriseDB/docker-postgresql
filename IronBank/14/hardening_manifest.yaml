@@ -206,26 +206,26 @@ resources:
   validation:
     type: sha256
     value: 39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d
-- filename: boto3-1.24.39-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a2/79/27a0e9f6026a41034cc4e0bb0dd2f631ca812b480d183314cf56f94e6bd1/boto3-1.24.39-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 057b4132e81f5ba63dc7d9d989023f3e81216999d76edabffade5bad5ae9bd3e
-- filename: botocore-1.27.39-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/c2/d4/59b7625662752c2b8e3dd88dea15695e9c863afbd78bf7ad894779479841/botocore-1.27.39-py3-none-any.whl
-  validation:
-    type: sha256
-    value: b5eb8731542e7e987465be80ce206d72de6774e16d4e808e636d92c467779d7e
 - filename: google_cloud_storage-2.4.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c2/2e/bded151e3de8bb381412e591fc52c30b929e041fee8b8a6106db0c155692/google_cloud_storage-2.4.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 973e7f7d9afcd4805769b6ea9ac15ab9df7037530850374f1494b5a2c8f65b6b
+- filename: boto3-1.24.40-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a6/b8/ca8877b70121ba2688345159cff463275c6b2cf0c45ec62a189a008b6311/boto3-1.24.40-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 904294a46816b2b134f5f3d83e07f0496155a4815e90e0d717949f1e8c2846d6
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
+- filename: botocore-1.27.40-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0d/02/c86556b611cc4e1d402a646f6561f57d32b33445888b8e2513878aa46666/botocore-1.27.40-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 5482d44e4964dcaca673a7f115d889ac4b68e4f1b372ff0a294d4ee43a7b2a03
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
