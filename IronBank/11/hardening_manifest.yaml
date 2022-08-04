@@ -46,6 +46,11 @@ resources:
   validation:
     type: sha256
     value: 25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02
+- filename: azure_core-1.25.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/16/f7/a9cf5e40919ee0a31e9393eff8abbe5709eb3007086cd2119454ae1c8381/azure_core-1.25.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: c26ad5f3612b8a2207cf2be0ef67e478a74acfa450b8d25d778c939921f650dc
 - filename: urllib3-1.26.11-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d1/cb/4783c8f1a90f89e260dbf72ebbcf25931f3a28f8f80e2e90f8a589941b19/urllib3-1.26.11-py2.py3-none-any.whl
   validation:
@@ -71,11 +76,6 @@ resources:
   validation:
     type: sha256
     value: 8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349
-- filename: azure_core-1.24.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/4f/43/18cac1c7c1c1c3ad9d0dc5f262bd5633f7b15a6b5f568dcb10a8ac8990aa/azure_core-1.24.2-py3-none-any.whl
-  validation:
-    type: sha256
-    value: a76856fa83efe1925a4fd917dc179c7daa15917dd71da2774833fa82a96f3dfa
 - filename: msal-1.18.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/61/71/3f65ae3c641706bc286bcfe09754b563b1b0ae3b3f8394e315fe552632aa/msal-1.18.0-py2.py3-none-any.whl
   validation:
