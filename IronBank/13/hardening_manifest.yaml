@@ -166,6 +166,11 @@ resources:
   validation:
     type: sha256
     value: 6902a1e4b7a319ec611a7345ff81b6b004b36b0d2196ce7a748b3493da3d226d
+- filename: google_auth-2.10.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/3a/71/b621d9e2c6f2cfb412e1cb6e796e6646ec445c533fd9a79d51be3d885f42/google_auth-2.10.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 1deba4a54f95ef67b4139eaf5c20eaa7047215eec9f6a2344599b8596db8863b
 - filename: google_cloud_core-2.3.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ac/4d/bae84e736080ed465a6b02e9f447c89c60c00fcdade2eb6911fecf3f46aa/google_cloud_core-2.3.2-py2.py3-none-any.whl
   validation:
@@ -186,11 +191,6 @@ resources:
   validation:
     type: sha256
     value: 93c6a91ccac79079ac6bbf8b74ee75db970cc899278b97d53bc012f35908cf50
-- filename: google_auth-2.9.1-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7b/17/0b14f55fc8ff002b92e2deb796dd9e28a65ca1a6272d9d844e99051afb67/google_auth-2.9.1-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 5a7eed0cb0e3a83989fad0b59fe1329dfc8c479543039cd6fd1e01e9adf39475
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
