@@ -176,11 +176,6 @@ resources:
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
-- filename: botocore-1.27.46-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/62/e5/d9e3426e309ad69967ae775c87e0d80d2446217bd1971b83bd0d92d02c2a/botocore-1.27.46-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 747b7e94aef41498f063fc0be79c5af102d940beea713965179e1ead89c7e9ec
 - filename: google_crc32c-1.3.0-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b5/c5/cc0a0e7c6650ef7a0df924930a7ab5f4d9328f3d63e37e6594e19e292f58/google_crc32c-1.3.0-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
@@ -201,6 +196,11 @@ resources:
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
+- filename: boto3-1.24.47-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/77/2d/f617381f09404b3b4f0c663b4467a315651f79512a9fc9b6e7304332e757/boto3-1.24.47-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8fa1e0ce6e95a2b7da1d1a9992aee7b05c5478538ea9052e2753999fc46f2f97
 - filename: barman-3.0.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ff/6b/d2b0774885feca9e62f9df8266bf35b0fe68acb11eb1ef31a4a3b2d0efd5/barman-3.0.1-py2.py3-none-any.whl
   validation:
@@ -216,11 +216,11 @@ resources:
   validation:
     type: sha256
     value: 19a26c66c317ce542cea0830b7e787e8dac2588b6bfa4d3fd3b871ba16305ab0
-- filename: boto3-1.24.46-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/72/b4/9e6351865cf680528e4e5bc8fe26daaee51577b548256c2143e921c1a464/boto3-1.24.46-py3-none-any.whl
+- filename: botocore-1.27.47-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ea/6c/2ef806acc8d5b126646f52a74d62cf8ddc5525f5f5ace7f5654966c2617b/botocore-1.27.47-py3-none-any.whl
   validation:
     type: sha256
-    value: 44026e44549148dbc5b261ead5f6b339e785680c350ef621bf85f7e2fca05b49
+    value: 262d7b10ca2194b9ba63fd972185729e3ee38f99faed518d62580f93af900ad0
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
