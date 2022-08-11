@@ -28,7 +28,7 @@ maintainers:
   username: rahill59
 name: enterprisedb/docker-postgresql
 tags:
-- '11.16-1PGDG.rhel8'
+- '11.17-1PGDG.rhel8'
 - latest
 resources:
 - filename: argcomplete-2.0.0-py2.py3-none-any.whl
@@ -251,26 +251,26 @@ resources:
   validation:
     type: sha256
     value: deaf32dcd9ab821e359cd8330786bcd077604b5c5730c0b096eda46f95c24a2d
-- filename: postgresql11-11.16-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-11.16-1PGDG.rhel8.x86_64.rpm
+- filename: postgresql11-11.17-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-11.17-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 19826e7cc21ec768e4e8303e0cc732ee9112ae229a5feed03cbffcc647069e02
-- filename: postgresql11-contrib-11.16-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-contrib-11.16-1PGDG.rhel8.x86_64.rpm
+    value: 5bbd6c670d5881971012307aa1d5f2a67101736dc27ba88e2124d89ad67f0f9a
+- filename: postgresql11-contrib-11.17-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-contrib-11.17-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: ae9ee6c3e7ed407d9e95e7ea5b5236f63beb3451c5768360baf0948625f309b0
-- filename: postgresql11-server-11.16-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-server-11.16-1PGDG.rhel8.x86_64.rpm
+    value: b260df086782bf62ad30861cd1e7a1c1cafb8ad8f7df1e2e1d7de71eaa441de0
+- filename: postgresql11-server-11.17-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-server-11.17-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 0e38e6534a1594f464f4573c422e6d7fcf22b83867b5106e0bf14aea93abfde0
-- filename: postgresql11-libs-11.16-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-libs-11.16-1PGDG.rhel8.x86_64.rpm
+    value: 82a8304548ab82d0710f5901beabc91783dc41565796f042704ac05c2c255692
+- filename: postgresql11-libs-11.17-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/postgresql11-libs-11.17-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: cf2f8addf7026b2f48420d77fd8cad360549615ca9efeab28bf95f63395d184e
+    value: 183e72319bb8ba826c24f7fbd9c063da57c45f46a52bf4ca664f03b015fb6a21
 - filename: pgaudit13_11-1.3.4-1.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/pgaudit13_11-1.3.4-1.rhel8.x86_64.rpm
   validation:

@@ -28,7 +28,7 @@ maintainers:
   username: rahill59
 name: enterprisedb/docker-postgresql
 tags:
-- '10.21-1PGDG.rhel8'
+- '10.22-1PGDG.rhel8'
 - latest
 resources:
 - filename: argcomplete-2.0.0-py2.py3-none-any.whl
@@ -251,26 +251,26 @@ resources:
   validation:
     type: sha256
     value: deaf32dcd9ab821e359cd8330786bcd077604b5c5730c0b096eda46f95c24a2d
-- filename: postgresql10-10.21-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-10.21-1PGDG.rhel8.x86_64.rpm
+- filename: postgresql10-10.22-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-10.22-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 7a06d22601e98a76a1f91493f89b933162e37433f75f235fa3c3d2c32b940486
-- filename: postgresql10-contrib-10.21-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-contrib-10.21-1PGDG.rhel8.x86_64.rpm
+    value: 056c75bebd88bf928880c3ff0429bd6621427d5590864498e6559b1f54ddbe6d
+- filename: postgresql10-contrib-10.22-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-contrib-10.22-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 53ad7a86236c3ab81a70551f348573357da95c099d8311b76a579cca76c50e22
-- filename: postgresql10-server-10.21-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-server-10.21-1PGDG.rhel8.x86_64.rpm
+    value: 7514b24c3fcc131b58df32ea1f78e0310d2d3b5aef23f2fbf726adc69f432a84
+- filename: postgresql10-server-10.22-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-server-10.22-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: 16dea3190be6e1433fa90ae0aa01872a36e540bdf180cc22d0351d4bcda293dc
-- filename: postgresql10-libs-10.21-1PGDG.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-libs-10.21-1PGDG.rhel8.x86_64.rpm
+    value: 8c2c4dfe3ec2ccbf3a3928ed23fe185a544de990fb828d75a4648c4b392d0ead
+- filename: postgresql10-libs-10.22-1PGDG.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/postgresql10-libs-10.22-1PGDG.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: c0dd48b719c009f02a03b7342be2d8d151f051e6339a04e682243bdd0e5faf43
+    value: e4560c6a0cfcd601777317da1e762d5888163ba6fedb3058c9843f86e39e64e2
 - filename: pgaudit12_10-1.2.4-1.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-8-x86_64/pgaudit12_10-1.2.4-1.rhel8.x86_64.rpm
   validation:
