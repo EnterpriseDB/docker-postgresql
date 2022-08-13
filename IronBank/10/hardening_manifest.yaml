@@ -201,26 +201,26 @@ resources:
   validation:
     type: sha256
     value: cd53b20b20d13d063d385c32dc11d9a7a3e9837f08ee4fa96eac1f93ca13a25d
-- filename: botocore-1.27.50-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a2/72/08fdbca030b7a0b472d490f87849b72239b9fa5dd8e668bcfcf8e2be11b5/botocore-1.27.50-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 697b76a58cfafa8ccbadcbf003efc693cf52170e562a8e2cfda9162d7d5aed20
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d
-- filename: boto3-1.24.50-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/4e/62/cb69f1ebf424ffc824b6d63bb538e67a73c555cb00460973951b57e7c5e3/boto3-1.24.50-py3-none-any.whl
+- filename: boto3-1.24.51-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/03/76/5e6cd7bbd85a22732258eca34b057bdd593432c2dd4af78136f8bce86d8f/boto3-1.24.51-py3-none-any.whl
   validation:
     type: sha256
-    value: c312c6ffb0c4eb94c6be2ab4471ca18ebcadc4a3abe048d1c9b437b7c6f1af10
+    value: 0f1689e487ea093be8a124cd5e9766cfcf2c153fc2af295c3853c5b63e2a73ed
 - filename: google_cloud_storage-2.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b3/bf/ae046b7499480a2d84f3385a5abe198122eae338ad224c7f2b6a8a4b48ff/google_cloud_storage-2.5.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 19a26c66c317ce542cea0830b7e787e8dac2588b6bfa4d3fd3b871ba16305ab0
+- filename: botocore-1.27.51-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/65/2a/a141513426d9252e29a9b5560c9d183f94959b7a6f4161ffc0a1b64edaf5/botocore-1.27.51-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 4ba1678bc78fbdac9a7e1c010b057ad9ed96dc6534d1c82718af08d746b652ed
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
