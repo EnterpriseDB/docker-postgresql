@@ -1,6 +1,6 @@
-https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-13.7-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-contrib-13.7-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-server-13.7-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-libs-13.7-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-13.8-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-contrib-13.8-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-server-13.8-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-libs-13.8-1PGDG.rhel8.x86_64.rpm
 https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/pgaudit15_13-1.5.2-1.rhel8.x86_64.rpm
 https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-13

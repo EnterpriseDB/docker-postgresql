@@ -19,10 +19,10 @@ ARG PG_GROUP_NAME="postgres"
 ARG PG_VERSION=13
 
 COPY ./RPM-GPG-KEY-PGDG-13 \
-	./postgresql13-13.7-1PGDG.rhel8.x86_64.rpm \
-	./postgresql13-contrib-13.7-1PGDG.rhel8.x86_64.rpm \
-	./postgresql13-server-13.7-1PGDG.rhel8.x86_64.rpm \
-	./postgresql13-libs-13.7-1PGDG.rhel8.x86_64.rpm \
+	./postgresql13-13.8-1PGDG.rhel8.x86_64.rpm \
+	./postgresql13-contrib-13.8-1PGDG.rhel8.x86_64.rpm \
+	./postgresql13-server-13.8-1PGDG.rhel8.x86_64.rpm \
+	./postgresql13-libs-13.8-1PGDG.rhel8.x86_64.rpm \
 	./pgaudit15_13-1.5.2-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
@@ -58,10 +58,10 @@ RUN dnf update -y --nodocs && \
 	redhat-lsb-core \
 	redhat-rpm-config \
 	rsync \
-	/tmp/postgresql13-13.7-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql13-contrib-13.7-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql13-server-13.7-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql13-libs-13.7-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql13-13.8-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql13-contrib-13.8-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql13-server-13.8-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql13-libs-13.8-1PGDG.rhel8.x86_64.rpm \
 	/tmp/pgaudit15_13-1.5.2-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
