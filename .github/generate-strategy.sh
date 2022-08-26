@@ -123,28 +123,34 @@ for version in "${ubi_versions[@]}"; do
 	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
 	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
+  # Define PostGIS version
+  postgisVersion="3.2"
+  if [ "${version}" -le 12 ]; then
+    postgisVersion="3.1"
+  fi
+
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
 	if [ "${version}" -gt '14' ]; then
 		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
-			"${version}-beta-postgis"
-			${aliases[$version]:+"${aliases[$version]}-postgis"}
-			"${fullVersion}-postgis-${releaseVersion}"
+			"${version}-beta-${postgisVersion}-postgis"
+			${aliases[$version]:+"${aliases[$version]}-${postgisVersion}-postgis"}
+			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
 		)
 	else
 		versionAliases=(
-			"${version}-postgis"
-			${aliases[$version]:+"${aliases[$version]}-postgis"}
-			"${fullVersion}-postgis-${releaseVersion}"
+			"${version}-${postgisVersion}-postgis"
+			${aliases[$version]:+"${aliases[$version]}-${postgisVersion}-postgis"}
+			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
 		)
 	fi
 
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("$fullVersion-postgis")
+		versionAliases+=("$fullVersion-${postgisVersion}-postgis")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
