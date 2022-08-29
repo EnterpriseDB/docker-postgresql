@@ -72,6 +72,8 @@ join() {
 }
 
 entries=()
+
+# UBI
 cd "$BASE_DIRECTORY"/UBI/
 for version in "${ubi_versions[@]}"; do
 
@@ -116,11 +118,13 @@ for version in "${ubi_versions[@]}"; do
 	)
 done
 
+# UBI PostGIS
 for version in "${ubi_versions[@]}"; do
 
 	# Read versions from the definition file
-	versionFile="${version}/.versions.json"
+	versionFile="${version}/.versions-postgis.json"
 	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
+	postgisVersion=$(jq -r '.POSTGIS_VERSION | split("-") | .[0]' "${versionFile}" | cut -f1,2 -d.)
 	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
 	# Initial aliases are "major version", "optional alias", "full version with release"
@@ -131,20 +135,20 @@ for version in "${ubi_versions[@]}"; do
 		versionAliases=(
 			"${version}-beta-postgis"
 			${aliases[$version]:+"${aliases[$version]}-postgis"}
-			"${fullVersion}-postgis-${releaseVersion}"
+			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
 		)
 	else
 		versionAliases=(
 			"${version}-postgis"
 			${aliases[$version]:+"${aliases[$version]}-postgis"}
-			"${fullVersion}-postgis-${releaseVersion}"
+			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
 		)
 	fi
 
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("$fullVersion-postgis")
+		versionAliases+=("$fullVersion-${postgisVersion}-postgis")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
@@ -152,10 +156,11 @@ for version in "${ubi_versions[@]}"; do
 
 	# Build the json entry
 	entries+=(
-		"{\"name\": \"UBI PostGIS ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+		"{\"name\": \"UBI PostGIS ${fullVersion}-${postgisVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 	)
 done
 
+# IronBank
 cd "$BASE_DIRECTORY"/IronBank/
 for version in "${ironbank_versions[@]}"; do
 
@@ -207,8 +212,8 @@ for version in "${ironbank_versions[@]}"; do
 	fi
 done
 
+# Debian
 cd "$BASE_DIRECTORY"/Debian/
-
 for version in "${debian_versions[@]}"; do
 
 	# Read versions from the definition file

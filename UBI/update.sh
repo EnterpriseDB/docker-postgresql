@@ -81,7 +81,7 @@ check_cloudsmith_pkgs() {
 	local arch="$1"; shift
 	local pg_major="$1"; shift
 
-	cloudsmith ls pkgs enterprisedb/edb -q "name:postgresql*-server$ distribution:el/${os_version} version:latest architecture:${arch}" -F json | \
+	cloudsmith ls pkgs enterprisedb/edb -q "name:postgresql*-server$ distribution:el/${os_version} version:latest architecture:${arch}" -F json 2> /dev/null | \
 			jq '.data[].filename' | \
 			sed -n 's/.*postgresql'"${pg_major}"'-server-\([0-9].*\)\.'"${arch}"'.*/\1/p' | \
 			sort -V
@@ -111,6 +111,27 @@ get_pgaudit_version() {
 	esac
 
 	echo "$pgaudit_version"
+}
+
+# Get the latest PostGIS package
+get_postgis_version() {
+	local os_version="$1"; shift
+	local arch="$1"; shift
+	local pg_major="$1"; shift
+
+	local base_url="https://yum.postgresql.org"
+	local regexp='postgis\d+_'"${pg_major}"'-([\d+\.]+-\d+.rhel'"${os_version}"').'"${arch}"'.rpm'
+
+	if [ "$pg_major" = 15 ]; then
+		base_url="$base_url/testing"
+		regexp='postgis\d+_'"${pg_major}"'-([\d+\.]+-.*.rhel'"${os_version}"').'"${arch}"'.rpm'
+	fi
+
+	postgisVersion=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
+		perl -ne '/<a.*href="'"${regexp}"'"/ && print "$1\n"' | \
+		sort -rV | head -n1)
+
+	echo "${postgisVersion}"
 }
 
 # record_version(versionFile, component, componentVersion)
@@ -219,16 +240,7 @@ generate_redhat() {
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
-	# Define PostGIS version
-	postgisVersion=32
-	if [ "${version}" -le 12 ]; then
-		postgisVersion=31
-	fi
-
 	rm -fr "${version:?}"/*
-	cp initdb-postgis.sh "$version/"
-	cp update-postgis.sh "$version/"
-
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
@@ -238,13 +250,128 @@ generate_redhat() {
 		Dockerfile.template \
 		>"$version/Dockerfile"
 	cp -r src/* "$version/"
+}
+
+generate_redhat_postgis() {
+	local version="$1"; shift
+	ubiRelease="8"
+	local versionFile="${version}/.versions-postgis.json"
+
+	imageReleaseVersion=1
+
+	# cache the result
+	get_latest_ubi_base >/dev/null
+	get_latest_barman_version >/dev/null
+
+	ubiVersion=$(get_latest_ubi_base)
+	if [ -z "$ubiVersion" ]; then
+		echo "Unable to retrieve latest UBI${ubiRelease} version"
+		exit 1
+	fi
+
+	postgresqlVersion=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
+	if [ -z "$postgresqlVersion" ]; then
+		echo "Unable to retrieve latest PostgreSQL $version version"
+		return
+	fi
+
+	barmanVersion=$(get_latest_barman_version)
+	if [ -z "$barmanVersion" ]; then
+		echo "Unable to retrieve latest Barman version"
+		exit 1
+	fi
+
+	pgauditVersion=$(get_pgaudit_version "$version")
+	if [ -z "$pgauditVersion" ]; then
+		echo "Unable to get the pgAudit version"
+		exit 1
+	fi
+
+	postgisVersion=$(get_postgis_version "${ubiRelease}" 'x86_64' "$version")
+	if [ -z "$postgisVersion" ]; then
+		echo "Unable to get the PostGIS version"
+		exit 1
+	fi
+
+	postgisMajor=$(echo ${postgisVersion} | cut -f1,2 -d.)
+	postgisMajorNoDot=${postgisMajor//./}
+
+	# Unreleased PostgreSQL versions
+	yumOptions=""
+	if [ "$version" = 15 ]; then
+		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
+	fi
+
+	# Output the full Postgresql and PostGIS package name
+	echo "$version: ${postgresqlVersion} - PostGIS ${postgisVersion}"
+
+	if [ -f "${versionFile}" ]; then
+		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
+		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
+		oldPostgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}")
+		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
+		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+		imageReleaseVersion=$oldImageReleaseVersion
+	else
+		imageReleaseVersion=1
+
+		echo "{}" > "${versionFile}"
+		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
+		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
+		record_version "${versionFile}" "POSTGIS_VERSION" "${postgisVersion}"
+		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" "${imageReleaseVersion}"
+
+		return
+	fi
+
+	newRelease="false"
+
+	# Detect an update of UBI image
+	if [ "$oldUbiVersion" != "$ubiVersion" ]; then
+		echo "UBI changed from $oldUbiVersion to $ubiVersion"
+		newRelease="true"
+		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
+	fi
+
+	# Detect an update of Barman
+	if [ "$oldBarmanVersion" != "$barmanVersion" ]; then
+		echo "Barman changed from $oldBarmanVersion to $barmanVersion"
+		newRelease="true"
+		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+	fi
+
+	if [ "$newRelease" = "true" ]; then
+		imageReleaseVersion=$((oldImageReleaseVersion + 1))
+		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
+	fi
+
+	# Detect an update of PostgreSQL
+	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
+		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlVersion"
+		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
+		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" 1
+		imageReleaseVersion=1
+	fi
+
+	# Detect an update of PostGIS
+	if [ "$oldPostgisVersion" != "$postgisVersion" ]; then
+		echo "PostGIS changed from $oldPostgisVersion to $postgisVersion"
+		record_version "${versionFile}" "POSTGIS_VERSION" "${postgisVersion}"
+		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" 1
+		imageReleaseVersion=1
+	fi
+
+	cp initdb-postgis.sh "$version/"
+	cp update-postgis.sh "$version/"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
-		-e 's/%%POSTGIS_MAJOR%%/'"$postgisVersion"'/g' \
+		-e 's/%%POSTGIS_VERSION%%/'"$postgisVersion"'/g' \
+		-e 's/%%POSTGIS_MAJOR%%/'"$postgisMajorNoDot"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-postgis.template \
 		>"$version/Dockerfile.postgis"
@@ -271,4 +398,5 @@ update_requirements
 
 for version in "${versions[@]}"; do
 	generate_redhat "${version}"
+	generate_redhat_postgis "${version}"
 done
