@@ -176,11 +176,11 @@ resources:
   validation:
     type: sha256
     value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
-- filename: boto3-1.24.62-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/13/50/6674524bdea33da8cb9326d0e5ec7e062a46d9ee70cb409e061d468a3db7/boto3-1.24.62-py3-none-any.whl
+- filename: boto3-1.24.63-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/aa/77/eecce7141d891baf2a19185c4e99a2cd8d364e5947656b04b88d0824514d/boto3-1.24.63-py3-none-any.whl
   validation:
     type: sha256
-    value: 84b962f18506ad495dc973aeb5168697ee882497c01430dddeba5e8339db7932
+    value: 719bfafbe4e076055aa1a51269ffdbe9c61446679b67f31d61c237976661154c
 - filename: googleapis_common_protos-1.56.4-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e2/fd/d9efa2085bd762fba3a637eb3e36d76d72eb6e083d170aeaca65a75f1f9c/googleapis_common_protos-1.56.4-py2.py3-none-any.whl
   validation:
@@ -196,6 +196,11 @@ resources:
   validation:
     type: sha256
     value: f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
+- filename: botocore-1.27.63-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5b/31/de17ce54ccada53087efe5d751abb377ac570b3d4b219f17d187daa4579c/botocore-1.27.63-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8567dee549430a53210c6b898dea3a8fc8ee9d7934ec1df7545c547cacbb2b8f
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -231,11 +236,6 @@ resources:
   validation:
     type: sha256
     value: 39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d
-- filename: botocore-1.27.62-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ab/dd/3458ba5d36f464bb4fe0fdcc9636b621386cb857ee1f66a5e397656e395a/botocore-1.27.62-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 69682c874dc8ed1856bffd203786c9591fb76a1946d3dcc516bda1ee6a6989f3
 - filename: protobuf-4.21.5-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/a8/93/1d71d31bc80e569412c808a23c53df87c935ed3dbd787056bcd5b2929cbe/protobuf-4.21.5-cp37-abi3-manylinux2014_x86_64.whl
   validation:
