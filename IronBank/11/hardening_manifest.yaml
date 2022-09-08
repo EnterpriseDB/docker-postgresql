@@ -141,11 +141,6 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: boto3-1.24.67-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/3c/b7/d20f982f9f364d69cc0f2559d7611cbad034982acf7b2309f9079de2f400/boto3-1.24.67-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 22d214a480103595098e73259021a1115966c057f421c28b7a117121a5a1ed89
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -196,6 +191,11 @@ resources:
   validation:
     type: sha256
     value: f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
+- filename: boto3-1.24.68-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5b/fd/7a799e82d223c055e1e9b30f08d689ff21f9efb0074562a72bf31af97267/boto3-1.24.68-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 428d94d7c79b6ea65ade428afbd89fb1b869da631bb5acf22230b5b0b7486290
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -226,11 +226,11 @@ resources:
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
-- filename: botocore-1.27.67-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/94/d3/1df7cb5da1d892283e1fba48b61ac0876b89f93cee98ecb956732dc7f215/botocore-1.27.67-py3-none-any.whl
+- filename: botocore-1.27.68-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/81/78/698fc6bffad58e74c21745b4c4eea126e22ff028374dff62f2e77d6a1b33/botocore-1.27.68-py3-none-any.whl
   validation:
     type: sha256
-    value: 05832d3c3691bcc02c4376ea6ed04cade24bc564aa54d60dc54c7098e8397184
+    value: d7decff8d5d94c265ad533c11ba0d653acf0819fcdf1049452076cf8fc0f8946
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
