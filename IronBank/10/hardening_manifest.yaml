@@ -76,11 +76,6 @@ resources:
   validation:
     type: sha256
     value: b0d62e67ec6d47365eebb12c50bc96f7b22d06b359f56ce7f904b095cb46b195
-- filename: PyJWT-2.4.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/1c/fb/b82e9601b00d88cf8bbee1f39b855ae773f9d5bcbcedb3801b2f72460696/PyJWT-2.4.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 72d1d253f32dbd4f5c88eaf1fdc62f3a19f676ccbadb9dbc5d07e951b2b26daf
 - filename: portalocker-2.5.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a9/0a/21422dc681e3e59ce5ec4051015de4c2074bd0e6759099c018471f3dc4e3/portalocker-2.5.1-py2.py3-none-any.whl
   validation:
@@ -96,11 +91,21 @@ resources:
   validation:
     type: sha256
     value: 9c10e6cb32e0b6b8eaafc1c9a68bc3b2ff71505e0c5b8200799582d8b9f22947
+- filename: PyJWT-2.5.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/37/82/43382713811f0ddd9fff1ed778af6818cc2080ccd425e3eba540be690fb6/PyJWT-2.5.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8d82e7087868e94dd8d7d418e5088ce64f7daab4b36db654cbaedb46f9d1ca80
 - filename: azure_identity-1.10.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/84/d4/56eeaa097dd15123aaed85346e9ab3701c62650cf81e83d56600f5f30113/azure_identity-1.10.0-py3-none-any.whl
   validation:
     type: sha256
     value: b386f1ccbea6a48b9ab7e7f162adc456793c345193a7c1a713959562b08dcbbd
+- filename: types_cryptography-3.3.23-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/61/a0/fba2c191b4a0741b037032d2ce99afb959be84fa758ef185b450fa594c1a/types_cryptography-3.3.23-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 913b3e66a502edbf4bfc3bb45e33ab476040c56942164a7ff37bd1f0ef8ef783
 - filename: msal_extensions-1.0.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
   validation:
