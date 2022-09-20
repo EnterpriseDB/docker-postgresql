@@ -223,9 +223,6 @@ update_requirements() {
 	# ugly hack; not very proud of this
 	echo "pip == 21.3.1" >> requirements.in
 
-	# TODO: Remove once barman removes the `protobuf<3.18` requirement
-	echo "google-api-core <= 2.8.2" >> requirements.in
-
 	# This will take the requirements.in file and generate a file
 	# requirements.txt with the hashes for the required packages
 	# --allow-unsafe is used for pip. This gets re-installed to fix crypto/rust issues
