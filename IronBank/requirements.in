@@ -1,3 +1,2 @@
 barman[cloud,azure,snappy,google] == 3.1.0
 pip == 21.3.1
-google-api-core <= 2.8.2
