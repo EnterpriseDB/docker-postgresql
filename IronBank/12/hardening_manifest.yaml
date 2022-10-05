@@ -146,26 +146,26 @@ resources:
   validation:
     type: sha256
     value: 726b86f733dc76218ce45b7a3254b61ba4f0cc3d68b7621be4985248c92ee483
-- filename: boto3-1.24.85-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ed/1d/854b64556976f41ed2b4fe61d89a43a674bf9c9f087a86d0c21034d8f239/boto3-1.24.85-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 714b06755bd76b2001f7099a8e406604c0a0e76a8ff0425480bf1555bcbecee1
 - filename: googleapis_common_protos-1.56.4-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e2/fd/d9efa2085bd762fba3a637eb3e36d76d72eb6e083d170aeaca65a75f1f9c/googleapis_common_protos-1.56.4-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 8eb2cbc91b69feaf23e32452a7ae60e791e09967d81d4fcc7fc388182d1bd394
-- filename: botocore-1.27.85-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b0/e7/deea9d49b05d26fb5b189483ad6a659a7100a2c9826145801d60c9ba0b8f/botocore-1.27.85-py3-none-any.whl
+- filename: botocore-1.27.86-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/4b/0a/d06fd7a3e933f539a7f7e2ae526be09bbe56250de50bdd8b0bc72e1f1c9b/botocore-1.27.86-py3-none-any.whl
   validation:
     type: sha256
-    value: 06b3ebacbe9a532074db4ad68040235e3c7bd52741e3ff6710cef8ab144ecdfe
+    value: 830359c8bf22f2a386431825060ff9666519c032f2ccd4a69f1a702f7195f6c0
 - filename: barman-3.1.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/90/70/5a2b2f5efe74c851fe3dcfd0d3001f49e069bc7a1c049d593f375e7335af/barman-3.1.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 8a2a85667f274deb93beb026c2492b9017fe51caf494d11ce353aab124f3930a
+- filename: boto3-1.24.86-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/30/e6/b009e82e24c1ec1b20b2a71147781c7bf24fe79a0b0abcd1a3966142ec5a/boto3-1.24.86-py3-none-any.whl
+  validation:
+    type: sha256
+    value: c1d4e5d73d7720402c6538965efd6df5807492db8a71f30221dc11355d06db05
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
