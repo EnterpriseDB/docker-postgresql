@@ -9,8 +9,8 @@ azure-core==1.25.1
 azure-identity==1.11.0
 azure-storage-blob==12.13.1
 barman[azure,cloud,google,snappy]==3.1.0
-boto3==1.24.86
-botocore==1.27.86
+boto3==1.24.87
+botocore==1.27.87
 cachetools==5.2.0
 certifi==2022.9.24
 cffi==1.15.1
