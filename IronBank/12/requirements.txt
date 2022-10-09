@@ -16,7 +16,7 @@ certifi==2022.9.24
 cffi==1.15.1
 charset-normalizer==2.1.1
 cryptography==38.0.1
-google-api-core==2.10.1
+google-api-core==2.10.2
 google-auth==2.12.0
 google-cloud-core==2.3.2
 google-cloud-storage==2.5.0

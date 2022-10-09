@@ -151,6 +151,11 @@ resources:
   validation:
     type: sha256
     value: 8eb2cbc91b69feaf23e32452a7ae60e791e09967d81d4fcc7fc388182d1bd394
+- filename: google_api_core-2.10.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/15/fb/b641357b0f8fc540c766bc8f66048de0398d0a3e0cad7c4a08e2fbee733a/google_api_core-2.10.2-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 34f24bd1d5f72a8c4519773d99ca6bf080a6c4e041b4e9f024fe230191dda62e
 - filename: barman-3.1.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/90/70/5a2b2f5efe74c851fe3dcfd0d3001f49e069bc7a1c049d593f375e7335af/barman-3.1.0-py2.py3-none-any.whl
   validation:
@@ -236,11 +241,6 @@ resources:
   validation:
     type: sha256
     value: 19a26c66c317ce542cea0830b7e787e8dac2588b6bfa4d3fd3b871ba16305ab0
-- filename: google_api_core-2.10.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a3/53/a3021487219a54c92d88be0bd182282b8103c65a9e27cb2e8339ec799e3d/google_api_core-2.10.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 92d17123cfe399b5ef7e026c63babf978d8475e1ac877919eb7933e25dea2273
 - filename: psycopg2-2.9.4.tar.gz
   url: https://files.pythonhosted.org/packages/8d/d7/277e23b708a0429b6b3d50e86e52b791156dfbfa81917d34ef6d7b435b84/psycopg2-2.9.4.tar.gz
   validation:
