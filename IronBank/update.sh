@@ -37,7 +37,7 @@ get_postgresql_version() {
 	local pg_major="$1"; shift
 
 	local base_url="https://yum.postgresql.org"
-	if [ "$pg_major" = 15 ]; then
+	if [ "$pg_major" -gt '15' ]; then
 		base_url="$base_url/testing"
 	fi
 
@@ -66,7 +66,7 @@ get_pgaudit_version() {
 	local pg_major="$1"; shift
 
 	local base_url="https://yum.postgresql.org"
-	if [ "$pg_major" = 15 ]; then
+	if [ "$pg_major" -gt '15' ]; then
 		base_url="$base_url/testing"
 	fi
 
@@ -76,6 +76,7 @@ get_pgaudit_version() {
 		12) ver=14 ;;
 		13) ver=15 ;;
 		14) ver=16 ;;
+		15) ver=17 ;;
 	esac
 
 	pgaudit_version=$(curl -s -L "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
