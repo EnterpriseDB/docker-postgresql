@@ -12,7 +12,7 @@ labels:
   org.opencontainers.image.title: docker-postgresql
   org.opencontainers.image.url: https://docs.enterprisedb.io/docker-postgresql/
   org.opencontainers.image.vendor: EnterpriseDB
-  org.opencontainers.image.version: '%%PG_MAJOR%%'
+  org.opencontainers.image.version: '15'
 maintainers:
 - cht_member: true
   email: adrian.noland@enterprisedb.com
@@ -28,7 +28,7 @@ maintainers:
   username: rahill59
 name: enterprisedb/docker-postgresql
 tags:
-- '%%POSTGRES_VERSION%%'
+- '15.0-1PGDG.rhel8'
 - latest
 resources:
 - filename: argcomplete-2.0.0-py2.py3-none-any.whl
