@@ -224,7 +224,7 @@ for version in "${debian_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '14' ]; then
+	if [ "${version}" -gt '15' ]; then
 		fullVersion="${fullVersion//'~'/-}"
 		versionAliases=(
 			"${version}-beta-debian"
