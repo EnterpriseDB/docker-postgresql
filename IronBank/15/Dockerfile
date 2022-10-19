@@ -23,7 +23,7 @@ COPY ./RPM-GPG-KEY-PGDG-15 \
 	./postgresql15-contrib-15.0-1PGDG.rhel8.x86_64.rpm \
 	./postgresql15-server-15.0-1PGDG.rhel8.x86_64.rpm \
 	./postgresql15-libs-15.0-1PGDG.rhel8.x86_64.rpm \
-	./pgaudit17_15-1.7-beta1_1.rhel8.x86_64.rpm \
+	./pgaudit17_15-1.7.0-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
 	./*.tar.gz \
@@ -62,7 +62,7 @@ RUN dnf update -y --nodocs && \
 	/tmp/postgresql15-contrib-15.0-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql15-server-15.0-1PGDG.rhel8.x86_64.rpm \
 	/tmp/postgresql15-libs-15.0-1PGDG.rhel8.x86_64.rpm \
-	/tmp/pgaudit17_15-1.7-beta1_1.rhel8.x86_64.rpm \
+	/tmp/pgaudit17_15-1.7.0-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
 # Install barman-cloud

@@ -96,6 +96,11 @@ resources:
   validation:
     type: sha256
     value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
+- filename: portalocker-2.6.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/2a/59/dab72d0b8859a410a83dcaffb84781ffc467651b79c827a435c8945add05/portalocker-2.6.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 102ed1f2badd8dec9af3d732ef70e94b215b85ba45a8d7ff3c0003f19b442f4e
 - filename: types_cryptography-3.3.23.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/5e/e1/7b29931d0a9e97a6d943b3ceed6c055f459428783cbe827faeabfa8f25b6/types_cryptography-3.3.23.1-py3-none-any.whl
   validation:
@@ -106,11 +111,6 @@ resources:
   validation:
     type: sha256
     value: 4f2c9f67e9821cad2e5f480bc8d83b8742896f1242dba247911072d4fa94c192
-- filename: portalocker-2.5.1-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a9/0a/21422dc681e3e59ce5ec4051015de4c2074bd0e6759099c018471f3dc4e3/portalocker-2.5.1-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 400bae275366e7b840d4baad0654c6ec5994e07c40c423d78e9e1340279b8352
 - filename: azure_identity-1.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d8/44/47d8af284ed2e6fa066b669f1f72dab09aeb230d52291bb26a964fd2b20b/azure_identity-1.11.0-py3-none-any.whl
   validation:
@@ -146,11 +146,11 @@ resources:
   validation:
     type: sha256
     value: 2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5
-- filename: botocore-1.27.92-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/24/c0/3f70efc9b8b588cbced1d0eebe479a81871c25bc95b83bca7aff03c2d7d0/botocore-1.27.92-py3-none-any.whl
+- filename: protobuf-4.21.8-cp37-abi3-manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/33/ee/dd3579bc212e85adccdf00cbd1fb48dd04e6b56a681c05167e14f7435b1b/protobuf-4.21.8-cp37-abi3-manylinux2014_x86_64.whl
   validation:
     type: sha256
-    value: b49c34b80c782625905be75e669da4b42a99f074e0aa3007e15ccc6955682a07
+    value: 4761201b93e024bb70ee3a6a6425d61f3152ca851f403ba946fb0cde88872661
 - filename: googleapis_common_protos-1.56.4-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e2/fd/d9efa2085bd762fba3a637eb3e36d76d72eb6e083d170aeaca65a75f1f9c/googleapis_common_protos-1.56.4-py2.py3-none-any.whl
   validation:
@@ -166,6 +166,11 @@ resources:
   validation:
     type: sha256
     value: 8a2a85667f274deb93beb026c2492b9017fe51caf494d11ce353aab124f3930a
+- filename: boto3-1.24.93-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/26/5f/e027ea5c726287c512206807e13703c42d59dd6cd35d943f5c179631c69f/boto3-1.24.93-py3-none-any.whl
+  validation:
+    type: sha256
+    value: db9f04eeb942e7998d1971c35e1658e2d9d6687166a4ebc036f484a71a79bbeb
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -186,21 +191,11 @@ resources:
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
-- filename: boto3-1.24.92-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/12/46/0958e9357e27262b209afce0828329122b00701f5d35567f22ff9791678d/boto3-1.24.92-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 3c6cc4e9e38cf4523267f89eb90c0b6084fa415cb4f44e3bf0cad6199340cc92
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: protobuf-4.21.7-cp37-abi3-manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/b7/1c/2d9ea79c2221732fca8433e048fe6f65caf8cf3e7f6d6d67f77b41984717/protobuf-4.21.7-cp37-abi3-manylinux2014_x86_64.whl
-  validation:
-    type: sha256
-    value: b019c79e23a80735cc8a71b95f76a49a262f579d6b84fd20a0b82279f40e2cc1
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
@@ -241,6 +236,11 @@ resources:
   validation:
     type: sha256
     value: 19a26c66c317ce542cea0830b7e787e8dac2588b6bfa4d3fd3b871ba16305ab0
+- filename: botocore-1.27.93-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/86/70/0843f9a93a97c631a13827f8b993078e595c6291f3147f02b52fa085d35e/botocore-1.27.93-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 7648891692c3c69038eef902f8d64af59f91211f713fe9072fb83ecdd310dbbc
 - filename: psycopg2-2.9.4.tar.gz
   url: https://files.pythonhosted.org/packages/8d/d7/277e23b708a0429b6b3d50e86e52b791156dfbfa81917d34ef6d7b435b84/psycopg2-2.9.4.tar.gz
   validation:
@@ -271,11 +271,11 @@ resources:
   validation:
     type: sha256
     value: 20182ce31ea69851dead3b6e05753c22cad3c7e8965ab30ba85fbde12c2b202f
-- filename: pgaudit17_15-1.7-beta1_1.rhel8.x86_64.rpm
-  url: https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgaudit17_15-1.7-beta1_1.rhel8.x86_64.rpm
+- filename: pgaudit17_15-1.7.0-1.rhel8.x86_64.rpm
+  url: https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgaudit17_15-1.7.0-1.rhel8.x86_64.rpm
   validation:
     type: sha256
-    value: d3e7af3b6da433ef0e3eb12ac0691bf69ba799679e47d913097a69734246ccd9
+    value: 0b8fad8a131553241066387f30b0d0f357186bcfefc03fd573d48084ea241447
 - filename: RPM-GPG-KEY-PGDG-15
   url: https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-15
   validation:
