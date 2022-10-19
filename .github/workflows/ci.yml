@@ -70,7 +70,7 @@ jobs:
           echo "::set-output name=tags::${RESULT%,}"
 
       - name: Build ${{ matrix.name }}
-        uses: docker/build-push-action@v3.1.1
+        uses: docker/build-push-action@v3
         with:
           context: ${{ matrix.dir }}
           file: ${{ matrix.file }}
@@ -100,6 +100,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Decide whether the needed jobs succeeded or failed
-      uses: re-actors/alls-green@v1.2.1
+      uses: re-actors/alls-green@v1.2.2
       with:
         jobs: ${{ toJSON(needs) }}
