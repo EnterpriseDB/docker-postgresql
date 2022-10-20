@@ -7,10 +7,10 @@
 argcomplete==2.0.0
 azure-core==1.26.0
 azure-identity==1.11.0
-azure-storage-blob==12.14.0
+azure-storage-blob==12.14.1
 barman[azure,cloud,google,snappy]==3.1.0
-boto3==1.24.93
-botocore==1.27.93
+boto3==1.24.94
+botocore==1.27.94
 cachetools==5.2.0
 certifi==2022.9.24
 cffi==1.15.1
