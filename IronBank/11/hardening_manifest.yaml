@@ -161,11 +161,16 @@ resources:
   validation:
     type: sha256
     value: 34f24bd1d5f72a8c4519773d99ca6bf080a6c4e041b4e9f024fe230191dda62e
-- filename: botocore-1.29.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/6d/ca/59535930fe8da0956e92a21ea8c71e41fe637bd508c13074cfbebb6d0660/botocore-1.29.0-py3-none-any.whl
+- filename: botocore-1.29.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/85/ff/88c1c389191686207aa7fbc1d9d94a7601f714a7e49b66d9dadfea8e9c49/botocore-1.29.1-py3-none-any.whl
   validation:
     type: sha256
-    value: c706640f8cf9297d2af87fc711394631afc14aaa225c7554e220964b5047b47d
+    value: 75c65130ffab527d0a3d948c6d87eb8eac210e079e1ff2768c66484be57bb77c
+- filename: boto3-1.26.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c7/8a/feb879097d15cf59198f96e2755efe33d8c282a8428e051bc2b6034296b7/boto3-1.26.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 3b0fa19390895e664045713f2e47e63ad29c9f98b7bee6836dec7124953e48b8
 - filename: google_cloud_storage-2.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b3/bf/ae046b7499480a2d84f3385a5abe198122eae338ad224c7f2b6a8a4b48ff/google_cloud_storage-2.5.0-py2.py3-none-any.whl
   validation:
@@ -181,11 +186,6 @@ resources:
   validation:
     type: sha256
     value: f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
-- filename: boto3-1.26.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/64/6a/944b995c2483f9c3f7f7710be24a681cdd2007ffce8c69bfeb3a927ce2bf/boto3-1.26.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 0a19d07a39d69b8e84e24d75474bbf4e737b1749d0c665503dfc2446f321e1f0
 - filename: protobuf-4.21.9-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/fe/00/2bd2cb913a9b69b1379f1c18b6cae88b9e5f337a44b9e84b7c6bf0962c83/protobuf-4.21.9-cp37-abi3-manylinux2014_x86_64.whl
   validation:
