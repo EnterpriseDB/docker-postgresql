@@ -43,7 +43,6 @@ jobs:
           rm -rf ~/phe
 
       - name: Docker meta
-        id: docker-meta
         env:
           BUILD_ARGS: ${{ toJson(matrix.build_args) }}
           TAGS: ${{ toJson(matrix.tags) }}
@@ -66,8 +65,8 @@ jobs:
           ARGS="${ARGS//'%'/'%25'}"
           ARGS="${ARGS//$'\n'/'%0A'}"
           ARGS="${ARGS//$'\r'/'%0D'}"
-          echo "::set-output name=build-args::${ARGS}"
-          echo "::set-output name=tags::${RESULT%,}"
+          echo "BUILD-ARGS=${ARGS}" >> $GITHUB_ENV
+          echo "TAGS=${RESULT%,}" >> $GITHUB_ENV
 
       - name: Build ${{ matrix.name }}
         uses: docker/build-push-action@v3
@@ -78,10 +77,10 @@ jobs:
             "cs_script=${{ secrets.CS_SCRIPT }}"
             "subscription=${{ secrets.SUBSCRIPTION }}"
           push: false
-          tags: ${{ steps.docker-meta.outputs.tags }}
+          tags: ${{ env.TAGS }}
           load: true
           build-args: |
-            ${{ steps.docker-meta.outputs.build-args }}
+            ${{ env.BUILD-ARGS }}
 
       - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
