@@ -62,10 +62,12 @@ jobs:
           do
             RESULT="${RESULT},${IMAGE_NAME}:${tag}"            
           done
-          ARGS="${ARGS//'%'/'%25'}"
-          ARGS="${ARGS//$'\n'/'%0A'}"
-          ARGS="${ARGS//$'\r'/'%0D'}"
-          echo "BUILD-ARGS=${ARGS}" >> $GITHUB_ENV
+          
+          # Handling multiline GitHub Env
+          echo "BUILD-ARGS<<EOF" >> $GITHUB_ENV
+          echo "$ARGS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          
           echo "TAGS=${RESULT%,}" >> $GITHUB_ENV
 
       - name: Build ${{ matrix.name }}
