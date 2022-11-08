@@ -89,6 +89,8 @@ jobs:
 
     - name: Dockle scan
       uses: erzz/dockle-action@v1
+      env:
+        DOCKLE_IGNORES: CIS-DI-0009
       with:
         image: "quay.io/${{ env.IMAGE_STAGING }}:${{ matrix.tags[0] }}"
         exit-code: '1'
