@@ -41,7 +41,6 @@ jobs:
       uses: docker/setup-qemu-action@v2
 
     - name: Docker meta
-      id: docker-meta
       env:
         TAGS: ${{ toJson(matrix.tags) }}
       run: |
@@ -55,10 +54,9 @@ jobs:
             RESULT="${RESULT},quay.io/${IMAGE_RELEASE}:${tag},ghcr.io/${IMAGE_RELEASE}:${tag}"
           fi
         done
-        echo "::set-output name=tags::${RESULT%,}"
+        echo "TAGS=${RESULT%,}" >> $GITHUB_ENV
 
     - name: Set up Docker Buildx
-      id: buildx
       uses: docker/setup-buildx-action@v2
 
     - name: Login to quay.io
@@ -85,7 +83,7 @@ jobs:
           "subscription=${{ secrets.SUBSCRIPTION }}"
         push: false
         load: true
-        tags: ${{ steps.docker-meta.outputs.tags }}
+        tags: ${{ env.TAGS }}
 
     - name: Dockle scan
       uses: erzz/dockle-action@v1
@@ -109,7 +107,7 @@ jobs:
         # Available architecture on UBI8 are: linux/amd64, linux/s390x, linux/ppc64le
         platforms: ${{ matrix.platforms }}
         push: true
-        tags: ${{ steps.docker-meta.outputs.tags }}
+        tags: ${{ env.TAGS }}
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
 
     - name: Slack Notification
