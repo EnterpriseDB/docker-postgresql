@@ -19,10 +19,10 @@ ARG PG_GROUP_NAME="postgres"
 ARG PG_VERSION=12
 
 COPY ./RPM-GPG-KEY-PGDG-12 \
-	./postgresql12-12.12-1PGDG.rhel8.x86_64.rpm \
-	./postgresql12-contrib-12.12-1PGDG.rhel8.x86_64.rpm \
-	./postgresql12-server-12.12-1PGDG.rhel8.x86_64.rpm \
-	./postgresql12-libs-12.12-1PGDG.rhel8.x86_64.rpm \
+	./postgresql12-12.13-1PGDG.rhel8.x86_64.rpm \
+	./postgresql12-contrib-12.13-1PGDG.rhel8.x86_64.rpm \
+	./postgresql12-server-12.13-1PGDG.rhel8.x86_64.rpm \
+	./postgresql12-libs-12.13-1PGDG.rhel8.x86_64.rpm \
 	./pgaudit14_12-1.4.3-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
@@ -58,10 +58,10 @@ RUN dnf update -y --nodocs && \
 	redhat-lsb-core \
 	redhat-rpm-config \
 	rsync \
-	/tmp/postgresql12-12.12-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql12-contrib-12.12-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql12-server-12.12-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql12-libs-12.12-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql12-12.13-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql12-contrib-12.13-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql12-server-12.13-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql12-libs-12.13-1PGDG.rhel8.x86_64.rpm \
 	/tmp/pgaudit14_12-1.4.3-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 

@@ -19,10 +19,10 @@ ARG PG_GROUP_NAME="postgres"
 ARG PG_VERSION=11
 
 COPY ./RPM-GPG-KEY-PGDG-11 \
-	./postgresql11-11.17-1PGDG.rhel8.x86_64.rpm \
-	./postgresql11-contrib-11.17-1PGDG.rhel8.x86_64.rpm \
-	./postgresql11-server-11.17-1PGDG.rhel8.x86_64.rpm \
-	./postgresql11-libs-11.17-1PGDG.rhel8.x86_64.rpm \
+	./postgresql11-11.18-1PGDG.rhel8.x86_64.rpm \
+	./postgresql11-contrib-11.18-1PGDG.rhel8.x86_64.rpm \
+	./postgresql11-server-11.18-1PGDG.rhel8.x86_64.rpm \
+	./postgresql11-libs-11.18-1PGDG.rhel8.x86_64.rpm \
 	./pgaudit13_11-1.3.4-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
@@ -58,10 +58,10 @@ RUN dnf update -y --nodocs && \
 	redhat-lsb-core \
 	redhat-rpm-config \
 	rsync \
-	/tmp/postgresql11-11.17-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql11-contrib-11.17-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql11-server-11.17-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql11-libs-11.17-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql11-11.18-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql11-contrib-11.18-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql11-server-11.18-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql11-libs-11.18-1PGDG.rhel8.x86_64.rpm \
 	/tmp/pgaudit13_11-1.3.4-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
