@@ -63,7 +63,7 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
   bash /run/secrets/subscription.sh ; \
   yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
   yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-x86_64-rpms \
-  postgis33_15-3.3.1-1.rhel8 ; \
+  postgis33_15-3.3.2-1.rhel8 ; \
   yum -y remove epel-release ; \
   subscription-manager remove --all ; \
   subscription-manager unregister ; \
