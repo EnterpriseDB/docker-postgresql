@@ -13,6 +13,7 @@ LABEL name="PostgreSQL + PostGIS Container Images" \
 COPY root/ /
 
 RUN set -xe ; \
+	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
