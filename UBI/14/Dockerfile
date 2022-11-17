@@ -16,6 +16,7 @@ ARG TARGETARCH
 RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 	set -xe ; \
 	bash /run/secrets/cs_script.sh ; \
+	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	if [ "$TARGETARCH" == 'amd64' ]; then \
