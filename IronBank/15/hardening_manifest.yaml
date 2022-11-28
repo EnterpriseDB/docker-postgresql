@@ -76,11 +76,6 @@ resources:
   validation:
     type: sha256
     value: 8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
-- filename: cryptography-38.0.3-cp36-abi3-manylinux_2_28_x86_64.whl
-  url: https://files.pythonhosted.org/packages/57/68/5fe4461ce8c0611eb09452e613512e1ddf62afcafc1ef4003d26345b3efe/cryptography-38.0.3-cp36-abi3-manylinux_2_28_x86_64.whl
-  validation:
-    type: sha256
-    value: 5419a127426084933076132d317911e3c6eb77568a1ce23c3ac1e12d111e61e0
 - filename: PyJWT-2.6.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/40/46/505f0dd53c14096f01922bf93a7abb4e40e29a06f858abbaa791e6954324/PyJWT-2.6.0-py3-none-any.whl
   validation:
@@ -106,6 +101,11 @@ resources:
   validation:
     type: sha256
     value: d2f1c26368ecdc28c8657d457352faa0b81b1845a7b889d8676787721ba86792
+- filename: cryptography-38.0.4-cp36-abi3-manylinux_2_28_x86_64.whl
+  url: https://files.pythonhosted.org/packages/26/f8/a81170a816679fca9ccd907b801992acfc03c33f952440421c921af2cc57/cryptography-38.0.4-cp36-abi3-manylinux_2_28_x86_64.whl
+  validation:
+    type: sha256
+    value: ce127dd0a6a0811c251a6cddd014d292728484e530d80e872ad9806cfb1c5b3c
 - filename: cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/b7/8b/06f30caa03b5b3ac006de4f93478dbd0239e2a16566d81a106c322dc4f79/cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
