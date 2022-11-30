@@ -1,5 +1,6 @@
 # vim:set ft=dockerfile:
 FROM quay.io/enterprisedb/edb-ubi:%%UBI_VERSION%%
+ARG SUBSCRIPTION_NAME
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL + PostGIS Container Images" \
@@ -61,7 +62,8 @@ RUN mkdir /docker-entrypoint-initdb.d
 # Postgis
 RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
   set -xe ; \
-  bash /run/secrets/subscription.sh ; \
+  rm -f /etc/rhsm-host ; \
+  SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
   yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
   yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-x86_64-rpms \
   postgis%%POSTGIS_MAJOR%%_%%PG_MAJOR%%-%%POSTGIS_VERSION%% ; \
