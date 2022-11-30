@@ -72,6 +72,7 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
   subscription-manager unregister ; \
   subscription-manager clean ; \
   yum -y clean all --enablerepo='*' ; \
+  ln -sf /run/secrets/rhsm /etc/rhsm-host ; \
   rm /var/log/rhsm/rhsm.log
 
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
