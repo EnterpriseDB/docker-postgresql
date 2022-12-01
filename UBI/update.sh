@@ -93,6 +93,31 @@ check_cloudsmith_pkgs() {
 			sort -V
 }
 
+
+compare_architecture_pkgs() {
+	local x86_64="$1"; shift
+	local ppc64le="$1"; shift
+	local s390x="$1"; shift
+
+	if [[ -z "$x86_64" || -z "ppc64le" || -z "s390x" ]]; then
+		echo "Unable to retrieve at least one of the multi-arch packages." >&2
+		echo "x86_64: ${x86_64}" >&2
+		echo "ppc64le: ${ppc64le}" >&2
+		echo "s390x: ${s390x}" >&2
+		false; return
+	fi
+
+	if [[ ${x86_64} != ${ppc64le} || ${x86_64} != ${s390x} ]]; then
+		echo "Version discrepancy between the architectures." >&2
+		echo "x86_64: ${x86_64}" >&2
+		echo "ppc64le: ${ppc64le}" >&2
+		echo "s390x: ${s390x}" >&2
+		false; return
+	fi
+
+	true
+}
+
 # Get the latest Barman version
 latest_barman_version=
 _raw_get_latest_barman_version() {
@@ -176,24 +201,13 @@ generate_redhat() {
 	fi
 
 	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
-	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
-	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 
 	# Multi arch is available from v11 onwards
 	if [ "$version" -gt '10' ]; then
-		if [[ -z "$pg_x86_64" || -z "pg_ppc64le" || -z "pg_s390x" ]]; then
-			echo "Unable to retrieve at least one of PostgreSQL $version architectures."
-			echo "x86_64: ${pg_x86_64}"
-			echo "ppc64le: ${pg_ppc64le}"
-			echo "s390x: ${pg_s390x}"
-			return
-		fi
+		pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
+		pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 
-		if [[ ${pg_x86_64} != ${pg_ppc64le} || ${pg_x86_64} != ${pg_s390x} ]]; then
-			echo "Version discrepancy between the PostgreSQL $version architectures."
-			echo "x86_64: ${pg_x86_64}"
-			echo "ppc64le: ${pg_ppc64le}"
-			echo "s390x: ${pg_s390x}"
+		if ! compare_architecture_pkgs "$pg_x86_64" "$pg_ppc64le" "$pg_s390x"; then
 			return
 		fi
 	fi
