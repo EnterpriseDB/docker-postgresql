@@ -196,6 +196,11 @@ resources:
   validation:
     type: sha256
     value: f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
+- filename: botocore-1.29.21-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ef/55/5808110b6f5861c35572d99dba04ddc56d91569a292c0c2d1061c0f39bcb/botocore-1.29.21-py3-none-any.whl
+  validation:
+    type: sha256
+    value: ac620727f7b8c81e7c0c841d30be4a01a898e0b6aeed1ddf1ba653742d8f6319
 - filename: s3transfer-0.6.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/5e/c6/af903b5fab3f9b5b1e883f49a770066314c6dcceb589cf938d48c89556c1/s3transfer-0.6.0-py3-none-any.whl
   validation:
