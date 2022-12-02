@@ -176,26 +176,16 @@ resources:
   validation:
     type: sha256
     value: 2a172741b5b041a896b621cef4277077afd571e0d3a6e524e7171f1c70e33200
-- filename: botocore-1.29.20-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/57/1c/ed36cf8c0b938ffb28a6837486083bc7836544d6c65c93f55fc1246d30a7/botocore-1.29.20-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 7c26cb870d0cae26349df2926a7bf6277c1326db6d42c650807a519d50a83786
-- filename: google_auth-2.14.1-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/9b/9b/f40ea5c60762eabeb17cebdc05c395f44584c5c7fd7ce636a869c4f1e05d/google_auth-2.14.1-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: f5d8701633bebc12e0deea4df8abd8aff31c28b355360597f7f2ee60f2e4d016
 - filename: googleapis_common_protos-1.57.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f0/2a/25d8c1ceedc5af97de37434c9c5e38ce28aaa45960aa2bd7aa215fc420c0/googleapis_common_protos-1.57.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: a9f4a1d7f6d9809657b7f1316a1aa527f6664891531bcfcc13b6696e685f443c
-- filename: google_api_core-2.10.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/15/fb/b641357b0f8fc540c766bc8f66048de0398d0a3e0cad7c4a08e2fbee733a/google_api_core-2.10.2-py3-none-any.whl
+- filename: boto3-1.26.21-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/2e/34/0cd26d69cef8ad813741a5990dba05f68d28a98306bff414a22fe4ae405d/boto3-1.26.21-py3-none-any.whl
   validation:
     type: sha256
-    value: 34f24bd1d5f72a8c4519773d99ca6bf080a6c4e041b4e9f024fe230191dda62e
+    value: cd66fee0b1d533c69b6ba2b7f8d3825cb0f5459e2cdbc604e2fe9e9c0a15609c
 - filename: google_cloud_storage-2.6.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d9/2f/580e3dd26caffaa4146742c567b6a0adb2fb8126bb51a51ebc63ccd049ff/google_cloud_storage-2.6.0-py2.py3-none-any.whl
   validation:
@@ -206,11 +196,6 @@ resources:
   validation:
     type: sha256
     value: f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
-- filename: boto3-1.26.20-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/f3/b9/b9f4423e932f291a2a5919ac68769e50c624f13e839b210de35189131f07/boto3-1.26.20-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 6b2e04ea415f375f607e6c633f7699e6a56bdc35c294116c5a6dc02da6aaa2ba
 - filename: s3transfer-0.6.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/5e/c6/af903b5fab3f9b5b1e883f49a770066314c6dcceb589cf938d48c89556c1/s3transfer-0.6.0-py3-none-any.whl
   validation:
@@ -221,6 +206,11 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
+- filename: google_auth-2.15.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/59/18/f8201fa70cbc7bebc14a50e891783c88c277a9158e9c8c07a9044ecd98eb/google_auth-2.15.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 6897b93556d8d807ad70701bb89f000183aea366ca7ed94680828b37437a4994
 - filename: barman-3.2.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/e4/ae/6791ded280edfcddae6c6c13082f1c8759c179b7a42bcd47f392b7415c85/barman-3.2.0-py2.py3-none-any.whl
   validation:
@@ -236,6 +226,11 @@ resources:
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
+- filename: google_api_core-2.11.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: ce222e27b0de0d7bc63eb043b956996d6dccab14cc3b690aaea91c9cc99dc16e
 - filename: psycopg2-2.9.5.tar.gz
   url: https://files.pythonhosted.org/packages/89/d6/cd8c46417e0f7a16b4b0fc321f4ab676a59250d08fce5b64921897fb07cc/psycopg2-2.9.5.tar.gz
   validation:
