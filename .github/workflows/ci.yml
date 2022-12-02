@@ -82,6 +82,7 @@ jobs:
           tags: ${{ env.TAGS }}
           load: true
           build-args: |
+            SUBSCRIPTION_NAME=docker-postgresql-cicd-${{ github.run_number }}
             ${{ env.BUILD-ARGS }}
 
       - name: History ${{ matrix.name }}

@@ -84,6 +84,8 @@ jobs:
         push: false
         load: true
         tags: ${{ env.TAGS }}
+        build-args: |
+          SUBSCRIPTION_NAME=docker-postgresql-cicd-${{ github.run_number }}
 
     - name: Dockle scan
       uses: erzz/dockle-action@v1
@@ -109,6 +111,8 @@ jobs:
         push: true
         tags: ${{ env.TAGS }}
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
+        build-args: |
+          SUBSCRIPTION_NAME=docker-postgresql-cicd-${{ github.run_number }}
 
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
