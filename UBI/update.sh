@@ -99,7 +99,7 @@ compare_architecture_pkgs() {
 	local ppc64le="$1"; shift
 	local s390x="$1"; shift
 
-	if [[ -z "$x86_64" || -z "ppc64le" || -z "s390x" ]]; then
+	if [[ -z "$x86_64" || -z "$ppc64le" || -z "$s390x" ]]; then
 		echo "Unable to retrieve at least one of the multi-arch packages." >&2
 		echo "x86_64: ${x86_64}" >&2
 		echo "ppc64le: ${ppc64le}" >&2
