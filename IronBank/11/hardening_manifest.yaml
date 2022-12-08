@@ -46,16 +46,16 @@ resources:
   validation:
     type: sha256
     value: 726ffd1ded04a2c1cb53f9d9155cbb05ac5c1c2a29af4ef622e93e1c0a8bc92b
+- filename: certifi-2022.12.7-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/71/4c/3db2b8021bd6f2f0ceb0e088d6b2d49147671f25832fb17970e9b583d742/certifi-2022.12.7-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
 - filename: idna-3.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
-- filename: certifi-2022.9.24-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/1d/38/fa96a426e0c0e68aabc68e896584b83ad1eec779265a028e156ce509630e/certifi-2022.9.24-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 90c1a32f1d68f940488354e36370f6cca89f0f106db09518524c88d6ed83f382
 - filename: typing_extensions-4.4.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/0b/8e/f1a0a5a76cfef77e1eb6004cb49e5f8d72634da638420b9ea492ce8305e8/typing_extensions-4.4.0-py3-none-any.whl
   validation:
@@ -141,6 +141,11 @@ resources:
   validation:
     type: sha256
     value: 2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5
+- filename: botocore-1.29.25-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/9f/27/c7c240cb51db528913c5c1c49d7ef34483da8930fe80d3ce955878fd7538/botocore-1.29.25-py3-none-any.whl
+  validation:
+    type: sha256
+    value: cb489ca8fbc043cd9bf901e3e105f0dec316ed438ee883e55c9f9c77bd0f6a2d
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -156,21 +161,11 @@ resources:
   validation:
     type: sha256
     value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
-- filename: botocore-1.29.24-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/22/cf/1f9ed89d4b42719114035f4d83267a1f7d1dd9eb17df749be1ba14f11704/botocore-1.29.24-py3-none-any.whl
-  validation:
-    type: sha256
-    value: fb37c63d5e2b7c778f52d096c6c54207d49143cd942b4dc19297086a1385a7cd
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
-- filename: boto3-1.26.24-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a5/85/23270d909f8f84151497b7c8c67e77e13757bf23e67cfb760420b75d6ff5/boto3-1.26.24-py3-none-any.whl
-  validation:
-    type: sha256
-    value: f6117707d140363c58ffe41495400cc88c35c165e0f711c6b62edadbd6f600b5
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
@@ -186,16 +181,21 @@ resources:
   validation:
     type: sha256
     value: 2a172741b5b041a896b621cef4277077afd571e0d3a6e524e7171f1c70e33200
+- filename: boto3-1.26.25-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/96/7b/6dec4194cffd344e2de701ac832ac3e29278f54cc33cdd44d7fd2c4d40d0/boto3-1.26.25-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 7048335b099473816240046753d77ef0953ce5a037b93b2848477dcf036d3849
 - filename: googleapis_common_protos-1.57.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f0/2a/25d8c1ceedc5af97de37434c9c5e38ce28aaa45960aa2bd7aa215fc420c0/googleapis_common_protos-1.57.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: a9f4a1d7f6d9809657b7f1316a1aa527f6664891531bcfcc13b6696e685f443c
-- filename: google_cloud_storage-2.6.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d9/2f/580e3dd26caffaa4146742c567b6a0adb2fb8126bb51a51ebc63ccd049ff/google_cloud_storage-2.6.0-py2.py3-none-any.whl
+- filename: google_cloud_storage-2.7.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/6e/23/3add67cdd1f2116eb4425b0d4f3154117b8a79eaaf3022edc23a71d82cc2/google_cloud_storage-2.7.0-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 4ad0415ff61abdd8bb2ae81c1f8f7ec7d91a1011613f2db87c614c550f97bfe9
+    value: f78a63525e72dd46406b255bbdf858a22c43d6bad8dc5bdeb7851a42967e95a1
 - filename: cachetools-5.2.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/68/aa/5fc646cae6e997c3adf3b0a7e257cda75cff21fcba15354dffd67789b7bb/cachetools-5.2.0-py3-none-any.whl
   validation:
