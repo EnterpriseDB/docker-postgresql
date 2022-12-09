@@ -1,12 +1,12 @@
 # PostgreSQL Container Images by EnterpriseDB
 
 Maintenance scripts to generate Immutable Application Containers
-for all available PostgreSQL versions (10 to 14) based on:
+for all available PostgreSQL versions (10 to 15) based on:
 
 - Red Hat Universal Base Images (UBI) 8 - default (with and without the PostGIS extension)
 - Debian Buster (10) Slim base images
 
-UBI8 based images of versions 11, 12, 13 and 14 are available for amd64, ppc64le and s390x architectures.
+UBI8 based images of versions 11, 12, 13, 14 and 15 are available for amd64, ppc64le and s390x architectures.
 
 These images are customised to work with [Cloud
 Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
@@ -50,17 +50,17 @@ docker pull ghcr.io/enterprisedb/postgresql
 Note: replace `ghcr.io` with `quay.io` to download from Quay.io.
 
 If you want to use the latest minor version of a particular major version of PostgreSQL,
-for example 14, on UBI you can type:
+for example 15, on UBI you can type:
 
 ```console
-docker pull ghcr.io/enterprisedb/postgresql:14
+docker pull ghcr.io/enterprisedb/postgresql:15
 ```
 
-In order to install the latest minor version of PostgreSQL 14 on a Debian based image,
+In order to install the latest minor version of PostgreSQL 15 on a Debian based image,
 you can type:
 
 ```console
-docker pull ghcr.io/enterprisedb/postgresql:14-debian
+docker pull ghcr.io/enterprisedb/postgresql:15-debian
 ```
 
 **IMPORTANT:** in the examples below we assume that the latest minor of the latest major version is used.
@@ -92,7 +92,7 @@ $ docker run -it --rm \
    --network some-network \
    ghcr.io/enterprisedb/postgresql \
    psql -h some-postgres -U postgres
-psql (14.1)
+psql (15.1)
 Type "help" for help.
 
 postgres=# SELECT 1;
