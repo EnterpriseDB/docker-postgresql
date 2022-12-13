@@ -156,16 +156,21 @@ resources:
   validation:
     type: sha256
     value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
+- filename: boto3-1.26.28-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/da/1e/2eed7e8441d9d3fb31fa5eb4485ed7a247ad2500a06fa37c64b8e19ca68d/boto3-1.26.28-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 548081a0f8854bb2eea1e368ab29945478105f56989546f653c75528dcb07d88
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
-- filename: boto3-1.26.27-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/55/a9/57cc2a220b4d78f7d13a54cf978e2e615f8b844b50961360116d0749b096/boto3-1.26.27-py3-none-any.whl
+- filename: botocore-1.29.28-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/9c/d3/a24fb00499cf678a1cbb5826c25347d8f546db448ae8a8c2569c1252ffc9/botocore-1.29.28-py3-none-any.whl
   validation:
     type: sha256
-    value: 6d633563802065dba2ccab48c6cab3213ca2f672ade10d096db62f686f11ea9b
+    value: 982732e7ed65cb6ed11ea3ce0e32dff2bcd465836c32376154f0802aa0a112c7
 - filename: protobuf-4.21.11-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/77/3e/0fce75c745ffd2d7fc3b6597f9be21640275def91fcba005d4cf13a0e80c/protobuf-4.21.11-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -206,11 +211,6 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: botocore-1.29.27-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/89/6d/ddc7bb91162c8337de7d619b8eb07bd31863b57c2ea817549f6935e3d26f/botocore-1.29.27-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 03ead47c52c5caee4c69498a655444569e9d86c0e15e3884ce8c3eca01b4f658
 - filename: google_auth-2.15.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/59/18/f8201fa70cbc7bebc14a50e891783c88c277a9158e9c8c07a9044ecd98eb/google_auth-2.15.0-py2.py3-none-any.whl
   validation:
