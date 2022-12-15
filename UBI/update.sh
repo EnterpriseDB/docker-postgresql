@@ -46,6 +46,12 @@ get_latest_ubi_base() {
 	echo $rawContent | jq -r '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true) | .name' | tail -n1
 }
 
+declare -A pgArchMatrix=(
+	[x86_64]='pgdg'
+	[ppc64le]='pgdg'
+	[s390x]='cloudsmith'
+)
+
 # Get the latest PostgreSQL minor version package
 get_postgresql_version() {
 	local os_version="$1"; shift
@@ -57,34 +63,59 @@ get_postgresql_version() {
 		base_url="$base_url/testing"
 	fi
 
-	pgx86_64=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
-		perl -ne '/<a.*href="postgresql'"${pg_major}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
-		sort -rV | head -n1)
-
-	# For MultiArch images make sure the new package is available for all the architectures before updating
-	if [[ "${version}" =~ ^("11"|"12"|"13"|"14")$ ]]; then
-		pgs390x=$(check_cloudsmith_pkgs "${os_version}" 's390x' "$pg_major")
-		pgppc64le=$(check_cloudsmith_pkgs "${os_version}" 'ppc64le' "$pg_major")
-		if [[ ${pgx86_64} != ${pgppc64le} || ${pgx86_64} != ${pgs390x} ]]; then
-			echo "Version discrepancy between the architectures." >&2
-			echo "x86_64: ${pgx86_64}" >&2
-			echo "ppc64le: ${pgppc64le}" >&2
-			echo "s390x: ${pgs390x}" >&2
-			return
-		fi
+	if [[ -z "${pgArchMatrix[$arch]}" ]]; then
+		echo "Unsupported architecture." >&2
+		return
 	fi
-	echo "${pgx86_64}"
+
+	if [[ "${pgArchMatrix[$arch]}" == "pgdg" ]]; then
+		latest_pg_version=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
+			perl -ne '/<a.*href="postgresql'"${pg_major}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
+			sort -rV | head -n1)
+	fi
+
+	if [[ "${pgArchMatrix[$arch]}" == "cloudsmith" ]]; then
+		latest_pg_version=$(check_cloudsmith_pkgs "edb" "${os_version}" "${arch}" "${pg_major}")
+	fi
+
+	echo "${latest_pg_version}"
 }
 
 check_cloudsmith_pkgs() {
+	local repo="$1"; shift
 	local os_version="$1"; shift
 	local arch="$1"; shift
 	local pg_major="$1"; shift
 
-	cloudsmith ls pkgs enterprisedb/edb -q "name:postgresql*-server$ distribution:el/${os_version} version:latest architecture:${arch}" -F json 2> /dev/null | \
+	cloudsmith ls pkgs enterprisedb/"${repo}" -q "name:postgresql*-server$ distribution:el/${os_version} version:latest architecture:${arch}" -F json 2> /dev/null | \
 			jq '.data[].filename' | \
 			sed -n 's/.*postgresql'"${pg_major}"'-server-\([0-9].*\)\.'"${arch}"'.*/\1/p' | \
 			sort -V
+}
+
+
+compare_architecture_pkgs() {
+	local x86_64="$1"; shift
+	local ppc64le="$1"; shift
+	local s390x="$1"; shift
+
+	if [[ -z "$x86_64" || -z "$ppc64le" || -z "$s390x" ]]; then
+		echo "Unable to retrieve at least one of the multi-arch packages." >&2
+		echo "x86_64: ${x86_64}" >&2
+		echo "ppc64le: ${ppc64le}" >&2
+		echo "s390x: ${s390x}" >&2
+		false; return
+	fi
+
+	if [[ ${x86_64} != ${ppc64le} || ${x86_64} != ${s390x} ]]; then
+		echo "Version discrepancy between the architectures." >&2
+		echo "x86_64: ${x86_64}" >&2
+		echo "ppc64le: ${ppc64le}" >&2
+		echo "s390x: ${s390x}" >&2
+		false; return
+	fi
+
+	true
 }
 
 # Get the latest Barman version
@@ -169,7 +200,19 @@ generate_redhat() {
 		exit 1
 	fi
 
-	postgresqlVersion=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
+	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
+
+	# Multi arch is available from v11 onwards
+	if [ "$version" -gt '10' ]; then
+		pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
+		pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
+
+		if ! compare_architecture_pkgs "$pg_x86_64" "$pg_ppc64le" "$pg_s390x"; then
+			return
+		fi
+	fi
+
+	postgresqlVersion="${pg_x86_64}"
 	if [ -z "$postgresqlVersion" ]; then
 		echo "Unable to retrieve latest PostgreSQL $version version"
 		return
