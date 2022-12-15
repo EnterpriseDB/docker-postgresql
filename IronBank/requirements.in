@@ -1,2 +1,2 @@
-barman[cloud,azure,snappy,google] == 3.2.0
+barman[cloud,azure,snappy,google] == 3.3.0
 pip == 21.3.1
