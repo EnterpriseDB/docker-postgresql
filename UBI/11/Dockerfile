@@ -21,7 +21,7 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 			amd64) \
 					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
 			ppc64le) \
-					yum -y install "${base_url}/EL-8-ppc64le/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+					bash /run/secrets/cs_script.sh ;; \
 			s390x) \
 					bash /run/secrets/cs_script.sh ;; \
 			*) \

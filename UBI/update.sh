@@ -48,8 +48,8 @@ get_latest_ubi_base() {
 
 declare -A pgArchMatrix=(
 	[x86_64]='pgdg'
-	[ppc64le]='pgdg'
-	[s390x]='cloudsmith'
+	[ppc64le]='enterprise'
+	[s390x]='edb'
 )
 
 # Get the latest PostgreSQL minor version package
@@ -74,8 +74,12 @@ get_postgresql_version() {
 			sort -rV | head -n1)
 	fi
 
-	if [[ "${pgArchMatrix[$arch]}" == "cloudsmith" ]]; then
+	if [[ "${pgArchMatrix[$arch]}" == "edb" ]]; then
 		latest_pg_version=$(check_cloudsmith_pkgs "edb" "${os_version}" "${arch}" "${pg_major}")
+	fi
+
+	if [[ "${pgArchMatrix[$arch]}" == "enterprise" ]]; then
+		latest_pg_version=$(check_cloudsmith_pkgs "enterprise" "${os_version}" "${arch}" "${pg_major}")
 	fi
 
 	echo "${latest_pg_version}"
