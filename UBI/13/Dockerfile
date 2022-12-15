@@ -15,13 +15,21 @@ COPY root/ /
 ARG TARGETARCH
 RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 	set -xe ; \
-	bash /run/secrets/cs_script.sh ; \
+	ARCH="${TARGETARCH}" ; \
+	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
+	case $ARCH in \
+			amd64) \
+					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+			ppc64le) \
+					yum -y install "${base_url}/EL-8-ppc64le/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+			s390x) \
+					bash /run/secrets/cs_script.sh ;; \
+			*) \
+					exit 1 ;; \
+	esac ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
-	if [ "$TARGETARCH" == 'amd64' ]; then \
-		yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
-	fi ; \
 	yum -y --setopt=tsflags=nodocs install \
 		postgresql13-13.9-1PGDG.rhel8 \
 		postgresql13-contrib-13.9-1PGDG.rhel8 \
