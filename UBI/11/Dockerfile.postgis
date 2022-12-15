@@ -1,12 +1,13 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:8.6-990
+FROM quay.io/enterprisedb/edb-ubi:8.7-1026
+ARG SUBSCRIPTION_NAME
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="11.17-1PGDG.rhel8" \
-      release="6" \
+      version="11.18-1PGDG.rhel8" \
+      release="1" \
       summary="PostgreSQL + PostGIS Container images." \
       description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -18,10 +19,10 @@ RUN set -xe ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql11-11.17-1PGDG.rhel8 \
-		postgresql11-contrib-11.17-1PGDG.rhel8 \
-		postgresql11-server-11.17-1PGDG.rhel8 \
-		postgresql11-libs-11.17-1PGDG.rhel8 \
+		postgresql11-11.18-1PGDG.rhel8 \
+		postgresql11-contrib-11.18-1PGDG.rhel8 \
+		postgresql11-server-11.18-1PGDG.rhel8 \
+		postgresql11-libs-11.18-1PGDG.rhel8 \
 		pgaudit13_11 \
 	; \
 	rm -fr /tmp/* ; \
@@ -61,15 +62,17 @@ RUN mkdir /docker-entrypoint-initdb.d
 # Postgis
 RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
   set -xe ; \
-  bash /run/secrets/subscription.sh ; \
+  rm -f /etc/rhsm-host ; \
+  SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
   yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
   yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-x86_64-rpms \
-  postgis33_11-3.3.0-1.rhel8 ; \
+  postgis33_11-3.3.2-1.rhel8 ; \
   yum -y remove epel-release ; \
   subscription-manager remove --all ; \
   subscription-manager unregister ; \
   subscription-manager clean ; \
   yum -y clean all --enablerepo='*' ; \
+  ln -sf /run/secrets/rhsm /etc/rhsm-host ; \
   rm /var/log/rhsm/rhsm.log
 
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
