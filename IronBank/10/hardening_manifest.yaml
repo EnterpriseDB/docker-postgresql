@@ -141,11 +141,6 @@ resources:
   validation:
     type: sha256
     value: 21120a810e1233e5e6cc7fe40b474eeb4ec6f757a15d7cf86702c369f9567c32
-- filename: boto3-1.26.34-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/33/68/8bc95cd34eb884d0eda6f7cb68ae58f6c327eff46f7e99b32e4e0c277aad/boto3-1.26.34-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 30b09bed9d2b0807674466e2cb4fd43ad4a880cf76b708ae42f234cb0b636309
 - filename: google_api_core-2.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
   validation:
@@ -221,11 +216,11 @@ resources:
   validation:
     type: sha256
     value: f78a63525e72dd46406b255bbdf858a22c43d6bad8dc5bdeb7851a42967e95a1
-- filename: botocore-1.29.34-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e0/b9/1297e63a6553a6f9d4572fc3cf1529fbd4ebf01075f54cfbe8d02c979571/botocore-1.29.34-py3-none-any.whl
+- filename: boto3-1.26.35-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/76/83/1dee8818c499efda9632be228bb7dcbb25e2d8ba8db6410e50d088e255d5/boto3-1.26.35-py3-none-any.whl
   validation:
     type: sha256
-    value: 652a749e0649d1eacd8c43ae1493a773ff4e4e4ea4bc7e69f6787d28237dca20
+    value: f786a12eb036bbe6f473a351182275fd5c43c4e9c523cb8ec9b1946b18830d0d
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
@@ -236,6 +231,11 @@ resources:
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
+- filename: botocore-1.29.35-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/50/c7/36cf3d7d297d98971e10e949982d221646dcea765f76daa2e8fb6d11bf71/botocore-1.29.35-py3-none-any.whl
+  validation:
+    type: sha256
+    value: fc329d2772284dcffdf947023de589eaf72a4eb4737505114b1c0f3a1063b3b6
 - filename: pip-21.3.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a4/6d/6463d49a933f547439d6b5b98b46af8742cc03ae83543e4d7688c2420f8b/pip-21.3.1-py3-none-any.whl
   validation:
