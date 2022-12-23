@@ -216,26 +216,26 @@ resources:
   validation:
     type: sha256
     value: f78a63525e72dd46406b255bbdf858a22c43d6bad8dc5bdeb7851a42967e95a1
-- filename: boto3-1.26.35-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/76/83/1dee8818c499efda9632be228bb7dcbb25e2d8ba8db6410e50d088e255d5/boto3-1.26.35-py3-none-any.whl
-  validation:
-    type: sha256
-    value: f786a12eb036bbe6f473a351182275fd5c43c4e9c523cb8ec9b1946b18830d0d
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
+- filename: boto3-1.26.36-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/84/1e/88b97001e128cc4515a4f9fee0a4c7a2bf7e08e85d18982a16a1eea4480e/boto3-1.26.36-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8bd5fdd528260c4da3e070c00468cfd4a50ad75570e81a409970c4490fdee458
 - filename: google_cloud_core-2.3.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ac/4d/bae84e736080ed465a6b02e9f447c89c60c00fcdade2eb6911fecf3f46aa/google_cloud_core-2.3.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
-- filename: botocore-1.29.35-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/50/c7/36cf3d7d297d98971e10e949982d221646dcea765f76daa2e8fb6d11bf71/botocore-1.29.35-py3-none-any.whl
+- filename: botocore-1.29.36-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/f7/cc/e515911edeb805efbfbcde880c8d57aa0bd09be5c293aeaa8311f53c5fcf/botocore-1.29.36-py3-none-any.whl
   validation:
     type: sha256
-    value: fc329d2772284dcffdf947023de589eaf72a4eb4737505114b1c0f3a1063b3b6
+    value: 927dd5c6b155f30d122c1d34f96aba8502e2e02f2d7a170351804d3de81f0c5e
 - filename: pip-21.3.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a4/6d/6463d49a933f547439d6b5b98b46af8742cc03ae83543e4d7688c2420f8b/pip-21.3.1-py3-none-any.whl
   validation:
