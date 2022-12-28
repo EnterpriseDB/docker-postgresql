@@ -151,6 +151,11 @@ resources:
   validation:
     type: sha256
     value: 2aa004c16d295c8f6c33b2b4788ba59d366677c0a25ae7382436cb30f776deaa
+- filename: botocore-1.29.38-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5e/35/c0660215b73e23e7edc84002d5c12a23208c5d4dcee9248d4b4d1a313860/botocore-1.29.38-py3-none-any.whl
+  validation:
+    type: sha256
+    value: e22615f233a90dfeff4ec5a42df8c641d31125f8c9da26898cccbf869743a6bd
 - filename: barman-3.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b3/4f/9df2b1e855c7b55ff52da8382a04e0f221ab87a28fd5f0d5291e464eb1e9/barman-3.3.0-py2.py3-none-any.whl
   validation:
@@ -201,6 +206,11 @@ resources:
   validation:
     type: sha256
     value: f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
+- filename: boto3-1.26.38-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/27/8e/ebd5c9bff881ba6bbc7d9a6e00766f6052a9b8579cc19a7ddafedc1500b9/boto3-1.26.38-py3-none-any.whl
+  validation:
+    type: sha256
+    value: ee787e36f1d02434eb5a757bba640f90663438f420bb06cd9f81ff30188ca65b
 - filename: protobuf-4.21.12-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/e7/a2/3273c05fc5d959fa90de6453ebd6d45c6d4fab3ec212d631625ea5780921/protobuf-4.21.12-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -221,16 +231,6 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: boto3-1.26.37-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/65/7b/45d0e4e4ead478b705402f4597903a8642667d4a80a8bef9b909a9a4b957/boto3-1.26.37-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 7a6766c7177a9c6f85365e02aabd96ca4d72e08bc5cb127cb51b0a97ac9b9d1b
-- filename: botocore-1.29.37-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/24/a1/7033531565ce470e707d589faad9b4beb0d0dc790364ea276e264e98cd5a/botocore-1.29.37-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 18ab8e95345a6d0d2653ce65d261a0aef6fef8a57a35a89e3cea6ffe315e92fc
 - filename: google_cloud_core-2.3.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ac/4d/bae84e736080ed465a6b02e9f447c89c60c00fcdade2eb6911fecf3f46aa/google_cloud_core-2.3.2-py2.py3-none-any.whl
   validation:
