@@ -94,17 +94,28 @@ for version in "${ubi_versions[@]}"; do
 			${aliases[$version]:+"${aliases[$version]}"}
 			"${fullVersion}-${releaseVersion}"
 		)
+		versionAliasesMultiLang=(
+			"${version}-beta-multilang"
+			${aliases[$version]:+"${aliases[$version]}-multilang"}
+			"${fullVersion}-${releaseVersion}-multilang"
+		)
 	else
 		versionAliases=(
 			"${version}"
 			${aliases[$version]:+"${aliases[$version]}"}
 			"${fullVersion}"-"${releaseVersion}"
 		)
+		versionAliasesMultiLang=(
+			"${version}-multilang"
+			${aliases[$version]:+"${aliases[$version]}-multilang"}
+			"${fullVersion}"-"${releaseVersion}-multilang"
+		)
 	fi
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
 		versionAliases+=("$fullVersion")
+		versionAliasesMultiLang+=("$fullVersion-multilang")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
@@ -117,6 +128,7 @@ for version in "${ubi_versions[@]}"; do
 	# Build the json entry
 	entries+=(
 		"{\"name\": \"UBI ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+		"{\"name\": \"UBI ${fullVersion} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multilang\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
 	)
 done
 
