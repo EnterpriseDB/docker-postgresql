@@ -30,7 +30,7 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks; \
+	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
 		postgresql11-11.18-1PGDG.rhel8 \
 		postgresql11-contrib-11.18-1PGDG.rhel8 \

@@ -103,12 +103,12 @@ for version in "${ubi_versions[@]}"; do
 		versionAliases=(
 			"${version}"
 			${aliases[$version]:+"${aliases[$version]}"}
-			"${fullVersion}"-"${releaseVersion}"
+			"${fullVersion}-${releaseVersion}"
 		)
 		versionAliasesMultiLang=(
 			"${version}-multilang"
 			${aliases[$version]:+"${aliases[$version]}-multilang"}
-			"${fullVersion}"-"${releaseVersion}-multilang"
+			"${fullVersion}-${releaseVersion}-multilang"
 		)
 	fi
 	# Add all the version prefixes between full version and major version
@@ -151,11 +151,21 @@ for version in "${ubi_versions[@]}"; do
 			${aliases[$version]:+"${aliases[$version]}-postgis"}
 			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
 		)
+		versionAliasesMultiLang=(
+			"${version}-beta-postgis-multilang"
+			${aliases[$version]:+"${aliases[$version]}-postgis-multilang"}
+			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang"
+		)
 	else
 		versionAliases=(
 			"${version}-postgis"
 			${aliases[$version]:+"${aliases[$version]}-postgis"}
 			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
+		)
+		versionAliasesMultiLang=(
+			"${version}-postgis-multilang"
+			${aliases[$version]:+"${aliases[$version]}-postgis-multilang"}
+			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang"
 		)
 	fi
 
@@ -163,6 +173,7 @@ for version in "${ubi_versions[@]}"; do
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
 		versionAliases+=("$fullVersion-${postgisVersion}-postgis")
+		versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
@@ -171,6 +182,7 @@ for version in "${ubi_versions[@]}"; do
 	# Build the json entry
 	entries+=(
 		"{\"name\": \"UBI PostGIS ${fullVersion}-${postgisVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+		"{\"name\": \"UBI PostGIS ${fullVersion}-${postgisVersion} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
 	)
 done
 
