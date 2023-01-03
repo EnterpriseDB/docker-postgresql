@@ -91,11 +91,6 @@ resources:
   validation:
     type: sha256
     value: d83c3d892a77bbb74d3e1a2cfa90afaadb60945205d1095d9221f04466f64c14
-- filename: cryptography-38.0.4-cp36-abi3-manylinux_2_28_x86_64.whl
-  url: https://files.pythonhosted.org/packages/26/f8/a81170a816679fca9ccd907b801992acfc03c33f952440421c921af2cc57/cryptography-38.0.4-cp36-abi3-manylinux_2_28_x86_64.whl
-  validation:
-    type: sha256
-    value: ce127dd0a6a0811c251a6cddd014d292728484e530d80e872ad9806cfb1c5b3c
 - filename: pycparser-2.21-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl
   validation:
@@ -106,6 +101,11 @@ resources:
   validation:
     type: sha256
     value: 91e3db9620b822d0ed2b4d1850056a0f133cba04455e62f11612e40f5502f2ee
+- filename: cryptography-39.0.0-cp36-abi3-manylinux_2_28_x86_64.whl
+  url: https://files.pythonhosted.org/packages/34/b3/3011b5f6c5cc935113fc58f8b07d42fcdd03e7a76b1c3c8ba27d276e8833/cryptography-39.0.0-cp36-abi3-manylinux_2_28_x86_64.whl
+  validation:
+    type: sha256
+    value: 875aea1039d78557c7c6b4db2fe0e9d2413439f4676310a5f269dd342ca7a717
 - filename: azure_identity-1.12.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ce/96/942f03d8a80e30e2289496c10d99e3a8b71f10c0b70b5337fd8ec2ae85e5/azure_identity-1.12.0-py3-none-any.whl
   validation:
