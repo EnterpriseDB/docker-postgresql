@@ -71,7 +71,6 @@ get_pgaudit_version() {
 	fi
 
 	case $pg_major in
-		10) ver=12 ;;
 		11) ver=13 ;;
 		12) ver=14 ;;
 		13) ver=15 ;;
