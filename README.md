@@ -20,7 +20,7 @@ The images include:
 - Barman Cloud
 - PostGIS 3.1 (optional, on UBI based images only)
 - PGAudit 
-- All language packs for glibc (namely `glibc-all-langpacks`; optional, on UBI based images only)
+- All language packs for glibc (optional, on UBI based images only)
 
 PostgreSQL is distributed by the PGDG under the [PostgreSQL License](https://www.postgresql.org/about/licence/).
 
@@ -30,9 +30,8 @@ PostGIS is distributed under the [GNU GPL 2 License](https://git.osgeo.org/gitea
 
 PGAudit is distributed under the [PostgreSQL License](https://github.com/pgaudit/pgaudit/blob/master/LICENSE).
 
-All language packs for glibc, namely `glibc-all-langpacks`, is a RPM package which contains all the locales. [glibc-all-langpacks](https://pkgs.org/download/glibc-all-langpacks)
-The label of the images containing `glibc-all-langpacks` is suffixed with `-multilang`. eg. `15.1-3.3-postgis-multilang`,
-`15.1-3.3-postgis-multilang`.
+All language packs for glibc contains all the locales. The label of the images containing the packs is suffixed with 
+`-multilang`. eg. `15.1-3.3-postgis-multilang`, `15.1-3.3-postgis-multilang`.
 
 Images are available via [GitHub Container Registry](https://github.com/EnterpriseDB/docker-postgresql/pkgs/container/postgresql)
 and [Quay.io](https://quay.io/repository/enterprisedb/postgresql).
