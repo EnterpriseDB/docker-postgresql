@@ -1,15 +1,14 @@
 # PostgreSQL Container Images by EnterpriseDB
 
 Maintenance scripts to generate Immutable Application Containers
-for all available PostgreSQL versions (10 to 15) based on:
+for all available PostgreSQL versions (11 to 15) based on:
 
 - Red Hat Universal Base Images (UBI) 8 - default (with and without the PostGIS extension)
 - Debian Buster (10) Slim base images
 
 UBI8 based images of versions 11, 12, 13, 14 and 15 are available for amd64, ppc64le and s390x architectures.
 
-These images are customised to work with [Cloud
-Native PostgreSQL operators by EDB](https://docs.enterprisedb.io/cloud-native-postgresql/)
+These images are customised to work with [EDB Postgres for Kubernetes by EDB](https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/)
 for Kubernetes and Red Hat Openshift.
 
 It is also possible to run them directly with Docker, for PostgreSQL evaluation and testing purposes only.

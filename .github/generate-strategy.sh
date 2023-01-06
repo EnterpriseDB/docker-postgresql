@@ -119,7 +119,7 @@ for version in "${ubi_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	if [[ "${version}" =~ ^("10"|"15")$ ]]; then
+	if [[ "${version}" =~ ^("15")$ ]]; then
 			platforms="linux/amd64"
 	else
 			platforms="linux/amd64, linux/ppc64le, linux/s390x"
