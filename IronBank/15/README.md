@@ -7,7 +7,7 @@
 ---
 
 Cloud Native PostgreSQL is a stack designed by EnterpriseDB to manage PostgreSQL
-workloads particularly optimized for Private Cloud environments with Local
+workloads particularly optimized for Private Cloud environments with Local 
 Persistent Volumes (PV). PostgreSQL 11, 12, 13, 14, and 15 are supported.
 
 ## Features & Benefits
