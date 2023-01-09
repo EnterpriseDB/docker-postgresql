@@ -11,7 +11,7 @@ azure-storage-blob==12.14.1
 barman[azure,cloud,google,snappy]==3.3.0
 boto3==1.26.45
 botocore==1.29.45
-cachetools==5.2.0
+cachetools==5.2.1
 certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==2.1.1

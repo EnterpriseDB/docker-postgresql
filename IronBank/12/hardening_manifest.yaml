@@ -176,6 +176,11 @@ resources:
   validation:
     type: sha256
     value: b1bc7db503dc49bdccf5dada080077056a32af9982afdde84578a109cd741d05
+- filename: cachetools-5.2.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a4/7e/9a87d3b3ca48e253b5c0e114a6601160b9b29f175f4268cb30e21d9e8b63/cachetools-5.2.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8462eebf3a6c15d25430a8c27c56ac61340b2ecf60c9ce57afc2b97e450e47da
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
@@ -206,11 +211,6 @@ resources:
   validation:
     type: sha256
     value: a5c0e13f266ee9a74335a1e5d3e377f2baae27226ae23d78f023bae0d18f3161
-- filename: cachetools-5.2.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/68/aa/5fc646cae6e997c3adf3b0a7e257cda75cff21fcba15354dffd67789b7bb/cachetools-5.2.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
 - filename: protobuf-4.21.12-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/e7/a2/3273c05fc5d959fa90de6453ebd6d45c6d4fab3ec212d631625ea5780921/protobuf-4.21.12-cp37-abi3-manylinux2014_x86_64.whl
   validation:
