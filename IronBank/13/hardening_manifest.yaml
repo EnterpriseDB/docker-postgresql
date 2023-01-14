@@ -171,11 +171,6 @@ resources:
   validation:
     type: sha256
     value: 5045648c821fb72384cdc0e82cc326df195f113a33049d9b62b74589243d2acc
-- filename: boto3-1.26.49-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/2a/69/5211bb41e6422a62acc1a5290e07860571b0a41bb53409a37cc985ab8541/boto3-1.26.49-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 2260cb121b202c9f3483e1c5fabff2009a160369824f6da5608261e7c232a75c
 - filename: google_api_core-2.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
   validation:
@@ -191,6 +186,16 @@ resources:
   validation:
     type: sha256
     value: f78a63525e72dd46406b255bbdf858a22c43d6bad8dc5bdeb7851a42967e95a1
+- filename: botocore-1.29.50-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/33/c8/8c9f8410727ed958821550266cced7838fd05552365a80856fb4d93cba72/botocore-1.29.50-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 0e9ab19787ad7a079c00d3e40b16bc66423e54bc0e8a203b70b543bd8854d5ad
+- filename: boto3-1.26.50-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/e1/29/919118463d6219e50fe333693ccfec9a004c649a4ba0f87d3cbf80808038/boto3-1.26.50-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 9c434bcd02c527485c89d6efbd38b7c205e06ab06abe80e5dbf9a8be836c77c2
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -201,11 +206,6 @@ resources:
   validation:
     type: sha256
     value: 2aa004c16d295c8f6c33b2b4788ba59d366677c0a25ae7382436cb30f776deaa
-- filename: botocore-1.29.49-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/5d/73/7178954e633bd768709e4e8139b23d4b329aec2aac0a29d9d0bcdf7fdb4b/botocore-1.29.49-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 1d93d602fdc3512c4e1db6f418f274a3f5758fc3bd6dea1d6f9ea29bcfe32ae7
 - filename: googleapis_common_protos-1.58.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/32/4e/ed585842aaa704d87495a0e99317aaa44c5007a597c05b995fa8cfc4dfbe/googleapis_common_protos-1.58.0-py2.py3-none-any.whl
   validation:
