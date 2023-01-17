@@ -13,7 +13,18 @@ LABEL name="PostgreSQL + PostGIS Container Images" \
 
 COPY root/ /
 
+ARG TARGETARCH
 RUN set -xe ; \
+	ARCH="${TARGETARCH}" ; \
+	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
+	case $ARCH in \
+		amd64) \
+            yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+		arm64) \
+            yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+		*) \
+			exit 1 ;; \
+	esac ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
@@ -60,13 +71,23 @@ VOLUME /var/lib/postgresql/data
 RUN mkdir /docker-entrypoint-initdb.d
 
 # Postgis
+ARG TARGETARCH
 RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
   set -xe ; \
   rm -f /etc/rhsm-host ; \
   SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
   yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
-  yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-x86_64-rpms \
-  postgis33_12-3.3.2-1.rhel8 ; \
+  ARCH="${TARGETARCH}" ; \
+  case $ARCH in \
+		amd64) \
+            yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-x86_64-rpms \
+            postgis33_12-3.3.2-1.rhel8 ;; \
+		arm64) \
+            yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-aarch64-rpms \
+            postgis33_12-3.3.2-1.rhel8 ;; \
+		*) \
+			exit 1 ;; \
+  esac ; \
   yum -y remove epel-release ; \
   subscription-manager remove --all ; \
   subscription-manager unregister ; \

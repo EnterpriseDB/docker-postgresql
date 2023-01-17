@@ -122,7 +122,7 @@ for version in "${ubi_versions[@]}"; do
 	if [[ "${version}" =~ ^("15")$ ]]; then
 			platforms="linux/amd64"
 	else
-			platforms="linux/amd64, linux/ppc64le, linux/s390x"
+			platforms="linux/amd64, linux/ppc64le, linux/s390x, linux/arm64"
 	fi
 
 	# Build the json entry
@@ -177,7 +177,7 @@ for version in "${ubi_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	platforms="linux/amd64"
+	platforms="linux/amd64,linux/arm64"
 
 	# Build the json entry
 	entries+=(
@@ -220,7 +220,7 @@ for version in "${ironbank_versions[@]}"; do
 	done
 
 	# Only
-	platforms="linux/amd64"
+	platforms="linux/amd64,linux/arm64"
 	IB_BASE_REGISTRY="registry.access.redhat.com"
 	IB_BASE_IMAGE="ubi8"
 
