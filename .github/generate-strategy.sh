@@ -31,13 +31,11 @@ BASE_DIRECTORY="$(pwd)"
 
 # Retrieve the PostgreSQL versions for UBI
 cd "$BASE_DIRECTORY"/UBI/
-
 for version in */; do
 	[[ $version == src/ ]] && continue
 	ubi_versions+=("$version")
 done
 ubi_versions=("${ubi_versions[@]%/}")
-
 
 # Retrieve the PostgreSQL versions for Debian
 cd "$BASE_DIRECTORY"/Debian/
@@ -57,12 +55,10 @@ ironbank_versions=("${ironbank_versions[@]#./}")
 #trim the ending slash
 ironbank_versions=("${ironbank_versions[@]%/}")
 
-
 # Sort the version numbers with highest first
 mapfile -t ubi_versions < <(IFS=$'\n'; sort -rV <<< "${ubi_versions[*]}")
 mapfile -t debian_versions < <(IFS=$'\n'; sort -rV <<< "${debian_versions[*]}")
 mapfile -t ironbank_versions < <(IFS=$'\n'; sort -rV <<< "${ironbank_versions[*]}")
-
 
 # prints "$2$1$3$1...$N"
 join() {
@@ -220,7 +216,7 @@ for version in "${ironbank_versions[@]}"; do
 	done
 
 	# Only
-	platforms="linux/amd64,linux/arm64"
+	platforms="linux/amd64"
 	IB_BASE_REGISTRY="registry.access.redhat.com"
 	IB_BASE_IMAGE="ubi8"
 
