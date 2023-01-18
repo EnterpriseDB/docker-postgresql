@@ -68,7 +68,6 @@ RUN dnf update -y --nodocs && \
 # Install barman-cloud
 ENV CRYPTOGRAPHY_DONT_BUILD_RUST 1 
 ENV CARGO_NET_OFFLINE true
-RUN python3 -m pip install --no-index --find-links=/tmp --upgrade /tmp/pip-21.3.1-py3-none-any.whl
 RUN pip3 install --no-index --find-links=/tmp -r /tmp/requirements.txt
 RUN rm -rf /tmp/*.{rpm,whl} && \
 	dnf -y remove python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config
