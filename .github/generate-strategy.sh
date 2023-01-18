@@ -268,7 +268,7 @@ for version in "${debian_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	platforms="linux/amd64"
+	platforms="linux/amd64,linux/arm64"
 
 	# Build the json entry
 	entries+=(
