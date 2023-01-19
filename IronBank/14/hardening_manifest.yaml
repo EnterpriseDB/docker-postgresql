@@ -91,6 +91,11 @@ resources:
   validation:
     type: sha256
     value: 91e3db9620b822d0ed2b4d1850056a0f133cba04455e62f11612e40f5502f2ee
+- filename: portalocker-2.7.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/8c/df/d4f711d168524f5aebd7fb30969eaa31e3048cf8979688cde3b08f6e5eb8/portalocker-2.7.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983
 - filename: azure_identity-1.12.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ce/96/942f03d8a80e30e2289496c10d99e3a8b71f10c0b70b5337fd8ec2ae85e5/azure_identity-1.12.0-py3-none-any.whl
   validation:
@@ -101,11 +106,6 @@ resources:
   validation:
     type: sha256
     value: d2f1c26368ecdc28c8657d457352faa0b81b1845a7b889d8676787721ba86792
-- filename: portalocker-2.6.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/2a/59/dab72d0b8859a410a83dcaffb84781ffc467651b79c827a435c8945add05/portalocker-2.6.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 102ed1f2badd8dec9af3d732ef70e94b215b85ba45a8d7ff3c0003f19b442f4e
 - filename: cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/b7/8b/06f30caa03b5b3ac006de4f93478dbd0239e2a16566d81a106c322dc4f79/cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -186,6 +186,11 @@ resources:
   validation:
     type: sha256
     value: f78a63525e72dd46406b255bbdf858a22c43d6bad8dc5bdeb7851a42967e95a1
+- filename: botocore-1.29.52-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/18/fd/bc4b0fafd2cc86c9942585b9ed94f8357048f06dc13f88b58c05ceb89f65/botocore-1.29.52-py3-none-any.whl
+  validation:
+    type: sha256
+    value: de55b6333fb13c66da9055972d7e4efff5dcc5a087478a2b70e99d888b29a24c
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -211,16 +216,11 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: botocore-1.29.51-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/54/c8/f76bced9512b8078e14cf1b6d097051bc901baad3947cfb6ad3c0d611073/botocore-1.29.51-py3-none-any.whl
+- filename: boto3-1.26.52-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/3c/4c/3a613a8908c20bafe24a72bb97b4ddb2663d927f162ed47628a89248b120/boto3-1.26.52-py3-none-any.whl
   validation:
     type: sha256
-    value: bbb92420902b4d9e4b854fcfae20d1029f1c3396e0579894f115278bc51d6198
-- filename: boto3-1.26.51-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/55/6a/e1cb5f78101a4d85f5c67780edd5b63e3df3d57e2239f1126e5f30216a6e/boto3-1.26.51-py3-none-any.whl
-  validation:
-    type: sha256
-    value: b4aefdc72191c40a0155511b9ce933c94dcbdd1834ffc1204e90a30e7849ef13
+    value: 319ddb274f8f83b035b88a3b127c465bf6fe3e3fc2d668869b489e992c47ca77
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
