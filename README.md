@@ -6,7 +6,10 @@ for all available PostgreSQL versions (11 to 15) based on:
 - Red Hat Universal Base Images (UBI) 8 - default (with and without the PostGIS extension)
 - Debian Buster (10) Slim base images
 
-UBI8 based images of versions 11, 12, 13, 14 and 15 are available for amd64, ppc64le and s390x architectures.
+UBI8 based images are available for amd64, arm64, ppc64le and s390x architectures.
+Debian 10 based images are available for amd64 and arm64 architectures.
+
+Multilang images (`-multilang`) are container images enhanced with the full list of Locales. Available for all UBI based images.
 
 These images are customised to work with [EDB Postgres for Kubernetes by EDB](https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/)
 for Kubernetes and Red Hat Openshift.
@@ -28,9 +31,6 @@ Barman Cloud is distributed by EnterpriseDB under the [GNU GPL 3 License](https:
 PostGIS is distributed under the [GNU GPL 2 License](https://git.osgeo.org/gitea/postgis/postgis/src/branch/master/COPYING).
 
 PGAudit is distributed under the [PostgreSQL License](https://github.com/pgaudit/pgaudit/blob/master/LICENSE).
-
-All language packs for glibc contains all the locales. The label of the images containing the packs is suffixed with 
-`-multilang`. eg. `15.1-3.3-postgis-multilang`, `15.1-3.3-postgis-multilang`.
 
 Images are available via [GitHub Container Registry](https://github.com/EnterpriseDB/docker-postgresql/pkgs/container/postgresql)
 and [Quay.io](https://quay.io/repository/enterprisedb/postgresql).

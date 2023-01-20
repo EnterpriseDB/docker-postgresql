@@ -13,12 +13,22 @@ LABEL name="PostgreSQL + PostGIS Container Images" \
 
 COPY root/ /
 
+ARG TARGETARCH
 RUN set -xe ; \
+	ARCH="${TARGETARCH}" ; \
+	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
+	case $ARCH in \
+			amd64) \
+				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+			arm64) \
+				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+			*) \
+					exit 1 ;; \
+	esac ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
-	yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm ; \
 	yum -y --setopt=tsflags=nodocs install%%YUM_OPTIONS%% \
 		postgresql%%PG_MAJOR%%-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR%%-contrib-%%POSTGRES_VERSION%% \
@@ -62,19 +72,28 @@ RUN mkdir /docker-entrypoint-initdb.d
 
 # Postgis
 RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
-  set -xe ; \
-  rm -f /etc/rhsm-host ; \
-  SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
-  yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
-  yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-x86_64-rpms \
-  postgis%%POSTGIS_MAJOR%%_%%PG_MAJOR%%-%%POSTGIS_VERSION%% ; \
-  yum -y remove epel-release ; \
-  subscription-manager remove --all ; \
-  subscription-manager unregister ; \
-  subscription-manager clean ; \
-  yum -y clean all --enablerepo='*' ; \
-  ln -sf /run/secrets/rhsm /etc/rhsm-host ; \
-  rm /var/log/rhsm/rhsm.log
+	set -xe ; \
+	rm -f /etc/rhsm-host ; \
+	SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
+	yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
+	ARCH="${TARGETARCH}" ; \
+	case $ARCH in \
+			amd64) \
+				BUILDARCH="x86_64" ;; \
+			arm64) \
+				BUILDARCH="aarch64" ;; \
+			*) \
+					exit 1 ;; \
+	esac ; \
+	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
+		postgis%%POSTGIS_MAJOR%%_%%PG_MAJOR%%-%%POSTGIS_VERSION%% ; \
+	yum -y remove epel-release ; \
+	subscription-manager remove --all ; \
+	subscription-manager unregister ; \
+	subscription-manager clean ; \
+	yum -y clean all --enablerepo='*' ; \
+	ln -sf /run/secrets/rhsm /etc/rhsm-host ; \
+	rm /var/log/rhsm/rhsm.log
 
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
 COPY ./update-postgis.sh /usr/local/bin

@@ -48,6 +48,7 @@ get_latest_ubi_base() {
 
 declare -A pgArchMatrix=(
 	[x86_64]='pgdg'
+	[aarch64]='pgdg'
 	[ppc64le]='enterprise'
 	[s390x]='edb'
 )
@@ -97,27 +98,14 @@ check_cloudsmith_pkgs() {
 			sort -V
 }
 
-
 compare_architecture_pkgs() {
-	local x86_64="$1"; shift
-	local ppc64le="$1"; shift
-	local s390x="$1"; shift
-
-	if [[ -z "$x86_64" || -z "$ppc64le" || -z "$s390x" ]]; then
-		echo "Unable to retrieve at least one of the multi-arch packages." >&2
-		echo "x86_64: ${x86_64}" >&2
-		echo "ppc64le: ${ppc64le}" >&2
-		echo "s390x: ${s390x}" >&2
-		false; return
-	fi
-
-	if [[ ${x86_64} != ${ppc64le} || ${x86_64} != ${s390x} ]]; then
-		echo "Version discrepancy between the architectures." >&2
-		echo "x86_64: ${x86_64}" >&2
-		echo "ppc64le: ${ppc64le}" >&2
-		echo "s390x: ${s390x}" >&2
-		false; return
-	fi
+	for arg; do
+		if [[ "$1" != "$arg" ]]; then
+			echo "Version discrepancy between the architectures." >&2
+			echo "Versions: $@" >&2
+			false; return
+		fi
+	done
 
 	true
 }
@@ -204,15 +192,11 @@ generate_redhat() {
 	fi
 
 	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
-
-	# Multi arch is available from v11 onwards
-	if [ "$version" -gt '10' ]; then
-		pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
-		pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
-
-		if ! compare_architecture_pkgs "$pg_x86_64" "$pg_ppc64le" "$pg_s390x"; then
-			return
-		fi
+	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
+	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
+	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
+	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
+		return
 	fi
 
 	postgresqlVersion="${pg_x86_64}"
@@ -325,7 +309,13 @@ generate_redhat_postgis() {
 		exit 1
 	fi
 
-	postgresqlVersion=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
+	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
+	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
+	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64"; then
+		return
+	fi
+
+	postgresqlVersion="${pg_x86_64}"
 	if [ -z "$postgresqlVersion" ]; then
 		echo "Unable to retrieve latest PostgreSQL $version version"
 		return
@@ -343,7 +333,13 @@ generate_redhat_postgis() {
 		exit 1
 	fi
 
-	postgisVersion=$(get_postgis_version "${ubiRelease}" 'x86_64' "$version")
+	postgis_x86_64=$(get_postgis_version "${ubiRelease}" 'x86_64' "$version")
+	postgis_arm64=$(get_postgis_version "${ubiRelease}" 'aarch64' "$version")
+	if ! compare_architecture_pkgs "$postgis_x86_64" "$postgis_arm64"; then
+		return
+	fi
+
+	postgisVersion="${postgis_x86_64}"
 	if [ -z "$postgisVersion" ]; then
 		echo "Unable to get the PostGIS version"
 		exit 1
