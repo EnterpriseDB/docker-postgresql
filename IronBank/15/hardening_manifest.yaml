@@ -156,16 +156,16 @@ resources:
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
-- filename: boto3-1.26.55-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/01/87/16a55bdf3d5e46aede7f84ec9c23d67102d4049c0ed771809d9327f7ccc1/boto3-1.26.55-py3-none-any.whl
-  validation:
-    type: sha256
-    value: e8ae1567b0a21d410f9c8a16a17a8028445a52061482272b4a516f5de5abbd92
 - filename: google_cloud_storage-2.7.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/23/3add67cdd1f2116eb4425b0d4f3154117b8a79eaaf3022edc23a71d82cc2/google_cloud_storage-2.7.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: f78a63525e72dd46406b255bbdf858a22c43d6bad8dc5bdeb7851a42967e95a1
+- filename: botocore-1.29.56-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/97/39/50e4b90ac76db171bd56339e4f184aca1a23e51c15f1a2b91dc4d324e5a4/botocore-1.29.56-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 669ed3a256c4352f8f8a77a24b4d623ab7acc966d843b460d7ce2261a9813a79
 - filename: google_cloud_core-2.3.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ac/4d/bae84e736080ed465a6b02e9f447c89c60c00fcdade2eb6911fecf3f46aa/google_cloud_core-2.3.2-py2.py3-none-any.whl
   validation:
@@ -231,11 +231,11 @@ resources:
   validation:
     type: sha256
     value: 39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d
-- filename: botocore-1.29.55-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/62/ae/115b3b111026b3f91ebdc67b478df9bb0fc8b45a951fdb28d9d4fa07abcb/botocore-1.29.55-py3-none-any.whl
+- filename: boto3-1.26.56-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c6/e9/c3daf5a3a558ad334fa6463dbd26611a4a3e253196da30f78aac973dde17/boto3-1.26.56-py3-none-any.whl
   validation:
     type: sha256
-    value: dd8a0868b287015bed086c97b866f9bb8ca57737d15972d3ac773559f4088db8
+    value: 72214a08f337d29a1300d7861872f60ea41016b2a8ad8094fab20d783c8cf1ae
 - filename: psycopg2-2.9.5.tar.gz
   url: https://files.pythonhosted.org/packages/89/d6/cd8c46417e0f7a16b4b0fc321f4ab676a59250d08fce5b64921897fb07cc/psycopg2-2.9.5.tar.gz
   validation:
