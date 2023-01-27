@@ -6,7 +6,7 @@ LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="14.6-1.pgdg100+1" \
-      release="6" \
+      release="7" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Debian buster-slim."
 
