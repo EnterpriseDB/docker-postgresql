@@ -96,11 +96,11 @@ resources:
   validation:
     type: sha256
     value: 91e3db9620b822d0ed2b4d1850056a0f133cba04455e62f11612e40f5502f2ee
-- filename: msal-1.20.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/53/51/b0874200ae0b926d83e402a5689b81310f49743b78e6457dbab85d0b354f/msal-1.20.0-py2.py3-none-any.whl
+- filename: msal-1.21.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/cc/86/9900755d4be6e36b48603f9056ffca341d42139297df6f7e143fa96e6ed7/msal-1.21.0-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: d2f1c26368ecdc28c8657d457352faa0b81b1845a7b889d8676787721ba86792
+    value: e8444617c1eccdff7bb73f5d4f94036002accea4a2c05f8f39c9efb5bd2b0c6a
 - filename: portalocker-2.7.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/8c/df/d4f711d168524f5aebd7fb30969eaa31e3048cf8979688cde3b08f6e5eb8/portalocker-2.7.0-py2.py3-none-any.whl
   validation:
@@ -141,6 +141,11 @@ resources:
   validation:
     type: sha256
     value: 52b84658e8df7853a3cf1c563814655b5028b979b2a87905b92aa6bb30be240e
+- filename: botocore-1.29.61-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/db/07/a9dfb7ee7bda046cdc7c308e95cf9a2ac6b3bc9958e74b0b9f4039e5780c/botocore-1.29.61-py3-none-any.whl
+  validation:
+    type: sha256
+    value: c7a7133d02c5e9a8fcc9e5a238bf15bde2d5369366553520332a88bc05b7358a
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -161,11 +166,6 @@ resources:
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
-- filename: botocore-1.29.60-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b0/5b/f765d7b81b35deab58180a8c40131fdfbb8f8903120b8cf513131d809f28/botocore-1.29.60-py3-none-any.whl
-  validation:
-    type: sha256
-    value: c4ae251e7df0cf01d893eb945bc8f23c14989ed349775a8e16c949f08a068f9a
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
@@ -211,11 +211,6 @@ resources:
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
-- filename: boto3-1.26.60-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/c4/3a/44029accbbcc92950fbf0fc7cfd139d371d8be745113b4a4eeb7284c104b/boto3-1.26.60-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 5fd2810217a74a38078a19fb85a9e5d6934d0c146eb060967a3ffd7ab33cdf00
 - filename: protobuf-4.21.12-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/e7/a2/3273c05fc5d959fa90de6453ebd6d45c6d4fab3ec212d631625ea5780921/protobuf-4.21.12-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -236,6 +231,11 @@ resources:
   validation:
     type: sha256
     value: 39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d
+- filename: boto3-1.26.61-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/15/86/c90dd95a44a6fd200d0934c55fdfc64fc3f9f4c5b6dab4463711ff1e7cf2/boto3-1.26.61-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 5194c16e1f2371c25ee038e8291faf99117b4f2d272d70f48851ba47bcea44b4
 - filename: psycopg2-2.9.5.tar.gz
   url: https://files.pythonhosted.org/packages/89/d6/cd8c46417e0f7a16b4b0fc321f4ab676a59250d08fce5b64921897fb07cc/psycopg2-2.9.5.tar.gz
   validation:
