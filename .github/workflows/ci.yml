@@ -71,7 +71,7 @@ jobs:
           echo "TAGS=${RESULT%,}" >> $GITHUB_ENV
 
       - name: Build ${{ matrix.name }}
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: ${{ matrix.dir }}
           file: ${{ matrix.file }}
