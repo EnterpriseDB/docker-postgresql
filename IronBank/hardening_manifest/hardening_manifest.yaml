@@ -81,11 +81,6 @@ resources:
   validation:
     type: sha256
     value: 2a58ce4a209a013e37eaccfd5937570ab99e9118b3e1acf875eed3a85d541b92
-- filename: cryptography-39.0.0-cp36-abi3-manylinux_2_28_x86_64.whl
-  url: https://files.pythonhosted.org/packages/34/b3/3011b5f6c5cc935113fc58f8b07d42fcdd03e7a76b1c3c8ba27d276e8833/cryptography-39.0.0-cp36-abi3-manylinux_2_28_x86_64.whl
-  validation:
-    type: sha256
-    value: 875aea1039d78557c7c6b4db2fe0e9d2413439f4676310a5f269dd342ca7a717
 - filename: cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/b7/8b/06f30caa03b5b3ac006de4f93478dbd0239e2a16566d81a106c322dc4f79/cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -106,6 +101,11 @@ resources:
   validation:
     type: sha256
     value: a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983
+- filename: cryptography-39.0.1-cp36-abi3-manylinux_2_28_x86_64.whl
+  url: https://files.pythonhosted.org/packages/1b/90/3c06f3f7a74dad0955536088c3b743a74e8c57c265f2c7a4b61cebb369c1/cryptography-39.0.1-cp36-abi3-manylinux_2_28_x86_64.whl
+  validation:
+    type: sha256
+    value: f24077a3b5298a5a06a8e0536e3ea9ec60e4c7ac486755e5fb6e6ea9b3500106
 - filename: PyJWT-2.6.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/40/46/505f0dd53c14096f01922bf93a7abb4e40e29a06f858abbaa791e6954324/PyJWT-2.6.0-py3-none-any.whl
   validation:
@@ -146,16 +146,16 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
-- filename: botocore-1.29.65-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/49/01/b4a5ef2d2d88fcefbdbf2a21cbf980bf79736132edc176356492fe5e4611/botocore-1.29.65-py3-none-any.whl
-  validation:
-    type: sha256
-    value: f566a9aa1b477cd1bdedb8f694f99fc257240eacdd7a73cc7d19d43cb20870b9
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
     type: sha256
     value: a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
+- filename: botocore-1.29.66-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/f2/7d/30cc7ffcdb9f2743e551fcf5d5802615a69141f93b4568ebc0911f52d38c/botocore-1.29.66-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 772da07d2a49a9d2dc8d23e060e88eb72881e58074be7c813aa946ecdbd0e5b5
 - filename: google_cloud_storage-2.7.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/23/3add67cdd1f2116eb4425b0d4f3154117b8a79eaaf3022edc23a71d82cc2/google_cloud_storage-2.7.0-py2.py3-none-any.whl
   validation:
@@ -171,11 +171,6 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: boto3-1.26.65-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/46/21/5bf69d14c61f1080ecd865998af8ddc3bacc96ab545a7bbe218d64576529/boto3-1.26.65-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 9e23ec51e1fe162ecb5efee41bd9346d90ebbb8ff094ef8088223305d48ffaec
 - filename: cachetools-5.3.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/db/14/2b48a834d349eee94677e8702ea2ef98b7c674b090153ea8d3f6a788584e/cachetools-5.3.0-py3-none-any.whl
   validation:
@@ -226,6 +221,11 @@ resources:
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+- filename: boto3-1.26.66-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/21/f9/7c508b9598b2ce705aa53a4dcf273607ad6bf717a008fa811a264e6e1c86/boto3-1.26.66-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 3a1ffeecfe6e61d414617294b822b008e604ccfd83434c483f429a2922db314d
 - filename: google_api_core-2.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
   validation:
