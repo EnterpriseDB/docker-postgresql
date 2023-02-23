@@ -75,7 +75,7 @@ VOLUME /var/lib/postgresql/data
 RUN mkdir /docker-entrypoint-initdb.d
 
 # Remove example certificates in pem and enc format from /usr/share/doc folder
-RUN find /usr/share/doc -type f '(' -iname "*.pem" -o -iname "*.enc" ')' -exec rm -rf {} \; || true 
+RUN find /usr/share/doc -type f '(' -iname "*.pem" -o -iname "*.enc" ')' -exec rm -rf {} \; || true
 
 # DoD 2.3 - remove setuid/setgid from any binary that not strictly requires it, and before doing that list them on the stdout
 RUN find / -not -path "/proc/*" -perm /6000 -type f -exec ls -ld {} \; -exec chmod a-s {} \; || true
