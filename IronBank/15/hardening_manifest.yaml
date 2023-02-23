@@ -116,41 +116,21 @@ resources:
   validation:
     type: sha256
     value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
-- filename: msrest-0.7.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/15/cf/f2966a2638144491f8696c27320d5219f48a072715075d168b31d3237720/msrest-0.7.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 21120a810e1233e5e6cc7fe40b474eeb4ec6f757a15d7cf86702c369f9567c32
 - filename: isodate-0.6.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b6/85/7882d311924cbcfc70b1890780763e36ff0b140c7e51c110fc59a532f087/isodate-0.6.1-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: requests_oauthlib-1.3.1-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/6f/bb/5deac77a9af870143c684ab46a7934038a53eb4aa975bc0687ed6ca2c610/requests_oauthlib-1.3.1-py2.py3-none-any.whl
+- filename: azure_storage_blob-12.15.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/46/cf/ef1daa7b7df2b2d72db82fa2a777bf50133f4797b4bdfa6b3bbea09660fe/azure_storage_blob-12.15.0-py3-none-any.whl
   validation:
     type: sha256
-    value: 2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5
-- filename: oauthlib-3.2.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7e/80/cab10959dc1faead58dc8384a781dfbf93cb4d33d50988f7a69f1b7c9bbe/oauthlib-3.2.2-py3-none-any.whl
+    value: 08d8807c577c63a436740627927c1a03a97c963efc29af5c818aed906590e1cf
+- filename: botocore-1.29.77-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/bf/96/0e1de3aa12fef5ba0c121220ef4864683ae3effb5a01b95a54c56d3025cf/botocore-1.29.77-py3-none-any.whl
   validation:
     type: sha256
-    value: 8139f29aac13e25d502680e9e19963e83f16838d48a0d71c287fe40e7067fbca
-- filename: azure_storage_blob-12.14.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/46/a1/fbb2f313f32dc469be1fadc0d02957399b93d8d713e61492c67ae5c764b8/azure_storage_blob-12.14.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 52b84658e8df7853a3cf1c563814655b5028b979b2a87905b92aa6bb30be240e
-- filename: boto3-1.26.76-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/2c/95/a43050c34b38d38379a9fea1986492c9d70b7ee4522f80a0f09117443b55/boto3-1.26.76-py3-none-any.whl
-  validation:
-    type: sha256
-    value: b4c2969b7677762914394b8273cc1905dfe5b71f250741c1a575487ae357e729
-- filename: botocore-1.29.76-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/87/93/e862d4b2ec9b0c8f7a6ee3141df138c00aa91de42839e55b68e3ebb53bf2/botocore-1.29.76-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 70735b00cd529f152992231ca6757e458e5ec25db43767b3526e9a35b2f143b7
+    value: d8aa7bffe2422de282b2d02945b7b45d5fecf00f67b65eebb0b1fa3de1abc6d0
 - filename: protobuf-4.22.0-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/89/80/d5fc86e6d6761e353b67e616be29224c17a66064ffced0c6f2e3829e3dd8/protobuf-4.22.0-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -201,6 +181,11 @@ resources:
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
+- filename: boto3-1.26.77-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ad/2b/92653e0c21d2d4cf8ec214a8d7715c41ded6c0f851678e891b1a3712804c/boto3-1.26.77-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 17f0d782487275cac12676a61b3f1a4900954cc454c842b8551ca47a3dcd59b4
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
