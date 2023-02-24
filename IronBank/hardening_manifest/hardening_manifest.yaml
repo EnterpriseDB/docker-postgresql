@@ -126,16 +126,21 @@ resources:
   validation:
     type: sha256
     value: 08d8807c577c63a436740627927c1a03a97c963efc29af5c818aed906590e1cf
-- filename: botocore-1.29.77-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/bf/96/0e1de3aa12fef5ba0c121220ef4864683ae3effb5a01b95a54c56d3025cf/botocore-1.29.77-py3-none-any.whl
+- filename: botocore-1.29.78-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/28/50/79c77af6caa09f689fc1c7e5bb29668d71b7ad5ca69ac013ff0a29da164e/botocore-1.29.78-py3-none-any.whl
   validation:
     type: sha256
-    value: d8aa7bffe2422de282b2d02945b7b45d5fecf00f67b65eebb0b1fa3de1abc6d0
+    value: 656ac8822a1b6c887a8efe1172bcefa9c9c450face26dc39998a249e8c340a23
 - filename: protobuf-4.22.0-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/89/80/d5fc86e6d6761e353b67e616be29224c17a66064ffced0c6f2e3829e3dd8/protobuf-4.22.0-cp37-abi3-manylinux2014_x86_64.whl
   validation:
     type: sha256
     value: 86c3d20428b007537ba6792b475c0853bba7f66b1f60e610d913b77d94b486e4
+- filename: boto3-1.26.78-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7b/5b/d9e87155ebdb65bd2fc6985546d43746a56643aa3eac3ae51ceb524c5300/boto3-1.26.78-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 0c593017fa49dbc34dcdbd5659208f2daf293a499d5f4d7e61978cd6b5d72a97
 - filename: googleapis_common_protos-1.58.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/32/4e/ed585842aaa704d87495a0e99317aaa44c5007a597c05b995fa8cfc4dfbe/googleapis_common_protos-1.58.0-py2.py3-none-any.whl
   validation:
@@ -181,11 +186,6 @@ resources:
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
-- filename: boto3-1.26.77-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ad/2b/92653e0c21d2d4cf8ec214a8d7715c41ded6c0f851678e891b1a3712804c/boto3-1.26.77-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 17f0d782487275cac12676a61b3f1a4900954cc454c842b8551ca47a3dcd59b4
 - filename: pyasn1_modules-0.2.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/de/214830a981892a3e286c3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.whl
   validation:
