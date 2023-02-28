@@ -126,16 +126,16 @@ resources:
   validation:
     type: sha256
     value: 08d8807c577c63a436740627927c1a03a97c963efc29af5c818aed906590e1cf
+- filename: botocore-1.29.80-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ae/39/af7a75268a0e0ea47cdf5e9672f1d733bacdafc62ef67da0528834a3d407/botocore-1.29.80-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 9a301cb4de8ec6efe4e4b6ebb29b4301decd5b00c1a7f9187652002efb520ad0
 - filename: protobuf-4.22.0-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/89/80/d5fc86e6d6761e353b67e616be29224c17a66064ffced0c6f2e3829e3dd8/protobuf-4.22.0-cp37-abi3-manylinux2014_x86_64.whl
   validation:
     type: sha256
     value: 86c3d20428b007537ba6792b475c0853bba7f66b1f60e610d913b77d94b486e4
-- filename: botocore-1.29.79-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/5e/4f/2f3075b7b8bff4e7324a468c79fab704b0c09404b4c7e3ab6e62b923695d/botocore-1.29.79-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 5f254f019e8641f8b2ba6dddc1f7541e8c6d25d976802392710b2fc4bac925b1
 - filename: googleapis_common_protos-1.58.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/32/4e/ed585842aaa704d87495a0e99317aaa44c5007a597c05b995fa8cfc4dfbe/googleapis_common_protos-1.58.0-py2.py3-none-any.whl
   validation:
@@ -151,6 +151,11 @@ resources:
   validation:
     type: sha256
     value: 5c06962e2675bcb8667c9c0325f9ca73b2bc2f1f49ff90b52fca2dbb996d1d65
+- filename: boto3-1.26.80-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/65/68/3d48466c6948c08d86ef3347f833c2104c2e3503bb20e39ef68042cdb2f7/boto3-1.26.80-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 704065abc8fdd2519491c11eeb65d69f21d0baf278b66b0b44090cc09c8c7bf8
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -201,11 +206,6 @@ resources:
   validation:
     type: sha256
     value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
-- filename: boto3-1.26.79-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/c6/cf/2ad773b6abb9d3ed3f22596c1aa3a3b01a7e9a169c1cb50b45cde4c35640/boto3-1.26.79-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 049de631cc03726a14b8eb24ac9ec2a48b0624197796f36166da809fdc9b9a7f
 - filename: pyasn1-0.4.8-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl
   validation:
