@@ -126,11 +126,11 @@ resources:
   validation:
     type: sha256
     value: 08d8807c577c63a436740627927c1a03a97c963efc29af5c818aed906590e1cf
-- filename: botocore-1.29.87-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/91/19/49be9aff84e0031b07d9c70fb568da5bc30fd3fa62ae57385f93fccb7dde/botocore-1.29.87-py3-none-any.whl
+- filename: botocore-1.29.88-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/72/33/aeed379b1b44ccb6dea8cc4d427fe045ea69a1104f999efe1d4788c09b66/botocore-1.29.88-py3-none-any.whl
   validation:
     type: sha256
-    value: f4066e1ce1fd8790e872c70deede5d7abd94c87dcdb12892b4359245fed927f9
+    value: c320275d18ee140005ace4d04e9e720d5b1e30625cfde5267b1fc5133fd4d44d
 - filename: python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/5d/f9/cc46a12db66b3f3f4d25387994b364ef039884025bfb7b16a05ecb1f9b37/python_snappy-0.6.0-cp38-cp38-manylinux2010_x86_64.whl
   validation:
@@ -176,11 +176,6 @@ resources:
   validation:
     type: sha256
     value: ca3befcd4580dab6ad49356b46bf165bb68ff4b32389f028f1abd7c10ab9519a
-- filename: boto3-1.26.87-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/81/d8/6f30c492400e6ba37446f7c92be965e3daab3072749779d228909c07cfaa/boto3-1.26.87-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 7cf46d6aa67487ae5dc43a7bd10e1ebe9b8c442c7f32f7fea259cd3df6eeb52d
 - filename: google_cloud_storage-2.7.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/23/3add67cdd1f2116eb4425b0d4f3154117b8a79eaaf3022edc23a71d82cc2/google_cloud_storage-2.7.0-py2.py3-none-any.whl
   validation:
@@ -206,6 +201,11 @@ resources:
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
+- filename: boto3-1.26.88-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/4a/ab/92d35739748e7cf94f315a408f3861cc075cecc0a40f2b455972639b6500/boto3-1.26.88-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 5374c409d0153e5da4ccde3a0f7e3efac81ce7c60e4e18ffc9acc87c67e0c0a3
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
