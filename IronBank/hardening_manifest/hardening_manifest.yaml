@@ -181,21 +181,16 @@ resources:
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: boto3-1.26.90-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/64/78/8fe63007f245bf51a6cbea672ba741a22795ebcaef2dbbf0321990306919/boto3-1.26.90-py3-none-any.whl
+- filename: boto3-1.26.91-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/bd/3b/b59a11ea95f73b78ccd6474909d3bc05b6aebf10983421c60e6f37d00755/boto3-1.26.91-py3-none-any.whl
   validation:
     type: sha256
-    value: f1123076445f93fa85bf7ee956ae33041f2e077a6824e31929cc56ad31aeffc1
+    value: 3ce2225a61832d69831d669d912424ea3863268ca1cfa2a82203bb90952acefa
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: botocore-1.29.90-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/83/bf/9b9e6c25427e60f28b2e91a26ccab9f555b4990bb42817804cc264204f04/botocore-1.29.90-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 1b8c1b8c366875e65d39237a296842b9c0ea33af2ba4a2771db2ba6aefa663ef
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -216,6 +211,11 @@ resources:
   validation:
     type: sha256
     value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
+- filename: botocore-1.29.91-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5a/32/92642d3f17b11d3498caf644abd41b43f44b87ff02de0c215b31c0aa555e/botocore-1.29.91-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 4ed6a488aee1b42367eace71f7d0993dda05b02eebd7dcdd78db5c9ce3d80da5
 - filename: barman-3.4.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f4/41/aa50ec7813289c17e0ffbc6be854b82d333ab1b62446f0f3924d506842af/barman-3.4.0-py2.py3-none-any.whl
   validation:
