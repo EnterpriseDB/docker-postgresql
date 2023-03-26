@@ -76,16 +76,16 @@ resources:
   validation:
     type: sha256
     value: de5695a6f1d8340b12a5d6d4484290ee74d61e467c39ff03b39e30df62cf83a0
+- filename: cryptography-40.0.1-cp36-abi3-manylinux_2_28_x86_64.whl
+  url: https://files.pythonhosted.org/packages/c0/ea/76eb113bafc97f2e8d9872eda85eb59383892a3559ebbec7595753785fd2/cryptography-40.0.1-cp36-abi3-manylinux_2_28_x86_64.whl
+  validation:
+    type: sha256
+    value: 1e0af458515d5e4028aad75f3bb3fe7a31e46ad920648cd59b64d3da842e4356
 - filename: portalocker-2.7.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/8c/df/d4f711d168524f5aebd7fb30969eaa31e3048cf8979688cde3b08f6e5eb8/portalocker-2.7.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983
-- filename: cryptography-40.0.0-cp36-abi3-manylinux_2_28_x86_64.whl
-  url: https://files.pythonhosted.org/packages/72/8a/722fa27aa6c4eed9403033814bc1b062a1bc963b73d2f7487e1cdf6f62c3/cryptography-40.0.0-cp36-abi3-manylinux_2_28_x86_64.whl
-  validation:
-    type: sha256
-    value: 43089be365c0ca4235c6e4e781f3bc125bc1fff576c9dd22cdfb585309b9bb9d
 - filename: pycparser-2.21-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl
   validation:
