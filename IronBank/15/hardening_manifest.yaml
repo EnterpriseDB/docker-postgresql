@@ -31,11 +31,11 @@ tags:
 - '15.2-1PGDG.rhel8'
 - latest
 resources:
-- filename: argcomplete-3.0.4-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/da/5c/dbae943018bcc23c0368c3ad1a921e10db75fe268f2f4a3880e322aaebd1/argcomplete-3.0.4-py3-none-any.whl
+- filename: argcomplete-3.0.5-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ef/51/f03fd5e3ff83a57336a201d7888e9da66c7061edd429ab676b4ae5fc30aa/argcomplete-3.0.5-py3-none-any.whl
   validation:
     type: sha256
-    value: 6884517851f1204cfef34d79a1ceb872562721931a007019312911ec23f88ed8
+    value: e858595eee91732440e7291dbb49ae73d3fb9bfcc073429a16d54b7b374a7a3d
 - filename: urllib3-1.26.15-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/7b/f5/890a0baca17a61c1f92f72b81d3c31523c99bec609e60c292ea55b387ae8/urllib3-1.26.15-py2.py3-none-any.whl
   validation:
