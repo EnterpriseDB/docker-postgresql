@@ -8,9 +8,9 @@ argcomplete==3.0.5
 azure-core==1.26.3
 azure-identity==1.12.0
 azure-storage-blob==12.15.0
-barman[azure,cloud,google,snappy]==3.4.0
-boto3==1.26.101
-botocore==1.29.101
+barman[azure,cloud,google,snappy]==3.5.0
+boto3==1.26.102
+botocore==1.29.102
 cachetools==5.3.0
 certifi==2022.12.7
 cffi==1.15.1
@@ -19,7 +19,7 @@ cryptography==40.0.1
 google-api-core==2.11.0
 google-auth==2.17.0
 google-cloud-core==2.3.2
-google-cloud-storage==2.7.0
+google-cloud-storage==2.8.0
 google-crc32c==1.5.0
 google-resumable-media==2.4.1
 googleapis-common-protos==1.59.0
@@ -36,7 +36,7 @@ pyasn1-modules==0.2.8
 pycparser==2.21
 pyjwt[crypto]==2.6.0
 python-dateutil==2.8.2
-python-snappy==0.6.0
+python-snappy==0.6.1
 requests==2.28.2
 rsa==4.9
 s3transfer==0.6.0
