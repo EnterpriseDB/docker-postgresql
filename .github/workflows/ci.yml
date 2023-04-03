@@ -79,6 +79,7 @@ jobs:
             "cs_script=${{ secrets.CS_SCRIPT }}"
             "subscription=${{ secrets.SUBSCRIPTION }}"
           push: false
+          provenance: false
           tags: ${{ env.TAGS }}
           load: true
           build-args: |
