@@ -126,21 +126,11 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: boto3-1.26.108-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/90/cc/4719c0105c9edbb7e006e6c4f22c3ca28c9994242b9681f68d2500139dba/boto3-1.26.108-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 27fd0fedfdcab0bbb672b0dd18844049b86de15dccf042488c6420f1101e8a10
 - filename: cachetools-5.3.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/db/14/2b48a834d349eee94677e8702ea2ef98b7c674b090153ea8d3f6a788584e/cachetools-5.3.0-py3-none-any.whl
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
-- filename: botocore-1.29.108-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/73/5e/4657f7899cfa0350dd0e68f703f62fe329ade04d9eb347297d5caf48faa9/botocore-1.29.108-py3-none-any.whl
-  validation:
-    type: sha256
-    value: e5df8bd26971d6b257d9af2ec923548856decd9ff47bea1ab2736a4231bddac2
 - filename: google_auth-2.17.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a0/6c/1c662808a86ae5364a88621bc9b88ff8af0f74a28f144da115c9122f88f5/google_auth-2.17.2-py2.py3-none-any.whl
   validation:
@@ -151,6 +141,11 @@ resources:
   validation:
     type: sha256
     value: 248e210c13bc109909160248af546a91cb2dabaf3d7ebbf04def9dd49f02dbb6
+- filename: botocore-1.29.109-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/9f/9b/2c3fa91b4750b8e78211d07788445667e8c24f4a19f38c2fc099e75f282a/botocore-1.29.109-py3-none-any.whl
+  validation:
+    type: sha256
+    value: cf43dddb7e2ba5425fe19fad68b10043307b61d9103d06566f1ab6034e38b8db
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -206,6 +201,11 @@ resources:
   validation:
     type: sha256
     value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
+- filename: boto3-1.26.109-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/dd/b7/d2767e43723b4cf2db45ed8c636c69be2563ed23c5a1e4741aff2d529a0e/boto3-1.26.109-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a1c48674c2ff25ddced599c51d14ba7a6dbe9fd51641e8d63a6887bebd9712d7
 - filename: google_resumable_media-2.4.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/0b/d8/9a46125189d955ff50228351848019aef51775787db59373fefb20b09b3b/google_resumable_media-2.4.1-py2.py3-none-any.whl
   validation:
