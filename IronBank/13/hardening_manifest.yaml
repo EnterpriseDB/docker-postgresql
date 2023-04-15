@@ -76,16 +76,16 @@ resources:
   validation:
     type: sha256
     value: fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4
+- filename: cryptography-40.0.2-cp36-abi3-manylinux_2_28_x86_64.whl
+  url: https://files.pythonhosted.org/packages/8e/34/f54dbfc6d12fa34a50f03bf01319d585e7e9bddd68ad28299b4998e3098b/cryptography-40.0.2-cp36-abi3-manylinux_2_28_x86_64.whl
+  validation:
+    type: sha256
+    value: adc0d980fd2760c9e5de537c28935cc32b9353baaf28e0814df417619c6c8c3b
 - filename: msal_extensions-1.0.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 91e3db9620b822d0ed2b4d1850056a0f133cba04455e62f11612e40f5502f2ee
-- filename: cryptography-40.0.1-cp36-abi3-manylinux_2_28_x86_64.whl
-  url: https://files.pythonhosted.org/packages/c0/ea/76eb113bafc97f2e8d9872eda85eb59383892a3559ebbec7595753785fd2/cryptography-40.0.1-cp36-abi3-manylinux_2_28_x86_64.whl
-  validation:
-    type: sha256
-    value: 1e0af458515d5e4028aad75f3bb3fe7a31e46ad920648cd59b64d3da842e4356
 - filename: azure_identity-1.12.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ce/96/942f03d8a80e30e2289496c10d99e3a8b71f10c0b70b5337fd8ec2ae85e5/azure_identity-1.12.0-py3-none-any.whl
   validation:
@@ -136,11 +136,6 @@ resources:
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
-- filename: boto3-1.26.113-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/40/ed/9078d092946cbac86d0979e439c13796dbb5a243f7c3f550df432746ff2a/boto3-1.26.113-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 631db554cf9d98a2d29c0533a7020cf967b6800437be36e4335e654a480dfcdf
 - filename: google_cloud_storage-2.8.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/30/84/4850b9c286a4baeebae14be62a616867323424f6a5091b151703858d86a6/google_cloud_storage-2.8.0-py2.py3-none-any.whl
   validation:
@@ -156,6 +151,11 @@ resources:
   validation:
     type: sha256
     value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
+- filename: boto3-1.26.114-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/94/08/f7bb071229e11d54d43777e1d11344b53a987c6d156a4a199f75ee904506/boto3-1.26.114-py3-none-any.whl
+  validation:
+    type: sha256
+    value: e32977256470b4de3a25a43acdf6c8e6375e762656ace292ad2ceba446203615
 - filename: google_auth-2.17.3-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/da/cc/13eb3d0b151252e1d2bafc52f412be05c3789b0f655caf5eed298cf8056c/google_auth-2.17.3-py2.py3-none-any.whl
   validation:
@@ -191,6 +191,11 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
+- filename: botocore-1.29.114-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/58/5f/1edbe5ba4386225d39eb763e7c11e2c62b8e2f6dac88a59164e9bcea2ed1/botocore-1.29.114-py3-none-any.whl
+  validation:
+    type: sha256
+    value: dd61f445eb53fe906dbde86405915cce61ffa13824a1bb7b826bfc7869a3e628
 - filename: google_api_core-2.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
   validation:
@@ -201,11 +206,6 @@ resources:
   validation:
     type: sha256
     value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
-- filename: botocore-1.29.113-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/4c/33/b087d4f5168d8e7dec6c76ee7ed571a5d51e63fe224b1c42fddffe8276db/botocore-1.29.113-py3-none-any.whl
-  validation:
-    type: sha256
-    value: d927c1fbf5f5caf7937b5f53eb158c708bcbe3b6aa6d46e1fbd353241f21b5b0
 - filename: google_resumable_media-2.4.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/0b/d8/9a46125189d955ff50228351848019aef51775787db59373fefb20b09b3b/google_resumable_media-2.4.1-py2.py3-none-any.whl
   validation:
