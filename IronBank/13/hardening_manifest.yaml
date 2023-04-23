@@ -31,11 +31,11 @@ tags:
 - '13.10-1PGDG.rhel8'
 - latest
 resources:
-- filename: argcomplete-3.0.5-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ef/51/f03fd5e3ff83a57336a201d7888e9da66c7061edd429ab676b4ae5fc30aa/argcomplete-3.0.5-py3-none-any.whl
+- filename: argcomplete-3.0.6-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/8d/3a/b3602da0bcde7c76cd0e36e4865bef749e62f01b90be1f287a74e587e8a8/argcomplete-3.0.6-py3-none-any.whl
   validation:
     type: sha256
-    value: e858595eee91732440e7291dbb49ae73d3fb9bfcc073429a16d54b7b374a7a3d
+    value: 798f28e11dc141f415879497599316a8a9126672a883064b851597a0d94be8a9
 - filename: charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/74/5f/361202de730532028458b729781b8435f320e31a622c27f30e25eec80513/charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
