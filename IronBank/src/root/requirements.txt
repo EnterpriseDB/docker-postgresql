@@ -4,13 +4,13 @@
 #
 #    pip-compile --allow-unsafe --no-annotate --output-file=requirements.txt
 #
-argcomplete==3.0.6
+argcomplete==3.0.8
 azure-core==1.26.4
 azure-identity==1.12.0
 azure-storage-blob==12.16.0
 barman[azure,cloud,google,snappy]==3.5.0
-boto3==1.26.118
-botocore==1.29.118
+boto3==1.26.121
+botocore==1.29.121
 cachetools==5.3.0
 certifi==2022.12.7
 cffi==1.15.1
@@ -21,7 +21,7 @@ google-auth==2.17.3
 google-cloud-core==2.3.2
 google-cloud-storage==2.8.0
 google-crc32c==1.5.0
-google-resumable-media==2.4.1
+google-resumable-media==2.5.0
 googleapis-common-protos==1.59.0
 idna==3.4
 isodate==0.6.1
@@ -37,7 +37,7 @@ pycparser==2.21
 pyjwt[crypto]==2.6.0
 python-dateutil==2.8.2
 python-snappy==0.6.1
-requests==2.28.2
+requests==2.29.0
 rsa==4.9
 s3transfer==0.6.0
 six==1.16.0

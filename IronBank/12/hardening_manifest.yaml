@@ -31,21 +31,16 @@ tags:
 - '12.14-1PGDG.rhel8'
 - latest
 resources:
-- filename: argcomplete-3.0.6-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8d/3a/b3602da0bcde7c76cd0e36e4865bef749e62f01b90be1f287a74e587e8a8/argcomplete-3.0.6-py3-none-any.whl
+- filename: argcomplete-3.0.8-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ab/ce/2141e1cabe39c90e01fde7feb44c07867fb49bf1c0c091d68fd8924fd6a2/argcomplete-3.0.8-py3-none-any.whl
   validation:
     type: sha256
-    value: 798f28e11dc141f415879497599316a8a9126672a883064b851597a0d94be8a9
-- filename: charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/74/5f/361202de730532028458b729781b8435f320e31a622c27f30e25eec80513/charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    value: e36fd646839933cbec7941c662ecb65338248667358dd3d968405a4506a60d9b
+- filename: requests-2.29.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/cf/e1/2aa539876d9ed0ddc95882451deb57cfd7aa8dbf0b8dbce68e045549ba56/requests-2.29.0-py3-none-any.whl
   validation:
     type: sha256
-    value: de5695a6f1d8340b12a5d6d4484290ee74d61e467c39ff03b39e30df62cf83a0
-- filename: urllib3-1.26.15-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7b/f5/890a0baca17a61c1f92f72b81d3c31523c99bec609e60c292ea55b387ae8/urllib3-1.26.15-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
+    value: e8f3c9be120d3333921d213eef078af392fba3933ab7ed2d1cba3b56f2568c3b
 - filename: idna-3.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
   validation:
@@ -56,66 +51,71 @@ resources:
   validation:
     type: sha256
     value: 8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
-- filename: requests-2.28.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d2/f4/274d1dbe96b41cf4e0efb70cbced278ffd61b5c7bb70338b62af94ccb25b/requests-2.28.2-py3-none-any.whl
+- filename: charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/74/5f/361202de730532028458b729781b8435f320e31a622c27f30e25eec80513/charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
     type: sha256
-    value: 64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa
-- filename: certifi-2022.12.7-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/71/4c/3db2b8021bd6f2f0ceb0e088d6b2d49147671f25832fb17970e9b583d742/certifi-2022.12.7-py3-none-any.whl
+    value: de5695a6f1d8340b12a5d6d4484290ee74d61e467c39ff03b39e30df62cf83a0
+- filename: urllib3-1.26.15-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7b/f5/890a0baca17a61c1f92f72b81d3c31523c99bec609e60c292ea55b387ae8/urllib3-1.26.15-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
+    value: aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
 - filename: azure_core-1.26.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/8d/12/8d1b124dcce9a695a8a8907461684ad08af4eca575e59fb2c8c70539caf7/azure_core-1.26.4-py3-none-any.whl
   validation:
     type: sha256
     value: d9664b4bc2675d72fba461a285ac43ae33abb2967014a955bf136d9703a2ab3c
+- filename: certifi-2022.12.7-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/71/4c/3db2b8021bd6f2f0ceb0e088d6b2d49147671f25832fb17970e9b583d742/certifi-2022.12.7-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
 - filename: typing_extensions-4.5.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/25/5abcd82372d3d4a3932e1fa8c3dbf9efac10cc7c0d16e78467460571b404/typing_extensions-4.5.0-py3-none-any.whl
   validation:
     type: sha256
     value: fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4
-- filename: cryptography-40.0.2-cp36-abi3-manylinux_2_28_x86_64.whl
-  url: https://files.pythonhosted.org/packages/8e/34/f54dbfc6d12fa34a50f03bf01319d585e7e9bddd68ad28299b4998e3098b/cryptography-40.0.2-cp36-abi3-manylinux_2_28_x86_64.whl
-  validation:
-    type: sha256
-    value: adc0d980fd2760c9e5de537c28935cc32b9353baaf28e0814df417619c6c8c3b
-- filename: msal_extensions-1.0.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 91e3db9620b822d0ed2b4d1850056a0f133cba04455e62f11612e40f5502f2ee
-- filename: azure_identity-1.12.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ce/96/942f03d8a80e30e2289496c10d99e3a8b71f10c0b70b5337fd8ec2ae85e5/azure_identity-1.12.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 2a58ce4a209a013e37eaccfd5937570ab99e9118b3e1acf875eed3a85d541b92
-- filename: pycparser-2.21-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
-- filename: msal-1.22.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/5a/0d/5e21072561e8cbf13f938da854804cde984475e9b3d125922962e46487b8/msal-1.22.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 9120b7eafdf061c92f7b3d744e5f325fca35873445fa8ffebb40b1086a13dd58
-- filename: portalocker-2.7.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8c/df/d4f711d168524f5aebd7fb30969eaa31e3048cf8979688cde3b08f6e5eb8/portalocker-2.7.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983
 - filename: cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/b7/8b/06f30caa03b5b3ac006de4f93478dbd0239e2a16566d81a106c322dc4f79/cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
     type: sha256
     value: 4f2c9f67e9821cad2e5f480bc8d83b8742896f1242dba247911072d4fa94c192
+- filename: pycparser-2.21-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
+- filename: msal_extensions-1.0.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 91e3db9620b822d0ed2b4d1850056a0f133cba04455e62f11612e40f5502f2ee
+- filename: portalocker-2.7.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/8c/df/d4f711d168524f5aebd7fb30969eaa31e3048cf8979688cde3b08f6e5eb8/portalocker-2.7.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983
+- filename: azure_identity-1.12.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ce/96/942f03d8a80e30e2289496c10d99e3a8b71f10c0b70b5337fd8ec2ae85e5/azure_identity-1.12.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 2a58ce4a209a013e37eaccfd5937570ab99e9118b3e1acf875eed3a85d541b92
+- filename: cryptography-40.0.2-cp36-abi3-manylinux_2_28_x86_64.whl
+  url: https://files.pythonhosted.org/packages/8e/34/f54dbfc6d12fa34a50f03bf01319d585e7e9bddd68ad28299b4998e3098b/cryptography-40.0.2-cp36-abi3-manylinux_2_28_x86_64.whl
+  validation:
+    type: sha256
+    value: adc0d980fd2760c9e5de537c28935cc32b9353baaf28e0814df417619c6c8c3b
 - filename: PyJWT-2.6.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/40/46/505f0dd53c14096f01922bf93a7abb4e40e29a06f858abbaa791e6954324/PyJWT-2.6.0-py3-none-any.whl
   validation:
     type: sha256
     value: d83c3d892a77bbb74d3e1a2cfa90afaadb60945205d1095d9221f04466f64c14
+- filename: msal-1.22.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5a/0d/5e21072561e8cbf13f938da854804cde984475e9b3d125922962e46487b8/msal-1.22.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 9120b7eafdf061c92f7b3d744e5f325fca35873445fa8ffebb40b1086a13dd58
 - filename: azure_storage_blob-12.16.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/95/e7/db8bfa32d44436e3753c60be51577420e0836ec101e3209452f3c84920c6/azure_storage_blob-12.16.0-py3-none-any.whl
   validation:
@@ -126,101 +126,101 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: botocore-1.29.118-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/79/82/61ca84c3d88121abee6fb94660f56557d819ef686048cd5ec8914d303c85/botocore-1.29.118-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 44cb088a73b02dd716c5c5715143a64d5f10388957285246e11f3cc893eebf9d
-- filename: protobuf-4.22.3-cp37-abi3-manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/f4/fd/d8d309382c71c5e83a1920ae9840410396e595e3b36229d96e3ba755687e/protobuf-4.22.3-cp37-abi3-manylinux2014_x86_64.whl
-  validation:
-    type: sha256
-    value: 13233ee2b9d3bd9a5f216c1fa2c321cd564b93d8f2e4f521a85b585447747997
-- filename: cachetools-5.3.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/db/14/2b48a834d349eee94677e8702ea2ef98b7c674b090153ea8d3f6a788584e/cachetools-5.3.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
-- filename: pyasn1-0.5.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 87a2121042a1ac9358cabcaf1d07680ff97ee6404333bacca15f76aa8ad01a57
-- filename: google_cloud_storage-2.8.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/30/84/4850b9c286a4baeebae14be62a616867323424f6a5091b151703858d86a6/google_cloud_storage-2.8.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 248e210c13bc109909160248af546a91cb2dabaf3d7ebbf04def9dd49f02dbb6
-- filename: jmespath-1.0.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
-- filename: s3transfer-0.6.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/5e/c6/af903b5fab3f9b5b1e883f49a770066314c6dcceb589cf938d48c89556c1/s3transfer-0.6.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
-- filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: d3ccd6ed470d9ffbc716be08bd90efbd44d0734bc9303818f7336070984a162d
-- filename: google_auth-2.17.3-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/da/cc/13eb3d0b151252e1d2bafc52f412be05c3789b0f655caf5eed298cf8056c/google_auth-2.17.3-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: f586b274d3eb7bd932ea424b1c702a30e0393a2e2bc4ca3eae8263ffd8be229f
-- filename: python_dateutil-2.8.2-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  validation:
-    type: sha256
-    value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
-- filename: barman-3.5.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/cd/4a/af99c6371bcbfa12d824e62870810efe7c141c38439b9799b08566f23ed2/barman-3.5.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 078643961d421a5f54825d3da4bbd04faa94b96a6a0f6cefe23babdc53aff83a
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: google_api_core-2.11.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
+- filename: pyasn1-0.5.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: ce222e27b0de0d7bc63eb043b956996d6dccab14cc3b690aaea91c9cc99dc16e
-- filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
-  url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+    value: 87a2121042a1ac9358cabcaf1d07680ff97ee6404333bacca15f76aa8ad01a57
+- filename: python_dateutil-2.8.2-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
-- filename: google_resumable_media-2.4.1-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/0b/d8/9a46125189d955ff50228351848019aef51775787db59373fefb20b09b3b/google_resumable_media-2.4.1-py2.py3-none-any.whl
+    value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+- filename: google_resumable_media-2.5.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a8/84/b8c526864e53ee265516453015f707432448546c525dcf2b89bfd6c67245/google_resumable_media-2.5.0-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 831e86fd78d302c1a034730a0c6e5369dd11d37bad73fa69ca8998460d5bae8d
-- filename: googleapis_common_protos-1.59.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a7/8d/7ccf8f63ab0a768e13720262374c0d6a1489f7f23f1b89a16c92af452f09/googleapis_common_protos-1.59.0-py2.py3-none-any.whl
+    value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
+- filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
     type: sha256
-    value: b287dc48449d1d41af0c69f4ea26242b5ae4c3d7249a38b0984c86a4caffff1f
+    value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
 - filename: google_cloud_core-2.3.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ac/4d/bae84e736080ed465a6b02e9f447c89c60c00fcdade2eb6911fecf3f46aa/google_cloud_core-2.3.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
-- filename: boto3-1.26.118-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/f8/f7/a51bdb148ed5043d3574de3153e861160c18faf7e29184df38892a7e3b77/boto3-1.26.118-py3-none-any.whl
+- filename: protobuf-4.22.3-cp37-abi3-manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/f4/fd/d8d309382c71c5e83a1920ae9840410396e595e3b36229d96e3ba755687e/protobuf-4.22.3-cp37-abi3-manylinux2014_x86_64.whl
   validation:
     type: sha256
-    value: 1ff703152553f4d5fc9774071d114dbf06ec661eb1b29b6051f6b1f9d0c24873
+    value: 13233ee2b9d3bd9a5f216c1fa2c321cd564b93d8f2e4f521a85b585447747997
+- filename: jmespath-1.0.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
+- filename: google_auth-2.17.3-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/da/cc/13eb3d0b151252e1d2bafc52f412be05c3789b0f655caf5eed298cf8056c/google_auth-2.17.3-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: f586b274d3eb7bd932ea424b1c702a30e0393a2e2bc4ca3eae8263ffd8be229f
+- filename: barman-3.5.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/cd/4a/af99c6371bcbfa12d824e62870810efe7c141c38439b9799b08566f23ed2/barman-3.5.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 078643961d421a5f54825d3da4bbd04faa94b96a6a0f6cefe23babdc53aff83a
+- filename: cachetools-5.3.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/db/14/2b48a834d349eee94677e8702ea2ef98b7c674b090153ea8d3f6a788584e/cachetools-5.3.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
+- filename: google_cloud_storage-2.8.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/30/84/4850b9c286a4baeebae14be62a616867323424f6a5091b151703858d86a6/google_cloud_storage-2.8.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 248e210c13bc109909160248af546a91cb2dabaf3d7ebbf04def9dd49f02dbb6
+- filename: boto3-1.26.121-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/d9/79/901955989d1623f1c30a7a1a1db9f229a570aeaf8dabc1b6eff20d5a5d16/boto3-1.26.121-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 827342a6b94b18daed937b0743f43958d1d3b9d5423ec995c19ae74b82cd54bc
+- filename: google_api_core-2.11.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: ce222e27b0de0d7bc63eb043b956996d6dccab14cc3b690aaea91c9cc99dc16e
+- filename: s3transfer-0.6.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5e/c6/af903b5fab3f9b5b1e883f49a770066314c6dcceb589cf938d48c89556c1/s3transfer-0.6.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
+- filename: botocore-1.29.121-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/03/e5/b79c279f56b6785ce3716056c719d3a6ebe77e6fd468d088d2759d9616f9/botocore-1.29.121-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 4030b2cde8c8c7b58c657c27e5e4ec0edb7a0cab84e31b0fe752dddee2735d68
+- filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+  url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+  validation:
+    type: sha256
+    value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
+- filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: d3ccd6ed470d9ffbc716be08bd90efbd44d0734bc9303818f7336070984a162d
+- filename: googleapis_common_protos-1.59.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a7/8d/7ccf8f63ab0a768e13720262374c0d6a1489f7f23f1b89a16c92af452f09/googleapis_common_protos-1.59.0-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: b287dc48449d1d41af0c69f4ea26242b5ae4c3d7249a38b0984c86a4caffff1f
 - filename: psycopg2-2.9.6.tar.gz
   url: https://files.pythonhosted.org/packages/af/c4/5726cddb53fe52f0e839eb3da04322364f14493217ebd5818cc5e4c948a5/psycopg2-2.9.6.tar.gz
   validation:
