@@ -151,11 +151,16 @@ resources:
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
-- filename: boto3-1.26.123-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/a1/1e/886580363b16c1c76def3cfb52ab8deb37678dc5fd8d7aef2181c917c22c/boto3-1.26.123-py3-none-any.whl
+- filename: boto3-1.26.124-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/94/a3/c486566579f7e29784e555c438ee1adf9b1e49a4e812286dbde5bbcf2e42/boto3-1.26.124-py3-none-any.whl
   validation:
     type: sha256
-    value: 2ccb1827dc9d654970375b9bbe1bd77eb6a50ec6fa76cf227a34b4bff144814f
+    value: ec53175eaf818dfe1eec33f7e165eca957744c1d8a82047a9efbcce9547e5cc9
+- filename: botocore-1.29.124-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a2/95/49fa4a1560cd9bde97867f75254717c1b271563154b37466266afd73523f/botocore-1.29.124-py3-none-any.whl
+  validation:
+    type: sha256
+    value: cbcbd5b084952d332d7b8170577f10509e3e7b3b6abbc2920b1c27e93ad2ab25
 - filename: google_cloud_core-2.3.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ac/4d/bae84e736080ed465a6b02e9f447c89c60c00fcdade2eb6911fecf3f46aa/google_cloud_core-2.3.2-py2.py3-none-any.whl
   validation:
@@ -191,11 +196,6 @@ resources:
   validation:
     type: sha256
     value: 248e210c13bc109909160248af546a91cb2dabaf3d7ebbf04def9dd49f02dbb6
-- filename: botocore-1.29.123-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/25/a9/97f851c86bdc8e0ffb7b22d2de50186afb67a5f33d2b64d94d89e23c7ad8/botocore-1.29.123-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 88f743e1db5bb65e3770af674400642f1d09fca159a1508bdbb8f8cc691589ca
 - filename: google_api_core-2.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
   validation:
