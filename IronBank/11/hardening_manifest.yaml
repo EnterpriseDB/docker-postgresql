@@ -146,11 +146,11 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
-- filename: botocore-1.29.125-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/66/17/beaef1fa826cb84adede7f74fd25eb878c98cc933bee16d8ae7887cf63cd/botocore-1.29.125-py3-none-any.whl
+- filename: botocore-1.29.126-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/44/d4/73fe24fb6ea314836c98ec7c864139f97fbbf629b25bbdf657d3d09fb732/botocore-1.29.126-py3-none-any.whl
   validation:
     type: sha256
-    value: ac87b63e9aa4231cd28941945024a0c4470c184c60334ebe5e1cae3544c785ed
+    value: a2c5cedb26b364386d02f9ed0a3492da6a322a82e539e54600fbc7190a49660d
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -191,6 +191,11 @@ resources:
   validation:
     type: sha256
     value: 248e210c13bc109909160248af546a91cb2dabaf3d7ebbf04def9dd49f02dbb6
+- filename: boto3-1.26.126-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/b4/bd/29d974744a5859c7cac2dbc1f4ba527aabdc49b5da0b643b7185d45f4136/boto3-1.26.126-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a0a049d16dabf559bd86d4622a985549154c6918f779f373fb7588bd3cf1272d
 - filename: google_api_core-2.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
   validation:
@@ -201,11 +206,6 @@ resources:
   validation:
     type: sha256
     value: 06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd
-- filename: boto3-1.26.125-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ae/20/ac8c74470d430be30b13ea703dad22763381d8ebaaa450f3c7da42e400a8/boto3-1.26.125-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 6648aff15d19927cd26db47eb56362ccd313a1ddbd7aaa3235ef05d05d398252
 - filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
