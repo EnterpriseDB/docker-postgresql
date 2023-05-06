@@ -131,11 +131,6 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: botocore-1.29.127-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/69/1d/2fe40731639d30a75eea6706ea65971476db0bd651385a3d4f25b9d9b29d/botocore-1.29.127-py3-none-any.whl
-  validation:
-    type: sha256
-    value: cf41d871b2a17d40bd579ce44dace18c875659ac13139a66680540fdf6f1c304
 - filename: pyasn1-0.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl
   validation:
@@ -151,11 +146,6 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
-- filename: boto3-1.26.127-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/92/84/2e66f6c42e7e1a9e4bca87ea85890b691c2f442ac67c9db1f472fc18357b/boto3-1.26.127-py3-none-any.whl
-  validation:
-    type: sha256
-    value: ded836536be41de9f9bd6a75e9feeb74d61b8c58ed7dc4ea89095082d7a616af
 - filename: protobuf-4.22.4-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/b9/e5/8b8e17c4e10b175b326cff9d212111eb8d3a0a80d9466384b45df47cba98/protobuf-4.22.4-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -206,6 +196,16 @@ resources:
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
+- filename: boto3-1.26.129-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/67/72/8530c83b0d20c4dd41ab806782c4414ac2040278e5bd3819a626abbe9a7a/boto3-1.26.129-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 1dab3fcbeada61a3b5a42ea25a89143511a5b22626775c685e31e313f327cf3c
+- filename: botocore-1.29.129-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/43/d2/4130c10fb3fec9d93fcc358d45c9a63ede209bea29b781f0a776b587926b/botocore-1.29.129-py3-none-any.whl
+  validation:
+    type: sha256
+    value: f44460236324727615c518c229690c3cc3ea3162a55a2ac242ba771e8fa41553
 - filename: google_api_core-2.11.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/f7/24/a17e75c733609dce285a2dae6f56837d69a9566963c9d1cab96d788546c8/google_api_core-2.11.0-py3-none-any.whl
   validation:
