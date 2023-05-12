@@ -5,8 +5,8 @@ FROM debian:buster-20230502-slim
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="13.10-1.pgdg100+1" \
-      release="6" \
+      version="13.11-1.pgdg100+1" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Debian buster-slim."
 
@@ -91,7 +91,7 @@ RUN set -ex; \
 	apt-key list
 
 ENV PG_MAJOR 13
-ENV PG_VERSION 13.10-1.pgdg100+1
+ENV PG_VERSION 13.11-1.pgdg100+1
 
 RUN set -ex; \
 	echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main $PG_MAJOR" > /etc/apt/sources.list.d/pgdg.list; \

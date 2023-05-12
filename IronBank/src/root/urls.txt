@@ -1,6 +1,6 @@
-https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-15.2-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-contrib-15.2-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-server-15.2-1PGDG.rhel8.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-libs-15.2-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-15.3-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-contrib-15.3-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-server-15.3-1PGDG.rhel8.x86_64.rpm
+https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-libs-15.3-1PGDG.rhel8.x86_64.rpm
 https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgaudit17_15-1.7.0-1.rhel8.x86_64.rpm
 https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-15

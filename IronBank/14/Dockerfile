@@ -19,10 +19,10 @@ ARG PG_GROUP_NAME="postgres"
 ARG PG_VERSION=14
 
 COPY ./RPM-GPG-KEY-PGDG-14 \
-	./postgresql14-14.7-1PGDG.rhel8.x86_64.rpm \
-	./postgresql14-contrib-14.7-1PGDG.rhel8.x86_64.rpm \
-	./postgresql14-server-14.7-1PGDG.rhel8.x86_64.rpm \
-	./postgresql14-libs-14.7-1PGDG.rhel8.x86_64.rpm \
+	./postgresql14-14.8-1PGDG.rhel8.x86_64.rpm \
+	./postgresql14-contrib-14.8-1PGDG.rhel8.x86_64.rpm \
+	./postgresql14-server-14.8-1PGDG.rhel8.x86_64.rpm \
+	./postgresql14-libs-14.8-1PGDG.rhel8.x86_64.rpm \
 	./pgaudit16_14-1.6.2-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
@@ -58,10 +58,10 @@ RUN dnf update -y --nodocs && \
 	redhat-lsb-core \
 	redhat-rpm-config \
 	rsync \
-	/tmp/postgresql14-14.7-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql14-contrib-14.7-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql14-server-14.7-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql14-libs-14.7-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql14-14.8-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql14-contrib-14.8-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql14-server-14.8-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql14-libs-14.8-1PGDG.rhel8.x86_64.rpm \
 	/tmp/pgaudit16_14-1.6.2-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
