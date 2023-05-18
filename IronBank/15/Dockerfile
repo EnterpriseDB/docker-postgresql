@@ -19,10 +19,10 @@ ARG PG_GROUP_NAME="postgres"
 ARG PG_VERSION=15
 
 COPY ./RPM-GPG-KEY-PGDG-15 \
-	./postgresql15-15.3-1PGDG.rhel8.x86_64.rpm \
-	./postgresql15-contrib-15.3-1PGDG.rhel8.x86_64.rpm \
-	./postgresql15-server-15.3-1PGDG.rhel8.x86_64.rpm \
-	./postgresql15-libs-15.3-1PGDG.rhel8.x86_64.rpm \
+	./postgresql15-15.3-2PGDG.rhel8.x86_64.rpm \
+	./postgresql15-contrib-15.3-2PGDG.rhel8.x86_64.rpm \
+	./postgresql15-server-15.3-2PGDG.rhel8.x86_64.rpm \
+	./postgresql15-libs-15.3-2PGDG.rhel8.x86_64.rpm \
 	./pgaudit17_15-1.7.0-1.rhel8.x86_64.rpm \
 	./requirements.txt \
 	./*.whl \
@@ -58,10 +58,10 @@ RUN dnf update -y --nodocs && \
 	redhat-lsb-core \
 	redhat-rpm-config \
 	rsync \
-	/tmp/postgresql15-15.3-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql15-contrib-15.3-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql15-server-15.3-1PGDG.rhel8.x86_64.rpm \
-	/tmp/postgresql15-libs-15.3-1PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql15-15.3-2PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql15-contrib-15.3-2PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql15-server-15.3-2PGDG.rhel8.x86_64.rpm \
+	/tmp/postgresql15-libs-15.3-2PGDG.rhel8.x86_64.rpm \
 	/tmp/pgaudit17_15-1.7.0-1.rhel8.x86_64.rpm \
 	&& rm -rf /var/cache/dnf
 
