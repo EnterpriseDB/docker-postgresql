@@ -71,7 +71,7 @@ get_postgresql_version() {
 
 	if [[ "${pgArchMatrix[$arch]}" == "pgdg" ]]; then
 		latest_pg_version=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
-			perl -ne '/<a.*href="postgresql'"${pg_major}"'-server-([^"]+).'"${arch}"'.rpm"/ && print "$1\n"' | \
+			perl -ne '/<a.*href="postgresql'"${pg_major}"'-server-([^"]+)-\d+.*.'"${arch}"'.rpm"/ && print "$1\n"' | \
 			sort -rV | head -n1)
 	fi
 
@@ -94,7 +94,7 @@ check_cloudsmith_pkgs() {
 
 	cloudsmith ls pkgs enterprisedb/"${repo}" -q "name:postgresql*-server$ distribution:el/${os_version} version:latest architecture:${arch}" -F json 2> /dev/null | \
 			jq '.data[].filename' | \
-			sed -n 's/.*postgresql'"${pg_major}"'-server-\([0-9].*\)\.'"${arch}"'.*/\1/p' | \
+			sed -n 's/.*postgresql'"${pg_major}"'-server-\([0-9]\+.[0-9]\+\)-.*\.'"${arch}"'.*/\1/p' | \
 			sort -V
 }
 
@@ -143,11 +143,11 @@ get_postgis_version() {
 	local pg_major="$1"; shift
 
 	local base_url="https://yum.postgresql.org"
-	local regexp='postgis\d+_'"${pg_major}"'-([\d+\.]+-\d+.rhel'"${os_version}"').'"${arch}"'.rpm'
+	local regexp='postgis\d+_'"${pg_major}"'-(\d+.\d+.\d+)-\d+.rhel'"${os_version}"'.'"${arch}"'.rpm'
 
 	if [ "$pg_major" -gt '15' ]; then
 		base_url="$base_url/testing"
-		regexp='postgis\d+_'"${pg_major}"'-([\d+\.]+-.*.rhel'"${os_version}"').'"${arch}"'.rpm'
+		regexp='postgis\d+_'"${pg_major}"'-(\d+.\d+.\d+)-.*.rhel'"${os_version}"'.'"${arch}"'.rpm'
 	fi
 
 	postgisVersion=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \

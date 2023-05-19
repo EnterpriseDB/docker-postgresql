@@ -77,7 +77,7 @@ for version in "${ubi_versions[@]}"; do
 
 	# Read versions from the definition file
 	versionFile="${version}/.versions.json"
-	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
+	fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
 	# Initial aliases are "major version", "optional alias", "full version with release"
@@ -133,8 +133,8 @@ for version in "${ubi_versions[@]}"; do
 
 	# Read versions from the definition file
 	versionFile="${version}/.versions-postgis.json"
-	fullVersion=$(jq -r '.POSTGRES_VERSION | split("-") | .[0]' "${versionFile}")
-	postgisVersion=$(jq -r '.POSTGIS_VERSION | split("-") | .[0]' "${versionFile}" | cut -f1,2 -d.)
+	fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
+	postgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}" | cut -f1,2 -d.)
 	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
 	# Initial aliases are "major version", "optional alias", "full version with release"
