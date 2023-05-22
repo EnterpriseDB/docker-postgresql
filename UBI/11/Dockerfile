@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.7-1112
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="11.19-1PGDG.rhel8" \
-      release="5" \
+      version="11.20" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -33,10 +33,10 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql11-11.19-1PGDG.rhel8 \
-		postgresql11-contrib-11.19-1PGDG.rhel8 \
-		postgresql11-server-11.19-1PGDG.rhel8 \
-		postgresql11-libs-11.19-1PGDG.rhel8 \
+		postgresql11-11.20 \
+		postgresql11-contrib-11.20 \
+		postgresql11-server-11.20 \
+		postgresql11-libs-11.20 \
 		pgaudit13_11 \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
