@@ -82,7 +82,7 @@ jobs:
           context: ${{ matrix.dir }}
           file: ${{ matrix.file }}
           secrets: |
-            "cs_script=${{ secrets.CS_SCRIPT }}"
+            "cs_token=${{ secrets.CS_TOKEN }}"
             "subscription=${{ secrets.SUBSCRIPTION }}"
           push: false
           provenance: false

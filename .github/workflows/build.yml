@@ -80,7 +80,7 @@ jobs:
         provenance: false
         file: ${{ matrix.file }}
         secrets: |
-          "cs_script=${{ secrets.CS_SCRIPT }}"
+          "cs_token=${{ secrets.CS_TOKEN }}"
           "subscription=${{ secrets.SUBSCRIPTION }}"
         push: false
         load: true
@@ -105,7 +105,7 @@ jobs:
         context: ${{ matrix.dir }}
         file: ${{ matrix.file }}
         secrets: |
-          "cs_script=${{ secrets.CS_SCRIPT }}"
+          "cs_token=${{ secrets.CS_TOKEN }}"
           "subscription=${{ secrets.SUBSCRIPTION }}"
         # Available architecture on UBI8 are: linux/amd64, linux/s390x, linux/ppc64le, linux/arm64
         platforms: ${{ matrix.platforms }}
