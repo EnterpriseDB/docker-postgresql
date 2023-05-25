@@ -56,16 +56,16 @@ resources:
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
-- filename: typing_extensions-4.6.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/85/d2/949d324c348014f0fd2e8e6d8efd3c0adefdcecd28990d4144f2cfc8105e/typing_extensions-4.6.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 6ad00b63f849b7dcc313b70b6b304ed67b2b2963b3098a33efe18056b1a9a223
 - filename: charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/74/5f/361202de730532028458b729781b8435f320e31a622c27f30e25eec80513/charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
     type: sha256
     value: de5695a6f1d8340b12a5d6d4484290ee74d61e467c39ff03b39e30df62cf83a0
+- filename: typing_extensions-4.6.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/82/ed/8ccf53a0ed10bf8fc8877b5833b40f5f99093cadfe6632b8892f74aead0f/typing_extensions-4.6.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 6bac751f4789b135c43228e72de18637e9a6c29d12777023a703fd1a6858469f
 - filename: requests-2.31.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/70/8e/0e2d847013cb52cd35b38c009bb167a1a26b2ce6cd6965bf26b47bc0bf44/requests-2.31.0-py3-none-any.whl
   validation:
@@ -131,6 +131,11 @@ resources:
   validation:
     type: sha256
     value: ce222e27b0de0d7bc63eb043b956996d6dccab14cc3b690aaea91c9cc99dc16e
+- filename: boto3-1.26.140-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/b1/ea/821ed34ed6e901a37dcf37ca06009ed450544151b68dfbcc047a185a6d6a/boto3-1.26.140-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 37eac5bbe87aad6d842dca139128d1254eac004cb9f16a89d054b3bf91dfd64d
 - filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
@@ -151,11 +156,6 @@ resources:
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
-- filename: boto3-1.26.139-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/1c/33/c4301bb4fa0406e280bbf7eb36089200f9ad76b20b4674c5c3964177d1bf/boto3-1.26.139-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 5b61a82f0c1cd006bd109ddf27c93d9b010c4c188fc583ee257ff6f3bb89970d
 - filename: protobuf-4.23.1-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/73/8b/926449627e192b022f71d2c48b51dbdc1271271e0fa4b809cff2dffab339/protobuf-4.23.1-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -186,6 +186,11 @@ resources:
   validation:
     type: sha256
     value: 8d36afa7616d8ab714608411b4a3b13e58f463aee519024578e062e141dce20f
+- filename: botocore-1.29.140-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/cd/ad/19ace9cab43357e3da0600a3b1ffb1eae88ed28cb5247ed2096789a88154/botocore-1.29.140-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 82c610de0cdf4e13faeb9750c9b950da4201d2c98e1d4f18b0eface7a7b452cc
 - filename: google_cloud_storage-2.9.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/74/fb/3770e7f44cf6133f502e1b8503b6739351b53272cf8313b47f1de6cf4960/google_cloud_storage-2.9.0-py2.py3-none-any.whl
   validation:
@@ -221,11 +226,6 @@ resources:
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
-- filename: botocore-1.29.139-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8b/ce/d33de296ddd928fc3e699d466774c259c60f8dd3fe2b8e90b2c320763fcc/botocore-1.29.139-py3-none-any.whl
-  validation:
-    type: sha256
-    value: b164af929eb2f1507833718de9eb8811e3adc6943b464c1869e95ac87f3bab88
 - filename: psycopg2-2.9.6.tar.gz
   url: https://files.pythonhosted.org/packages/af/c4/5726cddb53fe52f0e839eb3da04322364f14493217ebd5818cc5e4c948a5/psycopg2-2.9.6.tar.gz
   validation:
