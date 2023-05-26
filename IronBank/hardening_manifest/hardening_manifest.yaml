@@ -51,6 +51,11 @@ resources:
   validation:
     type: sha256
     value: d055c2f9d38dc53c808f6fdc8eab7360b6fdbbde02340ed25cfbcd817c62469e
+- filename: typing_extensions-4.6.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/38/60/300ad6f93adca578bf05d5f6cd1d854b7d140bebe2f9829561aa9977d9f3/typing_extensions-4.6.2-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 3a8b36f13dd5fdc5d1b16fe317f5668545de77fa0b8e02006381fd49d731ab98
 - filename: idna-3.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
   validation:
@@ -61,11 +66,6 @@ resources:
   validation:
     type: sha256
     value: de5695a6f1d8340b12a5d6d4484290ee74d61e467c39ff03b39e30df62cf83a0
-- filename: typing_extensions-4.6.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/82/ed/8ccf53a0ed10bf8fc8877b5833b40f5f99093cadfe6632b8892f74aead0f/typing_extensions-4.6.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 6bac751f4789b135c43228e72de18637e9a6c29d12777023a703fd1a6858469f
 - filename: requests-2.31.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/70/8e/0e2d847013cb52cd35b38c009bb167a1a26b2ce6cd6965bf26b47bc0bf44/requests-2.31.0-py3-none-any.whl
   validation:
@@ -131,11 +131,6 @@ resources:
   validation:
     type: sha256
     value: ce222e27b0de0d7bc63eb043b956996d6dccab14cc3b690aaea91c9cc99dc16e
-- filename: boto3-1.26.140-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b1/ea/821ed34ed6e901a37dcf37ca06009ed450544151b68dfbcc047a185a6d6a/boto3-1.26.140-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 37eac5bbe87aad6d842dca139128d1254eac004cb9f16a89d054b3bf91dfd64d
 - filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
@@ -171,6 +166,11 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
+- filename: boto3-1.26.141-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/56/0c/44d0f6b2f29590c6e9a2f1239640b67a49cec00dfbaeb6352be47c29661d/boto3-1.26.141-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a5d6fdcaec863bc7ad2f8133ff9a926d6f06468b83b5fb631cd90bd33b709c45
 - filename: s3transfer-0.6.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ec/fa/9416461ee05efabe477d588288bdd88acb69a51ee4b31a9b73d3b5b716fc/s3transfer-0.6.1-py3-none-any.whl
   validation:
@@ -186,16 +186,16 @@ resources:
   validation:
     type: sha256
     value: 8d36afa7616d8ab714608411b4a3b13e58f463aee519024578e062e141dce20f
-- filename: botocore-1.29.140-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/cd/ad/19ace9cab43357e3da0600a3b1ffb1eae88ed28cb5247ed2096789a88154/botocore-1.29.140-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 82c610de0cdf4e13faeb9750c9b950da4201d2c98e1d4f18b0eface7a7b452cc
 - filename: google_cloud_storage-2.9.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/74/fb/3770e7f44cf6133f502e1b8503b6739351b53272cf8313b47f1de6cf4960/google_cloud_storage-2.9.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 83a90447f23d5edd045e0037982c270302e3aeb45fc1288d2c2ca713d27bad94
+- filename: botocore-1.29.141-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ce/15/989f8da9ba16530958836c426f1e233ec69f95a82ca5a3f5a614a1a3e374/botocore-1.29.141-py3-none-any.whl
+  validation:
+    type: sha256
+    value: b01d156c42765f3f437959e01a8c7f3cb0e29b24aa0b8f373498133408b2e3c7
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
