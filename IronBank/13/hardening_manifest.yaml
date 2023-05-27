@@ -151,11 +151,11 @@ resources:
   validation:
     type: sha256
     value: 8417acf6466be2fa85123441696c4badda48db314c607cf1e5d543fa8bdc22fe
-- filename: protobuf-4.23.1-cp37-abi3-manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/73/8b/926449627e192b022f71d2c48b51dbdc1271271e0fa4b809cff2dffab339/protobuf-4.23.1-cp37-abi3-manylinux2014_x86_64.whl
+- filename: google_auth-2.19.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/d1/66/ae0916fa2e741d28906ebf8cde3a6b48e4cb2558f4effdf30cec067bbc09/google_auth-2.19.0-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 3ce113b3f3362493bddc9069c2163a38f240a9ed685ff83e7bcb756b05e1deb0
+    value: be617bfaf77774008e9d177573f782e109188c8a64ae6e744285df5cea3e7df6
 - filename: pyasn1-0.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl
   validation:
@@ -166,11 +166,6 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
-- filename: boto3-1.26.141-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/56/0c/44d0f6b2f29590c6e9a2f1239640b67a49cec00dfbaeb6352be47c29661d/boto3-1.26.141-py3-none-any.whl
-  validation:
-    type: sha256
-    value: a5d6fdcaec863bc7ad2f8133ff9a926d6f06468b83b5fb631cd90bd33b709c45
 - filename: s3transfer-0.6.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ec/fa/9416461ee05efabe477d588288bdd88acb69a51ee4b31a9b73d3b5b716fc/s3transfer-0.6.1-py3-none-any.whl
   validation:
@@ -181,6 +176,11 @@ resources:
   validation:
     type: sha256
     value: b287dc48449d1d41af0c69f4ea26242b5ae4c3d7249a38b0984c86a4caffff1f
+- filename: boto3-1.26.142-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/f8/fd/ccca7ea099b619c6951c6140ce381a2622f7033a8ac5613fc41d62394259/boto3-1.26.142-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8b8ccbb42e5c4008086a187afee98f4a10d5d985892699b9e2f1e6c5b18a7754
 - filename: urllib3-1.26.16-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c5/05/c214b32d21c0b465506f95c4f28ccbcba15022e000b043b72b3df7728471/urllib3-1.26.16-py2.py3-none-any.whl
   validation:
@@ -191,11 +191,6 @@ resources:
   validation:
     type: sha256
     value: 83a90447f23d5edd045e0037982c270302e3aeb45fc1288d2c2ca713d27bad94
-- filename: botocore-1.29.141-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ce/15/989f8da9ba16530958836c426f1e233ec69f95a82ca5a3f5a614a1a3e374/botocore-1.29.141-py3-none-any.whl
-  validation:
-    type: sha256
-    value: b01d156c42765f3f437959e01a8c7f3cb0e29b24aa0b8f373498133408b2e3c7
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -206,16 +201,16 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
+- filename: botocore-1.29.142-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/1d/8a/5f8b24dc00ef8325116c49425adf20c1dc7551ab5509166de168bf8ac3ec/botocore-1.29.142-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 0677848bb8ef94d69c5d2f5c613dbab5b6710a8b7649f3fafca5172c464728b8
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: google_auth-2.18.1-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/0d/dd/97d746553891cbc6b63de6d0953117de5a844647fb5de60030ca5f1abfb8/google_auth-2.18.1-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: 55a395cdfd3f3dd3f649131d41f97c17b4ed8a2aac1be3502090c716314e8a37
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
@@ -226,6 +221,11 @@ resources:
   validation:
     type: sha256
     value: 429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
+- filename: protobuf-4.23.2-cp37-abi3-manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/14/23/f3b852093f3a7031049313913e04431e7a32bd9752adfaf79d1193cf05b1/protobuf-4.23.2-cp37-abi3-manylinux2014_x86_64.whl
+  validation:
+    type: sha256
+    value: 86df87016d290143c7ce3be3ad52d055714ebaebb57cc659c387e76cfacd81aa
 - filename: psycopg2-2.9.6.tar.gz
   url: https://files.pythonhosted.org/packages/af/c4/5726cddb53fe52f0e839eb3da04322364f14493217ebd5818cc5e4c948a5/psycopg2-2.9.6.tar.gz
   validation:
