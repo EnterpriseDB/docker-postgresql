@@ -36,16 +36,16 @@ resources:
   validation:
     type: sha256
     value: e36fd646839933cbec7941c662ecb65338248667358dd3d968405a4506a60d9b
+- filename: urllib3-2.0.3-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/8a/03/ad9306a50d05c166e3456fe810f33cee2b8b2a7a6818ec5d4908c4ec6b36/urllib3-2.0.3-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 48e7fafa40319d358848e1bc6809b208340fafe2096f1725d05d67443d0483d1
 - filename: requests-2.31.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/70/8e/0e2d847013cb52cd35b38c009bb167a1a26b2ce6cd6965bf26b47bc0bf44/requests-2.31.0-py3-none-any.whl
   validation:
     type: sha256
     value: 58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f
-- filename: urllib3-2.0.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/4b/1d/f8383ef593114755429c307449e7717b87044b3bcd5f7860b89b1f759e34/urllib3-2.0.2-py3-none-any.whl
-  validation:
-    type: sha256
-    value: d055c2f9d38dc53c808f6fdc8eab7360b6fdbbde02340ed25cfbcd817c62469e
 - filename: idna-3.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
   validation:
