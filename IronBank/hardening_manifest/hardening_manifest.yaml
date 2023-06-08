@@ -141,6 +141,11 @@ resources:
   validation:
     type: sha256
     value: 078643961d421a5f54825d3da4bbd04faa94b96a6a0f6cefe23babdc53aff83a
+- filename: boto3-1.26.149-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/1c/12/a747e5e24e6219ebee4162723c125083894ec71f4ee1308a6ed1560e4c94/boto3-1.26.149-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8763b3abd3abe35be8e948de05f71fad1517ac018908c207babb624d728b684c
 - filename: cachetools-5.3.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a9/c9/c8a7710f2cedcb1db9224fdd4d8307c9e48cbddc46c18b515fefc0f1abbe/cachetools-5.3.1-py3-none-any.whl
   validation:
@@ -156,21 +161,11 @@ resources:
   validation:
     type: sha256
     value: ea165e014c7cbd496558796b627c271aa8c18b4cba79dc1cc962b24c5efdfb85
-- filename: botocore-1.29.148-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/05/be/acdf46728cbd8e4ae1641e516c2bc5c535feb8692cb8b181d8ac2851c389/botocore-1.29.148-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 71c512fbd42e0ef171388b53bf82f9cb9e66283467156917b69717daeb05eba6
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: boto3-1.26.148-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/3b/3b/910ee6db909ff14aec58e568ff36128779c47600c2f58b8901f360565016/boto3-1.26.148-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 53328b99847e65ca60dbbd5a86550101ecf903dff36724b6a4e74876dd973bdf
 - filename: s3transfer-0.6.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ec/fa/9416461ee05efabe477d588288bdd88acb69a51ee4b31a9b73d3b5b716fc/s3transfer-0.6.1-py3-none-any.whl
   validation:
@@ -191,6 +186,11 @@ resources:
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
+- filename: botocore-1.29.149-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/b9/ec/4ae9f3116cbb6c2b4cdbefe9d8d09c0c3f23000c1df7966df0e5d60db3f2/botocore-1.29.149-py3-none-any.whl
+  validation:
+    type: sha256
+    value: b8ffb9ae92d2232dbf0c5e661328f3c174fd55dfd9505626a3606ffdc89268b2
 - filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
   validation:
