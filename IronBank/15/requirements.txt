@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --no-annotate --output-file=requirements.txt
 #
-argcomplete==3.1.0
+argcomplete==3.1.1
 azure-core==1.27.0
 azure-identity==1.13.0
 azure-storage-blob==12.16.0
