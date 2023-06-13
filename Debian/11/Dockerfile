@@ -1,12 +1,12 @@
 # vim:set ft=dockerfile:
-FROM debian:buster-20230522-slim
+FROM debian:buster-20230612-slim
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="11.20-1.pgdg100+1" \
-      release="2" \
+      release="3" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Debian buster-slim."
 
