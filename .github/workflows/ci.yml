@@ -16,7 +16,7 @@ jobs:
 
   generate-jobs:
     name: Generate Jobs
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       strategy: ${{ steps.generate-jobs.outputs.strategy }}
     steps:
@@ -29,7 +29,7 @@ jobs:
     needs: generate-jobs
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
     name: PostgreSQL ${{ matrix.name }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - name: Prepare Environment
@@ -100,7 +100,7 @@ jobs:
     - generate-jobs
     - test
     name: Check
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Decide whether the needed jobs succeeded or failed
       uses: re-actors/alls-green@v1.2.2
