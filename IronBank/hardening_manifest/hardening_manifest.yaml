@@ -146,11 +146,11 @@ resources:
   validation:
     type: sha256
     value: daac1ad5241e2461f5d6fe86665900c5cec0a19f03800c949ec73cecbaba34f8
-- filename: boto3-1.26.155-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e5/3b/919c4a90311d61615db459ac37721164528c7c829e27879b0927d0c0fc47/boto3-1.26.155-py3-none-any.whl
+- filename: boto3-1.26.156-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ca/b0/3328333a30ca627f6e3619cb79caf4a1c889e7eb6bd9bf4d3755a3570d87/boto3-1.26.156-py3-none-any.whl
   validation:
     type: sha256
-    value: dd15823e8c0554d98c18584d9a6a0342c67611c1114ef61495934c2e560f632c
+    value: 455b6e1f12768b21b5f3990cf1fadeed9bf1c6b36e5a7a303352b927f530c434
 - filename: cachetools-5.3.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a9/c9/c8a7710f2cedcb1db9224fdd4d8307c9e48cbddc46c18b515fefc0f1abbe/cachetools-5.3.1-py3-none-any.whl
   validation:
@@ -171,6 +171,11 @@ resources:
   validation:
     type: sha256
     value: 23b7b0950fcda519bfb6692bf0d5289d2ea49fc143717cc7188458ec620e63fa
+- filename: botocore-1.29.156-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/d0/16/2597b3ab6387620bf698b6659cb536ceda30b0d8131b56e5ab5f31710fe0/botocore-1.29.156-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 44b26a5468402bb9e5028d8f9ef2eba973cde016979aa72f87db32ef9000dab4
 - filename: google_api_core-2.11.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/c4/c3cd048b6cbeba8d9ae50dd7643ac065b85237338aa7501b0efae91eb4d9/google_api_core-2.11.1-py3-none-any.whl
   validation:
@@ -181,11 +186,6 @@ resources:
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
-- filename: botocore-1.29.155-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8e/6a/6e9a769c6a1cf40bd91f49ba703a107c6cb46cf4fadbb8423df3eb6642fc/botocore-1.29.155-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 32d5da68212e10c060fd484f41df4f7048fc7731ccd16fd00e37b11b6e841142
 - filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
   validation:
