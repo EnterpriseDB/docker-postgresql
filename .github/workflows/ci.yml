@@ -60,6 +60,7 @@ jobs:
            for u in $(cat "${{ matrix.dir }}/urls.txt")
              do curl -fsSL -o "${{ matrix.dir}}"/$(basename $u) $u
            done
+           python3 -m pip install --upgrade pip
            python3 -m pip download -r "${{ matrix.dir }}/requirements.txt" -d "${{ matrix.dir }}"
           fi
           RESULT=""

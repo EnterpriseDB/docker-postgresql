@@ -2,7 +2,7 @@
 apiVersion: v1
 args:
   BASE_IMAGE: redhat/ubi/ubi8
-  BASE_TAG: '8.4'
+  BASE_TAG: '8.8'
 labels:
   mil.dso.ironbank.image.keywords: k8s,postgres,db
   mil.dso.ironbank.image.type: opensource
