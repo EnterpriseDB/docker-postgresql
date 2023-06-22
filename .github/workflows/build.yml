@@ -116,27 +116,13 @@ jobs:
         build-args: |
           SUBSCRIPTION_NAME=docker-postgresql-cicd-${{ github.run_number }}
 
+    # Send a notification on release failure
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
-      if: ${{ failure() }}
+      if: ${{ failure() && github.ref == 'refs/heads/main' }}
       env:
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://avatars.githubusercontent.com/u/44036562?size=48
         SLACK_USERNAME: ghBot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-  # Send a notification if new public images are released
-  notify:
-    needs: build
-    name: Notify update on Slack
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@v2
-      # Only images built from the main branch go public, and we limit the
-      # amount of notifications to those.
-      if: ${{ github.ref == 'refs/heads/main' }}
-      env:
-        SLACK_ICON: https://avatars.githubusercontent.com/u/44036562?size=48
-        SLACK_USERNAME: ghBot
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_MESSAGE: New PostgreSQL images pushed on Quay.io
+        SLACK_MESSAGE: "Failure releasing PostgreSQL ${{ matrix.name }} image"
