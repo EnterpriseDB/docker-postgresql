@@ -87,7 +87,9 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 					exit 1 ;; \
 	esac ; \
 	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
-		postgis%%POSTGIS_MAJOR%%_%%PG_MAJOR%%-%%POSTGIS_VERSION%% ; \
+		postgis%%POSTGIS_MAJOR%%_%%PG_MAJOR%%-%%POSTGIS_VERSION%% \
+		pgrouting_%%PG_MAJOR%% \
+	; \
 	yum -y remove epel-release ; \
 	subscription-manager remove --all ; \
 	subscription-manager unregister ; \
