@@ -22,6 +22,7 @@ The images include:
 - Barman Cloud
 - PostGIS 3.1 (optional, on UBI based images only)
 - PGAudit
+- pgRouting (on PostGIS UBI images only)
 - Postgres Failover Slots
 - All language packs for glibc (optional, on UBI based images only)
 
@@ -33,14 +34,21 @@ PostGIS is distributed under the [GNU GPL 2 License](https://git.osgeo.org/gitea
 
 PGAudit is distributed under the [PostgreSQL License](https://github.com/pgaudit/pgaudit/blob/master/LICENSE).
 
+pgRouting is distributed under the
+[GNU GPL 2 License](https://github.com/pgRouting/pgrouting/blob/main/LICENSE),
+with the some Boost extensions being available under
+[Boost Software License](https://docs.pgrouting.org/latest/en/pgRouting-introduction.html#licensing).
+
 Postgres Failover Slots is distributed by EnterpriseDB under the
 [PostgreSQL License](https://github.com/EnterpriseDB/pg_failover_slots/blob/master/LICENSE).
 
-Images are available via [GitHub Container Registry](https://github.com/EnterpriseDB/docker-postgresql/pkgs/container/postgresql)
-and [Quay.io](https://quay.io/repository/enterprisedb/postgresql).
-
 The Docker entry point is based on [Docker Postgres](https://github.com/docker-library/postgres)
 distributed by the PostgreSQL Docker Community under MIT license.
+
+# Where to get them
+
+Images are available via [GitHub Container Registry](https://github.com/EnterpriseDB/docker-postgresql/pkgs/container/postgresql)
+and [Quay.io](https://quay.io/repository/enterprisedb/postgresql).
 
 # How to pull the image
 

@@ -35,6 +35,7 @@ RUN set -xe ; \
 		postgresql%%PG_MAJOR%%-libs-%%POSTGRES_VERSION%% \
 		pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR%% \
 		pg_failover_slots_%%PG_MAJOR%% \
+		pgrouting_%%PG_MAJOR%% \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
