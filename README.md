@@ -36,7 +36,7 @@ PGAudit is distributed under the [PostgreSQL License](https://github.com/pgaudit
 
 pgRouting is distributed under the
 [GNU GPL 2 License](https://github.com/pgRouting/pgrouting/blob/main/LICENSE),
-with the some Boost extensions being available under
+with the same Boost extensions available under
 [Boost Software License](https://docs.pgrouting.org/latest/en/pgRouting-introduction.html#licensing).
 
 Postgres Failover Slots is distributed by EnterpriseDB under the
