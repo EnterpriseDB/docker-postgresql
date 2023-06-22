@@ -201,9 +201,9 @@ generate_ironbank() {
 		>"requirements_files/urls.txt"
 
 	cp hardening_manifest.yaml.template hardening_manifest/hardening_manifest.yaml
- 	# Add the python requirements and urls to the manifest file used by IronBank
- 	python3 generate_hardening_manifest.py -f -p -u 2> /dev/null
-    # parse template and copy to version
+	# Add the python requirements and urls to the manifest file used by IronBank
+	python3 generate_hardening_manifest.py -f -p -u 2> /dev/null
+	# parse template and copy to version
 	sed -e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		hardening_manifest/hardening_manifest.yaml \
@@ -224,11 +224,11 @@ update_requirements() {
 	# This will take the requirements.in file and generate a file
 	# requirements.txt with the hashes for the required packages
 	# --allow-unsafe is used for pip. This gets re-installed to fix crypto/rust issues
-    # --no-annotation is required for IronBank hardening_maifest.yaml conversion
+	# --no-annotation is required for IronBank hardening_maifest.yaml conversion
 	pip-compile --allow-unsafe --no-annotate --output-file=requirements.txt 2>/dev/null
 
 	# Removes psycopg from the list of packages to install
-	sed -i '/psycopg/{:a;N;/barman/!ba};/via barman/d' requirements.txt
+	sed -i '/psycopg/d' requirements.txt
 
 	# Then the file needs to be moved into the requirements_files/ that will
 	# be used by the generate_hardening_manifest.py program

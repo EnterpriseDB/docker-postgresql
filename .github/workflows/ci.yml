@@ -16,7 +16,7 @@ jobs:
 
   generate-jobs:
     name: Generate Jobs
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       strategy: ${{ steps.generate-jobs.outputs.strategy }}
     steps:
@@ -29,9 +29,14 @@ jobs:
     needs: generate-jobs
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
     name: PostgreSQL ${{ matrix.name }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
       - name: Prepare Environment
         run: |
           git clone --depth 1 https://github.com/docker-library/official-images.git -b master ~/oi
@@ -55,6 +60,7 @@ jobs:
            for u in $(cat "${{ matrix.dir }}/urls.txt")
              do curl -fsSL -o "${{ matrix.dir}}"/$(basename $u) $u
            done
+           python3 -m pip install --upgrade pip
            python3 -m pip download -r "${{ matrix.dir }}/requirements.txt" -d "${{ matrix.dir }}"
           fi
           RESULT=""
@@ -100,7 +106,7 @@ jobs:
     - generate-jobs
     - test
     name: Check
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Decide whether the needed jobs succeeded or failed
       uses: re-actors/alls-green@v1.2.2
