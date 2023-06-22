@@ -35,6 +35,7 @@ RUN set -xe ; \
 		postgresql11-server-11.20 \
 		postgresql11-libs-11.20 \
 		pgaudit13_11 \
+		pg_failover_slots_11 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
@@ -86,7 +87,9 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 					exit 1 ;; \
 	esac ; \
 	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
-		postgis33_11-3.3.3 ; \
+		postgis33_11-3.3.3 \
+		pgrouting_11 \
+	; \
 	yum -y remove epel-release ; \
 	subscription-manager remove --all ; \
 	subscription-manager unregister ; \

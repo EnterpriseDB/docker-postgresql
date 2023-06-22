@@ -35,6 +35,7 @@ RUN set -xe ; \
 		postgresql15-server-15.3 \
 		postgresql15-libs-15.3 \
 		pgaudit17_15 \
+		pg_failover_slots_15 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
@@ -86,7 +87,9 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 					exit 1 ;; \
 	esac ; \
 	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
-		postgis33_15-3.3.3 ; \
+		postgis33_15-3.3.3 \
+		pgrouting_15 \
+	; \
 	yum -y remove epel-release ; \
 	subscription-manager remove --all ; \
 	subscription-manager unregister ; \

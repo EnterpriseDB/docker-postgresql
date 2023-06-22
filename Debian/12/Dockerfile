@@ -101,6 +101,7 @@ RUN set -ex; \
 	apt-get install -y --no-install-recommends \
 		"postgresql-$PG_MAJOR=$PG_VERSION" \
 		"postgresql-$PG_MAJOR-pgaudit" \
+		"postgresql-$PG_MAJOR-pg-failover-slots" \
 	; \
 	\
 	rm -fr /tmp/* ; \

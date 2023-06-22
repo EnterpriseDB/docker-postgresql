@@ -13,19 +13,24 @@ LABEL name="PostgreSQL Container Images" \
 COPY root/ /
 
 ARG TARGETARCH
-RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
+RUN --mount=type=secret,id=cs_token \
 	set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
+	pg_failover_slots_pkg="pg_failover_slots_14" ; \
 	case $ARCH in \
 			amd64) \
-					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
 			arm64) \
-					yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+					yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
 			ppc64le) \
-					bash /run/secrets/cs_script.sh ;; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
+					pg_failover_slots_pkg="edb-pg14-pg-failover-slots1" ;; \
 			s390x) \
-					bash /run/secrets/cs_script.sh ;; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
+					pg_failover_slots_pkg="edb-pg14-pg-failover-slots1" ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -39,6 +44,7 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
 		postgresql14-server-14.8 \
 		postgresql14-libs-14.8 \
 		pgaudit16_14 \
+		"$pg_failover_slots_pkg" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
