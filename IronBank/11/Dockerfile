@@ -1,7 +1,7 @@
 # vim:set ft=dockerfile:
 ARG BASE_REGISTRY=registry1.dso.mil
 ARG BASE_IMAGE=redhat/ubi/ubi8
-ARG BASE_TAG=8.4
+ARG BASE_TAG=8.8
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG}
 
 # Generate locale C.UTF-8 for postgres and general locale data
@@ -48,8 +48,6 @@ RUN dnf update -y --nodocs && \
 	libpq-devel \
 	nss_wrapper \
 	openssl-devel \
-	python38-cffi \
-	python38-cryptography \
 	python38-devel\ 
 	python38-pip \
 	python38-pip-wheel \
@@ -68,7 +66,8 @@ RUN dnf update -y --nodocs && \
 # Install barman-cloud
 ENV CRYPTOGRAPHY_DONT_BUILD_RUST 1 
 ENV CARGO_NET_OFFLINE true
-RUN pip3 install --no-index --find-links=/tmp -r /tmp/requirements.txt
+RUN pip3 install --upgrade pip; \
+	pip3 install --no-index --find-links=/tmp -r /tmp/requirements.txt
 RUN rm -rf /tmp/*.{rpm,whl} && \
 	dnf -y remove python38-devel openssl-devel gcc cargo libffi-devel redhat-rpm-config
 
