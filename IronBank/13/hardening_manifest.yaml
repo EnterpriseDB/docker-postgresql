@@ -126,26 +126,26 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
-- filename: botocore-1.29.158-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/10/d8/6c2a10c5093b62d43ff94b244b73c12ea271f1d73fd06d8e391d1437fadf/botocore-1.29.158-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 267d4e7f36bdb45ea696386143ca6f68a358dc4baef85894cc4d9cffe97c0cd5
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+- filename: botocore-1.29.159-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c9/07/27eeebd78ef91d6fdba2251b4e6703f5a459552e35bcb491ed8f9684ad87/botocore-1.29.159-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 86fe4641fd32dc6a5be4a289e00dc180448fc7bc37abac21bd624656985eef62
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
-- filename: boto3-1.26.158-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/04/05/48d42bd5ea19e0d979f348a744199452306333e4fc46e9eae17ab04b917e/boto3-1.26.158-py3-none-any.whl
+- filename: boto3-1.26.159-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/89/cf/94de9fc42e92ee49a18f32b91bc580b15de58cac6c45d57397ff9281f1fb/boto3-1.26.159-py3-none-any.whl
   validation:
     type: sha256
-    value: 0be407c2e941b422634766c0d754132ad4d33b5d0f84d9a30426b713b31ce3ab
+    value: fe49f91e057b241b23a58c74c2f22654216788052ce95b73439fdb18bfd0e155
 - filename: google_resumable_media-2.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a8/84/b8c526864e53ee265516453015f707432448546c525dcf2b89bfd6c67245/google_resumable_media-2.5.0-py2.py3-none-any.whl
   validation:
