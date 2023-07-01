@@ -136,6 +136,11 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
+- filename: boto3-1.26.165-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/62/fa/04e99eb81c703e0ef6c8e503fc7d74c8d836157ed15d61bc77f4fd1c6e73/boto3-1.26.165-py3-none-any.whl
+  validation:
+    type: sha256
+    value: fa85b67147c8dc99b6e7c699fc086103f958f9677db934f70659e6e6a72a818c
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
@@ -191,11 +196,11 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
-- filename: boto3-1.26.164-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/9a/dc/fd034bc36d2fc0930ea7193dc4f1696a8748e4faefa51b07fb8deae64d2f/boto3-1.26.164-py3-none-any.whl
+- filename: botocore-1.29.165-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/46/20/e7a9a8e6746872afcc4e3ad5ab503702c38813b3a532df27cce95c98b8cb/botocore-1.29.165-py3-none-any.whl
   validation:
     type: sha256
-    value: 1ff5d0705bfd851d4d9d15460b38d7a9775b8116f68812a4e0f81e3321026813
+    value: 6f35d59e230095aed7cd747604fe248fa384bebb7d09549077892f936a8ca3df
 - filename: cachetools-5.3.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a9/c9/c8a7710f2cedcb1db9224fdd4d8307c9e48cbddc46c18b515fefc0f1abbe/cachetools-5.3.1-py3-none-any.whl
   validation:
@@ -216,11 +221,6 @@ resources:
   validation:
     type: sha256
     value: 9433cf28801671de1c80434238fb1e7e4a1ba3087470e90f70c928ea77c2b9d7
-- filename: botocore-1.29.164-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/db/96/900579962ffb2dd8183ce824a9d04ec29b3ac8968d8c634323cb4a781a08/botocore-1.29.164-py3-none-any.whl
-  validation:
-    type: sha256
-    value: e1aeccde63839fc263126ccb5de98fcaf02fc6099fb18bb829085199774e2cec
 - filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
