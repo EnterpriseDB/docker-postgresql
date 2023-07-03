@@ -66,16 +66,16 @@ resources:
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
-- filename: typing_extensions-4.7.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7e/4d/b0185d077dc1cd070a56859a0ba3bb6e76618393ec693e59faf1368da8f6/typing_extensions-4.7.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 5d8c9dac95c27d20df12fb1d97b9793ab8b2af8a3a525e68c80e21060c161771
 - filename: six-1.16.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
+- filename: typing_extensions-4.7.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ec/6b/63cc3df74987c36fe26157ee12e09e8f9db4de771e0f3404263117e75b95/typing_extensions-4.7.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 440d5dd3af93b060174bf433bccd69b0babc3b15b1a8dca43789fd7f61514b36
 - filename: cryptography-41.0.1-cp37-abi3-manylinux_2_28_x86_64.whl
   url: https://files.pythonhosted.org/packages/49/35/80c346e1a9509210defa857a05e9b7931093719aab25665d4d54f9b3ba83/cryptography-41.0.1-cp37-abi3-manylinux_2_28_x86_64.whl
   validation:
