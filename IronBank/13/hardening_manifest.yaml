@@ -136,16 +136,16 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
-- filename: boto3-1.26.165-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/62/fa/04e99eb81c703e0ef6c8e503fc7d74c8d836157ed15d61bc77f4fd1c6e73/boto3-1.26.165-py3-none-any.whl
-  validation:
-    type: sha256
-    value: fa85b67147c8dc99b6e7c699fc086103f958f9677db934f70659e6e6a72a818c
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+- filename: botocore-1.30.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/3c/85/549e6910d25ae38237b53d0a1b929fbadebb4043985c4bbeddf434f9a221/botocore-1.30.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: cac1333f41ec98e6f75bbba3f2c74b9e76aa3847469ecea6e7773a0af0049bee
 - filename: google_api_core-2.11.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/c4/c3cd048b6cbeba8d9ae50dd7643ac065b85237338aa7501b0efae91eb4d9/google_api_core-2.11.1-py3-none-any.whl
   validation:
@@ -196,11 +196,11 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
-- filename: botocore-1.29.165-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/46/20/e7a9a8e6746872afcc4e3ad5ab503702c38813b3a532df27cce95c98b8cb/botocore-1.29.165-py3-none-any.whl
+- filename: boto3-1.27.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0b/87/345b82f53e528614cb46ef412000a6adf1103cc103e396517a4f0d98ab84/boto3-1.27.0-py3-none-any.whl
   validation:
     type: sha256
-    value: 6f35d59e230095aed7cd747604fe248fa384bebb7d09549077892f936a8ca3df
+    value: e1e535e9fb23977252f13652ed2fa9b4f2d59a53b04a5f2fad3ee415b6a3b2b0
 - filename: cachetools-5.3.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a9/c9/c8a7710f2cedcb1db9224fdd4d8307c9e48cbddc46c18b515fefc0f1abbe/cachetools-5.3.1-py3-none-any.whl
   validation:
