@@ -56,6 +56,11 @@ resources:
   validation:
     type: sha256
     value: 48e7fafa40319d358848e1bc6809b208340fafe2096f1725d05d67443d0483d1
+- filename: charset_normalizer-3.2.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/cb/e7/5e43745003bf1f90668c7be23fc5952b3a2b9c2558f16749411c18039b36/charset_normalizer-3.2.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  validation:
+    type: sha256
+    value: 89f1b185a01fe560bc8ae5f619e924407efca2191b56ce749ec84982fc59a32a
 - filename: typing_extensions-4.7.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ec/6b/63cc3df74987c36fe26157ee12e09e8f9db4de771e0f3404263117e75b95/typing_extensions-4.7.1-py3-none-any.whl
   validation:
@@ -66,11 +71,6 @@ resources:
   validation:
     type: sha256
     value: 58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f
-- filename: charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/74/5f/361202de730532028458b729781b8435f320e31a622c27f30e25eec80513/charset_normalizer-3.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  validation:
-    type: sha256
-    value: de5695a6f1d8340b12a5d6d4484290ee74d61e467c39ff03b39e30df62cf83a0
 - filename: six-1.16.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl
   validation:
@@ -126,6 +126,11 @@ resources:
   validation:
     type: sha256
     value: 91bb192b2a97939c4259c72373bac0f41e30810bbc853d5184f0f45904eacafd
+- filename: boto3-1.28.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/19/76/25af50b50fb67b275d8bfcba50243cf67964e95c52acbcf565d47471d43c/boto3-1.28.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 9923ab006bba749bececc5c8cb0c3dc9bc33c91358774f8ff22096ead373b772
 - filename: urllib3-1.26.16-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c5/05/c214b32d21c0b465506f95c4f28ccbcba15022e000b043b72b3df7728471/urllib3-1.26.16-py2.py3-none-any.whl
   validation:
@@ -136,6 +141,11 @@ resources:
   validation:
     type: sha256
     value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
+- filename: botocore-1.31.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c1/65/25ddd13adc9c73cec806131de4f4a2407f8feae8fc7da774e32b9ef8b569/botocore-1.31.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 62e954b8eb9a404510dd97c4fdfaae25bd0349213a3cd70e937e0634821342f5
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
@@ -171,11 +181,6 @@ resources:
   validation:
     type: sha256
     value: effeac51ab79332d44fba74660d40ae79985901ac21bca408f8dc335a81aa597
-- filename: botocore-1.31.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d0/56/aa12a100e4f6d6a23a7b0cf2e54d945e610a20042ae30872fe2e39eabed4/botocore-1.31.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: bcb0601fabc9f6fb2f7c592e7c9c4dece69ccd8782bfe6cf991a14f7fa35e6f3
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -211,11 +216,6 @@ resources:
   validation:
     type: sha256
     value: 3c0da2d074bf35d6870ef157158641178a4204a6e689e82546083e31e0311346
-- filename: boto3-1.28.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/58/9d/9b762f33b17a14359f1557e9a8d5db2887f5b040a47d9502de2ce4475cad/boto3-1.28.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: ef81f63d38be25137c3ae9c6db2841c4cde82d1c7da9f8cb9f42f410c242d4f2
 - filename: google_cloud_storage-2.10.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/88/14/c9d4faae7ea4bff4405152cbc762b61100aa6949273b4eb3203d23308670/google_cloud_storage-2.10.0-py2.py3-none-any.whl
   validation:
