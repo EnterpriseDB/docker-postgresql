@@ -46,11 +46,6 @@ resources:
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
-- filename: azure_core-1.27.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/71/fa/b6f8f8693de85c69f70ad3b0320a35b663ef1110d32ee2c1064d3dacb0f4/azure_core-1.27.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 1b4b19f455eb7b4332c6f92adc2c669353ded07c2722eb436165f0c253737792
 - filename: urllib3-2.0.3-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/8a/03/ad9306a50d05c166e3456fe810f33cee2b8b2a7a6818ec5d4908c4ec6b36/urllib3-2.0.3-py3-none-any.whl
   validation:
@@ -71,6 +66,11 @@ resources:
   validation:
     type: sha256
     value: 58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f
+- filename: azure_core-1.28.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c3/0a/32b17d776a6bf5ddaa9dbad0e88de9d28a55bec1d37b8d408cc7d2e5e28d/azure_core-1.28.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: dec36dfc8eb0b052a853f30c07437effec2f9e3e1fc8f703d9bdaa5cfc0043d9
 - filename: six-1.16.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl
   validation:
