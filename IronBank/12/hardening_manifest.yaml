@@ -106,11 +106,11 @@ resources:
   validation:
     type: sha256
     value: 9120b7eafdf061c92f7b3d744e5f325fca35873445fa8ffebb40b1086a13dd58
-- filename: PyJWT-2.7.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/c7/e8/01b2e35d81e618a8212e651e10c91660bdfda49c1d15ce66f4ca1ff43649/PyJWT-2.7.0-py3-none-any.whl
+- filename: PyJWT-2.8.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/2b/4f/e04a8067c7c96c364cef7ef73906504e2f40d690811c021e1a1901473a19/PyJWT-2.8.0-py3-none-any.whl
   validation:
     type: sha256
-    value: ba2b425b15ad5ef12f200dc67dd56af4e26de2331f965c5439994dad075876e1
+    value: 59127c392cc44c2da5bb3192169a91f429924e17aff6534d70fdc02ab3e04320
 - filename: msal_extensions-1.0.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
   validation:
@@ -126,11 +126,6 @@ resources:
   validation:
     type: sha256
     value: 0016e0c549a80282d7b4920c03f2f4ba35c53e6e3c7dbcd2a4a8c8eb3882c1e7
-- filename: botocore-1.31.3-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/b0/f0/5755508b3305534cd4cf2a8a82bbbe42ee9d66fd2688be5ff3dfb85e9a99/botocore-1.31.3-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 2aa27c75e62bfcf7900cb85283228fcb7df0fa1bdc2ae76dcee90788dd444934
 - filename: urllib3-1.26.16-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c5/05/c214b32d21c0b465506f95c4f28ccbcba15022e000b043b72b3df7728471/urllib3-1.26.16-py2.py3-none-any.whl
   validation:
@@ -216,16 +211,21 @@ resources:
   validation:
     type: sha256
     value: 9433cf28801671de1c80434238fb1e7e4a1ba3087470e90f70c928ea77c2b9d7
-- filename: boto3-1.28.3-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/23/87/92592a5aa3eafcebd37117d4d03eef8fd922184813532f743ca607bfb28c/boto3-1.28.3-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 34f07b3fc2503240c0f58114cf3afea91295c7996d084991b78a278a56157c48
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
+- filename: boto3-1.28.5-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0a/5c/055aa43caaad7e75a481ec8f3d74435d6e248d8171ee14ea826f34eecbd4/boto3-1.28.5-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a5c815ab81219a606f20362c9d9c190f5c224bf33c5dc4c20501036cc4a9034f
+- filename: botocore-1.31.5-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/3a/c8/1ccda895025fb24d366797f34796fb349a517d38ec0a7f854cf1d69430b2/botocore-1.31.5-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 8aec97512587a5475036a982785e406c52efd260457b809846985f849c3d7cf3
 - filename: postgresql12-12.15-2PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-12.15-2PGDG.rhel8.x86_64.rpm
   validation:
