@@ -46,11 +46,6 @@ resources:
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
-- filename: urllib3-2.0.3-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8a/03/ad9306a50d05c166e3456fe810f33cee2b8b2a7a6818ec5d4908c4ec6b36/urllib3-2.0.3-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 48e7fafa40319d358848e1bc6809b208340fafe2096f1725d05d67443d0483d1
 - filename: charset_normalizer-3.2.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/cb/e7/5e43745003bf1f90668c7be23fc5952b3a2b9c2558f16749411c18039b36/charset_normalizer-3.2.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -76,6 +71,11 @@ resources:
   validation:
     type: sha256
     value: 8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
+- filename: urllib3-2.0.4-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/9b/81/62fd61001fa4b9d0df6e31d47ff49cfa9de4af03adecf339c7bc30656b37/urllib3-2.0.4-py3-none-any.whl
+  validation:
+    type: sha256
+    value: de7df1803967d2c2a98e4b11bb7d6bd9210474c46e8a0401514e3a42a75ebde4
 - filename: cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/b7/8b/06f30caa03b5b3ac006de4f93478dbd0239e2a16566d81a106c322dc4f79/cffi-1.15.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -176,6 +176,11 @@ resources:
   validation:
     type: sha256
     value: effeac51ab79332d44fba74660d40ae79985901ac21bca408f8dc335a81aa597
+- filename: boto3-1.28.6-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/27/a6/eb9b9a16b8fe33257fd1546ea85eed59c152af088220a9e300a0763ab987/boto3-1.28.6-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 503b4a800a8e3910809029295ed6456176a98146db79c770b24909b32aa2e842
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -201,6 +206,11 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
+- filename: botocore-1.31.6-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/65/7a/ae38895c8afa7c1af79144a98e9147c78c48cd30707296c9ffd8a96207b2/botocore-1.31.6-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 2082f6218e3648a086a2a8fa05fc02b0df3920fe1b336a083d08a76662165182
 - filename: s3transfer-0.6.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ec/fa/9416461ee05efabe477d588288bdd88acb69a51ee4b31a9b73d3b5b716fc/s3transfer-0.6.1-py3-none-any.whl
   validation:
@@ -216,16 +226,6 @@ resources:
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
-- filename: boto3-1.28.5-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/0a/5c/055aa43caaad7e75a481ec8f3d74435d6e248d8171ee14ea826f34eecbd4/boto3-1.28.5-py3-none-any.whl
-  validation:
-    type: sha256
-    value: a5c815ab81219a606f20362c9d9c190f5c224bf33c5dc4c20501036cc4a9034f
-- filename: botocore-1.31.5-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/3a/c8/1ccda895025fb24d366797f34796fb349a517d38ec0a7f854cf1d69430b2/botocore-1.31.5-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 8aec97512587a5475036a982785e406c52efd260457b809846985f849c3d7cf3
 - filename: postgresql12-12.15-2PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-12.15-2PGDG.rhel8.x86_64.rpm
   validation:
