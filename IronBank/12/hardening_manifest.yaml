@@ -36,11 +36,6 @@ resources:
   validation:
     type: sha256
     value: 35fa893a88deea85ea7b20d241100e64516d6af6d7b0ae2bed1d263d26f70948
-- filename: certifi-2023.5.7-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/9d/19/59961b522e6757f0c9097e4493fa906031b95b3ebe9360b2c3083561a6b4/certifi-2023.5.7-py3-none-any.whl
-  validation:
-    type: sha256
-    value: c6c2e98f5c7869efca1f8916fed228dd91539f9f1b444c314c06eef02980c716
 - filename: idna-3.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
   validation:
@@ -66,6 +61,11 @@ resources:
   validation:
     type: sha256
     value: dec36dfc8eb0b052a853f30c07437effec2f9e3e1fc8f703d9bdaa5cfc0043d9
+- filename: certifi-2023.7.22-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/4c/dd/2234eab22353ffc7d94e8d13177aaa050113286e93e7b40eae01fbf7c3d9/certifi-2023.7.22-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 92d6037539857d8206b8f6ae472e8b77db8058fec5937a1ef3f54304089edbb9
 - filename: six-1.16.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl
   validation:
@@ -101,11 +101,11 @@ resources:
   validation:
     type: sha256
     value: a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983
-- filename: msal-1.22.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/5a/0d/5e21072561e8cbf13f938da854804cde984475e9b3d125922962e46487b8/msal-1.22.0-py2.py3-none-any.whl
+- filename: msal-1.23.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/6f/cd/c5d31dc262c139763dbee91ac91d12ced729a529e59877d150705e60832e/msal-1.23.0-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 9120b7eafdf061c92f7b3d744e5f325fca35873445fa8ffebb40b1086a13dd58
+    value: 3342e0837a047007f9d479e814b559c3219767453d57920dc40a31986862048b
 - filename: PyJWT-2.8.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/2b/4f/e04a8067c7c96c364cef7ef73906504e2f40d690811c021e1a1901473a19/PyJWT-2.8.0-py3-none-any.whl
   validation:

@@ -12,7 +12,7 @@ barman[azure,cloud,google,snappy]==3.6.0
 boto3==1.28.9
 botocore==1.31.9
 cachetools==5.3.1
-certifi==2023.5.7
+certifi==2023.7.22
 cffi==1.15.1
 charset-normalizer==3.2.0
 cryptography==41.0.2
@@ -26,7 +26,7 @@ googleapis-common-protos==1.59.1
 idna==3.4
 isodate==0.6.1
 jmespath==1.0.1
-msal==1.22.0
+msal==1.23.0
 msal-extensions==1.0.0
 portalocker==2.7.0
 protobuf==4.23.4
