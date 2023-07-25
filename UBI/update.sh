@@ -289,6 +289,16 @@ generate_redhat() {
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-multilang.template \
 		>"$version/Dockerfile.multilang"
+
+	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
+		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
+		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
+		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
+		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
+		Dockerfile-multiarch.template \
+		>"$version/Dockerfile.multiarch"
+
 	cp -r src/* "$version/"
 }
 
