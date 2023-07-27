@@ -95,6 +95,11 @@ for version in "${ubi_versions[@]}"; do
 			${aliases[$version]:+"${aliases[$version]}-multilang"}
 			"${fullVersion}-${releaseVersion}-multilang"
 		)
+		versionAliasesMultiArch=(
+			"${version}-beta-multiarch"
+			${aliases[$version]:+"${aliases[$version]}-multiarch"}
+			"${fullVersion}-${releaseVersion}-multiarch"
+		)
 	else
 		versionAliases=(
 			"${version}"
@@ -106,25 +111,34 @@ for version in "${ubi_versions[@]}"; do
 			${aliases[$version]:+"${aliases[$version]}-multilang"}
 			"${fullVersion}-${releaseVersion}-multilang"
 		)
+		versionAliasesMultiArch=(
+			"${version}-multiarch"
+			${aliases[$version]:+"${aliases[$version]}-multiarch"}
+			"${fullVersion}-${releaseVersion}-multiarch"
+		)
 	fi
 	# Add all the version prefixes between full version and major version
 	# i.e "13.2"
 	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
 		versionAliases+=("$fullVersion")
 		versionAliasesMultiLang+=("$fullVersion-multilang")
+		versionAliasesMultiArch+=("$fullVersion-multiarch")
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	if [[ "${version}" =~ ^("15")$ ]]; then
+	if [[ "${version}" =~ ^("16")$ ]]; then
 			platforms="linux/amd64"
 	else
-			platforms="linux/amd64, linux/ppc64le, linux/s390x, linux/arm64"
+			platforms="linux/amd64, linux/arm64"
 	fi
+
+	platformsMultiArch="${platforms}, linux/ppc64le,linux/s390x"
 
 	# Build the json entry
 	entries+=(
 		"{\"name\": \"UBI ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
 		"{\"name\": \"UBI ${fullVersion} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multilang\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
+		"{\"name\": \"UBI ${fullVersion} MultiArch\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multiarch\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"]}"
 	)
 done
 
