@@ -36,7 +36,8 @@ RUN --mount=type=secret,id=cs_token \
 	esac ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
+	rm -fr /etc/rpm/macros.image-language-conf ; \
+	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	case 14 in \
             11|12|13|14) \
 	                yum -y --setopt=tsflags=nodocs install \
