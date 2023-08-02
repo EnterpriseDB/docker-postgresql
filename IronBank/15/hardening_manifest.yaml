@@ -81,11 +81,6 @@ resources:
   validation:
     type: sha256
     value: 4f2c9f67e9821cad2e5f480bc8d83b8742896f1242dba247911072d4fa94c192
-- filename: cryptography-41.0.2-cp37-abi3-manylinux_2_28_x86_64.whl
-  url: https://files.pythonhosted.org/packages/1a/c7/b8193a0859fed883738ae99d33fe90edf05c7e3d0fdb1726f8f53d85859e/cryptography-41.0.2-cp37-abi3-manylinux_2_28_x86_64.whl
-  validation:
-    type: sha256
-    value: 49c3222bb8f8e800aead2e376cbef687bc9e3cb9b58b29a261210456a7783d83
 - filename: azure_identity-1.13.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/33/16/fa96a5e057d6842e95d94fc410896e061b3d3a2584d57e13fc58268df45f/azure_identity-1.13.0-py3-none-any.whl
   validation:
@@ -111,6 +106,11 @@ resources:
   validation:
     type: sha256
     value: 59127c392cc44c2da5bb3192169a91f429924e17aff6534d70fdc02ab3e04320
+- filename: cryptography-41.0.3-cp37-abi3-manylinux_2_28_x86_64.whl
+  url: https://files.pythonhosted.org/packages/46/74/f9eba8c947f57991b5dd5e45797fdc68cc70e444c32e6b952b512d42aba5/cryptography-41.0.3-cp37-abi3-manylinux_2_28_x86_64.whl
+  validation:
+    type: sha256
+    value: 42cb413e01a5d36da9929baa9d70ca90d90b969269e5a12d39c1e0d475010116
 - filename: msal_extensions-1.0.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
   validation:
@@ -126,6 +126,11 @@ resources:
   validation:
     type: sha256
     value: 0016e0c549a80282d7b4920c03f2f4ba35c53e6e3c7dbcd2a4a8c8eb3882c1e7
+- filename: botocore-1.31.17-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/3d/e5/32a88f5a95e3d43c2e3ed86fc1ffdb715547a04f95a51d00e1185af63b0c/botocore-1.31.17-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 6ac34a1d34aa3750e78b77b8596617e2bab938964694d651939dba2cbde2c12b
 - filename: urllib3-1.26.16-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c5/05/c214b32d21c0b465506f95c4f28ccbcba15022e000b043b72b3df7728471/urllib3-1.26.16-py2.py3-none-any.whl
   validation:
@@ -161,11 +166,6 @@ resources:
   validation:
     type: sha256
     value: d61d1b40897407b574da67da1a833bdc10d5a11642566e506565d1b1a46ba873
-- filename: botocore-1.31.16-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d5/f7/8f6a279fd5ef2d4dc1962cee5fffaa45c7414e6e61e9886a0a04513ce569/botocore-1.31.16-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 92b240e2cb7b3afae5361651d2f48ee582f45d2dab53aef76eef7eec1d3ce582
 - filename: protobuf-4.23.4-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/01/cb/445b3e465abdb8042a41957dc8f60c54620dc7540dbcf9b458a921531ca2/protobuf-4.23.4-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -196,16 +196,16 @@ resources:
   validation:
     type: sha256
     value: d3ccd6ed470d9ffbc716be08bd90efbd44d0734bc9303818f7336070984a162d
+- filename: boto3-1.28.17-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/46/a7/487512e3328f2566d72aed3b7059fd8dff18c95d9bcbbe16c5ecc13e6fc5/boto3-1.28.17-py3-none-any.whl
+  validation:
+    type: sha256
+    value: bca0526f819e0f19c0f1e6eba3e2d1d6b6a92a45129f98c0d716e5aab6d9444b
 - filename: google_cloud_core-2.3.3-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a2/40/02045f776fdb6e44194f34b6375a26ce8a61bd9bd03cd8930ed91cf51a62/google_cloud_core-2.3.3-py2.py3-none-any.whl
   validation:
     type: sha256
     value: fbd11cad3e98a7e5b0343dc07cb1039a5ffd7a5bb96e1f1e27cee4bda4a90863
-- filename: boto3-1.28.16-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e3/9c/5f339f649a888d7d016d505dd5a47c3d47ec0e550340e4e932a5718d549e/boto3-1.28.16-py3-none-any.whl
-  validation:
-    type: sha256
-    value: d8e31f69fb919025a5961f8fbeb51fe92e2f753beb37fc1853138667a231cdaa
 - filename: google_resumable_media-2.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a8/84/b8c526864e53ee265516453015f707432448546c525dcf2b89bfd6c67245/google_resumable_media-2.5.0-py2.py3-none-any.whl
   validation:
