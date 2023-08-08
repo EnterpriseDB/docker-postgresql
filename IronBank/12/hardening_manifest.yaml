@@ -176,11 +176,11 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: boto3-1.28.20-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/cd/5b/992af4c79af98a1821bcedad6a74b41e373c7cd86893833a54b1472d43fd/boto3-1.28.20-py3-none-any.whl
+- filename: botocore-1.31.21-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/1a/ea/a5f9b629b1b9cf6bcfd8df991d3f477a2bf1ccaf6dca09c5a5e33bc9696f/botocore-1.31.21-py3-none-any.whl
   validation:
     type: sha256
-    value: a654d57e3882e7fd2c1260d604a44364a2fed00da4f52faf37e5901e71145df1
+    value: c20a5c46eaf49b18b76fdfaec5583320e18abd551b1bc3cd7b1e718372675e21
 - filename: barman-3.7.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/32/20/49e35a1707f7f79b46b4bec8cd53ef924cdf0a13a5d4801746b859354a57/barman-3.7.0-py2.py3-none-any.whl
   validation:
@@ -221,11 +221,11 @@ resources:
   validation:
     type: sha256
     value: 998679bf62b7fb599d2878aa3ed06b9ce688b8974893e7223c60db155f26bd8d
-- filename: botocore-1.31.20-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/76/d9/5bfab481321a8a9f81a193ef4febfa83e4e192400c4c28cf76542daec561/botocore-1.31.20-py3-none-any.whl
+- filename: boto3-1.28.21-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/20/eb/85a7acc167a31796961299b0444ab0f95798b38f173b5f264c51b483beb8/boto3-1.28.21-py3-none-any.whl
   validation:
     type: sha256
-    value: be51c5352162700e7beb0aa27af394adbbf86f8e7a2ca0c437d448d0a7b2bdfb
+    value: 28e1ea098e43e764d990b4466e377c322b5d57829e2eb1395eca52d4209a6c11
 - filename: postgresql12-12.15-2PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-8-x86_64/postgresql12-12.15-2PGDG.rhel8.x86_64.rpm
   validation:
