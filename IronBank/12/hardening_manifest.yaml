@@ -86,11 +86,6 @@ resources:
   validation:
     type: sha256
     value: 3342e0837a047007f9d479e814b559c3219767453d57920dc40a31986862048b
-- filename: azure_identity-1.13.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/33/16/fa96a5e057d6842e95d94fc410896e061b3d3a2584d57e13fc58268df45f/azure_identity-1.13.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: bd700cebb80cd9862098587c29d8677e819beca33c62568ced6d5a8e5e332b82
 - filename: portalocker-2.7.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/8c/df/d4f711d168524f5aebd7fb30969eaa31e3048cf8979688cde3b08f6e5eb8/portalocker-2.7.0-py2.py3-none-any.whl
   validation:
@@ -116,6 +111,11 @@ resources:
   validation:
     type: sha256
     value: 59127c392cc44c2da5bb3192169a91f429924e17aff6534d70fdc02ab3e04320
+- filename: azure_identity-1.14.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/42/8d/7701695ca568e373e6b8fa5193733b173ee8630f9b64843164b65a20f8c2/azure_identity-1.14.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: edabf0e010eb85760e1dd19424d5e8f97ba2c9caff73a16e7b30ccbdbcce369b
 - filename: isodate-0.6.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b6/85/7882d311924cbcfc70b1890780763e36ff0b140c7e51c110fc59a532f087/isodate-0.6.1-py2.py3-none-any.whl
   validation:
@@ -151,11 +151,11 @@ resources:
   validation:
     type: sha256
     value: d61d1b40897407b574da67da1a833bdc10d5a11642566e506565d1b1a46ba873
-- filename: botocore-1.31.22-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d3/ab/73e110fd5a61c84f10ab792d34ffb251a7249f6896d2e78cc8b51a7d42fe/botocore-1.31.22-py3-none-any.whl
+- filename: botocore-1.31.23-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/d4/4a/dcec308c412000a3a141be50568dd96b86cbd829ac9ee0b937b4fa6c56ae/botocore-1.31.23-py3-none-any.whl
   validation:
     type: sha256
-    value: b91025ca1a16b13ae662bdb46e7c16d2c53619df23bf3583a43791519da14870
+    value: d0a95f74eb6bd99e8f52f16af0a430ba6cd1526744f40ffdd3fcccceeaf961c2
 - filename: google_resumable_media-2.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a8/84/b8c526864e53ee265516453015f707432448546c525dcf2b89bfd6c67245/google_resumable_media-2.5.0-py2.py3-none-any.whl
   validation:
@@ -191,16 +191,16 @@ resources:
   validation:
     type: sha256
     value: 64deb351b98a284533144d8f55ef85f1f854ea32fcd071352b86a358d462ff4d
+- filename: boto3-1.28.23-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/24/35/37578a6f429ccf41717207ed7b0805bf3cec71ebc038a4ec036bc36432b4/boto3-1.28.23-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 807d4a4698ba9a76d5901a1663ff1943d13efbc388908f38b60f209c3511f1d6
 - filename: google_api_core-2.11.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/6e/c4/c3cd048b6cbeba8d9ae50dd7643ac065b85237338aa7501b0efae91eb4d9/google_api_core-2.11.1-py3-none-any.whl
   validation:
     type: sha256
     value: d92a5a92dc36dd4f4b9ee4e55528a90e432b059f93aee6ad857f9de8cc7ae94a
-- filename: boto3-1.28.22-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/2f/83/07bbd31d54f8cfbb30cd09802c2eced29a50324f746520eefd69cc7002f6/boto3-1.28.22-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 0c1c1d19232018ac49fd2c0a94aa0b802f5d222e89448ff50734626bce454b32
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
