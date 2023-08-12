@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.8-1009
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="11.20" \
-      release="5" \
+      version="11.21" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -41,19 +41,19 @@ RUN --mount=type=secret,id=cs_token \
 	case 11 in \
             11|12|13|14) \
 	                yum -y --setopt=tsflags=nodocs install \
-	                    postgresql11-11.20 \
-	                    postgresql11-contrib-11.20 \
-	                    postgresql11-server-11.20 \
-	                    postgresql11-libs-11.20 \
+	                    postgresql11-11.21 \
+	                    postgresql11-contrib-11.21 \
+	                    postgresql11-server-11.21 \
+	                    postgresql11-libs-11.21 \
 	                    pgaudit13_11 \
 	                    "$pg_failover_slots_pkg" \
 	                    ;; \
             15|16) \
                     yum -y --setopt=tsflags=nodocs install \
-                        postgresql11-11.20 \
-                        postgresql11-contrib-11.20 \
-                        postgresql11-server-11.20 \
-                        postgresql11-libs-11.20 \
+                        postgresql11-11.21 \
+                        postgresql11-contrib-11.21 \
+                        postgresql11-server-11.21 \
+                        postgresql11-libs-11.21 \
 	                    ;; \
             *) \
                     exit 1 ;; \
