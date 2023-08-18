@@ -151,11 +151,11 @@ resources:
   validation:
     type: sha256
     value: d61d1b40897407b574da67da1a833bdc10d5a11642566e506565d1b1a46ba873
-- filename: botocore-1.31.28-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ca/cb/921c3298f8cbcf214a994984fffc70b443fee04fcc8255350f157f941c58/botocore-1.31.28-py3-none-any.whl
+- filename: boto3-1.28.29-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/81/c1/29c75866b41bda4bfca883e2306cda8ac8c02eb0ecb26e1225b091125949/boto3-1.28.29-py3-none-any.whl
   validation:
     type: sha256
-    value: d6310826e37ba0209e904d691638b8e848342ec17f5187568ca02ad092c55c45
+    value: 7b8e7deee9f665612b3cd7412989aaab0337d8006a0490a188c814af137bd32d
 - filename: google_resumable_media-2.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a8/84/b8c526864e53ee265516453015f707432448546c525dcf2b89bfd6c67245/google_resumable_media-2.5.0-py2.py3-none-any.whl
   validation:
@@ -181,6 +181,11 @@ resources:
   validation:
     type: sha256
     value: 69f9bbcc6acde92cab2db95ce30a70bd2b81d20b12eff3f1aabaffcbe8a93918
+- filename: botocore-1.31.29-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c3/12/90b57a4355d7c2c0c05a8a517ec1dcc9351e45cf7a42367dbf6fac297167/botocore-1.31.29-py3-none-any.whl
+  validation:
+    type: sha256
+    value: d3dc422491b3a30667f188f3434541a1dd86d6f8ed7f98ca26e056ae7d912c85
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
@@ -211,11 +216,6 @@ resources:
   validation:
     type: sha256
     value: fbd11cad3e98a7e5b0343dc07cb1039a5ffd7a5bb96e1f1e27cee4bda4a90863
-- filename: boto3-1.28.28-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/6a/4d/80f7b7d6fa0a25def2d38d3161f2d3b2af56bb8619824182488c8225ff23/boto3-1.28.28-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 57d618f03bd269ebef6287dd4ed86ddaa1d53a4021008ad3267c6097be17e172
 - filename: urllib3-1.26.16-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c5/05/c214b32d21c0b465506f95c4f28ccbcba15022e000b043b72b3df7728471/urllib3-1.26.16-py2.py3-none-any.whl
   validation:
