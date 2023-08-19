@@ -9,8 +9,8 @@ azure-core==1.29.2
 azure-identity==1.14.0
 azure-storage-blob==12.17.0
 barman[azure,cloud,google,snappy]==3.7.0
-boto3==1.28.29
-botocore==1.31.29
+boto3==1.28.30
+botocore==1.31.30
 cachetools==5.3.1
 certifi==2023.7.22
 cffi==1.15.1
@@ -29,7 +29,7 @@ jmespath==1.0.1
 msal==1.23.0
 msal-extensions==1.0.0
 portalocker==2.7.0
-protobuf==4.24.0
+protobuf==4.24.1
 pyasn1==0.5.0
 pyasn1-modules==0.3.0
 pycparser==2.21
