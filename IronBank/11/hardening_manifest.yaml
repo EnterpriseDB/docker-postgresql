@@ -131,16 +131,21 @@ resources:
   validation:
     type: sha256
     value: 9433cf28801671de1c80434238fb1e7e4a1ba3087470e90f70c928ea77c2b9d7
+- filename: boto3-1.28.31-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/60/6d/8e44bad2e87b30396093f30e22e44ea702a8ef5dc0c2cff60632f1d54cbe/boto3-1.28.31-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 2761f3249fe25c3ec1a8cd6b95fca2317747503e6f1d127daf6a3d2cdeb25680
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: botocore-1.31.30-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/20/19/73b34ec24fcb34c3616374c9d576fb0ceec369fddede245b4957e87bd776/botocore-1.31.30-py3-none-any.whl
+- filename: botocore-1.31.31-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/b0/e7/6f9f81ac3b327a8c1639195c2642ad20bdbc64b0ee0fd36043f65e4a75f4/botocore-1.31.31-py3-none-any.whl
   validation:
     type: sha256
-    value: 269f20dcadd8dfd0c26d0e6fbceb84814ff6638ff3aafcc5324b9fb9949a7051
+    value: 1eef14ae98e8662e43f7cf6d993c732793def02644e2d489c5171d3b9269e900
 - filename: protobuf-4.24.1-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/4c/87/59648989ad7f5ba6fe3c7f8abc555183f28559b6f6cd14ad17a3f0d3094f/protobuf-4.24.1-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -191,11 +196,6 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
-- filename: boto3-1.28.30-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7c/f5/6b4302a6d34715d47f7d729e13cae7a2b896b7272561b1b1d4b714a0b76b/boto3-1.28.30-py3-none-any.whl
-  validation:
-    type: sha256
-    value: e095ede98d3680e65966ab71f273b7d86938f5d853773ef96f4cb646277c2a4b
 - filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
   validation:
