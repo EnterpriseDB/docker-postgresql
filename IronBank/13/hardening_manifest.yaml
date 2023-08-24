@@ -136,11 +136,6 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
-- filename: boto3-1.28.32-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/65/cf/8962dcee7c0985d542f0e6c5040de91a394038be9e199c82f247df16ecbc/boto3-1.28.32-py3-none-any.whl
-  validation:
-    type: sha256
-    value: ed787f250ce2562c7744395bdf32b5a7bc9184126ef50a75e97bcb66043dccf3
 - filename: protobuf-4.24.1-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/4c/87/59648989ad7f5ba6fe3c7f8abc555183f28559b6f6cd14ad17a3f0d3094f/protobuf-4.24.1-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -191,6 +186,11 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
+- filename: botocore-1.31.33-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/99/08/6a78b8ba9c757e7487c9517ef9bba14769b6148aa905b13726b94ca0f4b0/botocore-1.31.33-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 1b76549c45f712ca9734888e60a2ab9c857e6e6025b156b36c344162a7e9d0dc
 - filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
   validation:
@@ -211,11 +211,6 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
-- filename: botocore-1.31.32-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/62/8f/16b66a09ebf7b89f3c9bc2bc1011c0da90ef1b3309d1c41763dc7158ed71/botocore-1.31.32-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 8992ac186988c4b4cc168e8e479e9472da1442b193c1bf7c9dcd1877ec62d23c
 - filename: pyasn1-0.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl
   validation:
@@ -226,6 +221,11 @@ resources:
   validation:
     type: sha256
     value: 95ef631eeaea14ba2e36f06437f36463aac3a096799e876ee55e5cdccb102590
+- filename: boto3-1.28.33-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/8c/64/bdc3f64273d27f27bf0a082de64be341109b4ce664d95ebd77c16cfd40b2/boto3-1.28.33-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 07997e299e7b87afbbb25dc9de677017eafbd96b4f1b81e931d5127716dc6dd1
 - filename: postgresql13-13.12-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-8-x86_64/postgresql13-13.12-1PGDG.rhel8.x86_64.rpm
   validation:
