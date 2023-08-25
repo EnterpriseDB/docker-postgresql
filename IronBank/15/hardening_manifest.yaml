@@ -176,6 +176,11 @@ resources:
   validation:
     type: sha256
     value: d92a5a92dc36dd4f4b9ee4e55528a90e432b059f93aee6ad857f9de8cc7ae94a
+- filename: boto3-1.28.34-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/d5/f6/0bdda8eefd2151f35bd6aa6ada5f3494b0baf83f0be874a82a069168115e/boto3-1.28.34-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 2ccbea42fe4cbd22a8ba1e90a37ac65f05c1932e63432e429fb7158d8255bbc0
 - filename: google_auth-2.22.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/9c/8d/bff87fc722553a5691d8514da5523c23547f3894189ba03b57592e37bdc2/google_auth-2.22.0-py2.py3-none-any.whl
   validation:
@@ -186,11 +191,11 @@ resources:
   validation:
     type: sha256
     value: da1bd943e2e114a56d85d6848497ebf9be6a14d3db23e9fc57581e7c3e8170ec
-- filename: botocore-1.31.33-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/99/08/6a78b8ba9c757e7487c9517ef9bba14769b6148aa905b13726b94ca0f4b0/botocore-1.31.33-py3-none-any.whl
+- filename: botocore-1.31.34-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/5d/09/ba8ae5e9a1849ceb9f492cf9a4c141674b4c88c361ef5f1a8073dfea8bed/botocore-1.31.34-py3-none-any.whl
   validation:
     type: sha256
-    value: 1b76549c45f712ca9734888e60a2ab9c857e6e6025b156b36c344162a7e9d0dc
+    value: 23ba9e3a8b4c0e5966bbe2db62edb27f61e16b846f153f22aefda7b3c05c7942
 - filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
   validation:
@@ -221,11 +226,6 @@ resources:
   validation:
     type: sha256
     value: 95ef631eeaea14ba2e36f06437f36463aac3a096799e876ee55e5cdccb102590
-- filename: boto3-1.28.33-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8c/64/bdc3f64273d27f27bf0a082de64be341109b4ce664d95ebd77c16cfd40b2/boto3-1.28.33-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 07997e299e7b87afbbb25dc9de677017eafbd96b4f1b81e931d5127716dc6dd1
 - filename: postgresql15-15.4-1PGDG.rhel8.x86_64.rpm
   url: https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/postgresql15-15.4-1PGDG.rhel8.x86_64.rpm
   validation:
