@@ -101,11 +101,11 @@ resources:
   validation:
     type: sha256
     value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
-- filename: msal-1.23.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/6f/cd/c5d31dc262c139763dbee91ac91d12ced729a529e59877d150705e60832e/msal-1.23.0-py2.py3-none-any.whl
+- filename: msal-1.24.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/8f/71/5c385d104814fede34da5e10102bc0f4a0d05ef42eae052dac787381b2bc/msal-1.24.0-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: 3342e0837a047007f9d479e814b559c3219767453d57920dc40a31986862048b
+    value: a7f2f342b80ba3fe168218003b6798cc81b83c9745284bf63fb8d4ec8e2dbc50
 - filename: azure_identity-1.14.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/42/8d/7701695ca568e373e6b8fa5193733b173ee8630f9b64843164b65a20f8c2/azure_identity-1.14.0-py3-none-any.whl
   validation:
@@ -116,11 +116,11 @@ resources:
   validation:
     type: sha256
     value: 4f2c9f67e9821cad2e5f480bc8d83b8742896f1242dba247911072d4fa94c192
-- filename: azure_storage_blob-12.17.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/f1/06/68c50a905e1e5481b04a6166b69fecddb87681aae7a556ab727f8e8e6f70/azure_storage_blob-12.17.0-py3-none-any.whl
+- filename: azure_storage_blob-12.18.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/37/11/89b45a62e3fe5faf94780fad626a1a7de3edb5040f8ecb19103ee83ae531/azure_storage_blob-12.18.0-py3-none-any.whl
   validation:
     type: sha256
-    value: 0016e0c549a80282d7b4920c03f2f4ba35c53e6e3c7dbcd2a4a8c8eb3882c1e7
+    value: 11e033f91a9c2bee72251951ef60d45cfcad2eb199476e924074bb1d124e2fed
 - filename: isodate-0.6.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b6/85/7882d311924cbcfc70b1890780763e36ff0b140c7e51c110fc59a532f087/isodate-0.6.1-py2.py3-none-any.whl
   validation:
@@ -186,16 +186,6 @@ resources:
   validation:
     type: sha256
     value: d92a5a92dc36dd4f4b9ee4e55528a90e432b059f93aee6ad857f9de8cc7ae94a
-- filename: botocore-1.31.45-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/e8/2b/c4d6d10c67cef050df4121dc4c543b2b4c5eecd92183716e99aef218f9ae/botocore-1.31.45-py3-none-any.whl
-  validation:
-    type: sha256
-    value: cceb150cff1d7f7a6faf655510a8384eb4505a33b430495fe1744d03a70dc66a
-- filename: boto3-1.28.45-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/10/b1/589faa016ad2d76809e9bed20cca03784248fdce74a9edd1d9eec4b1d454/boto3-1.28.45-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 682abbd304e93e726163d7de7448c1bf88108c72cf6a23dceb6bba86fdc86dff
 - filename: pyasn1_modules-0.3.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/cd/8e/bea464350e1b8c6ed0da3a312659cb648804a08af6cacc6435867f74f8bd/pyasn1_modules-0.3.0-py2.py3-none-any.whl
   validation:
@@ -211,11 +201,21 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
+- filename: boto3-1.28.46-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7f/34/c2bcec634de677a7d05a868e72fd945bd40a2faf2ce249d773bd96c7eec2/boto3-1.28.46-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 04445d70127c25fad69e2cab7e3f5cb219c8d6e60463af3657f20e29ac517957
 - filename: google_auth-2.23.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/9d/44/5a992cb9d7bf8aaae73bc5adaf721ad08731c9d00c1c17999a8691404b0c/google_auth-2.23.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 2cec41407bd1e207f5b802638e32bb837df968bb5c05f413d0fa526fac4cf7a7
+- filename: botocore-1.31.46-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0b/2d/712e64154b563db350b666b50472d6df3c04e100c0ad4a4bfdc7dbd1e70e/botocore-1.31.46-py3-none-any.whl
+  validation:
+    type: sha256
+    value: ac0c1258b1782cde42950bd00138fdce6bd7d04855296af8c326d5844a426473
 - filename: pyasn1-0.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl
   validation:
