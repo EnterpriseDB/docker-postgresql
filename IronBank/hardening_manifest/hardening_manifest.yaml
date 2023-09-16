@@ -136,21 +136,11 @@ resources:
   validation:
     type: sha256
     value: 87a2121042a1ac9358cabcaf1d07680ff97ee6404333bacca15f76aa8ad01a57
-- filename: botocore-1.31.48-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/6c/e5/67e319535fdc728d69ce50cfa945409be35294c974258bc6ad036d70f125/botocore-1.31.48-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 9618c06f7e08ed590dae6613b8b2511055f7d6c07517382143ef8563169d4ef1
 - filename: google_cloud_storage-2.10.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/88/14/c9d4faae7ea4bff4405152cbc762b61100aa6949273b4eb3203d23308670/google_cloud_storage-2.10.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 9433cf28801671de1c80434238fb1e7e4a1ba3087470e90f70c928ea77c2b9d7
-- filename: boto3-1.28.48-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/5c/75/e70d030dc583cd76f1168fbb5da58e930dafcc947f3d4c2e8cdae68b9459/boto3-1.28.48-py3-none-any.whl
-  validation:
-    type: sha256
-    value: ec7895504e3b2dd35fbdb7397bc3c48daaba8e6f37bc436aa928ff4e745f0f1c
 - filename: google_auth-2.23.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/9d/44/5a992cb9d7bf8aaae73bc5adaf721ad08731c9d00c1c17999a8691404b0c/google_auth-2.23.0-py2.py3-none-any.whl
   validation:
@@ -176,6 +166,11 @@ resources:
   validation:
     type: sha256
     value: f6ccbcf027761a2978c1406070c3788f6de4a4b2cc20800cc03d52df716ad675
+- filename: boto3-1.28.49-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/84/85/e895e6ca369f406432c5f5f186b107f1e1a6a2408b60a081de32021fd818/boto3-1.28.49-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 519639859a3c829ccf7073a58b3716cb26cb5906e306fe63eb4beab68bf9bfab
 - filename: google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/bc/53/488ed34d5e461d5e868a44e1326ef1408f8da5a998a38d896b299b48b7c4/google_crc32c-1.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -216,6 +211,11 @@ resources:
   validation:
     type: sha256
     value: d3ccd6ed470d9ffbc716be08bd90efbd44d0734bc9303818f7336070984a162d
+- filename: botocore-1.31.49-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/1e/13/efec7af5071e9a385a85deb3b31edd290374df7e24177cdf42ce00130b54/botocore-1.31.49-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 7d64cb45154e4f34f3a45f551e118caad7379ae831565639e0afe5b2af126c61
 - filename: barman-3.8.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/4d/df/9be1113d41c669dd4fcc6297ef6db95269ef8ae60175a8820908fcb457ec/barman-3.8.0-py2.py3-none-any.whl
   validation:
