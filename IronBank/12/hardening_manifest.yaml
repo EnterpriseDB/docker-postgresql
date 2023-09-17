@@ -31,11 +31,11 @@ tags:
 - '12.16-1PGDG.rhel8'
 - latest
 resources:
-- filename: argcomplete-3.1.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/4f/ef/8b604222ba5e5190e25851aa3a5b754f2002361dc62a258a8e9f13e866f4/argcomplete-3.1.1-py3-none-any.whl
+- filename: argcomplete-3.1.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/1e/05/223116a4a5905d6b26bff334ffc7b74474fafe23fcb10532caf0ef86ca69/argcomplete-3.1.2-py3-none-any.whl
   validation:
     type: sha256
-    value: 35fa893a88deea85ea7b20d241100e64516d6af6d7b0ae2bed1d263d26f70948
+    value: d97c036d12a752d1079f190bc1521c545b941fda89ad85d15afa909b4d1b9a99
 - filename: typing_extensions-4.7.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/ec/6b/63cc3df74987c36fe26157ee12e09e8f9db4de771e0f3404263117e75b95/typing_extensions-4.7.1-py3-none-any.whl
   validation:
@@ -76,11 +76,6 @@ resources:
   validation:
     type: sha256
     value: b03261bcba22c0b9290faf9999cedd23e849ed2577feee90515694cea6bc74bf
-- filename: portalocker-2.7.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8c/df/d4f711d168524f5aebd7fb30969eaa31e3048cf8979688cde3b08f6e5eb8/portalocker-2.7.0-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: a07c5b4f3985c3cf4798369631fb7011adb498e2a46d8440efc75a8f29a0f983
 - filename: PyJWT-2.8.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/2b/4f/e04a8067c7c96c364cef7ef73906504e2f40d690811c021e1a1901473a19/PyJWT-2.8.0-py3-none-any.whl
   validation:
@@ -111,6 +106,11 @@ resources:
   validation:
     type: sha256
     value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
+- filename: portalocker-2.8.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/17/9e/87671efcca80ba6203811540ed1f9c0462c1609d2281d7b7f53cef05da3d/portalocker-2.8.2-py3-none-any.whl
+  validation:
+    type: sha256
+    value: cfb86acc09b9aa7c3b43594e19be1345b9d16af3feb08bf92f23d4dce513a28e
 - filename: msal-1.24.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/8f/71/5c385d104814fede34da5e10102bc0f4a0d05ef42eae052dac787381b2bc/msal-1.24.0-py2.py3-none-any.whl
   validation:
