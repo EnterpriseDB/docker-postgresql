@@ -17,6 +17,7 @@ RUN set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
 	pg_audit_pkg="pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR%%" ; \
+	pgvector="pgvector_%%PG_MAJOR%%" ; \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
@@ -38,6 +39,7 @@ RUN set -xe ; \
 		pg_failover_slots_%%PG_MAJOR%% \
 		pg_squeeze_%%PG_MAJOR%% \
 		"$pg_audit_pkg" \
+		"$pgvector" \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
