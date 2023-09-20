@@ -36,6 +36,7 @@ RUN set -xe ; \
 		postgresql12-libs-12.16 \
 		pgaudit14_12 \
 		pg_failover_slots_12 \
+		pgvector_12 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'

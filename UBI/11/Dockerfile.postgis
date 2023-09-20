@@ -35,6 +35,7 @@ RUN set -xe ; \
 		postgresql11-libs-11.21 \
 		pgaudit13_11 \
 		pg_failover_slots_11 \
+		pgvector_11 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'

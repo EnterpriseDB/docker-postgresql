@@ -18,6 +18,7 @@ RUN --mount=type=secret,id=cs_token \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
 	pg_failover_slots_pkg="pg_failover_slots_13" ; \
+	pgvector="pgvector_13" ; \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
@@ -27,10 +28,12 @@ RUN --mount=type=secret,id=cs_token \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
 			ppc64le) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg13-pg-failover-slots1" ;; \
+					pg_failover_slots_pkg="edb-pg13-pg-failover-slots1" ; \
+					pgvector="edb-as13-pgvector0" ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg13-pg-failover-slots1" ;; \
+					pg_failover_slots_pkg="edb-pg13-pg-failover-slots1"  ; \
+					pgvector="edb-as13-pgvector0" ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -44,6 +47,7 @@ RUN --mount=type=secret,id=cs_token \
 		postgresql13-libs-13.12 \
 		pgaudit15_13 \
 		"$pg_failover_slots_pkg" \
+		"$pgvector" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
