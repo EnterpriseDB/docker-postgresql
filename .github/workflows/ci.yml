@@ -20,7 +20,7 @@ jobs:
     outputs:
       strategy: ${{ steps.generate-jobs.outputs.strategy }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - id: generate-jobs
         name: Generate Jobs
         run: .github/generate-strategy.sh -i
@@ -31,7 +31,7 @@ jobs:
     name: PostgreSQL ${{ matrix.name }}
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v4
         with:
