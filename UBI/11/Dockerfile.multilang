@@ -43,9 +43,13 @@ RUN --mount=type=secret,id=cs_token \
 		postgresql11-contrib-11.21 \
 		postgresql11-server-11.21 \
 		postgresql11-libs-11.21 \
-		pgaudit13_11 \
 		"$pg_failover_slots_pkg" \
 	; \
+	if [ "$PG_MAJOR" -lt "16" ]; then \
+		yum -y --setopt=tsflags=nodocs install \
+			pgaudit13_11 \
+		; \
+	fi; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'

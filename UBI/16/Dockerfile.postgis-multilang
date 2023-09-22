@@ -1,55 +1,46 @@
 # vim:set ft=dockerfile:
 FROM quay.io/enterprisedb/edb-ubi:8.8-1067
+ARG SUBSCRIPTION_NAME
 
 # Do not split the description, otherwise we will see a blank space in the labels
-LABEL name="PostgreSQL Container Images" \
+LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="11.21" \
-      release="4" \
-      summary="PostgreSQL Container images." \
-      description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
+      version="16.0" \
+      release="1" \
+      summary="PostgreSQL + PostGIS Container images." \
+      description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
 COPY root/ /
 
 ARG TARGETARCH
-RUN --mount=type=secret,id=cs_token \
-	set -xe ; \
+RUN set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
-	pg_failover_slots_pkg="pg_failover_slots_11" ; \
 	case $ARCH in \
 			amd64) \
-					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
+				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
 			arm64) \
-					yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
-			ppc64le) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg11-pg-failover-slots1" ;; \
-			s390x) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg11-pg-failover-slots1" ;; \
+				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
+	rm -fr /etc/rpm/macros.image-language-conf ; \
+	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql11-11.21 \
-		postgresql11-contrib-11.21 \
-		postgresql11-server-11.21 \
-		postgresql11-libs-11.21 \
-		"$pg_failover_slots_pkg" \
+		postgresql16-16.0 \
+		postgresql16-contrib-16.0 \
+		postgresql16-server-16.0 \
+		postgresql16-libs-16.0 \
+		pg_failover_slots_16 \
 	; \
 	if [ "$PG_MAJOR" -lt "16" ]; then \
 		yum -y --setopt=tsflags=nodocs install \
-			pgaudit13_11 \
+			pgaudit18_16 \
 		; \
 	fi; \
-	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
@@ -62,8 +53,8 @@ RUN set -xe ; \
 
 # make the sample config easier to munge (and "correct by default")
 RUN set -eux; \
-	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-11/share/postgresql.conf.sample; \
-	grep -F "listen_addresses = '*'" /usr/pgsql-11/share/postgresql.conf.sample
+	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-16/share/postgresql.conf.sample; \
+	grep -F "listen_addresses = '*'" /usr/pgsql-16/share/postgresql.conf.sample
 
 # prepare the environment and make sure postgres user has the correct UID
 RUN set -xeu ; \
@@ -73,7 +64,7 @@ RUN set -xeu ; \
 	chown postgres:postgres /var/run/postgresql ; \
 	chmod 0755 /var/run/postgresql
 
-ENV PATH $PATH:/usr/pgsql-11/bin
+ENV PATH $PATH:/usr/pgsql-16/bin
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
 
@@ -83,6 +74,36 @@ RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PG
 VOLUME /var/lib/postgresql/data
 
 RUN mkdir /docker-entrypoint-initdb.d
+
+# Postgis
+RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
+	set -xe ; \
+	rm -f /etc/rhsm-host ; \
+	SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
+	yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
+	ARCH="${TARGETARCH}" ; \
+	case $ARCH in \
+			amd64) \
+				BUILDARCH="x86_64" ;; \
+			arm64) \
+				BUILDARCH="aarch64" ;; \
+			*) \
+					exit 1 ;; \
+	esac ; \
+	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
+		postgis34_16-3.4.0 \
+		pgrouting_16 \
+	; \
+	yum -y remove epel-release ; \
+	subscription-manager remove --all ; \
+	subscription-manager unregister ; \
+	subscription-manager clean ; \
+	yum -y clean all --enablerepo='*' ; \
+	ln -sf /run/secrets/rhsm /etc/rhsm-host ; \
+	rm /var/log/rhsm/rhsm.log
+
+COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
+COPY ./update-postgis.sh /usr/local/bin
 
 # Remove example certificates in pem and enc format from /usr/share/doc folder
 RUN find /usr/share/doc -type f '(' -iname "*.pem" -o -iname "*.enc" ')' -exec rm -rf {} \; || true

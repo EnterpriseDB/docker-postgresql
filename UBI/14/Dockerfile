@@ -42,9 +42,13 @@ RUN --mount=type=secret,id=cs_token \
 		postgresql14-contrib-14.9 \
 		postgresql14-server-14.9 \
 		postgresql14-libs-14.9 \
-		pgaudit16_14 \
 		"$pg_failover_slots_pkg" \
 	; \
+	if [ "$PG_MAJOR" -lt "16" ]; then \
+		yum -y --setopt=tsflags=nodocs install \
+			pgaudit16_14 \
+		; \
+	fi; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
