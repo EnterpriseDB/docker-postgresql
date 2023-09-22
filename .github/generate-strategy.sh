@@ -21,7 +21,7 @@ done
 
 # Define an optional aliases for some major versions
 declare -A aliases=(
-	[15]='latest'
+	[16]='latest'
 )
 
 GITHUB_ACTIONS=${GITHUB_ACTIONS:-false}
@@ -83,7 +83,7 @@ for version in "${ubi_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '15' ]; then
+	if [ "${version}" -gt '16' ]; then
 		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
 			"${version}-beta"
@@ -126,12 +126,7 @@ for version in "${ubi_versions[@]}"; do
 		fullVersion="${fullVersion%[.-]*}"
 	done
 
-	if [[ "${version}" =~ ^("16")$ ]]; then
-			platforms="linux/amd64"
-	else
-			platforms="linux/amd64, linux/arm64"
-	fi
-
+	platforms="linux/amd64, linux/arm64"
 	platformsMultiArch="${platforms}, linux/ppc64le,linux/s390x"
 
 	# Build the json entry
@@ -154,7 +149,7 @@ for version in "${ubi_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '15' ]; then
+	if [ "${version}" -gt '16' ]; then
 		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 		versionAliases=(
 			"${version}-beta-postgis"
@@ -260,7 +255,7 @@ for version in "${debian_versions[@]}"; do
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
 	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '15' ]; then
+	if [ "${version}" -gt '16' ]; then
 		fullVersion="${fullVersion//'~'/-}"
 		versionAliases=(
 			"${version}-beta-debian"

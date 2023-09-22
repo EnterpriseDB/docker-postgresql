@@ -1,7 +1,7 @@
 # PostgreSQL Container Images by EnterpriseDB
 
 Maintenance scripts to generate Immutable Application Containers
-for all available PostgreSQL versions (11 to 15) based on:
+for all available PostgreSQL versions (11 to 16) based on:
 
 - Red Hat Universal Base Images (UBI) 8 - default (with and without the PostGIS extension)
 - Debian Buster (10) Slim base images

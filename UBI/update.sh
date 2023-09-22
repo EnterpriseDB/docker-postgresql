@@ -60,7 +60,7 @@ get_postgresql_version() {
 	local pg_major="$1"; shift
 
 	local base_url="https://yum.postgresql.org"
-	if [ "$pg_major" -gt '15' ]; then
+	if [ "$pg_major" -gt '16' ]; then
 		base_url="$base_url/testing"
 	fi
 
@@ -131,6 +131,7 @@ get_pgaudit_version() {
 		13) pgaudit_version=15 ;;
 		14) pgaudit_version=16 ;;
 		15) pgaudit_version=17 ;;
+		16) pgaudit_version=18 ;;
 	esac
 
 	echo "$pgaudit_version"
@@ -143,9 +144,9 @@ get_postgis_version() {
 	local pg_major="$1"; shift
 
 	local base_url="https://yum.postgresql.org"
-	local regexp='postgis\d+_'"${pg_major}"'-(\d+.\d+.\d+)-\d+.rhel'"${os_version}"'.'"${arch}"'.rpm'
+	local regexp='postgis\d+_'"${pg_major}"'-(\d+.\d+.\d+)-\d+.*rhel'"${os_version}"'.'"${arch}"'.rpm'
 
-	if [ "$pg_major" -gt '15' ]; then
+	if [ "$pg_major" -gt '16' ]; then
 		base_url="$base_url/testing"
 		regexp='postgis\d+_'"${pg_major}"'-(\d+.\d+.\d+)-.*.rhel'"${os_version}"'.'"${arch}"'.rpm'
 	fi
@@ -219,7 +220,7 @@ generate_redhat() {
 
 	# Unreleased PostgreSQL versions
 	yumOptions=""
-	if [ "$version" -gt '15' ]; then
+	if [ "$version" -gt '16' ]; then
 		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
 	fi
 
@@ -360,7 +361,7 @@ generate_redhat_postgis() {
 
 	# Unreleased PostgreSQL versions
 	yumOptions=""
-	if [ "$version" -gt '15' ]; then
+	if [ "$version" -gt '16' ]; then
 		yumOptions=" --enablerepo=pgdg${version}-updates-testing"
 	fi
 
