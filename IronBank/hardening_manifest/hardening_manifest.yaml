@@ -91,11 +91,11 @@ resources:
   validation:
     type: sha256
     value: 2ed09183922d66c4ec5fdaa59b4d14e105c084dd0febd27452de8f6f74704143
-- filename: msal-1.24.0-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/8f/71/5c385d104814fede34da5e10102bc0f4a0d05ef42eae052dac787381b2bc/msal-1.24.0-py2.py3-none-any.whl
+- filename: msal-1.24.1-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/35/33/0fd933b627879a9855d02a83a57929b45d0bdbeb050ddd63109cc404fbf6/msal-1.24.1-py2.py3-none-any.whl
   validation:
     type: sha256
-    value: a7f2f342b80ba3fe168218003b6798cc81b83c9745284bf63fb8d4ec8e2dbc50
+    value: ce4320688f95c301ee74a4d0e9dbcfe029a63663a8cc61756f40d0d0d36574ad
 - filename: PyJWT-2.8.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/2b/4f/e04a8067c7c96c364cef7ef73906504e2f40d690811c021e1a1901473a19/PyJWT-2.8.0-py3-none-any.whl
   validation:
