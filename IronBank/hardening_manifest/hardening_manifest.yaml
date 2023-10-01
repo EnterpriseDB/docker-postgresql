@@ -41,6 +41,11 @@ resources:
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
+- filename: charset_normalizer-3.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/1e/c8/fd52271326c052f95f47ef718b018aa2bc3fd097d9bac44d7d48894c6130/charset_normalizer-3.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  validation:
+    type: sha256
+    value: 15b26ddf78d57f1d143bdf32e820fd8935d36abe8a25eb9ec0b5a71c82eb3895
 - filename: requests-2.31.0-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/70/8e/0e2d847013cb52cd35b38c009bb167a1a26b2ce6cd6965bf26b47bc0bf44/requests-2.31.0-py3-none-any.whl
   validation:
@@ -51,11 +56,6 @@ resources:
   validation:
     type: sha256
     value: 92d6037539857d8206b8f6ae472e8b77db8058fec5937a1ef3f54304089edbb9
-- filename: charset_normalizer-3.2.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/cb/e7/5e43745003bf1f90668c7be23fc5952b3a2b9c2558f16749411c18039b36/charset_normalizer-3.2.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  validation:
-    type: sha256
-    value: 89f1b185a01fe560bc8ae5f619e924407efca2191b56ce749ec84982fc59a32a
 - filename: urllib3-2.0.5-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/37/dc/399e63f5d1d96bb643404ee830657f4dfcf8503f5ba8fa3c6d465d0c57fe/urllib3-2.0.5-py3-none-any.whl
   validation:
