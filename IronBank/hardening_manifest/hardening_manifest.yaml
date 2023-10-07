@@ -126,6 +126,11 @@ resources:
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
+- filename: boto3-1.28.62-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/63/e5/8fc4a69186cb15b0dba9c428da73233c89eb18ee03ce56f6bde205ea2006/boto3-1.28.62-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 0dfa2fc96ccafce4feb23044d6cba8b25075ad428a0c450d369d099c6a1059d2
 - filename: python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   url: https://files.pythonhosted.org/packages/b3/58/d8a20b2867e086daae937bc6d235cb17302647780ecd7a9af229e002e406/python_snappy-0.6.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
   validation:
@@ -136,16 +141,6 @@ resources:
   validation:
     type: sha256
     value: b493cb590960ff863743b9ff1452c413c2ee12b782f48beca77c8da3e2ffe9d9
-- filename: boto3-1.28.61-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/4d/65/a0927694bb02d8ae46c399d9a8ed2cd9c724adbc9bbb7849a0650850ad31/boto3-1.28.61-py3-none-any.whl
-  validation:
-    type: sha256
-    value: ec49986e6c9549177e351494de64886c3f9daffd1a7af9e40302208aa1ffff1c
-- filename: botocore-1.31.61-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/3b/6b/5292877865d820007c2c1afde587f17a2815e3e16d1a28421486f2816d81/botocore-1.31.61-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 433bf93af09ad205d6db4c2ffc1f0e3193ddad4e0aced0a68ad8b0fa9de903e2
 - filename: barman-3.9.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b4/31/f456e44be81774c1cd5f866c58f75329ccfcb08f98e495f7925544788197/barman-3.9.0-py2.py3-none-any.whl
   validation:
@@ -161,6 +156,11 @@ resources:
   validation:
     type: sha256
     value: 90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7
+- filename: botocore-1.31.62-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/a8/3f/74138007b045447eac6141c8144efe8e1c9f377cf56c85edfe1111a22f97/botocore-1.31.62-py3-none-any.whl
+  validation:
+    type: sha256
+    value: be792d806afc064694a2d0b9b25779f3ca0c1584b29a35ac32e67f0064ddb8b7
 - filename: pyasn1-0.5.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl
   validation:
