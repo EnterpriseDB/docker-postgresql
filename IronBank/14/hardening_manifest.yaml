@@ -81,11 +81,6 @@ resources:
   validation:
     type: sha256
     value: cfb86acc09b9aa7c3b43594e19be1345b9d16af3feb08bf92f23d4dce513a28e
-- filename: azure_identity-1.14.0-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/42/8d/7701695ca568e373e6b8fa5193733b173ee8630f9b64843164b65a20f8c2/azure_identity-1.14.0-py3-none-any.whl
-  validation:
-    type: sha256
-    value: edabf0e010eb85760e1dd19424d5e8f97ba2c9caff73a16e7b30ccbdbcce369b
 - filename: cryptography-41.0.4-cp37-abi3-manylinux_2_28_x86_64.whl
   url: https://files.pythonhosted.org/packages/eb/4b/f86cc66c632cf0948ca1712aadd255f624deef1cd371ea3bfd30851e188d/cryptography-41.0.4-cp37-abi3-manylinux_2_28_x86_64.whl
   validation:
@@ -106,6 +101,11 @@ resources:
   validation:
     type: sha256
     value: 6602bc8dc6f3a9e02b6c22c4fc1e47aa50f8f8e6d3f78a5e16ac33ef5fefa324
+- filename: azure_identity-1.14.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/42/b6/e2757da4800e0f402b23d0ca6f1e88726263a501c198729cd865f45f3e22/azure_identity-1.14.1-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 3a5bef8e9c3281e864e869739be8d67424bff616cddae96b546ca2a5168d863d
 - filename: msal_extensions-1.0.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
   validation:
@@ -136,6 +136,11 @@ resources:
   validation:
     type: sha256
     value: 8c07220408d3268e8268c9351c5c08041bc6f8c6172e59d398b71020df108541
+- filename: google_auth-2.23.3-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/39/7c/2e4fa55a99f83ef9ef229ac5d59c44ceb90e2d0145711590c0fa39669f32/google_auth-2.23.3-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: a8f4608e65c244ead9e0538f181a96c6e11199ec114d41f1d7b1bffa96937bda
 - filename: protobuf-4.24.4-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/c8/2c/03046cac73f46bfe98fc846ef629cf4f84c2f59258216aa2cc0d22bfca8f/protobuf-4.24.4-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -186,11 +191,6 @@ resources:
   validation:
     type: sha256
     value: 88cbd7fb3d701c780c4272bc26952db99f25eb283fb4c2208423249f00b5fe53
-- filename: google_auth-2.23.2-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d7/88/1826b0c047c48763b36ed854a984127b430a16b70003155d7b19975f1d59/google_auth-2.23.2-py2.py3-none-any.whl
-  validation:
-    type: sha256
-    value: c2e253347579d483004f17c3bd0bf92e611ef6c7ba24d41c5c59f2e7aeeaf088
 - filename: google_resumable_media-2.6.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c7/4f/b8e5e22406e5aeafa46df8799939d5eeee52f18eeed339675167fac6603a/google_resumable_media-2.6.0-py2.py3-none-any.whl
   validation:
