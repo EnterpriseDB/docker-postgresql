@@ -116,16 +116,16 @@ resources:
   validation:
     type: sha256
     value: 8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9
-- filename: azure_storage_blob-12.18.2-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7c/14/03baf5163186a95469d5f86031bde2bd35f3dec6ed3c8b87c876aa0f68d4/azure_storage_blob-12.18.2-py3-none-any.whl
-  validation:
-    type: sha256
-    value: ffd864bf9abf33dfc72c6ef37899a19bd9d585a946a2c61e288b4420c035df3a
 - filename: isodate-0.6.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b6/85/7882d311924cbcfc70b1890780763e36ff0b140c7e51c110fc59a532f087/isodate-0.6.1-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96
+- filename: azure_storage_blob-12.18.3-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/be/cd/30306c04f962b55cae44cab2859b5496d0d75521a3bf2e92ec4a6bb61ddb/azure_storage_blob-12.18.3-py3-none-any.whl
+  validation:
+    type: sha256
+    value: c278dde2ac41857a68d615c9f2b36d894ba877a7e84d62795603c7e79d0bb5e9
 - filename: boto3-1.28.62-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/63/e5/8fc4a69186cb15b0dba9c428da73233c89eb18ee03ce56f6bde205ea2006/boto3-1.28.62-py3-none-any.whl
   validation:
