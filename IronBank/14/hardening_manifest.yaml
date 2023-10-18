@@ -36,16 +36,16 @@ resources:
   validation:
     type: sha256
     value: d97c036d12a752d1079f190bc1521c545b941fda89ad85d15afa909b4d1b9a99
-- filename: urllib3-2.0.6-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/26/40/9957270221b6d3e9a3b92fdfba80dd5c9661ff45a664b47edd5d00f707f5/urllib3-2.0.6-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 7a7c7003b000adf9e7ca2a377c9688bbc54ed41b985789ed576570342a375cd2
 - filename: idna-3.4-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
+- filename: urllib3-2.0.7-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/d2/b2/b157855192a68541a91ba7b2bbcb91f1b4faa51f8bae38d8005c034be524/urllib3-2.0.7-py3-none-any.whl
+  validation:
+    type: sha256
+    value: fdb6d215c776278489906c2f8916e6e7d4f5a9b602ccbcfdf7f016fc8da0596e
 - filename: charset_normalizer-3.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/1e/c8/fd52271326c052f95f47ef718b018aa2bc3fd097d9bac44d7d48894c6130/charset_normalizer-3.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
@@ -136,11 +136,11 @@ resources:
   validation:
     type: sha256
     value: a8f4608e65c244ead9e0538f181a96c6e11199ec114d41f1d7b1bffa96937bda
-- filename: boto3-1.28.64-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/50/58/2324b65441c0f83013d27ad8e4b614688d4dd79237ff43d1488dfcc01f3b/boto3-1.28.64-py3-none-any.whl
+- filename: boto3-1.28.65-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c7/dd/4fe47b2cec8731ec26d7410e659c4f0c4cd36baa835e2312cb0ec5383b07/boto3-1.28.65-py3-none-any.whl
   validation:
     type: sha256
-    value: a99150a30c038c73e89662836820a8cce914afab5ea377942a37c484b85f4438
+    value: ff3d0116e0ca6c096547652390025780eace3a28f6c04c9ffbf38448f1e5a87b
 - filename: protobuf-4.24.4-cp37-abi3-manylinux2014_x86_64.whl
   url: https://files.pythonhosted.org/packages/c8/2c/03046cac73f46bfe98fc846ef629cf4f84c2f59258216aa2cc0d22bfca8f/protobuf-4.24.4-cp37-abi3-manylinux2014_x86_64.whl
   validation:
@@ -171,21 +171,16 @@ resources:
   validation:
     type: sha256
     value: 87a2121042a1ac9358cabcaf1d07680ff97ee6404333bacca15f76aa8ad01a57
-- filename: botocore-1.31.64-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d0/68/6a9c405bc6c6e7d832743a458c87f21cee393ef2cf32437a0a3a07cd0ae9/botocore-1.31.64-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 7b709310343a5b430ec9025b2e17c0bac6b16c05f1ac1d9521dece3f10c71bac
 - filename: python_dateutil-2.8.2-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
-- filename: urllib3-1.26.17-py2.py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/48/fe/a5c6cc46e9fe9171d7ecf0f33ee7aae14642f8d74baa7af4d7840f9358be/urllib3-1.26.17-py2.py3-none-any.whl
+- filename: botocore-1.31.65-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/63/c6/8e29a2b9dffa188d07c26d19ae578a26d8063834e4d844bf22c2a0028229/botocore-1.31.65-py3-none-any.whl
   validation:
     type: sha256
-    value: 94a757d178c9be92ef5539b8840d48dc9cf1b2709c9d6b588232a055c524458b
+    value: f74e3da98dfcec17bc63ef58f82c643bf5bd7ec6cc11a26ede21cc4cd064917f
 - filename: google_resumable_media-2.6.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c7/4f/b8e5e22406e5aeafa46df8799939d5eeee52f18eeed339675167fac6603a/google_resumable_media-2.6.0-py2.py3-none-any.whl
   validation:
@@ -206,6 +201,11 @@ resources:
   validation:
     type: sha256
     value: 10d6923c6359175f264811ef4bf6161a3156ce8e350e705396a7557d6293c33a
+- filename: urllib3-1.26.18-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/b0/53/aa91e163dcfd1e5b82d8a890ecf13314e3e149c05270cc644581f77f17fd/urllib3-1.26.18-py2.py3-none-any.whl
+  validation:
+    type: sha256
+    value: 34b97092d7e0a3a8cf7cd10e386f401b3737364026c45e622aa02903dffe0f07
 - filename: cachetools-5.3.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/a9/c9/c8a7710f2cedcb1db9224fdd4d8307c9e48cbddc46c18b515fefc0f1abbe/cachetools-5.3.1-py3-none-any.whl
   validation:
