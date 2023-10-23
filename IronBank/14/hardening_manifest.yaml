@@ -71,11 +71,11 @@ resources:
   validation:
     type: sha256
     value: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
-- filename: charset_normalizer-3.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  url: https://files.pythonhosted.org/packages/1e/c8/fd52271326c052f95f47ef718b018aa2bc3fd097d9bac44d7d48894c6130/charset_normalizer-3.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+- filename: charset_normalizer-3.3.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/9f/07/ffb69702716514cca44d58c7cd4f10fcc81e8a44a0e95bd8fd188a709a80/charset_normalizer-3.3.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   validation:
     type: sha256
-    value: 15b26ddf78d57f1d143bdf32e820fd8935d36abe8a25eb9ec0b5a71c82eb3895
+    value: 2c4c99f98fc3a1835af8179dcc9013f93594d0670e2fa80c83aa36346ee763d2
 - filename: msal-1.24.1-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/35/33/0fd933b627879a9855d02a83a57929b45d0bdbeb050ddd63109cc404fbf6/msal-1.24.1-py2.py3-none-any.whl
   validation:
