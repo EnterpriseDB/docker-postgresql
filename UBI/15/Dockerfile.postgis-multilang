@@ -35,6 +35,7 @@ RUN set -xe ; \
 		postgresql15-server-15.4 \
 		postgresql15-libs-15.4 \
 		pg_failover_slots_15 \
+		pgvector_15 \
 	; \
 	if [ "$PG_MAJOR" -lt "16" ]; then \
 		yum -y --setopt=tsflags=nodocs install \
