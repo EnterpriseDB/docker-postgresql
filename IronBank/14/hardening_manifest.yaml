@@ -76,6 +76,11 @@ resources:
   validation:
     type: sha256
     value: 58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f
+- filename: azure_identity-1.15.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/30/10/5dbf755b368d10a28d55b06ac1f12512a13e88874a23db82defdea9a8cd9/azure_identity-1.15.0-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a14b1f01c7036f11f148f22cd8c16e05035293d714458d6b44ddf534d93eb912
 - filename: pycparser-2.21-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl
   validation:
@@ -106,11 +111,6 @@ resources:
   validation:
     type: sha256
     value: 59127c392cc44c2da5bb3192169a91f429924e17aff6534d70fdc02ab3e04320
-- filename: azure_identity-1.14.1-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/42/b6/e2757da4800e0f402b23d0ca6f1e88726263a501c198729cd865f45f3e22/azure_identity-1.14.1-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 3a5bef8e9c3281e864e869739be8d67424bff616cddae96b546ca2a5168d863d
 - filename: msal_extensions-1.0.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/52/34/a8995d6f0fa626ff6b28dbd9c90f6c2a46bd484bc7ab343d078b0c6ff1a7/msal_extensions-1.0.0-py2.py3-none-any.whl
   validation:
@@ -141,11 +141,6 @@ resources:
   validation:
     type: sha256
     value: bc52563439d42981b6e21b071a76da2791672776eda3ba99d13a8061ebbd6e5e
-- filename: botocore-1.31.71-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/d6/e5/bcbc19228142a9efbb97c30053fa39e9e944b17801f3559df83e95254e3c/botocore-1.31.71-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 505cae827536a7400c3faaca8aeefd2e7618134a8644df6b3077fa487fe2b783
 - filename: googleapis_common_protos-1.61.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/21/49/12996dc0238e017504dceea1d121a48bd49fb3f4416f40d59fc3e924b4f3/googleapis_common_protos-1.61.0-py2.py3-none-any.whl
   validation:
@@ -156,6 +151,11 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
+- filename: botocore-1.31.72-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/02/3b/a6fa1c87ce34affb7c092e5c668bce3483cfba6ef6ae7e585242c2ef5ec4/botocore-1.31.72-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 1a0f5063a9a5e1ef40907c67778625cf14a8c47c8e09cd2b3f9dc53a8adb52cf
 - filename: google_resumable_media-2.6.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c7/4f/b8e5e22406e5aeafa46df8799939d5eeee52f18eeed339675167fac6603a/google_resumable_media-2.6.0-py2.py3-none-any.whl
   validation:
@@ -181,11 +181,6 @@ resources:
   validation:
     type: sha256
     value: fbd11cad3e98a7e5b0343dc07cb1039a5ffd7a5bb96e1f1e27cee4bda4a90863
-- filename: boto3-1.28.71-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/7b/ff/93cd1998f99b723c56c7a5c7607114018e0b91ed9aa58e81b7d9c3de18bb/boto3-1.28.71-py3-none-any.whl
-  validation:
-    type: sha256
-    value: cf54d6da6d348317da896235e9850c7e550dbc18bd5cb16cce1b035e90d0166f
 - filename: rsa-4.9-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl
   validation:
@@ -221,6 +216,11 @@ resources:
   validation:
     type: sha256
     value: ec6054f7d64ad13b41e43d96f735acbd763b0f3b695dabaa2d579673f6a6e160
+- filename: boto3-1.28.72-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/f6/cc/db29fd8f279367c828aa28e38381042abaf9c8c991671cef64e14ee878ef/boto3-1.28.72-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 73e2b56dcbe1b856274185c908dcb5973b007d62c74b646e6bd2ac09a303983a
 - filename: urllib3-1.26.18-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b0/53/aa91e163dcfd1e5b82d8a890ecf13314e3e149c05270cc644581f77f17fd/urllib3-1.26.18-py2.py3-none-any.whl
   validation:
