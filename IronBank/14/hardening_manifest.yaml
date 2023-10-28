@@ -151,16 +151,21 @@ resources:
   validation:
     type: sha256
     value: 02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980
-- filename: botocore-1.31.72-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/02/3b/a6fa1c87ce34affb7c092e5c668bce3483cfba6ef6ae7e585242c2ef5ec4/botocore-1.31.72-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 1a0f5063a9a5e1ef40907c67778625cf14a8c47c8e09cd2b3f9dc53a8adb52cf
 - filename: google_resumable_media-2.6.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/c7/4f/b8e5e22406e5aeafa46df8799939d5eeee52f18eeed339675167fac6603a/google_resumable_media-2.6.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: fc03d344381970f79eebb632a3c18bb1828593a2dc5572b5f90115ef7d11e81b
+- filename: boto3-1.28.73-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/ff/e9/8ece7607d288c1de22638a7223ae1dc41a34e8cd1511ebfc8171ac24db9d/boto3-1.28.73-py3-none-any.whl
+  validation:
+    type: sha256
+    value: bbe377a288b6b12b526fae3b3d743318c6868626cf67e1e97f104345a5194b1e
+- filename: botocore-1.31.73-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/fa/f3/c369381bf6b2913e201d91be68d34e1ad3dfe9163ae7e8203606d09ee07c/botocore-1.31.73-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 6e9caaa7205e0c0505f4868a4053e96eaf3f4b6bce0368a46970a8efeeacb492
 - filename: google_auth-2.23.3-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/39/7c/2e4fa55a99f83ef9ef229ac5d59c44ceb90e2d0145711590c0fa39669f32/google_auth-2.23.3-py2.py3-none-any.whl
   validation:
@@ -216,11 +221,6 @@ resources:
   validation:
     type: sha256
     value: ec6054f7d64ad13b41e43d96f735acbd763b0f3b695dabaa2d579673f6a6e160
-- filename: boto3-1.28.72-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/f6/cc/db29fd8f279367c828aa28e38381042abaf9c8c991671cef64e14ee878ef/boto3-1.28.72-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 73e2b56dcbe1b856274185c908dcb5973b007d62c74b646e6bd2ac09a303983a
 - filename: urllib3-1.26.18-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/b0/53/aa91e163dcfd1e5b82d8a890ecf13314e3e149c05270cc644581f77f17fd/urllib3-1.26.18-py2.py3-none-any.whl
   validation:
