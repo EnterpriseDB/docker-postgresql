@@ -25,30 +25,21 @@ jobs:
           timeout_seconds: 20
           max_attempts: 3
           command: |
-            echo "Updating Debian docker-entrypoint"
-            curl -fsSo ./Debian/src/root/usr/local/bin/docker-entrypoint.sh https://raw.githubusercontent.com/docker-library/postgres/master/docker-entrypoint.sh
             echo "Updating UBI docker-entrypoint"
-            cp ./Debian/src/root/usr/local/bin/docker-entrypoint.sh ./UBI/src/root/usr/local/bin/docker-entrypoint.sh
-            cp ./Debian/src/root/usr/local/bin/docker-entrypoint.sh ./IronBank/src/root/scripts/docker-entrypoint.sh
+            curl -fsSo ./UBI/src/root/usr/local/bin/docker-entrypoint.sh https://raw.githubusercontent.com/docker-library/postgres/master/docker-entrypoint.sh
       - name: Run update script
         uses: nick-fields/retry@v2
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
-          BASE_REGISTRY: "registry.access.redhat.com"
-          BASE_IMAGE: "ubi8"
         with:
           timeout_minutes: 15
           max_attempts: 3
           command: |
             # pip-tools provides pip-compile used by update.sh
             export PATH=$HOME/.local/bin:$PATH
-            pip3 install --upgrade pip-tools cloudsmith-cli pip pyyaml
+            pip3 install --upgrade pip-tools cloudsmith-cli pip
             echo "Updating UBI images"
             ./UBI/update.sh
-            echo "Updating Debian images"
-            ./Debian/update.sh
-            echo "Updating IronBank images"
-            ./IronBank/update.sh
       - name: Diff
         run: |
           git status

@@ -86,7 +86,7 @@ jobs:
         load: true
         tags: ${{ env.TAGS }}
         build-args: |
-          SUBSCRIPTION_NAME=docker-postgresql-cicd-${{ github.run_number }}
+          SUBSCRIPTION_NAME=docker-postgresql-build-${{ github.run_number }}
 
     - name: Dockle scan
       uses: erzz/dockle-action@v1
