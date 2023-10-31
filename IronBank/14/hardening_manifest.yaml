@@ -141,11 +141,21 @@ resources:
   validation:
     type: sha256
     value: bc52563439d42981b6e21b071a76da2791672776eda3ba99d13a8061ebbd6e5e
+- filename: botocore-1.31.74-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/27/3f/310eb7e4f1e8668e4d660e04b0ee1fac738eb2bb6e07a779dd7802d70aa3/botocore-1.31.74-py3-none-any.whl
+  validation:
+    type: sha256
+    value: 3eef070a8d8c4240aad07e5c89395002b140af213bcfc4dcd1d441e3ee4b3bee
 - filename: googleapis_common_protos-1.61.0-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/21/49/12996dc0238e017504dceea1d121a48bd49fb3f4416f40d59fc3e924b4f3/googleapis_common_protos-1.61.0-py2.py3-none-any.whl
   validation:
     type: sha256
     value: 22f1915393bb3245343f6efe87f6fe868532efc12aa26b391b15132e1279f1c0
+- filename: boto3-1.28.74-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/02/e0/fcc91d6641936ecdd66dba6bbc06702d84e582c744bac4f52c34be556dcb/boto3-1.28.74-py3-none-any.whl
+  validation:
+    type: sha256
+    value: a12619d23d50523bdfa6bd2d0c124a9567a5434ec63e47df71c3e88fc9d482f6
 - filename: jmespath-1.0.1-py3-none-any.whl
   url: https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl
   validation:
@@ -156,16 +166,6 @@ resources:
   validation:
     type: sha256
     value: fc03d344381970f79eebb632a3c18bb1828593a2dc5572b5f90115ef7d11e81b
-- filename: boto3-1.28.73-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/ff/e9/8ece7607d288c1de22638a7223ae1dc41a34e8cd1511ebfc8171ac24db9d/boto3-1.28.73-py3-none-any.whl
-  validation:
-    type: sha256
-    value: bbe377a288b6b12b526fae3b3d743318c6868626cf67e1e97f104345a5194b1e
-- filename: botocore-1.31.73-py3-none-any.whl
-  url: https://files.pythonhosted.org/packages/fa/f3/c369381bf6b2913e201d91be68d34e1ad3dfe9163ae7e8203606d09ee07c/botocore-1.31.73-py3-none-any.whl
-  validation:
-    type: sha256
-    value: 6e9caaa7205e0c0505f4868a4053e96eaf3f4b6bce0368a46970a8efeeacb492
 - filename: google_auth-2.23.3-py2.py3-none-any.whl
   url: https://files.pythonhosted.org/packages/39/7c/2e4fa55a99f83ef9ef229ac5d59c44ceb90e2d0145711590c0fa39669f32/google_auth-2.23.3-py2.py3-none-any.whl
   validation:
