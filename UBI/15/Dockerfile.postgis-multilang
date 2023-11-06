@@ -46,9 +46,9 @@ RUN set -xe ; \
 
 # Install barman-cloud
 RUN set -xe ; \
-	yum -y install python38-pip python38-psycopg2 ; \
-	pip3.8 install --upgrade pip ; \
-	pip3.8 install -r requirements.txt ; \
+	yum -y install python3.11-pip python3.11-psycopg2 ; \
+	pip3.11 install --upgrade pip ; \
+	pip3.11 install -r requirements.txt ; \
 	yum -y clean all --enablerepo='*'
 
 # make the sample config easier to munge (and "correct by default")
