@@ -1,14 +1,16 @@
 # PostgreSQL Container Images by EnterpriseDB
 
 Maintenance scripts to generate Immutable Application Containers
-for all available PostgreSQL versions (11 to 16) based on:
+for all available PostgreSQL versions (11 to 16) based on
+Red Hat Universal Base Images (UBI) 8:
 
-- Red Hat Universal Base Images (UBI) 8 - default (with and without the PostGIS extension)
-- Debian Buster (10) Slim base images
+- Standard minimal image - amd64/arm64
+   - multilang version (all Locales installed) - amd64/arm64
+   - multiarch version (all Locales installed) - ppc64le/s390x
+- with the PostGIS extension - amd64/arm64
+   - PostGIS + multilang (all Locales installed) - amd64/arm64
 
-UBI8 based images are available for amd64, arm64, ppc64le and s390x architectures.
-Debian 10 based images are available for amd64 and arm64 architectures.
-
+Images are available for amd64, arm64, ppc64le and s390x architectures.
 Multilang images (`-multilang`) are container images enhanced with the full list of Locales. Available for all UBI based images.
 
 These images are customised to work with [EDB Postgres for Kubernetes by EDB](https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/)
@@ -20,11 +22,11 @@ The images include:
 
 - PostgreSQL
 - Barman Cloud
-- PostGIS 3.1 (optional, on UBI based images only)
+- PostGIS 3 (optional)
 - PGAudit
-- pgRouting (on PostGIS UBI images only)
+- pgRouting (on PostGIS images only)
 - Postgres Failover Slots
-- All language packs for glibc (optional, on UBI based images only)
+- All language packs for glibc (optional)
 
 PostgreSQL is distributed by the PGDG under the [PostgreSQL License](https://www.postgresql.org/about/licence/).
 
@@ -69,13 +71,6 @@ for example 15, on UBI you can type:
 
 ```console
 docker pull ghcr.io/enterprisedb/postgresql:15
-```
-
-In order to install the latest minor version of PostgreSQL 15 on a Debian based image,
-you can type:
-
-```console
-docker pull ghcr.io/enterprisedb/postgresql:15-debian
 ```
 
 **IMPORTANT:** in the examples below we assume that the latest minor of the latest major version is used.

@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - id: generate-jobs
         name: Generate Jobs
-        run: .github/generate-strategy.sh -i
+        run: .github/generate-strategy.sh
 
   test:
     needs: generate-jobs
@@ -32,10 +32,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'
 
       - name: Prepare Environment
         run: |
@@ -49,31 +45,13 @@ jobs:
 
       - name: Docker meta
         env:
-          BUILD_ARGS: ${{ toJson(matrix.build_args) }}
           TAGS: ${{ toJson(matrix.tags) }}
         run: |
-          ARGS=""
-          # Only Ironbank builds use build-args. We get here the packages
-          # required in the case
-          if [[ "${BUILD_ARGS}" != "null" ]]; then
-           ARGS+=$(echo "${BUILD_ARGS}" | jq -r '. | "BASE_REGISTRY=\(.BASE_REGISTRY)\nBASE_IMAGE=\(.BASE_IMAGE)"')
-           for u in $(cat "${{ matrix.dir }}/urls.txt")
-             do curl -fsSL -o "${{ matrix.dir}}"/$(basename $u) $u
-           done
-           python3 -m pip install --upgrade pip
-           python3 -m pip download -r "${{ matrix.dir }}/requirements.txt" -d "${{ matrix.dir }}"
-          fi
           RESULT=""
           for tag in $(jq -r '.[]' <<< "${TAGS}")
           do
             RESULT="${RESULT},${IMAGE_NAME}:${tag}"            
           done
-          
-          # Handling multiline GitHub Env
-          echo "BUILD-ARGS<<EOF" >> $GITHUB_ENV
-          echo "$ARGS" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-          
           echo "TAGS=${RESULT%,}" >> $GITHUB_ENV
 
       - name: Build ${{ matrix.name }}
@@ -89,8 +67,7 @@ jobs:
           tags: ${{ env.TAGS }}
           load: true
           build-args: |
-            SUBSCRIPTION_NAME=docker-postgresql-cicd-${{ github.run_number }}
-            ${{ env.BUILD-ARGS }}
+            SUBSCRIPTION_NAME=docker-postgresql-ci-${{ github.run_number }}
 
       - name: History ${{ matrix.name }}
         run: docker history "${IMAGE_NAME}:${{ matrix.tags[0] }}"
