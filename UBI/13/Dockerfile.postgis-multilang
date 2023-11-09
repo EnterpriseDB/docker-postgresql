@@ -6,8 +6,8 @@ ARG SUBSCRIPTION_NAME
 LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="13.12" \
-      release="3" \
+      version="13.13" \
+      release="1" \
       summary="PostgreSQL + PostGIS Container images." \
       description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -30,10 +30,10 @@ RUN set -xe ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql13-13.12 \
-		postgresql13-contrib-13.12 \
-		postgresql13-server-13.12 \
-		postgresql13-libs-13.12 \
+		postgresql13-13.13 \
+		postgresql13-contrib-13.13 \
+		postgresql13-server-13.13 \
+		postgresql13-libs-13.13 \
 		pg_failover_slots_13 \
 	; \
 	if [ "$PG_MAJOR" -lt "16" ]; then \
