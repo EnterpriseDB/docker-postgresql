@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.8-1067.1698056881
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="15.4" \
-      release="6" \
+      version="15.5" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -38,10 +38,10 @@ RUN --mount=type=secret,id=cs_token \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql15-15.4 \
-		postgresql15-contrib-15.4 \
-		postgresql15-server-15.4 \
-		postgresql15-libs-15.4 \
+		postgresql15-15.5 \
+		postgresql15-contrib-15.5 \
+		postgresql15-server-15.5 \
+		postgresql15-libs-15.5 \
 		"$pg_failover_slots_pkg" \
 	; \
 	if [ "$PG_MAJOR" -lt "16" ]; then \

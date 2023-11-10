@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.8-1067.1698056881
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="14.9" \
-      release="6" \
+      version="14.10" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -41,19 +41,19 @@ RUN --mount=type=secret,id=cs_token \
 	case 14 in \
             11|12|13|14) \
 	                yum -y --setopt=tsflags=nodocs install \
-	                    postgresql14-14.9 \
-	                    postgresql14-contrib-14.9 \
-	                    postgresql14-server-14.9 \
-	                    postgresql14-libs-14.9 \
+	                    postgresql14-14.10 \
+	                    postgresql14-contrib-14.10 \
+	                    postgresql14-server-14.10 \
+	                    postgresql14-libs-14.10 \
 	                    pgaudit16_14 \
 	                    "$pg_failover_slots_pkg" \
 	                    ;; \
             15|16) \
                     yum -y --setopt=tsflags=nodocs install \
-                        postgresql14-14.9 \
-                        postgresql14-contrib-14.9 \
-                        postgresql14-server-14.9 \
-                        postgresql14-libs-14.9 \
+                        postgresql14-14.10 \
+                        postgresql14-contrib-14.10 \
+                        postgresql14-server-14.10 \
+                        postgresql14-libs-14.10 \
 	                    ;; \
             *) \
                     exit 1 ;; \

@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.8-1067.1698056881
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="11.21" \
-      release="6" \
+      version="11.22" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -39,10 +39,10 @@ RUN --mount=type=secret,id=cs_token \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql11-11.21 \
-		postgresql11-contrib-11.21 \
-		postgresql11-server-11.21 \
-		postgresql11-libs-11.21 \
+		postgresql11-11.22 \
+		postgresql11-contrib-11.22 \
+		postgresql11-server-11.22 \
+		postgresql11-libs-11.22 \
 		"$pg_failover_slots_pkg" \
 	; \
 	if [ "$PG_MAJOR" -lt "16" ]; then \
