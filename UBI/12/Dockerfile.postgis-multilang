@@ -91,7 +91,7 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 					exit 1 ;; \
 	esac ; \
 	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
-		postgis33_12-3.3.4 \
+		postgis34_12-3.4.1 \
 		pgrouting_12 \
 	; \
 	yum -y remove epel-release ; \
