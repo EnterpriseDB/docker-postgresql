@@ -1,4 +1,0 @@
-*.rpm
-*.tar.ga
-*.whl
-scripts/__pycache__/*
