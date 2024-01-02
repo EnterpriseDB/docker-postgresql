@@ -1,6 +1,0 @@
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR%%-%%POSTGRES_VERSION%%.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR%%-contrib-%%POSTGRES_VERSION%%.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%%.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR%%/redhat/rhel-8-x86_64/postgresql%%PG_MAJOR%%-libs-%%POSTGRES_VERSION%%.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/%%PG_MAJOR%%/redhat/rhel-8-x86_64/pgaudit%%PGAUDIT_VERSION%%.x86_64.rpm
-https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-%%PG_MAJOR%%
