@@ -17,11 +17,14 @@ ARG TARGETARCH
 RUN set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
+	pg_audit_pkg="pgaudit18_16" ; \
 	case $ARCH in \
 			amd64) \
-				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				if [ "16" -gt "15" ]; then pg_audit_pkg="pgaudit_16"; fi ;; \
 			arm64) \
-				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				if [ "16" -gt "15" ]; then pg_audit_pkg="pgaudit_16"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -35,7 +38,7 @@ RUN set -xe ; \
 		postgresql16-server-16.1 \
 		postgresql16-libs-16.1 \
 		pg_failover_slots_16 \
-		pgaudit18_16 \
+		"$pg_audit_pkg" \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'

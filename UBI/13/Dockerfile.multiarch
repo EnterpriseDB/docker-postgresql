@@ -22,20 +22,22 @@ RUN --mount=type=secret,id=cs_token \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
+					if [ "13" -gt "15" ]; then pg_audit_pkg="pgaudit_13"; fi ;; \
 			arm64) \
 					yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
+					if [ "13" -gt "15" ]; then pg_audit_pkg="pgaudit_13"; fi ;; \
 			ppc64le) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
 					pg_failover_slots_pkg="edb-pg13-pg-failover-slots1" ; \
 					pg_audit_pkg="edb-pg13-pgaudit1" ; \
-					if [ "$PG_MAJOR" -gt "15" ]; then pg_audit_pkg="edb-pg13-pgaudit"; fi ;; \
+					if [ "13" -gt "15" ]; then pg_audit_pkg="edb-pg13-pgaudit13"; fi ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
 					pg_failover_slots_pkg="edb-pg13-pg-failover-slots1" ; \
 					pg_audit_pkg="edb-pg13-pgaudit1" ; \
-					if [ "$PG_MAJOR" -gt "15" ]; then pg_audit_pkg="edb-pg13-pgaudit"; fi ;; \
+					if [ "13" -gt "15" ]; then pg_audit_pkg="edb-pg13-pgaudit13"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -48,7 +50,7 @@ RUN --mount=type=secret,id=cs_token \
 			postgresql13-contrib-13.13 \
 			postgresql13-server-13.13 \
 			postgresql13-libs-13.13 \
-			"pg_audit_pkg" \
+			"$pg_audit_pkg" \
 			"$pg_failover_slots_pkg" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
