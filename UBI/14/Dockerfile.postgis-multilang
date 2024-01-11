@@ -35,12 +35,8 @@ RUN set -xe ; \
 		postgresql14-server-14.10 \
 		postgresql14-libs-14.10 \
 		pg_failover_slots_14 \
+		pgaudit16_14 \
 	; \
-	if [ "$PG_MAJOR" -lt "16" ]; then \
-		yum -y --setopt=tsflags=nodocs install \
-			pgaudit16_14 \
-		; \
-	fi; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 

@@ -35,12 +35,8 @@ RUN set -xe ; \
 		postgresql13-server-13.13 \
 		postgresql13-libs-13.13 \
 		pg_failover_slots_13 \
+		pgaudit15_13 \
 	; \
-	if [ "$PG_MAJOR" -lt "16" ]; then \
-		yum -y --setopt=tsflags=nodocs install \
-			pgaudit15_13 \
-		; \
-	fi; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 

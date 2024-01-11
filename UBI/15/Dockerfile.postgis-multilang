@@ -35,12 +35,8 @@ RUN set -xe ; \
 		postgresql15-server-15.5 \
 		postgresql15-libs-15.5 \
 		pg_failover_slots_15 \
+		pgaudit17_15 \
 	; \
-	if [ "$PG_MAJOR" -lt "16" ]; then \
-		yum -y --setopt=tsflags=nodocs install \
-			pgaudit17_15 \
-		; \
-	fi; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
