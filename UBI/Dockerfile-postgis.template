@@ -34,12 +34,8 @@ RUN set -xe ; \
 		postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR%%-libs-%%POSTGRES_VERSION%% \
 		pg_failover_slots_%%PG_MAJOR%% \
+		pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR%% \
 	; \
-	if [ "$PG_MAJOR" -lt "16" ]; then \
-		yum -y --setopt=tsflags=nodocs install%%YUM_OPTIONS%% \
-			pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR%% \
-		; \
-	fi; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
