@@ -49,6 +49,8 @@ for version in "${ubi_versions[@]}"; do
 	versionFile="${version}/.versions.json"
 	fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+	ubi8Version=$(jq -r '.UBI8_VERSION' "${versionFile}")
+	ubi9Version=$(jq -r '.UBI9_VERSION' "${versionFile}")
 
 	# Initial aliases are "major version", "optional alias", "full version with release"
 	# i.e. "13", "latest", "13.2-1"
@@ -100,11 +102,14 @@ for version in "${ubi_versions[@]}"; do
 	platformsMultiArch="${platforms}, linux/ppc64le,linux/s390x"
 
 	# Build the json entry
-	entries+=(
-		"{\"name\": \"UBI ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
-		"{\"name\": \"UBI ${fullVersion} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multilang\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
-		"{\"name\": \"UBI ${fullVersion} MultiArch\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multiarch\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"]}"
-	)
+	for ubiVersion in "$ubi8Version" "$ubi9Version"; do
+		majorVersion="${ubiVersion%%.*}"
+		entries+=(
+			"{\"name\": \"${fullVersion} UBI${majorVersion}\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.ubi$majorVersion\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+			"{\"name\": \"${fullVersion} UBI${majorVersion}  MultiLang\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multilang.ubi$majorVersion\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
+			"{\"name\": \"${fullVersion} UBI${majorVersion}  MultiArch\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multiarch.ubi$majorVersion\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"]}"
+		)
+	done
 done
 
 # UBI PostGIS

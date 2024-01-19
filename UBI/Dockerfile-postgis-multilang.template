@@ -9,7 +9,7 @@ LABEL name="PostgreSQL + PostGIS Container Images" \
       version="%%POSTGRES_VERSION%%" \
       release="%%IMAGE_RELEASE_VERSION%%" \
       summary="PostgreSQL + PostGIS Container images." \
-      description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
+      description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) %%UBI_MAJOR_VERSION%%."
 
 COPY root/ /
 
@@ -20,10 +20,10 @@ RUN set -xe ; \
 	pg_audit_pkg="pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR%%" ; \
 	case $ARCH in \
 			amd64) \
-				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
 				if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="pgaudit_%%PG_MAJOR%%"; fi ;; \
 			arm64) \
-				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
 				if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="pgaudit_%%PG_MAJOR%%"; fi ;; \
 			*) \
 					exit 1 ;; \
@@ -79,7 +79,7 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 	set -xe ; \
 	rm -f /etc/rhsm-host ; \
 	SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
-	yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
+	yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-%%UBI_MAJOR_VERSION%%.noarch.rpm ; \
 	ARCH="${TARGETARCH}" ; \
 	case $ARCH in \
 			amd64) \
@@ -89,7 +89,7 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 			*) \
 					exit 1 ;; \
 	esac ; \
-	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
+	yum -y install --enablerepo=ubi-%%UBI_MAJOR_VERSION%%-codeready-builder,codeready-builder-for-rhel-%%UBI_MAJOR_VERSION%%-${BUILDARCH}-rpms \
 		postgis%%POSTGIS_MAJOR%%_%%PG_MAJOR%%-%%POSTGIS_VERSION%% \
 		pgrouting_%%PG_MAJOR%% \
 	; \
