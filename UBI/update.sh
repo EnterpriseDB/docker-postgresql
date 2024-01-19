@@ -25,8 +25,8 @@ _raw_ubi_tags() {
 	local version="$1"; shift
 	local data
 	data=$(curl -sL "https://registry.access.redhat.com/v2/ubi${version}/ubi/tags/list")
-	jq -r '.tags[] | select(startswith("'"$version"'"))' <<<"$data" |
-		grep -v -- "-source" | sort -rV | head -n 1
+	jq -r --arg v "$version" '.tags[] | select(startswith($v))' <<<"$data" |
+	grep -v -- "-source" | sort -rV | head -n 1
 }
 
 # Get the latest UBI tag
@@ -44,8 +44,7 @@ get_latest_ubi_tag() {
 get_latest_ubi_base() {
   local ubi_version=$1
 	rawContent=$(curl -s -L https://quay.io/api/v1/repository/enterprisedb/edb-ubi/tag/?onlyActiveTags=true)
-	echo $rawContent | jq -r '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true) | .name' | tail -n1
-	echo $rawContent | jq -r --arg ubi_version "$ubi_version" '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true and .name | startswith($ubi_version)) | .name' | tail -n1
+	echo "$rawContent" | jq -r --arg uv "$ubi_version" '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true and (.name | startswith($uv))) | .name' | tail -n1
 }
 
 declare -A pgArchMatrix=(
@@ -115,7 +114,6 @@ compare_architecture_pkgs() {
 # Get the latest Barman version
 latest_barman_version=
 _raw_get_latest_barman_version() {
-  echo "Getting latest barman version"
 	curl -s https://pypi.org/pypi/barman/json | jq -r '.releases | keys[]' | sort -Vr | head -n1
 }
 get_latest_barman_version() {
@@ -187,12 +185,16 @@ generate_redhat() {
 	imageReleaseVersion=1
 
 	# cache the result
-	get_latest_ubi_base $ubi8Release >/dev/null
-	get_latest_ubi_base $ubi9Release >/dev/null
-	get_latest_barman_version >/dev/null
+	echo "Getting latest UBI versions"
+	echo "the ubi releases are $ubi8Release and $ubi9Release"
+#	get_latest_ubi_base $ubi8Release >/dev/null
+#	get_latest_ubi_base $ubi9Release >/dev/null
+#	get_latest_barman_version >/dev/null
 
 	ubi8Version=$(get_latest_ubi_base $ubi8Release)
 	ubi9Version=$(get_latest_ubi_base $ubi9Release)
+	echo "Latest UBI8 version: $ubi8Version"
+	echo "Latest UBI9 version: $ubi9Version"
 	if [ -z "$ubi8Version" ]; then
 		echo "Unable to retrieve latest UBI${ubi8Release} version"
 		exit 1
@@ -372,10 +374,10 @@ generate_redhat_postgis() {
 	imageReleaseVersion=1
 
 	# cache the result
-	get_latest_ubi_base 8 >/dev/null
+	get_latest_ubi_base $ubiRelease >/dev/null
 	get_latest_barman_version >/dev/null
 
-	ubiVersion=$(get_latest_ubi_base 8)
+	ubiVersion=$(get_latest_ubi_base $ubiRelease)
 	if [ -z "$ubiVersion" ]; then
 		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
@@ -513,7 +515,9 @@ generate_redhat_postgis() {
 }
 
 update_requirements() {
+  echo "Updating requirements"
 	barmanVersion=$(get_latest_barman_version)
+	echo "Latest barman version: $barmanVersion"
 	# If there's a new version we need to recreate the requirements files
 	echo "barman[cloud,azure,snappy,google] == $barmanVersion" > requirements.in
 
