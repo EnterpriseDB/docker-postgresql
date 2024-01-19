@@ -9,7 +9,7 @@ LABEL name="PostgreSQL + PostGIS Container Images" \
       version="%%POSTGRES_VERSION%%" \
       release="%%IMAGE_RELEASE_VERSION%%" \
       summary="PostgreSQL + PostGIS Container images." \
-      description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
+      description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) %%UBI_MAJOR_VERSION%%."
 
 COPY root/ /
 
@@ -19,9 +19,9 @@ RUN set -xe ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
 	case $ARCH in \
 			amd64) \
-				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+				yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
 			arm64) \
-				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+				yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
