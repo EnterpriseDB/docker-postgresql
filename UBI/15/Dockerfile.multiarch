@@ -1,12 +1,12 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:8.9-1107
+FROM quay.io/enterprisedb/edb-ubi:8.9-1107.1705420509
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="15.5" \
-      release="3" \
+      release="4" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
