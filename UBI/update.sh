@@ -42,8 +42,9 @@ get_latest_ubi_tag() {
 
 # Get the latest UBI base image
 get_latest_ubi_base() {
+	local ubi_version=$1
 	rawContent=$(curl -s -L https://quay.io/api/v1/repository/enterprisedb/edb-ubi/tag/?onlyActiveTags=true)
-	echo $rawContent | jq -r '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true) | .name' | tail -n1
+	echo "$rawContent" | jq -r --arg uv "$ubi_version" '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true and (.name | startswith($uv))) | .name' | tail -n1
 }
 
 declare -A pgArchMatrix=(
@@ -183,10 +184,10 @@ generate_redhat() {
 	imageReleaseVersion=1
 
 	# cache the result
-	get_latest_ubi_base >/dev/null
+	get_latest_ubi_base "${ubiRelease}" >/dev/null
 	get_latest_barman_version >/dev/null
 
-	ubiVersion=$(get_latest_ubi_base)
+	ubiVersion=$(get_latest_ubi_base "${ubiRelease}")
 	if [ -z "$ubiVersion" ]; then
 		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
@@ -311,10 +312,10 @@ generate_redhat_postgis() {
 	imageReleaseVersion=1
 
 	# cache the result
-	get_latest_ubi_base >/dev/null
+	get_latest_ubi_base "${ubiRelease}" >/dev/null
 	get_latest_barman_version >/dev/null
 
-	ubiVersion=$(get_latest_ubi_base)
+	ubiVersion=$(get_latest_ubi_base "${ubiRelease}")
 	if [ -z "$ubiVersion" ]; then
 		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
