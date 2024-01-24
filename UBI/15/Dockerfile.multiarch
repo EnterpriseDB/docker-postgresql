@@ -18,19 +18,26 @@ RUN --mount=type=secret,id=cs_token \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
 	pg_failover_slots_pkg="pg_failover_slots_15" ; \
+	pg_audit_pkg="pgaudit17_15" ; \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
+					if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			arm64) \
 					yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
+					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
+					if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			ppc64le) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ;; \
+					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ; \
+					pg_audit_pkg="edb-pg15-pgaudit1" ; \
+					if [ "15" -gt "15" ]; then pg_audit_pkg="edb-pg15-pgaudit15"; fi ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ;; \
+					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ; \
+					pg_audit_pkg="edb-pg15-pgaudit1" ; \
+					if [ "15" -gt "15" ]; then pg_audit_pkg="edb-pg15-pgaudit15"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -38,26 +45,14 @@ RUN --mount=type=secret,id=cs_token \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
-	case 15 in \
-            11|12|13|14) \
-	                yum -y --setopt=tsflags=nodocs install \
-	                    postgresql15-15.5 \
-	                    postgresql15-contrib-15.5 \
-	                    postgresql15-server-15.5 \
-	                    postgresql15-libs-15.5 \
-	                    pgaudit17_15 \
-	                    "$pg_failover_slots_pkg" \
-	                    ;; \
-            15|16) \
-                    yum -y --setopt=tsflags=nodocs install \
-                        postgresql15-15.5 \
-                        postgresql15-contrib-15.5 \
-                        postgresql15-server-15.5 \
-                        postgresql15-libs-15.5 \
-	                    ;; \
-            *) \
-                    exit 1 ;; \
-    esac ; \
+	yum -y --setopt=tsflags=nodocs install \
+			postgresql15-15.5 \
+			postgresql15-contrib-15.5 \
+			postgresql15-server-15.5 \
+			postgresql15-libs-15.5 \
+			"$pg_audit_pkg" \
+			"$pg_failover_slots_pkg" \
+	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'

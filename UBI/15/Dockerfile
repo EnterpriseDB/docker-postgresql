@@ -13,24 +13,17 @@ LABEL name="PostgreSQL Container Images" \
 COPY root/ /
 
 ARG TARGETARCH
-RUN --mount=type=secret,id=cs_token \
-	set -xe ; \
+RUN set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
-	pg_failover_slots_pkg="pg_failover_slots_15" ; \
+	pg_audit_pkg="pgaudit17_15" ; \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
+					if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			arm64) \
 					yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
-			ppc64le) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ;; \
-			s390x) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ;; \
+					if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -42,14 +35,9 @@ RUN --mount=type=secret,id=cs_token \
 		postgresql15-contrib-15.5 \
 		postgresql15-server-15.5 \
 		postgresql15-libs-15.5 \
-		"$pg_failover_slots_pkg" \
+		pg_failover_slots_15 \
+		"$pg_audit_pkg" \
 	; \
-	if [ "$PG_MAJOR" -lt "16" ]; then \
-		yum -y --setopt=tsflags=nodocs install \
-			pgaudit17_15 \
-		; \
-	fi; \
-	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 

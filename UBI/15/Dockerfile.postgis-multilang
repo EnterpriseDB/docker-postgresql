@@ -17,11 +17,14 @@ ARG TARGETARCH
 RUN set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
+	pg_audit_pkg="pgaudit17_15" ; \
 	case $ARCH in \
 			amd64) \
-				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+				yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			arm64) \
-				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+				yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -35,12 +38,8 @@ RUN set -xe ; \
 		postgresql15-server-15.5 \
 		postgresql15-libs-15.5 \
 		pg_failover_slots_15 \
+		"$pg_audit_pkg" \
 	; \
-	if [ "$PG_MAJOR" -lt "16" ]; then \
-		yum -y --setopt=tsflags=nodocs install \
-			pgaudit17_15 \
-		; \
-	fi; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
