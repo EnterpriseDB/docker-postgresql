@@ -114,7 +114,6 @@ jobs:
         tags: ${{ env.TAGS }}
         labels: ${{ github.ref != 'refs/heads/main' && 'quay.expires-after=7d' || '' }}
         build-args: |
-          UBI_VERSION=${{ matrix.ubi_version }}
           SUBSCRIPTION_NAME=docker-postgresql-cicd-${{ github.run_number }}
 
     # Send a notification on release failure

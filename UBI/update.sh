@@ -177,45 +177,32 @@ record_version() {
 
 generate_redhat() {
 	local version="$1"; shift
-	ubi8Release="8"
-	ubi9Release="9"
-	local versionFile="${version}/.versions.json"
+	local ubiRelease="$1"; shift
+	local versionFile="${version}/.versions-ubi${ubiRelease}.json"
 
 	imageReleaseVersion=1
 
 	# cache the result
-	echo "Getting latest UBI versions"
-#	get_latest_ubi_base $ubi8Release >/dev/null
-#	get_latest_ubi_base $ubi9Release >/dev/null
-#	get_latest_barman_version >/dev/null
+	get_latest_ubi_base $ubiRelease >/dev/null
+	get_latest_barman_version >/dev/null
 
-	ubi8Version=$(get_latest_ubi_base $ubi8Release)
-	ubi9Version=$(get_latest_ubi_base $ubi9Release)
-	echo "Latest UBI8 version: $ubi8Version"
-	echo "Latest UBI9 version: $ubi9Version"
-	if [ -z "$ubi8Version" ]; then
-		echo "Unable to retrieve latest UBI${ubi8Release} version"
-		exit 1
-	fi
-	if [ -z "$ubi9Version" ]; then
-		echo "Unable to retrieve latest UBI${ubi9Release} version"
+	ubiVersion=$(get_latest_ubi_base $ubiRelease)
+	if [ -z "$ubiVersion" ]; then
+		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
 	fi
 
-	ubi8_pg_x86_64=$(get_postgresql_version "${ubi8Release}" 'x86_64' "$version")
-	ubi8_pg_ppc64le=$(get_postgresql_version "${ubi8Release}" 'ppc64le' "$version")
-	ubi8_pg_s390x=$(get_postgresql_version "${ubi8Release}" 's390x' "$version")
-	ubi8_pg_arm64=$(get_postgresql_version "${ubi8Release}" 'aarch64' "$version")
-	if ! compare_architecture_pkgs "$ubi8_pg_x86_64" "$ubi8_pg_arm64" "$ubi8_pg_ppc64le" "$ubi8_pg_s390x"; then
+	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
+	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
+	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
+	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
+	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
 		return
 	fi
 
-	# Currently there is only one postgres version for ubi8 and 9. This variable can be confusing when we use it for
-	# UBI 9 but I thought it was best to be clear that we get the postgresversion from the UBI8 repo and then use that
-	# for both UBI8 and UBI9
-	postgresqlUBI8Version="${ubi8_pg_x86_64}"
-	if [ -z "$postgresqlUBI8Version" ]; then
-		echo "Unable to retrieve latest PostgreSQL $version version for UBI $ubi8Release"
+	postgresqlVersion="${pg_x86_64}"
+	if [ -z "$postgresqlVersion" ]; then
+		echo "Unable to retrieve latest PostgreSQL $version version for UBI$ubiRelease"
 		return
 	fi
 
@@ -238,11 +225,10 @@ generate_redhat() {
 	fi
 
 	# Output the full Postgresql package name
-	echo "$version: ${postgresqlVersion}"
+	echo "$version: ${postgresqlVersion} (UBI${ubiRelease})"
 
 	if [ -f "${versionFile}" ]; then
-		oldUbi8Version=$(jq -r '.UBI8_VERSION' "${versionFile}")
-		oldUbi9Version=$(jq -r '.UBI9_VERSION' "${versionFile}")
+		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
 		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
@@ -251,9 +237,8 @@ generate_redhat() {
 		imageReleaseVersion=1
 
 		echo "{}" > "${versionFile}"
-		record_version "${versionFile}" "UBI8_VERSION" "${ubi8Version}"
-		record_version "${versionFile}" "UBI9_VERSION" "${ubi9Version}"
-		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlUBI8Version}"
+		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
+		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
 		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" "${imageReleaseVersion}"
 
@@ -263,16 +248,10 @@ generate_redhat() {
 	newRelease="false"
 
 	# Detect an update of UBI image
-	if [ "$oldUbi8Version" != "$ubi8Version" ]; then
-		echo "UBI changed from $oldUbi8Version to $ubi8Version"
+	if [ "$oldUbiVersion" != "$ubiVersion" ]; then
+		echo "UBI changed from $oldUbiVersion to $ubiVersion"
 		newRelease="true"
-		record_version "${versionFile}" "UBI8_VERSION" "${ubi8Version}"
-	fi
-
-	if [ "$oldUbi9Version" != "$ubi9Version" ]; then
-		echo "UBI changed from $oldUbi9Version to $ubi9Version"
-		newRelease="true"
-		record_version "${versionFile}" "UBI9_VERSION" "${ubi9Version}"
+		record_version "${versionFile}" "UBI_VERSION" "${ubiVersion}"
 	fi
 
 	# Detect an update of Barman
@@ -283,9 +262,9 @@ generate_redhat() {
 	fi
 
 	# Detect an update of PostgreSQL
-	if [ "$oldPostgresqlVersion" != "$postgresqlUBI8Version" ]; then
-		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlUBI8Version"
-		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlUBI8Version}"
+	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
+		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlVersion"
+		record_version "${versionFile}" "POSTGRES_VERSION" "${postgresqlVersion}"
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" 1
 		imageReleaseVersion=1
 	elif [ "$newRelease" = "true" ]; then
@@ -293,66 +272,38 @@ generate_redhat() {
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
-	rm -fr "${version:?}"/*
-	sed -e 's/%%UBI_VERSION%%/'"$ubi8Version"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubi8Release"'/g' \
+	rm -fr "${version:?}/root" \
+		"${version:?}/Dockerfile*${ubiRelease}"
+
+	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlUBI8Version"'/g' \
+		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile.template \
-		>"$version/Dockerfile.ubi8"
+		>"$version/Dockerfile.ubi${ubiRelease}"
 
-	sed -e 's/%%UBI_VERSION%%/'"$ubi8Version"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubi8Release"'/g' \
+	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlUBI8Version"'/g' \
+		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-multilang.template \
-		>"$version/Dockerfile.multilang.ubi8"
+		>"$version/Dockerfile.multilang.ubi${ubiRelease}"
 
-	sed -e 's/%%UBI_VERSION%%/'"$ubi8Version"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubi8Release"'/g' \
+	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlUBI8Version"'/g' \
+		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-multiarch.template \
-		>"$version/Dockerfile.multiarch.ubi8"
-
-	sed -e 's/%%UBI_VERSION%%/'"$ubi9Version"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubi9Release"'/g' \
-		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlUBI8Version"'/g' \
-		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
-		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
-		Dockerfile.template \
-		>"$version/Dockerfile.ubi9"
-
-	sed -e 's/%%UBI_VERSION%%/'"$ubi9Version"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubi9Release"'/g' \
-		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlUBI8Version"'/g' \
-		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
-		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
-		Dockerfile-multilang.template \
-		>"$version/Dockerfile.multilang.ubi9"
-
-	sed -e 's/%%UBI_VERSION%%/'"$ubi9Version"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubi9Release"'/g' \
-		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
-		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
-		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlUBI8Version"'/g' \
-		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
-		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
-		Dockerfile-multiarch.template \
-		>"$version/Dockerfile.multiarch.ubi9"
+		>"$version/Dockerfile.multiarch.ubi${ubiRelease}"
 
 	cp -r src/* "$version/"
 }
@@ -420,7 +371,7 @@ generate_redhat_postgis() {
 	fi
 
 	# Output the full Postgresql and PostGIS package name
-	echo "$version: ${postgresqlVersion} - PostGIS ${postgisVersion}"
+	echo "$version: ${postgresqlVersion} - PostGIS ${postgisVersion} (UBI${ubiRelease})"
 
 	if [ -f "${versionFile}" ]; then
 		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
@@ -483,7 +434,7 @@ generate_redhat_postgis() {
 	cp update-postgis.sh "$version/"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"8"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
@@ -495,7 +446,7 @@ generate_redhat_postgis() {
 		>"$version/Dockerfile.postgis"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
-		-e 's/%%UBI_MAJOR_VERSION%%/'"8"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
@@ -527,7 +478,7 @@ update_requirements() {
 update_requirements
 
 for version in "${versions[@]}"; do
-	echo "Generating Dockerfiles for $version"
-	generate_redhat "${version}"
+	generate_redhat "${version}" "8"
+	generate_redhat "${version}" "9"
 	generate_redhat_postgis "${version}"
 done
