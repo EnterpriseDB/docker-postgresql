@@ -42,6 +42,11 @@ join() {
 generator() {
 	local ubiRelease="$1"; shift
 
+	tagSuffix=""
+	if [ "$ubiRelease" -gt "8" ]; then
+		tagSuffix="-ubi${ubiRelease}"
+	fi
+
 	cd "$BASE_DIRECTORY"/UBI/
 	for version in "${ubi_versions[@]}"; do
 
@@ -56,44 +61,44 @@ generator() {
 		if [ "${version}" -gt '16' ]; then
 			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 			versionAliases=(
-				"${version}-beta"
-				${aliases[$version]:+"${aliases[$version]}"}
-				"${fullVersion}-${releaseVersion}"
+				"${version}-beta${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}${tagSuffix}"
 			)
 			versionAliasesMultiLang=(
-				"${version}-beta-multilang"
-				${aliases[$version]:+"${aliases[$version]}-multilang"}
-				"${fullVersion}-${releaseVersion}-multilang"
+				"${version}-beta-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multilang${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multilang${tagSuffix}"
 			)
 			versionAliasesMultiArch=(
-				"${version}-beta-multiarch"
-				${aliases[$version]:+"${aliases[$version]}-multiarch"}
-				"${fullVersion}-${releaseVersion}-multiarch"
+				"${version}-beta-multiarch${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multiarch${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multiarch${tagSuffix}"
 			)
 		else
 			versionAliases=(
-				"${version}"
-				${aliases[$version]:+"${aliases[$version]}"}
-				"${fullVersion}-${releaseVersion}"
+				"${version}${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}${tagSuffix}"
 			)
 			versionAliasesMultiLang=(
-				"${version}-multilang"
-				${aliases[$version]:+"${aliases[$version]}-multilang"}
-				"${fullVersion}-${releaseVersion}-multilang"
+				"${version}-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multilang${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multilang${tagSuffix}"
 			)
 			versionAliasesMultiArch=(
-				"${version}-multiarch"
-				${aliases[$version]:+"${aliases[$version]}-multiarch"}
-				"${fullVersion}-${releaseVersion}-multiarch"
+				"${version}-multiarch${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multiarch${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multiarch${tagSuffix}"
 			)
 		fi
 
 		# Add all the version prefixes between full version and major version
 		# i.e "13.2"
 		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-			versionAliases+=("$fullVersion")
-			versionAliasesMultiLang+=("$fullVersion-multilang")
-			versionAliasesMultiArch+=("$fullVersion-multiarch")
+			versionAliases+=("$fullVersion${tagSuffix}")
+			versionAliasesMultiLang+=("$fullVersion-multilang${tagSuffix}")
+			versionAliasesMultiArch+=("$fullVersion-multiarch${tagSuffix}")
 			fullVersion="${fullVersion%[.-]*}"
 		done
 
@@ -112,6 +117,11 @@ generator() {
 generator_postgis() {
 	local ubiRelease="$1"; shift
 
+	tagSuffix=""
+	if [ "$ubiRelease" -gt "8" ]; then
+		tagSuffix="-ubi${ubiRelease}"
+	fi
+
 	cd "$BASE_DIRECTORY"/UBI/
 	for version in "${ubi_versions[@]}"; do
 
@@ -127,33 +137,33 @@ generator_postgis() {
 		if [ "${version}" -gt '16' ]; then
 			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
 			versionAliases=(
-				"${version}-beta-postgis"
-				${aliases[$version]:+"${aliases[$version]}-postgis"}
-				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
+				"${version}-beta-postgis${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}${tagSuffix}"
 			)
 			versionAliasesMultiLang=(
-				"${version}-beta-postgis-multilang"
-				${aliases[$version]:+"${aliases[$version]}-postgis-multilang"}
-				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang"
+				"${version}-beta-postgis-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang${tagSuffix}"
 			)
 		else
 			versionAliases=(
-				"${version}-postgis"
-				${aliases[$version]:+"${aliases[$version]}-postgis"}
-				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
+				"${version}-postgis${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}${tagSuffix}"
 			)
 			versionAliasesMultiLang=(
-				"${version}-postgis-multilang"
-				${aliases[$version]:+"${aliases[$version]}-postgis-multilang"}
-				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang"
+				"${version}-postgis-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang${tagSuffix}"
 			)
 		fi
 
 		# Add all the version prefixes between full version and major version
 		# i.e "13.2"
 		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-			versionAliases+=("$fullVersion-${postgisVersion}-postgis")
-			versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang")
+			versionAliases+=("$fullVersion-${postgisVersion}-postgis${tagSuffix}")
+			versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang${tagSuffix}")
 			fullVersion="${fullVersion%[.-]*}"
 		done
 
@@ -174,7 +184,7 @@ generator "8"
 generator "9"
 
 # UBI PostGIS
-generator "8"
+generator_postgis "8"
 
 # Build the strategy as a JSON object
 strategy="{\"fail-fast\": false, \"matrix\": {\"include\": [$(join ', ' "${entries[@]}")]}}"
