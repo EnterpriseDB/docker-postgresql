@@ -25,8 +25,8 @@ _raw_ubi_tags() {
 	local version="$1"; shift
 	local data
 	data=$(curl -sL "https://registry.access.redhat.com/v2/ubi${version}/ubi/tags/list")
-	jq -r '.tags[] | select(startswith("'"$version"'"))' <<<"$data" |
-		grep -v -- "-source" | sort -rV | head -n 1
+	jq -r --arg v "$version" '.tags[] | select(startswith($v))' <<<"$data" |
+	grep -v -- "-source" | sort -rV | head -n 1
 }
 
 # Get the latest UBI tag
@@ -177,16 +177,16 @@ record_version() {
 
 generate_redhat() {
 	local version="$1"; shift
-	ubiRelease="8"
-	local versionFile="${version}/.versions.json"
+	local ubiRelease="$1"; shift
+	local versionFile="${version}/.versions-ubi${ubiRelease}.json"
 
 	imageReleaseVersion=1
 
 	# cache the result
-	get_latest_ubi_base "${ubiRelease}" >/dev/null
+	get_latest_ubi_base $ubiRelease >/dev/null
 	get_latest_barman_version >/dev/null
 
-	ubiVersion=$(get_latest_ubi_base "${ubiRelease}")
+	ubiVersion=$(get_latest_ubi_base $ubiRelease)
 	if [ -z "$ubiVersion" ]; then
 		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
@@ -202,7 +202,7 @@ generate_redhat() {
 
 	postgresqlVersion="${pg_x86_64}"
 	if [ -z "$postgresqlVersion" ]; then
-		echo "Unable to retrieve latest PostgreSQL $version version"
+		echo "Unable to retrieve latest PostgreSQL $version version for UBI$ubiRelease"
 		return
 	fi
 
@@ -225,7 +225,7 @@ generate_redhat() {
 	fi
 
 	# Output the full Postgresql package name
-	echo "$version: ${postgresqlVersion}"
+	echo "$version: ${postgresqlVersion} (UBI${ubiRelease})"
 
 	if [ -f "${versionFile}" ]; then
 		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
@@ -272,33 +272,38 @@ generate_redhat() {
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
 
-	rm -fr "${version:?}"/*
+	rm -fr "${version:?}/root" \
+		"${version:?}/Dockerfile*${ubiRelease}"
+
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile.template \
-		>"$version/Dockerfile"
+		>"$version/Dockerfile.ubi${ubiRelease}"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-multilang.template \
-		>"$version/Dockerfile.multilang"
+		>"$version/Dockerfile.multilang.ubi${ubiRelease}"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
 		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-multiarch.template \
-		>"$version/Dockerfile.multiarch"
+		>"$version/Dockerfile.multiarch.ubi${ubiRelease}"
 
 	cp -r src/* "$version/"
 }
@@ -311,10 +316,10 @@ generate_redhat_postgis() {
 	imageReleaseVersion=1
 
 	# cache the result
-	get_latest_ubi_base "${ubiRelease}" >/dev/null
+	get_latest_ubi_base $ubiRelease >/dev/null
 	get_latest_barman_version >/dev/null
 
-	ubiVersion=$(get_latest_ubi_base "${ubiRelease}")
+	ubiVersion=$(get_latest_ubi_base $ubiRelease)
 	if [ -z "$ubiVersion" ]; then
 		echo "Unable to retrieve latest UBI${ubiRelease} version"
 		exit 1
@@ -366,7 +371,7 @@ generate_redhat_postgis() {
 	fi
 
 	# Output the full Postgresql and PostGIS package name
-	echo "$version: ${postgresqlVersion} - PostGIS ${postgisVersion}"
+	echo "$version: ${postgresqlVersion} - PostGIS ${postgisVersion} (UBI${ubiRelease})"
 
 	if [ -f "${versionFile}" ]; then
 		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
@@ -429,6 +434,7 @@ generate_redhat_postgis() {
 	cp update-postgis.sh "$version/"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
@@ -440,6 +446,7 @@ generate_redhat_postgis() {
 		>"$version/Dockerfile.postgis"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
 		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
 		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
 		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
@@ -471,6 +478,7 @@ update_requirements() {
 update_requirements
 
 for version in "${versions[@]}"; do
-	generate_redhat "${version}"
+	generate_redhat "${version}" "8"
+	generate_redhat "${version}" "9"
 	generate_redhat_postgis "${version}"
 done

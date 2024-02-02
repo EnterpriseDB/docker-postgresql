@@ -39,127 +39,152 @@ join() {
 	echo "${out#$sep}"
 }
 
+generator() {
+	local ubiRelease="$1"; shift
+
+	tagSuffix=""
+	if [ "$ubiRelease" -gt "8" ]; then
+		tagSuffix="-ubi${ubiRelease}"
+	fi
+
+	cd "$BASE_DIRECTORY"/UBI/
+	for version in "${ubi_versions[@]}"; do
+
+		versionFile="${version}/.versions-ubi${ubiRelease}.json"
+		ubiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
+		fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
+		releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+
+		# Initial aliases are "major version", "optional alias", "full version with release"
+		# i.e. "13", "latest", "13.2-1"
+		# A "-beta" suffix will be appended to the beta images.
+		if [ "${version}" -gt '16' ]; then
+			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
+			versionAliases=(
+				"${version}-beta${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}${tagSuffix}"
+			)
+			versionAliasesMultiLang=(
+				"${version}-beta-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multilang${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multilang${tagSuffix}"
+			)
+			versionAliasesMultiArch=(
+				"${version}-beta-multiarch${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multiarch${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multiarch${tagSuffix}"
+			)
+		else
+			versionAliases=(
+				"${version}${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}${tagSuffix}"
+			)
+			versionAliasesMultiLang=(
+				"${version}-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multilang${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multilang${tagSuffix}"
+			)
+			versionAliasesMultiArch=(
+				"${version}-multiarch${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-multiarch${tagSuffix}"}
+				"${fullVersion}-${releaseVersion}-multiarch${tagSuffix}"
+			)
+		fi
+
+		# Add all the version prefixes between full version and major version
+		# i.e "13.2"
+		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
+			versionAliases+=("$fullVersion${tagSuffix}")
+			versionAliasesMultiLang+=("$fullVersion-multilang${tagSuffix}")
+			versionAliasesMultiArch+=("$fullVersion-multiarch${tagSuffix}")
+			fullVersion="${fullVersion%[.-]*}"
+		done
+
+		platforms="linux/amd64, linux/arm64"
+		platformsMultiArch="${platforms}, linux/ppc64le,linux/s390x"
+
+		# Build the json entry
+		entries+=(
+			"{\"name\": \"${fullVersion} UBI${ubiRelease}\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.ubi${ubiRelease}\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+			"{\"name\": \"${fullVersion} UBI${ubiRelease} MultiLang\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multilang.ubi${ubiRelease}\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
+			"{\"name\": \"${fullVersion} UBI${ubiRelease} MultiArch\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multiarch.ubi${ubiRelease}\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"]}"
+		)
+	done
+}
+
+generator_postgis() {
+	local ubiRelease="$1"; shift
+
+	tagSuffix=""
+	if [ "$ubiRelease" -gt "8" ]; then
+		tagSuffix="-ubi${ubiRelease}"
+	fi
+
+	cd "$BASE_DIRECTORY"/UBI/
+	for version in "${ubi_versions[@]}"; do
+
+		# Read versions from the definition file
+		versionFile="${version}/.versions-postgis.json"
+		fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
+		postgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}" | cut -f1,2 -d.)
+		releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+
+		# Initial aliases are "major version", "optional alias", "full version with release"
+		# i.e. "13", "latest", "13.2-1"
+		# A "-beta" suffix will be appended to the beta images.
+		if [ "${version}" -gt '16' ]; then
+			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
+			versionAliases=(
+				"${version}-beta-postgis${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}${tagSuffix}"
+			)
+			versionAliasesMultiLang=(
+				"${version}-beta-postgis-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang${tagSuffix}"
+			)
+		else
+			versionAliases=(
+				"${version}-postgis${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}${tagSuffix}"
+			)
+			versionAliasesMultiLang=(
+				"${version}-postgis-multilang${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang${tagSuffix}"
+			)
+		fi
+
+		# Add all the version prefixes between full version and major version
+		# i.e "13.2"
+		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
+			versionAliases+=("$fullVersion-${postgisVersion}-postgis${tagSuffix}")
+			versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang${tagSuffix}")
+			fullVersion="${fullVersion%[.-]*}"
+		done
+
+		platforms="linux/amd64,linux/arm64"
+
+		# Build the json entry
+		entries+=(
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
+		)
+	done
+}
+
 entries=()
 
 # UBI
-cd "$BASE_DIRECTORY"/UBI/
-for version in "${ubi_versions[@]}"; do
-
-	# Read versions from the definition file
-	versionFile="${version}/.versions.json"
-	fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
-	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
-
-	# Initial aliases are "major version", "optional alias", "full version with release"
-	# i.e. "13", "latest", "13.2-1"
-	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '16' ]; then
-		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
-		versionAliases=(
-			"${version}-beta"
-			${aliases[$version]:+"${aliases[$version]}"}
-			"${fullVersion}-${releaseVersion}"
-		)
-		versionAliasesMultiLang=(
-			"${version}-beta-multilang"
-			${aliases[$version]:+"${aliases[$version]}-multilang"}
-			"${fullVersion}-${releaseVersion}-multilang"
-		)
-		versionAliasesMultiArch=(
-			"${version}-beta-multiarch"
-			${aliases[$version]:+"${aliases[$version]}-multiarch"}
-			"${fullVersion}-${releaseVersion}-multiarch"
-		)
-	else
-		versionAliases=(
-			"${version}"
-			${aliases[$version]:+"${aliases[$version]}"}
-			"${fullVersion}-${releaseVersion}"
-		)
-		versionAliasesMultiLang=(
-			"${version}-multilang"
-			${aliases[$version]:+"${aliases[$version]}-multilang"}
-			"${fullVersion}-${releaseVersion}-multilang"
-		)
-		versionAliasesMultiArch=(
-			"${version}-multiarch"
-			${aliases[$version]:+"${aliases[$version]}-multiarch"}
-			"${fullVersion}-${releaseVersion}-multiarch"
-		)
-	fi
-	# Add all the version prefixes between full version and major version
-	# i.e "13.2"
-	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("$fullVersion")
-		versionAliasesMultiLang+=("$fullVersion-multilang")
-		versionAliasesMultiArch+=("$fullVersion-multiarch")
-		fullVersion="${fullVersion%[.-]*}"
-	done
-
-	platforms="linux/amd64, linux/arm64"
-	platformsMultiArch="${platforms}, linux/ppc64le,linux/s390x"
-
-	# Build the json entry
-	entries+=(
-		"{\"name\": \"UBI ${fullVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
-		"{\"name\": \"UBI ${fullVersion} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multilang\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
-		"{\"name\": \"UBI ${fullVersion} MultiArch\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multiarch\", \"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"]}"
-	)
-done
+generator "8"
+generator "9"
 
 # UBI PostGIS
-for version in "${ubi_versions[@]}"; do
-
-	# Read versions from the definition file
-	versionFile="${version}/.versions-postgis.json"
-	fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
-	postgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}" | cut -f1,2 -d.)
-	releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
-
-	# Initial aliases are "major version", "optional alias", "full version with release"
-	# i.e. "13", "latest", "13.2-1"
-	# A "-beta" suffix will be appended to the beta images.
-	if [ "${version}" -gt '16' ]; then
-		fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
-		versionAliases=(
-			"${version}-beta-postgis"
-			${aliases[$version]:+"${aliases[$version]}-postgis"}
-			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
-		)
-		versionAliasesMultiLang=(
-			"${version}-beta-postgis-multilang"
-			${aliases[$version]:+"${aliases[$version]}-postgis-multilang"}
-			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang"
-		)
-	else
-		versionAliases=(
-			"${version}-postgis"
-			${aliases[$version]:+"${aliases[$version]}-postgis"}
-			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
-		)
-		versionAliasesMultiLang=(
-			"${version}-postgis-multilang"
-			${aliases[$version]:+"${aliases[$version]}-postgis-multilang"}
-			"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang"
-		)
-	fi
-
-	# Add all the version prefixes between full version and major version
-	# i.e "13.2"
-	while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-		versionAliases+=("$fullVersion-${postgisVersion}-postgis")
-		versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang")
-		fullVersion="${fullVersion%[.-]*}"
-	done
-
-	platforms="linux/amd64,linux/arm64"
-
-	# Build the json entry
-	entries+=(
-		"{\"name\": \"UBI PostGIS ${fullVersion}-${postgisVersion}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"]}"
-		"{\"name\": \"UBI PostGIS ${fullVersion}-${postgisVersion} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang\",\"version\": \"$version\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"]}"
-	)
-done
+generator_postgis "8"
 
 # Build the strategy as a JSON object
 strategy="{\"fail-fast\": false, \"matrix\": {\"include\": [$(join ', ' "${entries[@]}")]}}"

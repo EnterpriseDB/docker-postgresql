@@ -2,7 +2,7 @@
 
 Maintenance scripts to generate Immutable Application Containers
 for all available PostgreSQL versions (12 to 16) based on
-Red Hat Universal Base Images (UBI) 8:
+Red Hat Universal Base Images (UBI) 8 and 9:
 
 - Standard minimal image - amd64/arm64
    - multilang version (all Locales installed) - amd64/arm64

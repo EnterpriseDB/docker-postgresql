@@ -1,59 +1,43 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:%%UBI_VERSION%%
+FROM quay.io/enterprisedb/edb-ubi:9.3-1476
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="%%POSTGRES_VERSION%%" \
-      release="%%IMAGE_RELEASE_VERSION%%" \
+      version="16.1" \
+      release="1" \
       summary="PostgreSQL Container images." \
-      description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) %%UBI_MAJOR_VERSION%%."
+      description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 9."
 
 COPY root/ /
 
 ARG TARGETARCH
-RUN --mount=type=secret,id=cs_token \
-	set -xe ; \
+RUN set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
-	pg_failover_slots_pkg="pg_failover_slots_%%PG_MAJOR%%" ; \
-	pg_audit_pkg="pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR%%" ; \
+	pg_audit_pkg="pgaudit18_16" ; \
 	case $ARCH in \
 			amd64) \
-					yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="pgaudit_%%PG_MAJOR%%"; fi ;; \
+					yum -y install "${base_url}/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+					if [ "16" -gt "15" ]; then pg_audit_pkg="pgaudit_16"; fi ;; \
 			arm64) \
-					yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="pgaudit_%%PG_MAJOR%%"; fi ;; \
-			ppc64le) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg%%PG_MAJOR%%-pg-failover-slots1" ; \
-					pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit1" ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ;; \
-			s390x) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg%%PG_MAJOR%%-pg-failover-slots1" ; \
-					pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit1" ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ;; \
+					yum -y install "${base_url}/EL-9-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+					if [ "16" -gt "15" ]; then pg_audit_pkg="pgaudit_16"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
-	rm -fr /etc/rpm/macros.image-language-conf ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
+	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y --setopt=tsflags=nodocs install \
-			postgresql%%PG_MAJOR%%-%%POSTGRES_VERSION%% \
-			postgresql%%PG_MAJOR%%-contrib-%%POSTGRES_VERSION%% \
-			postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%% \
-			postgresql%%PG_MAJOR%%-libs-%%POSTGRES_VERSION%% \
-			"$pg_audit_pkg" \
-			"$pg_failover_slots_pkg" \
+		postgresql16-16.1 \
+		postgresql16-contrib-16.1 \
+		postgresql16-server-16.1 \
+		postgresql16-libs-16.1 \
+		pg_failover_slots_16 \
+		"$pg_audit_pkg" \
 	; \
-	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
@@ -66,8 +50,8 @@ RUN set -xe ; \
 
 # make the sample config easier to munge (and "correct by default")
 RUN set -eux; \
-	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-%%PG_MAJOR%%/share/postgresql.conf.sample; \
-	grep -F "listen_addresses = '*'" /usr/pgsql-%%PG_MAJOR%%/share/postgresql.conf.sample
+	sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/pgsql-16/share/postgresql.conf.sample; \
+	grep -F "listen_addresses = '*'" /usr/pgsql-16/share/postgresql.conf.sample
 
 # prepare the environment and make sure postgres user has the correct UID
 RUN set -xeu ; \
@@ -77,7 +61,7 @@ RUN set -xeu ; \
 	chown postgres:postgres /var/run/postgresql ; \
 	chmod 0755 /var/run/postgresql
 
-ENV PATH $PATH:/usr/pgsql-%%PG_MAJOR%%/bin
+ENV PATH $PATH:/usr/pgsql-16/bin
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
 
