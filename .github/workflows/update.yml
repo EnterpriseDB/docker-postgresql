@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Update docker-entrypoint
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         with:
           timeout_seconds: 20
           max_attempts: 3
@@ -28,7 +28,7 @@ jobs:
             echo "Updating UBI docker-entrypoint"
             curl -fsSo ./UBI/src/root/usr/local/bin/docker-entrypoint.sh https://raw.githubusercontent.com/docker-library/postgres/master/docker-entrypoint.sh
       - name: Run update script
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
         with:
