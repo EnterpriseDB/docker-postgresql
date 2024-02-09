@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.9-1107.1706791207
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="16.1" \
-      release="2" \
+      version="16.2" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -31,10 +31,10 @@ RUN set -xe ; \
 	yum -y reinstall glibc-common ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql16-16.1 \
-		postgresql16-contrib-16.1 \
-		postgresql16-server-16.1 \
-		postgresql16-libs-16.1 \
+		postgresql16-16.2 \
+		postgresql16-contrib-16.2 \
+		postgresql16-server-16.2 \
+		postgresql16-libs-16.2 \
 		pg_failover_slots_16 \
 		"$pg_audit_pkg" \
 	; \

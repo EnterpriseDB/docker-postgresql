@@ -6,8 +6,8 @@ ARG SUBSCRIPTION_NAME
 LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="15.5" \
-      release="6" \
+      version="15.6" \
+      release="1" \
       summary="PostgreSQL + PostGIS Container images." \
       description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -33,10 +33,10 @@ RUN set -xe ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql15-15.5 \
-		postgresql15-contrib-15.5 \
-		postgresql15-server-15.5 \
-		postgresql15-libs-15.5 \
+		postgresql15-15.6 \
+		postgresql15-contrib-15.6 \
+		postgresql15-server-15.6 \
+		postgresql15-libs-15.6 \
 		pg_failover_slots_15 \
 		"$pg_audit_pkg" \
 	; \
