@@ -54,6 +54,7 @@ RUN --mount=type=secret,id=cs_token \
 			postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%% \
 			postgresql%%PG_MAJOR%%-libs-%%POSTGRES_VERSION%% \
 			"$pg_audit_pkg" \
+			"$pg_squeeze_pkg" \
 			"$pg_failover_slots_pkg" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
