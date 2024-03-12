@@ -37,6 +37,7 @@ RUN set -xe ; \
 		postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR%%-libs-%%POSTGRES_VERSION%% \
 		pg_failover_slots_%%PG_MAJOR%% \
+		pg_squeeze_%%PG_MAJOR%% \
 		"$pg_audit_pkg" \
 	; \
 	rm -fr /tmp/* ; \
