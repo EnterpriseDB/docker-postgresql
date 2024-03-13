@@ -37,6 +37,7 @@ RUN set -xe ; \
 		postgresql14-server-14.11 \
 		postgresql14-libs-14.11 \
 		pg_failover_slots_14 \
+		pg_squeeze_14 \
 		"$pg_audit_pkg" \
 	; \
 	rm -fr /tmp/* ; \

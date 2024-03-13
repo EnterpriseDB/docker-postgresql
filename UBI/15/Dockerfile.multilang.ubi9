@@ -37,6 +37,7 @@ RUN set -xe ; \
 		postgresql15-server-15.6 \
 		postgresql15-libs-15.6 \
 		pg_failover_slots_15 \
+		pg_squeeze_15 \
 		"$pg_audit_pkg" \
 	; \
 	rm -fr /tmp/* ; \
