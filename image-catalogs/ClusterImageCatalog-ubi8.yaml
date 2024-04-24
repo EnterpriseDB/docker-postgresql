@@ -1,0 +1,16 @@
+apiVersion: postgresql.k8s.enterprisedb.io/v1
+kind: ClusterImageCatalog
+metadata:
+  name: postgresql
+spec:
+  images:
+    - major: 12
+      image: quay.io/enterprisedb/postgresql:12.18-3@sha256:f098fb585ffad82921a00bd5202cbb230dc9edff05585fa29c279f9b01bab131
+    - major: 13
+      image: quay.io/enterprisedb/postgresql:13.14-3@sha256:d497fba2fb94021970bd3e815c566ebed2f85b703eeb787542b8a6e4d2447bf1
+    - major: 14
+      image: quay.io/enterprisedb/postgresql:14.11-3@sha256:8108205e0f7275f17f0882e89cecdf3db1a23a69507764e900fdcf8944b94f62
+    - major: 15
+      image: quay.io/enterprisedb/postgresql:15.6-3@sha256:320302b9b8c56fac145ad4b9ec10305b605ba3a9ab1812f6c41faffadbd52ca0
+    - major: 16
+      image: quay.io/enterprisedb/postgresql:16.2-3@sha256:81515838715d3c9ef7cd28b82310f986d1781a4b9dc7e9f255792c91642b2c2e
