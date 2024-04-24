@@ -4,11 +4,15 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'image-catalogs/**'
   workflow_dispatch:
 
 env:
-  IMAGE_STAGING: enterprisedb/postgresql-testing
-  IMAGE_RELEASE: enterprisedb/postgresql
+  IMAGE_GHCR_DEV: ghcr.io/enterprisedb/postgresql-testing
+  IMAGE_GHCR: ghcr.io/enterprisedb/postgresql
+  IMAGE_QUAY_DEV: quay.io/enterprisedb/postgresql-testing
+  IMAGE_QUAY: quay.io/enterprisedb/postgresql
 
 jobs:
   generate-jobs:
@@ -47,11 +51,16 @@ jobs:
         RESULT=""
         for tag in $(jq -r '.[]' <<< "${TAGS}")
         do
-          RESULT="${RESULT},quay.io/${IMAGE_STAGING}:${tag},ghcr.io/${IMAGE_STAGING}:${tag}"
+          # dev tags
+          RESULT="${RESULT},${IMAGE_GHCR_DEV}:${tag}"
+          RESULT="${RESULT},${IMAGE_QUAY_DEV}:${tag}"
+
           # If we are running the pipeline in the main branch images are pushed in both -testing and PROD repo
           if [ "${GITHUB_REF#refs/heads/}" == main ]
           then
-            RESULT="${RESULT},quay.io/${IMAGE_RELEASE}:${tag},ghcr.io/${IMAGE_RELEASE}:${tag}"
+            # prod tags
+            RESULT="${RESULT},${IMAGE_GHCR}:${tag}"
+            RESULT="${RESULT},${IMAGE_QUAY}:${tag}"
           fi
         done
         echo "TAGS=${RESULT%,}" >> $GITHUB_ENV
@@ -93,13 +102,14 @@ jobs:
       env:
         DOCKLE_IGNORES: CIS-DI-0009
       with:
-        image: "quay.io/${{ env.IMAGE_STAGING }}:${{ matrix.tags[0] }}"
+        image: "${{ env.IMAGE_GHCR_DEV }}:${{ matrix.tags[0] }}"
         exit-code: '1'
         failure-threshold: WARN
         accept-keywords: key
         accept-filenames: usr/share/cmake/Templates/Windows/Windows_TemporaryKey.pfx,etc/trusted-key.key,usr/share/doc/perl-IO-Socket-SSL/certs/server_enc.p12,usr/share/doc/perl-IO-Socket-SSL/certs/server.p12,usr/share/postgresql-common/pgdg/apt.postgresql.org.asc,etc/ssl/private/ssl-cert-snakeoil.key,usr/local/lib/python3.11/site-packages/azure/core/settings.py
 
     - name: Build and push
+      id: build
       uses: docker/build-push-action@v5
       with:
         context: ${{ matrix.dir }}
@@ -126,3 +136,126 @@ jobs:
         SLACK_USERNAME: ghBot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: "Failure releasing PostgreSQL ${{ matrix.name }} image"
+
+    - name: Create artifact
+      run: |
+        # set a flavor suffix
+        FLAVOR_SUFFIX=""
+        FLAVOR=${{ matrix.flavor }}
+        if [ -n "${FLAVOR}" ]; then
+          FLAVOR_SUFFIX="-${FLAVOR}"
+        fi
+        echo FLAVOR_SUFFIX=${FLAVOR_SUFFIX} >> $GITHUB_ENV
+
+        # set the image name
+        CATALOG_NAME="postgresql"
+        if [[ "${FLAVOR}" =~ "postgis" ]]; then
+          CATALOG_NAME="postgis"
+        fi
+
+        # set the base images
+        BASE_IMAGE=${IMAGE_GHCR_DEV}
+        if [ "${GITHUB_REF#refs/heads/}" == main ]; then
+          BASE_IMAGE=${IMAGE_QUAY}
+        fi
+
+        # set a default registry suffix
+        REGISTRY_SUFFIX=""
+
+        # extract the registry
+        if [[ "$image" =~ "quay.io" ]]; then
+          REGISTRY_SUFFIX="-quay"
+        fi
+        if [[ "$image" =~ "ghcr.io" ]]; then
+          REGISTRY_SUFFIX="-ghcr"
+        fi
+
+        IMAGE=${BASE_IMAGE}:${{ matrix.fullTag }}@${{ steps.build.outputs.digest }} \
+        MAJOR=${{ matrix.version }} \
+        NAME=${CATALOG_NAME} \
+        yq --null-input '{
+          "apiVersion": "postgresql.k8s.enterprisedb.io/v1",
+          "kind": "ClusterImageCatalog",
+          "metadata": {"name": env(NAME)},
+          "spec": {
+            "images": [
+              {
+                "major": env(MAJOR),
+                "image": env(IMAGE)
+              }
+            ]
+          }
+        }' > "${{ matrix.version }}${FLAVOR_SUFFIX}${REGISTRY_SUFFIX}".yaml
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.version }}${{ env.FLAVOR_SUFFIX }}-clusterimagecatalog
+        path: ${{ matrix.version }}*.yaml
+
+  image-catalog:
+    name: Generate ClusterImageCatalog
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.REPO_GHA_PAT }}
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: '*-clusterimagecatalog'
+          path: clusterimagecatalog
+          merge-multiple: true
+
+      - name: Update ClusterImageCatalog
+        run: |
+          shopt -s extglob
+          mkdir -p image-catalogs/
+
+          for ubiVersion in 8 9; do 
+            # standard
+            yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi${ubiVersion}.yaml > image-catalogs/ClusterImageCatalog-ubi${ubiVersion}.yaml
+
+            # multilang
+            yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi${ubiVersion}-multilang.yaml > image-catalogs/ClusterImageCatalog-ubi${ubiVersion}-multilang.yaml
+
+            # multiarch
+            yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi${ubiVersion}-multiarch.yaml > image-catalogs/ClusterImageCatalog-ubi${ubiVersion}-multiarch.yaml
+          done
+
+          # postgis
+          yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis.yaml
+
+          # postgis multilang
+          yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis-multilang.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis-multilang.yaml
+
+          cat image-catalogs/*.yaml
+
+      - name: Temporarily disable "include administrators" branch protection
+        if: ${{ always() && github.ref == 'refs/heads/main' }}
+        id: disable_include_admins
+        uses: benjefferies/branch-protection-bot@v1.1.2
+        with:
+          access_token: ${{ secrets.REPO_GHA_PAT }}
+          branch: main
+          enforce_admins: false
+
+      - name: Push ClusterImageCatalog updates
+        uses: EndBug/add-and-commit@v9
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          author_name: EnterpriseDB Automated Updates
+          author_email: noreply@enterprisedb.com
+          message: 'Automatic ClusterImageCatalog update'
+          add: 'image-catalogs/*'
+
+      - name: Enable "include administrators" branch protection
+        uses: benjefferies/branch-protection-bot@v1.1.2
+        if: ${{ always() && github.ref == 'refs/heads/main' }}
+        with:
+          access_token: ${{ secrets.REPO_GHA_PAT }}
+          branch: main
+          enforce_admins: ${{ steps.disable_include_admins.outputs.initial_status }}

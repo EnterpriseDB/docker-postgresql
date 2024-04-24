@@ -14,7 +14,7 @@ cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 versions=("$@")
 if [ ${#versions[@]} -eq 0 ]; then
 	for version in */; do
-		[[ $version = src/ ]] && continue
+		[[ $version =~ (src|image-catalogs) ]] && continue
 		versions+=("$version")
 	done
 fi
