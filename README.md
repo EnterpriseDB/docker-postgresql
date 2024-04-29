@@ -25,6 +25,7 @@ The images include:
 - PostGIS 3 (optional)
 - PGAudit
 - pgRouting (on PostGIS images only)
+- pgvector
 - Postgres Failover Slots
 - All language packs for glibc (optional)
 
@@ -35,6 +36,8 @@ Barman Cloud is distributed by EnterpriseDB under the [GNU GPL 3 License](https:
 PostGIS is distributed under the [GNU GPL 2 License](https://git.osgeo.org/gitea/postgis/postgis/src/branch/master/COPYING).
 
 PGAudit is distributed under the [PostgreSQL License](https://github.com/pgaudit/pgaudit/blob/master/LICENSE).
+
+pgvector is distributed under the [PostgreSQL License](https://github.com/pgvector/pgvector/blob/master/LICENSE).
 
 pgRouting is distributed under the
 [GNU GPL 2 License](https://github.com/pgRouting/pgrouting/blob/main/LICENSE),
