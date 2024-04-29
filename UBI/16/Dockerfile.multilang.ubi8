@@ -39,6 +39,7 @@ RUN set -xe ; \
 		pg_failover_slots_16 \
 		pg_squeeze_16 \
 		"$pg_audit_pkg" \
+		pgvector_16 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'

@@ -19,6 +19,7 @@ RUN --mount=type=secret,id=cs_token \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
 	pg_failover_slots_pkg="pg_failover_slots_15" ; \
 	pg_squeeze_pkg="pg_squeeze_15" ; \
+	pgvector="pgvector_15" ; \
 	pg_audit_pkg="pgaudit17_15" ; \
 	case $ARCH in \
 			amd64) \
@@ -33,12 +34,14 @@ RUN --mount=type=secret,id=cs_token \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
 					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ; \
 					pg_squeeze_pkg="edb-pg15-pg-squeeze1" ; \
+					pgvector="edb-pg15-pgvector0" ; \
 					pg_audit_pkg="edb-pg15-pgaudit1" ; \
 					if [ "15" -gt "15" ]; then pg_audit_pkg="edb-pg15-pgaudit15"; fi ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
 					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ; \
 					pg_squeeze_pkg="edb-pg15-pg-squeeze1" ; \
+					pgvector="edb-pg15-pgvector0" ; \
 					pg_audit_pkg="edb-pg15-pgaudit1" ; \
 					if [ "15" -gt "15" ]; then pg_audit_pkg="edb-pg15-pgaudit15"; fi ;; \
 			*) \
@@ -56,6 +59,7 @@ RUN --mount=type=secret,id=cs_token \
 			"$pg_audit_pkg" \
 			"$pg_squeeze_pkg" \
 			"$pg_failover_slots_pkg" \
+			"$pgvector" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
