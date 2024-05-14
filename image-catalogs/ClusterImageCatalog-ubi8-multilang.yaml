@@ -5,12 +5,12 @@ metadata:
 spec:
   images:
     - major: 12
-      image: quay.io/enterprisedb/postgresql:12.19-2-multilang@sha256:c674573ebff63b8e378222766b370b97ef9211b5310a168bd9f3e06874717d91
+      image: quay.io/enterprisedb/postgresql:12.19-2-multilang@sha256:da811142d52a3bad3257876c74918ca5b5ed381fb7870099c5bb614be6c2328c
     - major: 13
-      image: quay.io/enterprisedb/postgresql:13.15-2-multilang@sha256:7414a03dde4dc3542876407416729cc0b2c9cf775ee6c182f259ed927094f49e
+      image: quay.io/enterprisedb/postgresql:13.15-2-multilang@sha256:b9b396951bf3000bc5c64c1054590ca8e5044389e9e07e525ad5988b8730f55d
     - major: 14
-      image: quay.io/enterprisedb/postgresql:14.12-2-multilang@sha256:45acd0f936a989fe366599e956952def8f82fe6e36e85148c06f0fa889158ca9
+      image: quay.io/enterprisedb/postgresql:14.12-2-multilang@sha256:9f5bf1848d4c74f440e68de6bc1e540834b54399ff5d981df0a7d02b9d49fb1d
     - major: 15
-      image: quay.io/enterprisedb/postgresql:15.7-2-multilang@sha256:77f02920fb0a6abbd480a0018916ffda138cd0836a63c2c3d697dbed4aedb572
+      image: quay.io/enterprisedb/postgresql:15.7-2-multilang@sha256:e1ca637a5f2935c2d123de53a5f9cbe29c10f6292fa7347a464901779340810d
     - major: 16
-      image: quay.io/enterprisedb/postgresql:16.3-2-multilang@sha256:34cc4cfacdea81a9cf720010f16de38d04afc8e4306934f62abb9308b9cb77ab
+      image: quay.io/enterprisedb/postgresql:16.3-2-multilang@sha256:d471ba3ba88899ae0ecf6b15b1d17d025bc6e54323991ea04b0bbd3ba960ffdb
