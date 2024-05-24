@@ -224,16 +224,16 @@ jobs:
 
             # multiarch
             yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi${ubiVersion}-multiarch.yaml > image-catalogs/ClusterImageCatalog-ubi${ubiVersion}-multiarch.yaml
+
+            # postgis
+            yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis.yaml
+
+            # postgis multilang
+            yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis-multilang.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis-multilang.yaml
+
+            # postgis multiarch
+            yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis-multiarch.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis-multiarch.yaml
           done
-
-          # postgis
-          yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis.yaml
-
-          # postgis multilang
-          yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis-multilang.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis-multilang.yaml
-
-          # postgis multiarch
-          yq eval-all '. as $item ireduce ({}; . *+ $item )' clusterimagecatalog/[0-9][0-9]-ubi8-postgis-multiarch.yaml > image-catalogs/ClusterImageCatalog-ubi8-postgis-multiarch.yaml
 
           cat image-catalogs/*.yaml
 
