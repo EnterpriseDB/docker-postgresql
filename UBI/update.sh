@@ -77,17 +77,17 @@ get_postgresql_version() {
 	fi
 
 	if [[ "${pgArchMatrix[$arch]}" == "edb" ]]; then
-		latest_pg_version=$(check_cloudsmith_pkgs "edb" "${os_version}" "${arch}" "${pg_major}")
+		latest_pg_version=$(get_cloudsmith_pgserver_pkg "edb" "${os_version}" "${arch}" "${pg_major}")
 	fi
 
 	if [[ "${pgArchMatrix[$arch]}" == "enterprise" ]]; then
-		latest_pg_version=$(check_cloudsmith_pkgs "enterprise" "${os_version}" "${arch}" "${pg_major}")
+		latest_pg_version=$(get_cloudsmith_pgserver_pkg "enterprise" "${os_version}" "${arch}" "${pg_major}")
 	fi
 
 	echo "${latest_pg_version}"
 }
 
-check_cloudsmith_pkgs() {
+get_cloudsmith_pgserver_pkg() {
 	local repo="$1"; shift
 	local os_version="$1"; shift
 	local arch="$1"; shift
@@ -96,7 +96,19 @@ check_cloudsmith_pkgs() {
 	cloudsmith ls pkgs enterprisedb/"${repo}" -q "name:postgresql*-server$ distribution:el/${os_version} version:latest architecture:${arch}" -F json 2> /dev/null | \
 			jq '.data[].filename' | \
 			sed -n 's/.*postgresql'"${pg_major}"'-server-\([0-9]\+.[0-9]\+\)-.*\.'"${arch}"'.*/\1/p' | \
-			sort -V
+			sort -rV | head -n 1
+}
+
+get_cloudsmith_postgis_pkg() {
+	local repo="$1"; shift
+	local os_version="$1"; shift
+	local arch="$1"; shift
+	local pg_major="$1"; shift
+
+	cloudsmith ls pkgs enterprisedb/"${repo}" -q "name:postgis*_${pg_major}$ distribution:el/${os_version} version:latest architecture:${arch}" -F json 2> /dev/null | \
+			jq '.data[].filename' | \
+			sed -n 's/.*postgis[0-9]\+_'"${pg_major}"'-\([0-9]\+.[0-9]\+.[0-9]\+\)-.*\.'"${arch}"'.*/\1/p' | \
+			sort -rV | head -n 1
 }
 
 compare_architecture_pkgs() {
@@ -143,6 +155,11 @@ get_postgis_version() {
 	local arch="$1"; shift
 	local pg_major="$1"; shift
 
+	if [[ -z "${pgArchMatrix[$arch]}" ]]; then
+		echo "Unsupported architecture." >&2
+		return
+	fi
+
 	local base_url="https://yum.postgresql.org"
 	local regexp='postgis\d+_'"${pg_major}"'-(\d+.\d+.\d+)-\d+.*rhel'"${os_version}"'.'"${arch}"'.rpm'
 
@@ -151,9 +168,19 @@ get_postgis_version() {
 		regexp='postgis\d+_'"${pg_major}"'-(\d+.\d+.\d+)-.*.rhel'"${os_version}"'.'"${arch}"'.rpm'
 	fi
 
-	postgisVersion=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
-		perl -ne '/<a.*href="'"${regexp}"'"/ && print "$1\n"' | \
-		sort -rV | head -n1)
+	if [[ "${pgArchMatrix[$arch]}" == "pgdg" ]]; then
+		postgisVersion=$(curl -fsSL "${base_url}/${pg_major}/redhat/rhel-${os_version}-${arch}/" | \
+			perl -ne '/<a.*href="'"${regexp}"'"/ && print "$1\n"' | \
+			sort -rV | head -n1)
+	fi
+
+	if [[ "${pgArchMatrix[$arch]}" == "edb" ]]; then
+		postgisVersion=$(get_cloudsmith_postgis_pkg "edb" "${os_version}" "${arch}" "${pg_major}")
+	fi
+
+	if [[ "${pgArchMatrix[$arch]}" == "enterprise" ]]; then
+		postgisVersion=$(get_cloudsmith_postgis_pkg "enterprise" "${os_version}" "${arch}" "${pg_major}")
+	fi
 
 	echo "${postgisVersion}"
 }
@@ -310,7 +337,7 @@ generate_redhat() {
 
 generate_redhat_postgis() {
 	local version="$1"; shift
-	ubiRelease="8"
+	local ubiRelease="$1"; shift
 	local versionFile="${version}/.versions-postgis.json"
 
 	imageReleaseVersion=1
@@ -326,14 +353,16 @@ generate_redhat_postgis() {
 	fi
 
 	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
+	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
+	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
-	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64"; then
+	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
 		return
 	fi
 
 	postgresqlVersion="${pg_x86_64}"
 	if [ -z "$postgresqlVersion" ]; then
-		echo "Unable to retrieve latest PostgreSQL $version version"
+		echo "Unable to retrieve latest PostgreSQL $version version for UBI$ubiRelease"
 		return
 	fi
 
@@ -350,8 +379,10 @@ generate_redhat_postgis() {
 	fi
 
 	postgis_x86_64=$(get_postgis_version "${ubiRelease}" 'x86_64' "$version")
+	postgis_ppc64le=$(get_postgis_version "${ubiRelease}" 'ppc64le' "$version")
+	postgis_s390x=$(get_postgis_version "${ubiRelease}" 's390x' "$version")
 	postgis_arm64=$(get_postgis_version "${ubiRelease}" 'aarch64' "$version")
-	if ! compare_architecture_pkgs "$postgis_x86_64" "$postgis_arm64"; then
+	if ! compare_architecture_pkgs "$postgis_x86_64" "$postgis_arm64" "$postgis_ppc64le" "$postgis_s390x"; then
 		return
 	fi
 
@@ -492,5 +523,5 @@ update_requirements
 for version in "${versions[@]}"; do
 	generate_redhat "${version}" "8"
 	generate_redhat "${version}" "9"
-	generate_redhat_postgis "${version}"
+	generate_redhat_postgis "${version}" "8"
 done
