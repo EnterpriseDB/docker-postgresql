@@ -6,12 +6,13 @@ Red Hat Universal Base Images (UBI) 8 and 9:
 
 - Standard minimal image - amd64/arm64
    - multilang version (all Locales installed) - amd64/arm64
-   - multiarch version (all Locales installed) - ppc64le/s390x
+   - multiarch version (all Locales installed) - amd64/arm64/ppc64le/s390x
 - with the PostGIS extension - amd64/arm64
    - PostGIS + multilang (all Locales installed) - amd64/arm64
+   - PostGIS + multiarch (all Locales installed) - amd64/arm64/ppc64le/s390x
 
-Images are available for amd64, arm64, ppc64le and s390x architectures.
-Multilang images (`-multilang`) are container images enhanced with the full list of Locales. Available for all UBI based images.
+Multilang images (`-multilang`) are container images enhanced with the full list of Locales.
+Multiarch images (`-multiarch`) are container images built for amd64/arm64/ppc64le/s390x architectures and enhanced with the full list of Locales.
 
 These images are customised to work with [EDB Postgres for Kubernetes by EDB](https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/)
 for Kubernetes and Red Hat Openshift.
@@ -27,6 +28,7 @@ The images include:
 - pgRouting (on PostGIS images only)
 - pgvector
 - Postgres Failover Slots
+- pg_squeeze
 - All language packs for glibc (optional)
 
 PostgreSQL is distributed by the PGDG under the [PostgreSQL License](https://www.postgresql.org/about/licence/).
