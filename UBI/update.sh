@@ -454,8 +454,8 @@ generate_redhat_postgis() {
 		-e 's/%%POSTGIS_VERSION%%/'"$postgisVersion"'/g' \
 		-e 's/%%POSTGIS_MAJOR%%/'"$postgisMajorNoDot"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
-		Dockerfile-postgis-multiarch.template \
-		>"$version/Dockerfile.postgis-multiarch"
+		Dockerfile-postgis-multilang.template \
+		>"$version/Dockerfile.postgis-multilang"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
@@ -466,8 +466,8 @@ generate_redhat_postgis() {
 		-e 's/%%POSTGIS_VERSION%%/'"$postgisVersion"'/g' \
 		-e 's/%%POSTGIS_MAJOR%%/'"$postgisMajorNoDot"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
-		Dockerfile-postgis-multilang.template \
-		>"$version/Dockerfile.postgis-multilang"
+		Dockerfile-postgis-multiarch.template \
+		>"$version/Dockerfile.postgis-multiarch"
 }
 
 update_requirements() {

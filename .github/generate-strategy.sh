@@ -184,7 +184,7 @@ generator_postgis() {
 		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
 			versionAliases+=("$fullVersion-${postgisVersion}-postgis${tagSuffix}")
 			versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang${tagSuffix}")
-			versionAliasesMultiArch+=("$fullVersion-${postgisVersion}-postgis-multilang${tagSuffix}")
+			versionAliasesMultiArch+=("$fullVersion-${postgisVersion}-postgis-multiarch${tagSuffix}")
 			fullVersion="${fullVersion%[.-]*}"
 		done
 
@@ -196,7 +196,6 @@ generator_postgis() {
 			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"], \"fullTag\": \"${fullTag}\"}"
 			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multilang\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"], \"fullTag\": \"${fullTagMultiLang}\"}"
 			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiArch\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multiarch\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multiarch\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"], \"fullTag\": \"${fullTagMultiArch}\"}"
-
 		)
 	done
 }

@@ -51,7 +51,7 @@ RUN --mount=type=secret,id=cs_token \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
-	yum -y --setopt=tsflags=nodocs install \
+	yum -y --setopt=tsflags=nodocs install%%YUM_OPTIONS%% \
 			postgresql%%PG_MAJOR%%-%%POSTGRES_VERSION%% \
 			postgresql%%PG_MAJOR%%-contrib-%%POSTGRES_VERSION%% \
 			postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%% \
