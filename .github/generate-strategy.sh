@@ -107,8 +107,8 @@ generator() {
 			fullVersion="${fullVersion%[.-]*}"
 		done
 
-		platforms="linux/amd64, linux/arm64"
-		platformsMultiArch="${platforms}, linux/ppc64le,linux/s390x"
+		platforms="linux/amd64,linux/arm64"
+		platformsMultiArch="${platforms},linux/ppc64le,linux/s390x"
 
 		# Build the json entry
 		entries+=(
@@ -132,6 +132,7 @@ generator_postgis() {
 
 		# Read versions from the definition file
 		versionFile="${version}/.versions-postgis.json"
+		ubiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
 		fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		postgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}" | cut -f1,2 -d.)
 		releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
@@ -139,6 +140,7 @@ generator_postgis() {
 		# FullTags
 		fullTag="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}${tagSuffix}"
 		fullTagMultiLang="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang${tagSuffix}"
+		fullTagMultiArch="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multiarch${tagSuffix}"
 
 		# Initial aliases are "major version", "optional alias", "full version with release"
 		# i.e. "13", "latest", "13.2-1"
@@ -155,6 +157,11 @@ generator_postgis() {
 				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
 				"${fullTagMultiLang}"
 			)
+			versionAliasesMultiArch=(
+				"${version}-beta-postgis-multiarch${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multiarch${tagSuffix}"}
+				"${fullTagMultiArch}"
+			)
 		else
 			versionAliases=(
 				"${version}-postgis${tagSuffix}"
@@ -166,6 +173,11 @@ generator_postgis() {
 				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
 				"${fullTagMultiLang}"
 			)
+			versionAliasesMultiArch=(
+				"${version}-postgis-multiarch${tagSuffix}"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multiarch${tagSuffix}"}
+				"${fullTagMultiArch}"
+			)
 		fi
 
 		# Add all the version prefixes between full version and major version
@@ -173,15 +185,18 @@ generator_postgis() {
 		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
 			versionAliases+=("$fullVersion-${postgisVersion}-postgis${tagSuffix}")
 			versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang${tagSuffix}")
+			versionAliasesMultiArch+=("$fullVersion-${postgisVersion}-postgis-multiarch${tagSuffix}")
 			fullVersion="${fullVersion%[.-]*}"
 		done
 
 		platforms="linux/amd64,linux/arm64"
+		platformsMultiArch="${platforms},linux/ppc64le,linux/s390x"
 
 		# Build the json entry
 		entries+=(
-			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease}\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"], \"fullTag\": \"${fullTag}\"}"
-			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiLang\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multilang\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"], \"fullTag\": \"${fullTagMultiLang}\"}"
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease}\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"], \"fullTag\": \"${fullTag}\"}"
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiLang\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multilang\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"], \"fullTag\": \"${fullTagMultiLang}\"}"
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiArch\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multiarch\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multiarch\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"], \"fullTag\": \"${fullTagMultiArch}\"}"
 		)
 	done
 }
