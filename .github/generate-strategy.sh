@@ -14,6 +14,9 @@ declare -A aliases=(
 	[16]='latest'
 )
 
+# Define the current default UBI version
+DEFAULT_UBI="8"
+
 GITHUB_ACTIONS=${GITHUB_ACTIONS:-false}
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}/..")")"
@@ -42,11 +45,6 @@ join() {
 generator() {
 	local ubiRelease="$1"; shift
 
-	tagSuffix=""
-	if [ "$ubiRelease" -gt "8" ]; then
-		tagSuffix="-ubi${ubiRelease}"
-	fi
-
 	cd "$BASE_DIRECTORY"/UBI/
 	for version in "${ubi_versions[@]}"; do
 
@@ -55,55 +53,68 @@ generator() {
 		fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
+		# A "-beta" suffix will be appended to the beta images.
+		beta=""
+		if [ "${version}" -gt '16' ]; then
+			beta="-beta"
+			# Split PG beta versions before the underscore
+			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
+		fi
+
 		# FullTags
-		fullTag="${fullVersion}-${releaseVersion}${tagSuffix}"
-		fullTagMultiLang="${fullVersion}-${releaseVersion}-multilang${tagSuffix}"
-		fullTagMultiArch="${fullVersion}-${releaseVersion}-multiarch${tagSuffix}"
+		fullTag="${fullVersion}-${releaseVersion}-ubi${ubiRelease}"
+		fullTagMultiLang="${fullVersion}-${releaseVersion}-multilang-ubi${ubiRelease}"
+		fullTagMultiArch="${fullVersion}-${releaseVersion}-multiarch-ubi${ubiRelease}"
 
 		# Initial aliases are "major version", "optional alias", "full version with release"
 		# i.e. "13", "latest", "13.2-1"
-		# A "-beta" suffix will be appended to the beta images.
-		if [ "${version}" -gt '16' ]; then
-			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
-			versionAliases=(
-				"${version}-beta${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}${tagSuffix}"}
-				"${fullTag}"
+		versionAliases=(
+			"${version}${beta}-ubi${ubiRelease}"
+			${aliases[$version]:+"${aliases[$version]}-ubi${ubiRelease}"}
+			"${fullTag}"
+		)
+		versionAliasesMultiLang=(
+			"${version}${beta}-multilang-ubi${ubiRelease}"
+			${aliases[$version]:+"${aliases[$version]}-multilang-ubi${ubiRelease}"}
+			"${fullTagMultiLang}"
+		)
+		versionAliasesMultiArch=(
+			"${version}${beta}-multiarch-ubi${ubiRelease}"
+			${aliases[$version]:+"${aliases[$version]}-multiarch-ubi${ubiRelease}"}
+			"${fullTagMultiArch}"
+		)
+
+		# If we are on the default distro, add the same tags as above but
+		# leaving out the distribution
+		if [[ "${ubiRelease}" == "${DEFAULT_UBI}" ]]; then
+			versionAliases+=(
+				"${version}${beta}"
+				${aliases[$version]:+"${aliases[$version]}"}
+				"${fullVersion}-${releaseVersion}"
 			)
-			versionAliasesMultiLang=(
-				"${version}-beta-multilang${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-multilang${tagSuffix}"}
-				"${fullTagMultiLang}"
+			versionAliasesMultiLang+=(
+				"${version}${beta}-multilang"
+				${aliases[$version]:+"${aliases[$version]}-multilang"}
+				"${fullVersion}-${releaseVersion}-multilang"
 			)
-			versionAliasesMultiArch=(
-				"${version}-beta-multiarch${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-multiarch${tagSuffix}"}
-				"${fullTagMultiArch}"
-			)
-		else
-			versionAliases=(
-				"${version}${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}${tagSuffix}"}
-				"${fullTag}"
-			)
-			versionAliasesMultiLang=(
-				"${version}-multilang${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-multilang${tagSuffix}"}
-				"${fullTagMultiLang}"
-			)
-			versionAliasesMultiArch=(
-				"${version}-multiarch${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-multiarch${tagSuffix}"}
-				"${fullTagMultiArch}"
+			versionAliasesMultiArch+=(
+				"${version}${beta}-multiarch"
+				${aliases[$version]:+"${aliases[$version]}-multiarch"}
+				"${fullVersion}-${releaseVersion}-multiarch"
 			)
 		fi
 
 		# Add all the version prefixes between full version and major version
 		# i.e "13.2"
 		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-			versionAliases+=("$fullVersion${tagSuffix}")
-			versionAliasesMultiLang+=("$fullVersion-multilang${tagSuffix}")
-			versionAliasesMultiArch+=("$fullVersion-multiarch${tagSuffix}")
+			versionAliases+=("$fullVersion-ubi${ubiRelease}")
+			versionAliasesMultiLang+=("$fullVersion-multilang-ubi${ubiRelease}")
+			versionAliasesMultiArch+=("$fullVersion-multiarch-ubi${ubiRelease}")
+			if [[ "${ubiRelease}" == "${DEFAULT_UBI}" ]]; then
+				versionAliases+=("$fullVersion")
+				versionAliasesMultiLang+=("$fullVersion-multilang")
+				versionAliasesMultiArch+=("$fullVersion-multiarch")
+			fi
 			fullVersion="${fullVersion%[.-]*}"
 		done
 
@@ -137,55 +148,68 @@ generator_postgis() {
 		postgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}" | cut -f1,2 -d.)
 		releaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 
+		# A "-beta" suffix will be appended to the beta images.
+		beta=""
+		if [ "${version}" -gt '16' ]; then
+			beta="-beta"
+			# Split PG beta versions before the underscore
+			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
+		fi
+
 		# FullTags
-		fullTag="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}${tagSuffix}"
-		fullTagMultiLang="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang${tagSuffix}"
-		fullTagMultiArch="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multiarch${tagSuffix}"
+		fullTag="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-ubi${ubiRelease}"
+		fullTagMultiLang="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang-ubi${ubiRelease}"
+		fullTagMultiArch="${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multiarch-ubi${ubiRelease}"
 
 		# Initial aliases are "major version", "optional alias", "full version with release"
 		# i.e. "13", "latest", "13.2-1"
-		# A "-beta" suffix will be appended to the beta images.
-		if [ "${version}" -gt '16' ]; then
-			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
-			versionAliases=(
-				"${version}-beta-postgis${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-postgis${tagSuffix}"}
-				"${fullTag}"
+		versionAliases=(
+			"${version}${beta}-postgis-ubi${ubiRelease}"
+			${aliases[$version]:+"${aliases[$version]}-postgis-ubi${ubiRelease}"}
+			"${fullTag}"
+		)
+		versionAliasesMultiLang=(
+			"${version}${beta}-postgis-multilang-ubi${ubiRelease}"
+			${aliases[$version]:+"${aliases[$version]}-postgis-multilang-ubi${ubiRelease}"}
+			"${fullTagMultiLang}"
+		)
+		versionAliasesMultiArch=(
+			"${version}${beta}-postgis-multiarch-ubi${ubiRelease}"
+			${aliases[$version]:+"${aliases[$version]}-postgis-multiarch-ubi${ubiRelease}"}
+			"${fullTagMultiArch}"
+		)
+
+		# If we are on the default distro, add the same tags as above but
+		# leaving out the distribution
+		if [[ "${ubiRelease}" == "${DEFAULT_UBI}" ]]; then
+			versionAliases+=(
+				"${version}${beta}-postgis"
+				${aliases[$version]:+"${aliases[$version]}-postgis"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}"
 			)
-			versionAliasesMultiLang=(
-				"${version}-beta-postgis-multilang${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
-				"${fullTagMultiLang}"
+			versionAliasesMultiLang+=(
+				"${version}${beta}-postgis-multilang"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multilang"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multilang"
 			)
-			versionAliasesMultiArch=(
-				"${version}-beta-postgis-multiarch${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-postgis-multiarch${tagSuffix}"}
-				"${fullTagMultiArch}"
-			)
-		else
-			versionAliases=(
-				"${version}-postgis${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-postgis${tagSuffix}"}
-				"${fullTag}"
-			)
-			versionAliasesMultiLang=(
-				"${version}-postgis-multilang${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-postgis-multilang${tagSuffix}"}
-				"${fullTagMultiLang}"
-			)
-			versionAliasesMultiArch=(
-				"${version}-postgis-multiarch${tagSuffix}"
-				${aliases[$version]:+"${aliases[$version]}-postgis-multiarch${tagSuffix}"}
-				"${fullTagMultiArch}"
+			versionAliasesMultiArch+=(
+				"${version}${beta}-postgis-multiarch"
+				${aliases[$version]:+"${aliases[$version]}-postgis-multiarch"}
+				"${fullVersion}-${postgisVersion}-postgis-${releaseVersion}-multiarch"
 			)
 		fi
 
 		# Add all the version prefixes between full version and major version
 		# i.e "13.2"
 		while [ "$fullVersion" != "$version" ] && [ "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-			versionAliases+=("$fullVersion-${postgisVersion}-postgis${tagSuffix}")
-			versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang${tagSuffix}")
-			versionAliasesMultiArch+=("$fullVersion-${postgisVersion}-postgis-multiarch${tagSuffix}")
+			versionAliases+=("$fullVersion-${postgisVersion}-postgis-ubi${ubiRelease}")
+			versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang-ubi${ubiRelease}")
+			versionAliasesMultiArch+=("$fullVersion-${postgisVersion}-postgis-multiarch-ubi${ubiRelease}")
+			if [[ "${ubiRelease}" == "${DEFAULT_UBI}" ]]; then
+				versionAliases+=("$fullVersion-${postgisVersion}-postgis")
+				versionAliasesMultiLang+=("$fullVersion-${postgisVersion}-postgis-multilang")
+				versionAliasesMultiArch+=("$fullVersion-${postgisVersion}-postgis-multiarch")
+			fi
 			fullVersion="${fullVersion%[.-]*}"
 		done
 
