@@ -1,43 +1,30 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:8.9-1107.1705420509
+FROM quay.io/enterprisedb/edb-ubi:9.4-1123.1719560047
+ARG SUBSCRIPTION_NAME
 
 # Do not split the description, otherwise we will see a blank space in the labels
-LABEL name="PostgreSQL Container Images" \
+LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="15.5" \
-      release="5" \
-      summary="PostgreSQL Container images." \
-      description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
+      version="15.7" \
+      release="1" \
+      summary="PostgreSQL + PostGIS Container images." \
+      description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 9."
 
 COPY root/ /
 
 ARG TARGETARCH
-RUN --mount=type=secret,id=cs_token \
-	set -xe ; \
+RUN set -xe ; \
 	ARCH="${TARGETARCH}" ; \
 	base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
-	pg_failover_slots_pkg="pg_failover_slots_15" ; \
 	pg_audit_pkg="pgaudit17_15" ; \
 	case $ARCH in \
 			amd64) \
-					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
+				yum -y install "${base_url}/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			arm64) \
-					yum -y install "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
-			ppc64le) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ; \
-					pg_audit_pkg="edb-pg15-pgaudit1" ; \
-					if [ "15" -gt "15" ]; then pg_audit_pkg="edb-pg15-pgaudit15"; fi ;; \
-			s390x) \
-					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
-					pg_failover_slots_pkg="edb-pg15-pg-failover-slots1" ; \
-					pg_audit_pkg="edb-pg15-pgaudit1" ; \
-					if [ "15" -gt "15" ]; then pg_audit_pkg="edb-pg15-pgaudit15"; fi ;; \
+				yum -y install "${base_url}/EL-9-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ; \
+				if [ "15" -gt "15" ]; then pg_audit_pkg="pgaudit_15"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -46,14 +33,15 @@ RUN --mount=type=secret,id=cs_token \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
-			postgresql15-15.5 \
-			postgresql15-contrib-15.5 \
-			postgresql15-server-15.5 \
-			postgresql15-libs-15.5 \
-			"$pg_audit_pkg" \
-			"$pg_failover_slots_pkg" \
+		postgresql15-15.7 \
+		postgresql15-contrib-15.7 \
+		postgresql15-server-15.7 \
+		postgresql15-libs-15.7 \
+		pg_failover_slots_15 \
+		pg_squeeze_15 \
+		"$pg_audit_pkg" \
+		pgvector_15 \
 	; \
-	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
@@ -87,6 +75,36 @@ RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PG
 VOLUME /var/lib/postgresql/data
 
 RUN mkdir /docker-entrypoint-initdb.d
+
+# Postgis
+RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
+	set -xe ; \
+	rm -f /etc/rhsm-host ; \
+	SUBSCRIPTION_NAME="${SUBSCRIPTION_NAME}" bash /run/secrets/subscription.sh ; \
+	yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm ; \
+	ARCH="${TARGETARCH}" ; \
+	case $ARCH in \
+			amd64) \
+				BUILDARCH="x86_64" ;; \
+			arm64) \
+				BUILDARCH="aarch64" ;; \
+			*) \
+					exit 1 ;; \
+	esac ; \
+	yum -y install --enablerepo=ubi-9-codeready-builder,codeready-builder-for-rhel-9-${BUILDARCH}-rpms \
+		postgis34_15-3.4.2 \
+		pgrouting_15 \
+	; \
+	yum -y remove epel-release ; \
+	subscription-manager remove --all ; \
+	subscription-manager unregister ; \
+	subscription-manager clean ; \
+	yum -y clean all --enablerepo='*' ; \
+	ln -sf /run/secrets/rhsm /etc/rhsm-host ; \
+	rm /var/log/rhsm/rhsm.log
+
+COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
+COPY ./update-postgis.sh /usr/local/bin
 
 # Remove example certificates in pem and enc format from /usr/share/doc folder
 RUN find /usr/share/doc -type f '(' -iname "*.pem" -o -iname "*.enc" ')' -exec rm -rf {} \; || true

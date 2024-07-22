@@ -338,7 +338,7 @@ generate_redhat() {
 generate_redhat_postgis() {
 	local version="$1"; shift
 	local ubiRelease="$1"; shift
-	local versionFile="${version}/.versions-postgis.json"
+	local versionFile="${version}/.versions-postgis-ubi${ubiRelease}.json"
 
 	imageReleaseVersion=1
 
@@ -474,7 +474,7 @@ generate_redhat_postgis() {
 		-e 's/%%POSTGIS_MAJOR%%/'"$postgisMajorNoDot"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-postgis.template \
-		>"$version/Dockerfile.postgis"
+		>"$version/Dockerfile.postgis.ubi${ubiRelease}"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
@@ -486,7 +486,7 @@ generate_redhat_postgis() {
 		-e 's/%%POSTGIS_MAJOR%%/'"$postgisMajorNoDot"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-postgis-multilang.template \
-		>"$version/Dockerfile.postgis-multilang"
+		>"$version/Dockerfile.postgis-multilang.ubi${ubiRelease}"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
@@ -498,7 +498,7 @@ generate_redhat_postgis() {
 		-e 's/%%POSTGIS_MAJOR%%/'"$postgisMajorNoDot"'/g' \
 		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
 		Dockerfile-postgis-multiarch.template \
-		>"$version/Dockerfile.postgis-multiarch"
+		>"$version/Dockerfile.postgis-multiarch.ubi${ubiRelease}"
 }
 
 update_requirements() {
@@ -524,4 +524,5 @@ for version in "${versions[@]}"; do
 	generate_redhat "${version}" "8"
 	generate_redhat "${version}" "9"
 	generate_redhat_postgis "${version}" "8"
+	generate_redhat_postgis "${version}" "9"
 done

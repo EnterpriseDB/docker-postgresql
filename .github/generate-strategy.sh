@@ -131,7 +131,7 @@ generator_postgis() {
 	for version in "${ubi_versions[@]}"; do
 
 		# Read versions from the definition file
-		versionFile="${version}/.versions-postgis.json"
+		versionFile="${version}/.versions-postgis-ubi${ubiRelease}.json"
 		ubiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
 		fullVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		postgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}" | cut -f1,2 -d.)
@@ -194,9 +194,9 @@ generator_postgis() {
 
 		# Build the json entry
 		entries+=(
-			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease}\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"], \"fullTag\": \"${fullTag}\"}"
-			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiLang\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multilang\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"], \"fullTag\": \"${fullTagMultiLang}\"}"
-			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiArch\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multiarch\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multiarch\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"], \"fullTag\": \"${fullTagMultiArch}\"}"
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease}\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis.ubi${ubiRelease}\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"], \"fullTag\": \"${fullTag}\"}"
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiLang\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multilang.ubi${ubiRelease}\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multilang\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"], \"fullTag\": \"${fullTagMultiLang}\"}"
+			"{\"name\": \"PostGIS ${fullVersion}-${postgisVersion} UBI${ubiRelease} MultiArch\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.postgis-multiarch.ubi${ubiRelease}\",\"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-postgis-multiarch\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"], \"fullTag\": \"${fullTagMultiArch}\"}"
 		)
 	done
 }
@@ -209,6 +209,7 @@ generator "9"
 
 # UBI PostGIS
 generator_postgis "8"
+generator_postgis "9"
 
 # Build the strategy as a JSON object
 strategy="{\"fail-fast\": false, \"matrix\": {\"include\": [$(join ', ' "${entries[@]}")]}}"
