@@ -1,0 +1,16 @@
+apiVersion: postgresql.k8s.enterprisedb.io/v1
+kind: ClusterImageCatalog
+metadata:
+  name: postgis
+spec:
+  images:
+    - major: 12
+      image: quay.io/enterprisedb/postgresql:12.19-3.4-postgis-1-multiarch-ubi9@sha256:65629fc52742cbabca6bbcf7768f81c936f87c4f04cfd17638d8200e57f84722
+    - major: 13
+      image: quay.io/enterprisedb/postgresql:13.15-3.4-postgis-1-multiarch-ubi9@sha256:32fcd4d4d876a51e16ece02a74f664cfcb130a5b2dce6e4d7cd9a8cd000fc5fe
+    - major: 14
+      image: quay.io/enterprisedb/postgresql:14.12-3.4-postgis-1-multiarch-ubi9@sha256:692ab18f70f5d1de6bde7e70d0d4603597217e91d9ab9b52b76849c647c4418a
+    - major: 15
+      image: quay.io/enterprisedb/postgresql:15.7-3.4-postgis-1-multiarch-ubi9@sha256:5788dbfab2737d3ff95ce9464d4f70d4edf16f716cba3c3ee7b278c528ce73d4
+    - major: 16
+      image: quay.io/enterprisedb/postgresql:16.3-3.4-postgis-1-multiarch-ubi9@sha256:2fe18a953a0e5e6a1ebec120db340a341e0af5d112cc1cc0cc957e333420f4e1
