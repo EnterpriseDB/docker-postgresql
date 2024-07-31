@@ -67,7 +67,7 @@ generator() {
 		fullTagMultiArch="${fullVersion}-${releaseVersion}-multiarch-ubi${ubiRelease}"
 
 		if [ "${version}" -ge "15" ]; then
-		  fullTagPLV8="${fullVersion}-${releaseVersion}-plv8${tagSuffix}"
+		  fullTagPLV8="${fullVersion}-${releaseVersion}-plv8${ubiRelease}"
 		fi
 
 		# Initial aliases are "major version", "optional alias", "full version with release"
@@ -109,7 +109,7 @@ generator() {
 			if [ "${version}" -ge "15" ]; then
 			  versionAliasesPLV8=(
 			    "${version}${tagSuffix}"
-				  ${aliases[$version]:+"${aliases[$version]}${tagSuffix}"}
+				  ${aliases[$version]:+"${aliases[$version]}-multiarch"}
 				  "${fullTagPLV8}"
 			  )
 			fi
