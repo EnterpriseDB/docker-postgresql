@@ -108,7 +108,7 @@ generator() {
 			)
 			if [ "${version}" -ge "15" ]; then
 			  versionAliasesPLV8=(
-			    "${version}${tagSuffix}"
+			    "${version}${beta}"
 				  ${aliases[$version]:+"${aliases[$version]}-multiarch"}
 				  "${fullTagPLV8}"
 			  )
@@ -149,11 +149,6 @@ generator() {
 
 generator_postgis() {
 	local ubiRelease="$1"; shift
-
-	tagSuffix=""
-	if [ "$ubiRelease" -gt "8" ]; then
-		tagSuffix="-ubi${ubiRelease}"
-	fi
 
 	cd "$BASE_DIRECTORY"/UBI/
 	for version in "${ubi_versions[@]}"; do
