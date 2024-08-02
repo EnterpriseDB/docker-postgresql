@@ -66,6 +66,10 @@ generator() {
 		fullTagMultiLang="${fullVersion}-${releaseVersion}-multilang-ubi${ubiRelease}"
 		fullTagMultiArch="${fullVersion}-${releaseVersion}-multiarch-ubi${ubiRelease}"
 
+		if [ "${version}" -ge "15" ]; then
+		  fullTagPLV8="${fullVersion}-${releaseVersion}-plv8${ubiRelease}"
+		fi
+
 		# Initial aliases are "major version", "optional alias", "full version with release"
 		# i.e. "13", "latest", "13.2-1"
 		versionAliases=(
@@ -102,6 +106,13 @@ generator() {
 				${aliases[$version]:+"${aliases[$version]}-multiarch"}
 				"${fullVersion}-${releaseVersion}-multiarch"
 			)
+			if [ "${version}" -ge "15" ]; then
+			  versionAliasesPLV8=(
+			    "${version}${beta}"
+				  ${aliases[$version]:+"${aliases[$version]}-multiarch"}
+				  "${fullTagPLV8}"
+			  )
+			fi
 		fi
 
 		# Add all the version prefixes between full version and major version
@@ -110,6 +121,7 @@ generator() {
 			versionAliases+=("$fullVersion-ubi${ubiRelease}")
 			versionAliasesMultiLang+=("$fullVersion-multilang-ubi${ubiRelease}")
 			versionAliasesMultiArch+=("$fullVersion-multiarch-ubi${ubiRelease}")
+			versionAliasesPLV8+=("$fullVersion-plv8-ubi${ubiRelease}")
 			if [[ "${ubiRelease}" == "${DEFAULT_UBI}" ]]; then
 				versionAliases+=("$fullVersion")
 				versionAliasesMultiLang+=("$fullVersion-multilang")
@@ -126,17 +138,17 @@ generator() {
 			"{\"name\": \"${fullVersion} UBI${ubiRelease}\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.ubi${ubiRelease}\", \"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}\", \"tags\": [\"$(join "\", \"" "${versionAliases[@]}")\"], \"fullTag\": \"${fullTag}\"}"
 			"{\"name\": \"${fullVersion} UBI${ubiRelease} MultiLang\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platforms\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multilang.ubi${ubiRelease}\", \"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-multilang\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiLang[@]}")\"], \"fullTag\": \"${fullTagMultiLang}\"}"
 			"{\"name\": \"${fullVersion} UBI${ubiRelease} MultiArch\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"$platformsMultiArch\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.multiarch.ubi${ubiRelease}\", \"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-multiarch\", \"tags\": [\"$(join "\", \"" "${versionAliasesMultiArch[@]}")\"], \"fullTag\": \"${fullTagMultiArch}\"}"
+
 		)
+
+		if [ "${version}" -ge "15" ]; then
+		  entries+=("{\"name\": \"${fullVersion} UBI${ubiRelease} PLV8\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"linux/amd64\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.plv8.ubi${ubiRelease}\", \"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-plv8\", \"tags\": [\"$(join "\", \"" "${versionAliasesPLV8[@]}")\"], \"fullTag\": \"${fullTagMultiArch}\"}")
+		fi
 	done
 }
 
 generator_postgis() {
 	local ubiRelease="$1"; shift
-
-	tagSuffix=""
-	if [ "$ubiRelease" -gt "8" ]; then
-		tagSuffix="-ubi${ubiRelease}"
-	fi
 
 	cd "$BASE_DIRECTORY"/UBI/
 	for version in "${ubi_versions[@]}"; do

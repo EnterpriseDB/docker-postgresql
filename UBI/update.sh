@@ -332,6 +332,18 @@ generate_redhat() {
 		Dockerfile-multiarch.template \
 		>"$version/Dockerfile.multiarch.ubi${ubiRelease}"
 
+	if [ "$version" -ge '15' ]; then
+		sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
+		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
+		-e 's/%%PG_MAJOR%%/'"$version"'/g' \
+		-e 's/%%YUM_OPTIONS%%/'"${yumOptions}"'/g' \
+		-e 's/%%POSTGRES_VERSION%%/'"$postgresqlVersion"'/g' \
+		-e 's/%%PGAUDIT_VERSION%%/'"$pgauditVersion"'/g' \
+		-e 's/%%IMAGE_RELEASE_VERSION%%/'"$imageReleaseVersion"'/g' \
+		Dockerfile-plv8.template \
+		>"$version/Dockerfile.plv8.ubi${ubiRelease}"
+	fi
+
 	cp -r src/* "$version/"
 }
 
