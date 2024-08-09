@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:8.10-1020
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="13.15" \
-      release="8" \
+      version="13.16" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -32,10 +32,10 @@ RUN set -xe ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
-		postgresql13-13.15 \
-		postgresql13-contrib-13.15 \
-		postgresql13-server-13.15 \
-		postgresql13-libs-13.15 \
+		postgresql13-13.16 \
+		postgresql13-contrib-13.16 \
+		postgresql13-server-13.16 \
+		postgresql13-libs-13.16 \
 		pg_failover_slots_13 \
 		pg_squeeze_13 \
 		"$pg_audit_pkg" \
