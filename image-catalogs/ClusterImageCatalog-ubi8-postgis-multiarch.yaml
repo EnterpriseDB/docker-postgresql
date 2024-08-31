@@ -5,12 +5,12 @@ metadata:
 spec:
   images:
     - major: 12
-      image: quay.io/enterprisedb/postgresql:12.20-3.4-postgis-3-multiarch-ubi8@sha256:b5e894c8efe04c055d3f1a16e856b9ab5d290f8962908266191089ef63ce28ff
+      image: quay.io/enterprisedb/postgresql:12.20-3.4-postgis-3-multiarch-ubi8@sha256:0361b8e567d046d4dc977af64b417e7d417202966a1a8194a6d6b611a75bbf37
     - major: 13
-      image: quay.io/enterprisedb/postgresql:13.16-3.4-postgis-3-multiarch-ubi8@sha256:9f1d9f27ebb312f68a31fb9bc2d00632293d76a00ad35cc7af50b898db5866d5
+      image: quay.io/enterprisedb/postgresql:13.16-3.4-postgis-3-multiarch-ubi8@sha256:47ac7bda1ec27db8b64eff088af71f6ea930b2f09791f7a809cee8b5edc76bfa
     - major: 14
-      image: quay.io/enterprisedb/postgresql:14.13-3.4-postgis-3-multiarch-ubi8@sha256:fc54c35c95d44838dd9ff33047c31aea01e2fe479a25fd7d4c513bfa35e51677
+      image: quay.io/enterprisedb/postgresql:14.13-3.4-postgis-3-multiarch-ubi8@sha256:34326026a7895f75227cc17f047c73d2c0af543d9e189db4596ec1070d8703f7
     - major: 15
-      image: quay.io/enterprisedb/postgresql:15.8-3.4-postgis-3-multiarch-ubi8@sha256:d519d3c6fe704d0b93a3f611898a89a34fd25da9d8adb37b9ffccdf529df73c8
+      image: quay.io/enterprisedb/postgresql:15.8-3.4-postgis-3-multiarch-ubi8@sha256:d1915f38b3b6cbdfe3ba505715b6389afd64829f09d68fe1e83bd99fb0d4e398
     - major: 16
-      image: quay.io/enterprisedb/postgresql:16.4-3.4-postgis-3-multiarch-ubi8@sha256:864c37f4cb48b8a596c623429e3c61b474998de974fa152947e0e2ce3dc1427e
+      image: quay.io/enterprisedb/postgresql:16.4-3.4-postgis-3-multiarch-ubi8@sha256:2334dd902ad63a26fb151c21f5fdfc1f4ce2234ea725fdd03ad316244254a254
