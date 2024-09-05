@@ -82,8 +82,29 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    # When publishing new images from main, we should not overwrite an existing
+    # tag in order to guarantee the tag's SHA digest consistency.
+    - name: Verify primary tag is not overwritten
+      run: |
+        echo "MISSING_TAG=false" >> $GITHUB_ENV
+        # if we are not on the main branch, always push
+        if [ "${GITHUB_REF#refs/heads/}" != main ]; then
+            echo "MISSING_TAG=true" >> $GITHUB_ENV
+            exit 0
+        fi
+        IMAGE="${IMAGE_GHCR}:${{ matrix.fullTag }}"
+        # If the primary tag already exists, skip the building phase
+        if skopeo inspect docker://${IMAGE} >/dev/null 2>/dev/null; then
+          echo "Image ${IMAGE} already exists"
+          # We still need to grab the digest to build the imageCatalog
+          echo "OLD_DIGEST=$(skopeo inspect docker://${IMAGE} --format '{{ .Digest }}')" >> $GITHUB_ENV
+        else
+          echo "MISSING_TAG=true" >> $GITHUB_ENV
+        fi
+
     - name: Build and load
       uses: docker/build-push-action@v6
+      if: ${{ env.MISSING_TAG == 'true' }}
       with:
         context: ${{ matrix.dir }}
         provenance: false
@@ -99,6 +120,7 @@ jobs:
 
     - name: Dockle scan
       uses: erzz/dockle-action@v1
+      if: ${{ env.MISSING_TAG == 'true' }}
       env:
         DOCKLE_IGNORES: CIS-DI-0009
       with:
@@ -111,6 +133,7 @@ jobs:
     - name: Build and push
       id: build
       uses: docker/build-push-action@v6
+      if: ${{ env.MISSING_TAG == 'true' }}
       with:
         context: ${{ matrix.dir }}
         file: ${{ matrix.file }}
@@ -170,7 +193,12 @@ jobs:
           REGISTRY_SUFFIX="-ghcr"
         fi
 
-        IMAGE=${BASE_IMAGE}:${{ matrix.fullTag }}@${{ steps.build.outputs.digest }} \
+        DIGEST="${{ steps.build.outputs.digest }}"
+        if [[ "${{ env.MISSING_TAG }}" == "false" ]]; then
+            DIGEST="${{ env.OLD_DIGEST }}"
+        fi
+
+        IMAGE=${BASE_IMAGE}:${{ matrix.fullTag }}@${DIGEST} \
         MAJOR=${{ matrix.version }} \
         NAME=${CATALOG_NAME} \
         yq --null-input '{

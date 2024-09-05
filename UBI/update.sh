@@ -272,6 +272,11 @@ generate_redhat() {
 		return
 	fi
 
+	# Update root files
+	rm -fr "${version:?}/root" \
+		"${version:?}/Dockerfile*${ubiRelease}"
+	cp -r src/* "$version/"
+
 	newRelease="false"
 
 	# Detect an update of UBI image
@@ -288,6 +293,18 @@ generate_redhat() {
 		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
 	fi
 
+	# Detect an update of Dockerfile template
+	if [[ -n $(git diff --name-status Dockerfile.template Dockerfile-multilang.template Dockerfile-multiarch.template Dockerfile-plv8.template) ]]; then
+		echo "Detected update of a Dockerfile template"
+		newRelease="true"
+	fi
+
+	# Detect an update of requirements.txt
+	if [[ -n $(git diff --name-status "$version/root/requirements.txt") ]]; then
+		echo "Detected update of requirements.txt dependencies"
+		newRelease="true"
+	fi
+
 	# Detect an update of PostgreSQL
 	if [ "$oldPostgresqlVersion" != "$postgresqlVersion" ]; then
 		echo "PostgreSQL changed from $oldPostgresqlVersion to $postgresqlVersion"
@@ -298,9 +315,6 @@ generate_redhat() {
 		imageReleaseVersion=$((oldImageReleaseVersion + 1))
 		record_version "${versionFile}" "IMAGE_RELEASE_VERSION" $imageReleaseVersion
 	fi
-
-	rm -fr "${version:?}/root" \
-		"${version:?}/Dockerfile*${ubiRelease}"
 
 	sed -e 's/%%UBI_VERSION%%/'"$ubiVersion"'/g' \
 		-e 's/%%UBI_MAJOR_VERSION%%/'"$ubiRelease"'/g' \
@@ -343,8 +357,6 @@ generate_redhat() {
 		Dockerfile-plv8.template \
 		>"$version/Dockerfile.plv8.ubi${ubiRelease}"
 	fi
-
-	cp -r src/* "$version/"
 }
 
 generate_redhat_postgis() {
@@ -450,6 +462,18 @@ generate_redhat_postgis() {
 		echo "Barman changed from $oldBarmanVersion to $barmanVersion"
 		newRelease="true"
 		record_version "${versionFile}" "BARMAN_VERSION" "${barmanVersion}"
+	fi
+
+	# Detect an update of Dockerfile template
+	if [[ -n $(git diff --name-status Dockerfile-postgis.template Dockerfile-postgis-multilang.template Dockerfile-postgis-multiarch.template) ]]; then
+		echo "Detected update of a Dockerfile template"
+		newRelease="true"
+	fi
+
+	# Detect an update of requirements.txt
+	if [[ -n $(git diff --name-status "$version/root/requirements.txt") ]]; then
+		echo "Detected update of requirements.txt dependencies"
+		newRelease="true"
 	fi
 
 	if [ "$newRelease" = "true" ]; then
