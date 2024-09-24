@@ -67,7 +67,7 @@ generator() {
 		fullTagMultiArch="${fullVersion}-${releaseVersion}-multiarch-ubi${ubiRelease}"
 
 		if [ "${version}" -ge "15" ]; then
-		  fullTagPLV8="${fullVersion}-${releaseVersion}-plv8${ubiRelease}"
+		  fullTagPLV8="${fullVersion}-${releaseVersion}-plv8-ubi${ubiRelease}"
 		fi
 
 		# Initial aliases are "major version", "optional alias", "full version with release"
@@ -88,6 +88,14 @@ generator() {
 			"${fullTagMultiArch}"
 		)
 
+		if [ "${version}" -ge "15" ]; then
+			versionAliasesPLV8=(
+				"${version}${beta}-plv8-ubi${ubiRelease}"
+				${aliases[$version]:+"${aliases[$version]}-plv8-ubi${ubiRelease}"}
+				"${fullTagPLV8}"
+			)
+		fi
+
 		# If we are on the default distro, add the same tags as above but
 		# leaving out the distribution
 		if [[ "${ubiRelease}" == "${DEFAULT_UBI}" ]]; then
@@ -106,12 +114,13 @@ generator() {
 				${aliases[$version]:+"${aliases[$version]}-multiarch"}
 				"${fullVersion}-${releaseVersion}-multiarch"
 			)
+
 			if [ "${version}" -ge "15" ]; then
-			  versionAliasesPLV8=(
-			    "${version}${beta}"
-				  ${aliases[$version]:+"${aliases[$version]}-multiarch"}
-				  "${fullTagPLV8}"
-			  )
+				versionAliasesPLV8=(
+					"${version}${beta}-plv8"
+					${aliases[$version]:+"${aliases[$version]}-plv8"}
+					"${fullVersion}-${releaseVersion}-plv8"
+				)
 			fi
 		fi
 
@@ -121,7 +130,6 @@ generator() {
 			versionAliases+=("$fullVersion-ubi${ubiRelease}")
 			versionAliasesMultiLang+=("$fullVersion-multilang-ubi${ubiRelease}")
 			versionAliasesMultiArch+=("$fullVersion-multiarch-ubi${ubiRelease}")
-			versionAliasesPLV8+=("$fullVersion-plv8-ubi${ubiRelease}")
 			if [[ "${ubiRelease}" == "${DEFAULT_UBI}" ]]; then
 				versionAliases+=("$fullVersion")
 				versionAliasesMultiLang+=("$fullVersion-multilang")
@@ -142,7 +150,7 @@ generator() {
 		)
 
 		if [ "${version}" -ge "15" ]; then
-		  entries+=("{\"name\": \"${fullVersion} UBI${ubiRelease} PLV8\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"linux/amd64\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.plv8.ubi${ubiRelease}\", \"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-plv8\", \"tags\": [\"$(join "\", \"" "${versionAliasesPLV8[@]}")\"], \"fullTag\": \"${fullTagMultiArch}\"}")
+		  entries+=("{\"name\": \"${fullVersion} UBI${ubiRelease} PLV8\", \"ubi_version\": \"$ubiVersion\", \"platforms\": \"linux/amd64\", \"dir\": \"UBI/$version\", \"file\": \"UBI/$version/Dockerfile.plv8.ubi${ubiRelease}\", \"version\": \"$version\", \"flavor\": \"ubi${ubiRelease}-plv8\", \"tags\": [\"$(join "\", \"" "${versionAliasesPLV8[@]}")\"], \"fullTag\": \"${fullTagPLV8}\"}")
 		fi
 	done
 }
