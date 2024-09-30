@@ -11,7 +11,7 @@ set -eu
 
 # Define an optional aliases for some major versions
 declare -A aliases=(
-	[16]='latest'
+	[17]='latest'
 )
 
 # Define the current default UBI version
@@ -55,7 +55,7 @@ generator() {
 
 		# A "-beta" suffix will be appended to the beta images.
 		beta=""
-		if [ "${version}" -gt '16' ]; then
+		if [ "${version}" -gt '17' ]; then
 			beta="-beta"
 			# Split PG beta versions before the underscore
 			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
@@ -170,7 +170,7 @@ generator_postgis() {
 
 		# A "-beta" suffix will be appended to the beta images.
 		beta=""
-		if [ "${version}" -gt '16' ]; then
+		if [ "${version}" -gt '17' ]; then
 			beta="-beta"
 			# Split PG beta versions before the underscore
 			fullVersion=$(jq -r '.POSTGRES_VERSION | split("_") | .[0]' "${versionFile}")
