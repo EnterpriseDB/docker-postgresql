@@ -114,8 +114,6 @@ get_cloudsmith_postgis_pkg() {
 compare_architecture_pkgs() {
 	for arg; do
 		if [[ "$1" != "$arg" ]]; then
-			echo "Version discrepancy between the architectures." >&2
-			echo "Versions: $@" >&2
 			false; return
 		fi
 	done
@@ -224,6 +222,11 @@ generate_redhat() {
 	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
 	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
+		echo "Version discrepancy between the architectures of PostgreSQL $version packages in UBI$ubiRelease." >&2
+		echo "x86_64: $pg_x86_64" >&2
+		echo "arm64: $pg_arm64" >&2
+		echo "ppc64le: $pg_ppc64le" >&2
+		echo "s390x: $pg_s390x" >&2
 		return
 	fi
 
@@ -381,6 +384,11 @@ generate_redhat_postgis() {
 	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
 	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
+		echo "Version discrepancy between the architectures of PostgreSQL $version packages in UBI$ubiRelease." >&2
+		echo "x86_64: $pg_x86_64" >&2
+		echo "arm64: $pg_arm64" >&2
+		echo "ppc64le: $pg_ppc64le" >&2
+		echo "s390x: $pg_s390x" >&2
 		return
 	fi
 
@@ -407,6 +415,11 @@ generate_redhat_postgis() {
 	postgis_s390x=$(get_postgis_version "${ubiRelease}" 's390x' "$version")
 	postgis_arm64=$(get_postgis_version "${ubiRelease}" 'aarch64' "$version")
 	if ! compare_architecture_pkgs "$postgis_x86_64" "$postgis_arm64" "$postgis_ppc64le" "$postgis_s390x"; then
+		echo "Version discrepancy between the architectures of PostGIS $version packages in UBI$ubiRelease." >&2
+		echo "x86_64: $postgis_x86_64" >&2
+		echo "arm64: $postgis_arm64" >&2
+		echo "ppc64le: $postgis_ppc64le" >&2
+		echo "s390x: $postgis_s390x" >&2
 		return
 	fi
 
