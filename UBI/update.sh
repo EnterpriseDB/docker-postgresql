@@ -145,6 +145,7 @@ get_pgaudit_version() {
 		14) pgaudit_version=16 ;;
 		15) pgaudit_version=17 ;;
 		16) pgaudit_version=18 ;;
+		17) pgaudit_version=19 ;;
 	esac
 
 	echo "$pgaudit_version"
