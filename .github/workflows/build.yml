@@ -33,7 +33,7 @@ jobs:
     needs: generate-jobs
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
     name: ${{ matrix.name }}
-    runs-on: ubuntu-22.04
+    runs-on: ["edb", "2xlarge"]
     permissions:
       contents: read
       packages: write
