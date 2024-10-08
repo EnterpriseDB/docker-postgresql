@@ -6,7 +6,7 @@ LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="17.0" \
-      release="5" \
+      release="6" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 9."
 
@@ -39,6 +39,7 @@ RUN set -xe ; \
 		pg_squeeze_17 \
 		"$pg_audit_pkg" \
 		pgvector_17 \
+		wal2json_17 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
