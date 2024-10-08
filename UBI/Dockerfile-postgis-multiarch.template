@@ -22,6 +22,7 @@ RUN --mount=type=secret,id=cs_token \
 	pg_squeeze_pkg="pg_squeeze_%%PG_MAJOR%%" ; \
 	pgvector="pgvector_%%PG_MAJOR%%" ; \
 	pg_audit_pkg="pgaudit%%PGAUDIT_VERSION%%_%%PG_MAJOR%%" ; \
+	wal2json_pkg="wal2json_%%PG_MAJOR%%" ; \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-%%UBI_MAJOR_VERSION%%-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
@@ -37,14 +38,16 @@ RUN --mount=type=secret,id=cs_token \
 					pg_squeeze_pkg="edb-pg%%PG_MAJOR%%-pg-squeeze1" ; \
 					pgvector="edb-pg%%PG_MAJOR%%-pgvector0" ; \
 					pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit1" ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ;; \
+					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ; \
+					wal2json_pkg="edb-pg%%PG_MAJOR%%-wal2json2" ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
 					pg_failover_slots_pkg="edb-pg%%PG_MAJOR%%-pg-failover-slots1" ; \
 					pg_squeeze_pkg="edb-pg%%PG_MAJOR%%-pg-squeeze1" ; \
 					pgvector="edb-pg%%PG_MAJOR%%-pgvector0" ; \
 					pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit1" ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ;; \
+					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ; \
+					wal2json_pkg="edb-pg%%PG_MAJOR%%-wal2json2" ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -61,6 +64,7 @@ RUN --mount=type=secret,id=cs_token \
 			"$pg_squeeze_pkg" \
 			"$pg_failover_slots_pkg" \
 			"$pgvector" \
+			"$wal2json_pkg" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
