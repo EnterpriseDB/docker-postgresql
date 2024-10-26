@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:9.4-1214
+FROM quay.io/enterprisedb/edb-ubi:9.4-1214.1726694543
 ARG SUBSCRIPTION_NAME
 
 # Do not split the description, otherwise we will see a blank space in the labels
@@ -7,7 +7,7 @@ LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="12.20" \
-      release="21" \
+      release="1" \
       summary="PostgreSQL + PostGIS Container images." \
       description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 9."
 
@@ -123,7 +123,7 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 					exit 1 ;; \
 	esac ; \
 	yum -y install --enablerepo=ubi-9-codeready-builder,codeready-builder-for-rhel-9-${BUILDARCH}-rpms \
-		postgis34_12-3.4.2 \
+		postgis34_12-3.4.3 \
 		"$pgrouting_pkg" \
 	; \
 	yum -y remove epel-release ; \
