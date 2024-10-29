@@ -21,6 +21,7 @@ RUN --mount=type=secret,id=cs_token \
 	pg_squeeze_pkg="pg_squeeze_12" ; \
 	pgvector="pgvector_12" ; \
 	pg_audit_pkg="pgaudit14_12" ; \
+	wal2json_pkg="wal2json_12" ; \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
@@ -36,14 +37,16 @@ RUN --mount=type=secret,id=cs_token \
 					pg_squeeze_pkg="edb-pg12-pg-squeeze1" ; \
 					pgvector="edb-pg12-pgvector0" ; \
 					pg_audit_pkg="edb-pg12-pgaudit1" ; \
-					if [ "12" -gt "15" ]; then pg_audit_pkg="edb-pg12-pgaudit12"; fi ;; \
+					if [ "12" -gt "15" ]; then pg_audit_pkg="edb-pg12-pgaudit12"; fi ; \
+					wal2json_pkg="edb-pg12-wal2json2" ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
 					pg_failover_slots_pkg="edb-pg12-pg-failover-slots1" ; \
 					pg_squeeze_pkg="edb-pg12-pg-squeeze1" ; \
 					pgvector="edb-pg12-pgvector0" ; \
 					pg_audit_pkg="edb-pg12-pgaudit1" ; \
-					if [ "12" -gt "15" ]; then pg_audit_pkg="edb-pg12-pgaudit12"; fi ;; \
+					if [ "12" -gt "15" ]; then pg_audit_pkg="edb-pg12-pgaudit12"; fi ; \
+					wal2json_pkg="edb-pg12-wal2json2" ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
@@ -60,6 +63,7 @@ RUN --mount=type=secret,id=cs_token \
 			"$pg_squeeze_pkg" \
 			"$pg_failover_slots_pkg" \
 			"$pgvector" \
+			"$wal2json_pkg" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \

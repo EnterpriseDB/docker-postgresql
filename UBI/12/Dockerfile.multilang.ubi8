@@ -40,6 +40,7 @@ RUN set -xe ; \
 		pg_squeeze_12 \
 		"$pg_audit_pkg" \
 		pgvector_12 \
+		wal2json_12 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
