@@ -38,16 +38,16 @@ RUN --mount=type=secret,id=cs_token \
 					pg_squeeze_pkg="edb-pg%%PG_MAJOR%%-pg-squeeze1" ; \
 					pgvector="edb-pg%%PG_MAJOR%%-pgvector0" ; \
 					pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit1" ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ; \
-					wal2json_pkg="edb-pg%%PG_MAJOR%%-wal2json2" ;; \
+					wal2json_pkg="edb-pg%%PG_MAJOR%%-wal2json2" ; \
+					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
 					pg_failover_slots_pkg="edb-pg%%PG_MAJOR%%-pg-failover-slots1" ; \
 					pg_squeeze_pkg="edb-pg%%PG_MAJOR%%-pg-squeeze1" ; \
 					pgvector="edb-pg%%PG_MAJOR%%-pgvector0" ; \
 					pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit1" ; \
-					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ; \
-					wal2json_pkg="edb-pg%%PG_MAJOR%%-wal2json2" ;; \
+					wal2json_pkg="edb-pg%%PG_MAJOR%%-wal2json2" ; \
+					if [ "%%PG_MAJOR%%" -gt "15" ]; then pg_audit_pkg="edb-pg%%PG_MAJOR%%-pgaudit%%PG_MAJOR%%"; fi ;; \
 			*) \
 					exit 1 ;; \
 	esac ; \
