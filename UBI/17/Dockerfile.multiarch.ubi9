@@ -5,8 +5,8 @@ FROM quay.io/enterprisedb/edb-ubi:9.4-1214.1729773476
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="17.0" \
-      release="30" \
+      version="17.1" \
+      release="1" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 9."
 
@@ -55,10 +55,10 @@ RUN --mount=type=secret,id=cs_token \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
 	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
 	yum -y --setopt=tsflags=nodocs install \
-			postgresql17-17.0 \
-			postgresql17-contrib-17.0 \
-			postgresql17-server-17.0 \
-			postgresql17-libs-17.0 \
+			postgresql17-17.1 \
+			postgresql17-contrib-17.1 \
+			postgresql17-server-17.1 \
+			postgresql17-libs-17.1 \
 			"$pg_audit_pkg" \
 			"$pg_squeeze_pkg" \
 			"$pg_failover_slots_pkg" \
