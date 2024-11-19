@@ -31,8 +31,8 @@ RUN set -xe ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
-	yum -y --setopt=tsflags=nodocs install%%YUM_OPTIONS%% \
+	yum -y --setopt=install_weak_deps=0 install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
+	yum -y --setopt=tsflags=nodocs --setopt=install_weak_deps=0 install%%YUM_OPTIONS%% \
 		postgresql%%PG_MAJOR%%-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR%%-contrib-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%% \
@@ -48,7 +48,7 @@ RUN set -xe ; \
 
 # Install barman-cloud
 RUN set -xe ; \
-	yum -y install python3.11-pip python3.11-psycopg2 ; \
+	yum -y install --setopt=install_weak_deps=0 python3.11-pip python3.11-psycopg2 ; \
 	pip3.11 install --upgrade pip ; \
 	pip3.11 install -r requirements.txt ; \
 	yum -y clean all --enablerepo='*'
@@ -92,7 +92,8 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 			*) \
 					exit 1 ;; \
 	esac ; \
-	yum -y install --enablerepo=ubi-%%UBI_MAJOR_VERSION%%-codeready-builder,codeready-builder-for-rhel-%%UBI_MAJOR_VERSION%%-${BUILDARCH}-rpms \
+	yum -y install --setopt=install_weak_deps=0 \
+		--enablerepo=ubi-%%UBI_MAJOR_VERSION%%-codeready-builder,codeready-builder-for-rhel-%%UBI_MAJOR_VERSION%%-${BUILDARCH}-rpms \
 		postgis%%POSTGIS_MAJOR%%_%%PG_MAJOR%%-%%POSTGIS_VERSION%% \
 		pgrouting_%%PG_MAJOR%% \
 	; \
