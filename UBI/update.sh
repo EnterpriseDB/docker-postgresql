@@ -127,7 +127,8 @@ compare_architecture_pkgs() {
 # Get the latest Barman version
 latest_barman_version=
 _raw_get_latest_barman_version() {
-	curl -s https://pypi.org/pypi/barman/json | jq -r '.releases | keys[]' | sort -Vr | head -n1
+#	curl -s https://pypi.org/pypi/barman/json | jq -r '.releases | keys[]' | sort -Vr | head -n1
+	echo "3.11.1"
 }
 get_latest_barman_version() {
 	if [ -z "$latest_barman_version" ]; then
