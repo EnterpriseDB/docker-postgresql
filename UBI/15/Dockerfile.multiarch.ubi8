@@ -1,12 +1,12 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:8.10-1132.1731461736-ora
+FROM quay.io/enterprisedb/edb-ubi:8.10-1132.1731461736
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="15.10" \
-      release="3" \
+      release="4" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
@@ -53,8 +53,8 @@ RUN --mount=type=secret,id=cs_token \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
-	yum -y --setopt=tsflags=nodocs install \
+	yum -y install --setopt=install_weak_deps=0 hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
+	yum -y --setopt=tsflags=nodocs --setopt=install_weak_deps=0 install \
 			postgresql15-15.10 \
 			postgresql15-contrib-15.10 \
 			postgresql15-server-15.10 \
@@ -71,7 +71,7 @@ RUN --mount=type=secret,id=cs_token \
 
 # Install barman-cloud
 RUN set -xe ; \
-	yum -y install python3.11-pip python3.11-psycopg2 ; \
+	yum -y install --setopt=install_weak_deps=0 python3.11-pip python3.11-psycopg2 ; \
 	pip3.11 install --upgrade pip ; \
 	pip3.11 install -r requirements.txt ; \
 	yum -y clean all --enablerepo='*'
