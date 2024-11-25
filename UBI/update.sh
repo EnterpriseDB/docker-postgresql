@@ -47,7 +47,7 @@ get_latest_ubi_tag() {
 get_latest_ubi_base() {
 	local ubi_version=$1
 	rawContent=$(curl -s -L https://quay.io/api/v1/repository/enterprisedb/edb-ubi/tag/?onlyActiveTags=true)
-	echo "$rawContent" | jq -r --arg uv "$ubi_version" '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true and (.name | startswith($uv))) | .name' | grep -v '-ora' | tail -n1
+	echo "$rawContent" | jq -r --arg uv "$ubi_version" '.tags | sort_by(.start_ts) | .[] | select(.is_manifest_list == true and (.name | startswith($uv))) | .name' | grep -v '\-ora' | tail -n1
 }
 
 declare -A pgArchMatrix=(
