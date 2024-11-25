@@ -29,8 +29,8 @@ RUN set -xe ; \
 	esac ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
-	yum -y --setopt=tsflags=nodocs install%%YUM_OPTIONS%% \
+	yum -y install --setopt=install_weak_deps=0 hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en ; \
+	yum -y --setopt=tsflags=nodocs --setopt=install_weak_deps=0 install%%YUM_OPTIONS%% \
 		postgresql%%PG_MAJOR%%-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR%%-contrib-%%POSTGRES_VERSION%% \
 		postgresql%%PG_MAJOR%%-server-%%POSTGRES_VERSION%% \
@@ -46,7 +46,7 @@ RUN set -xe ; \
 
 # Install barman-cloud
 RUN set -xe ; \
-	yum -y install python3.11-pip python3.11-psycopg2 ; \
+	yum -y install --setopt=install_weak_deps=0 python3.11-pip python3.11-psycopg2 ; \
 	pip3.11 install --upgrade pip ; \
 	pip3.11 install -r requirements.txt ; \
 	yum -y clean all --enablerepo='*'
