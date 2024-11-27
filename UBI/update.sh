@@ -222,19 +222,19 @@ generate_redhat() {
 		exit 1
 	fi
 
-  if [ -f "${versionFile}" ]; then
+	if [ -f "${versionFile}" ]; then
 		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
 		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
 		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 		imageReleaseVersion=$oldImageReleaseVersion
-  fi
+	fi
 
 	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
 	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
 	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
-  postgresqlVersion="${pg_x86_64}"
+	postgresqlVersion="${pg_x86_64}"
 	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
 		echo "Version discrepancy between the architectures of PostgreSQL $version packages in UBI$ubiRelease." >&2
 		echo "x86_64: $pg_x86_64" >&2
@@ -393,20 +393,20 @@ generate_redhat_postgis() {
 		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
 		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
 		imageReleaseVersion=$oldImageReleaseVersion
-  fi
+	fi
 
 	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
 	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
 	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
-  postgresqlVersion="${pg_x86_64}"
+	postgresqlVersion="${pg_x86_64}"
 	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
 		echo "Version discrepancy between the architectures of PostgreSQL $version packages in UBI$ubiRelease." >&2
 		echo "x86_64: $pg_x86_64" >&2
 		echo "arm64: $pg_arm64" >&2
 		echo "ppc64le: $pg_ppc64le" >&2
 		echo "s390x: $pg_s390x" >&2
-	  postgresqlVersion="${oldPostgresqlVersion}"
+		postgresqlVersion="${oldPostgresqlVersion}"
 	fi
 
 	if [ -z "$postgresqlVersion" ]; then
