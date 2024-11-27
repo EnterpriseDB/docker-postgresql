@@ -222,20 +222,28 @@ generate_redhat() {
 		exit 1
 	fi
 
+	if [ -f "${versionFile}" ]; then
+		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
+		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
+		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
+		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+		imageReleaseVersion=$oldImageReleaseVersion
+	fi
+
 	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
 	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
 	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
+	postgresqlVersion="${pg_x86_64}"
 	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
 		echo "Version discrepancy between the architectures of PostgreSQL $version packages in UBI$ubiRelease." >&2
 		echo "x86_64: $pg_x86_64" >&2
 		echo "arm64: $pg_arm64" >&2
 		echo "ppc64le: $pg_ppc64le" >&2
 		echo "s390x: $pg_s390x" >&2
-		return
+		postgresqlVersion="${oldPostgresqlVersion}"
 	fi
 
-	postgresqlVersion="${pg_x86_64}"
 	if [ -z "$postgresqlVersion" ]; then
 		echo "Unable to retrieve latest PostgreSQL $version version for UBI$ubiRelease"
 		return
@@ -262,13 +270,7 @@ generate_redhat() {
 	# Output the full Postgresql package name
 	echo "$version: ${postgresqlVersion} (UBI${ubiRelease})"
 
-	if [ -f "${versionFile}" ]; then
-		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
-		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
-		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
-		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
-		imageReleaseVersion=$oldImageReleaseVersion
-	else
+	if [ ! -f "${versionFile}" ]; then
 		imageReleaseVersion=1
 
 		echo "{}" > "${versionFile}"
@@ -384,20 +386,29 @@ generate_redhat_postgis() {
 		exit 1
 	fi
 
+	if [ -f "${versionFile}" ]; then
+		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
+		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
+		oldPostgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}")
+		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
+		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
+		imageReleaseVersion=$oldImageReleaseVersion
+	fi
+
 	pg_x86_64=$(get_postgresql_version "${ubiRelease}" 'x86_64' "$version")
 	pg_ppc64le=$(get_postgresql_version "${ubiRelease}" 'ppc64le' "$version")
 	pg_s390x=$(get_postgresql_version "${ubiRelease}" 's390x' "$version")
 	pg_arm64=$(get_postgresql_version "${ubiRelease}" 'aarch64' "$version")
+	postgresqlVersion="${pg_x86_64}"
 	if ! compare_architecture_pkgs "$pg_x86_64" "$pg_arm64" "$pg_ppc64le" "$pg_s390x"; then
 		echo "Version discrepancy between the architectures of PostgreSQL $version packages in UBI$ubiRelease." >&2
 		echo "x86_64: $pg_x86_64" >&2
 		echo "arm64: $pg_arm64" >&2
 		echo "ppc64le: $pg_ppc64le" >&2
 		echo "s390x: $pg_s390x" >&2
-		return
+		postgresqlVersion="${oldPostgresqlVersion}"
 	fi
 
-	postgresqlVersion="${pg_x86_64}"
 	if [ -z "$postgresqlVersion" ]; then
 		echo "Unable to retrieve latest PostgreSQL $version version for UBI$ubiRelease"
 		return
@@ -419,16 +430,16 @@ generate_redhat_postgis() {
 	postgis_ppc64le=$(get_postgis_version "${ubiRelease}" 'ppc64le' "$version")
 	postgis_s390x=$(get_postgis_version "${ubiRelease}" 's390x' "$version")
 	postgis_arm64=$(get_postgis_version "${ubiRelease}" 'aarch64' "$version")
+	postgisVersion="${postgis_x86_64}"
 	if ! compare_architecture_pkgs "$postgis_x86_64" "$postgis_arm64" "$postgis_ppc64le" "$postgis_s390x"; then
 		echo "Version discrepancy between the architectures of PostGIS $version packages in UBI$ubiRelease." >&2
 		echo "x86_64: $postgis_x86_64" >&2
 		echo "arm64: $postgis_arm64" >&2
 		echo "ppc64le: $postgis_ppc64le" >&2
 		echo "s390x: $postgis_s390x" >&2
-		return
+		postgisVersion="${oldPostgisVersion}"
 	fi
 
-	postgisVersion="${postgis_x86_64}"
 	if [ -z "$postgisVersion" ]; then
 		echo "Unable to get the PostGIS version"
 		exit 1
@@ -446,14 +457,7 @@ generate_redhat_postgis() {
 	# Output the full Postgresql and PostGIS package name
 	echo "$version: ${postgresqlVersion} - PostGIS ${postgisVersion} (UBI${ubiRelease})"
 
-	if [ -f "${versionFile}" ]; then
-		oldUbiVersion=$(jq -r '.UBI_VERSION' "${versionFile}")
-		oldPostgresqlVersion=$(jq -r '.POSTGRES_VERSION' "${versionFile}")
-		oldPostgisVersion=$(jq -r '.POSTGIS_VERSION' "${versionFile}")
-		oldBarmanVersion=$(jq -r '.BARMAN_VERSION' "${versionFile}")
-		oldImageReleaseVersion=$(jq -r '.IMAGE_RELEASE_VERSION' "${versionFile}")
-		imageReleaseVersion=$oldImageReleaseVersion
-	else
+	if [ ! -f "${versionFile}" ]; then
 		imageReleaseVersion=1
 
 		echo "{}" > "${versionFile}"
