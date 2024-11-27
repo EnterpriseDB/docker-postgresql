@@ -127,7 +127,7 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 					exit 1 ;; \
 	esac ; \
 	yum -y install --setopt=install_weak_deps=0 \
-		--enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
+		--enablerepo=codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
 		postgis34_12-3.4.3 \
 		"$pgrouting_pkg" \
 	; \

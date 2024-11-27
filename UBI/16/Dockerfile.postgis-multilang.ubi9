@@ -1,13 +1,13 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:9.4-1214
+FROM quay.io/enterprisedb/edb-ubi:9.5-1731517889
 ARG SUBSCRIPTION_NAME
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="16.4" \
-      release="21" \
+      version="16.6" \
+      release="1" \
       summary="PostgreSQL + PostGIS Container images." \
       description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 9."
 
@@ -31,23 +31,24 @@ RUN set -xe ; \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
-	yum -y --setopt=tsflags=nodocs install \
-		postgresql16-16.4 \
-		postgresql16-contrib-16.4 \
-		postgresql16-server-16.4 \
-		postgresql16-libs-16.4 \
+	yum -y --setopt=install_weak_deps=0 install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
+	yum -y --setopt=tsflags=nodocs --setopt=install_weak_deps=0 install \
+		postgresql16-16.6 \
+		postgresql16-contrib-16.6 \
+		postgresql16-server-16.6 \
+		postgresql16-libs-16.6 \
 		pg_failover_slots_16 \
 		pg_squeeze_16 \
 		"$pg_audit_pkg" \
 		pgvector_16 \
+		wal2json_16 \
 	; \
 	rm -fr /tmp/* ; \
 	yum -y clean all --enablerepo='*'
 
 # Install barman-cloud
 RUN set -xe ; \
-	yum -y install python3.11-pip python3.11-psycopg2 ; \
+	yum -y install --setopt=install_weak_deps=0 python3.11-pip python3.11-psycopg2 ; \
 	pip3.11 install --upgrade pip ; \
 	pip3.11 install -r requirements.txt ; \
 	yum -y clean all --enablerepo='*'
@@ -91,7 +92,8 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 			*) \
 					exit 1 ;; \
 	esac ; \
-	yum -y install --enablerepo=ubi-9-codeready-builder,codeready-builder-for-rhel-9-${BUILDARCH}-rpms \
+	yum -y install --setopt=install_weak_deps=0 \
+		--enablerepo=codeready-builder-for-rhel-9-${BUILDARCH}-rpms \
 		postgis34_16-3.4.2 \
 		pgrouting_16 \
 	; \

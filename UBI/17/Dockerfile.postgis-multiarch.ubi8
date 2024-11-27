@@ -1,12 +1,12 @@
 # vim:set ft=dockerfile:
-FROM quay.io/enterprisedb/edb-ubi:8.10-1088
+FROM quay.io/enterprisedb/edb-ubi:8.10-1132.1731461736
 ARG SUBSCRIPTION_NAME
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
-      version="17.0" \
+      version="17.2" \
       release="1" \
       summary="PostgreSQL + PostGIS Container images." \
       description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
@@ -22,6 +22,7 @@ RUN --mount=type=secret,id=cs_token \
 	pg_squeeze_pkg="pg_squeeze_17" ; \
 	pgvector="pgvector_17" ; \
 	pg_audit_pkg="pgaudit19_17" ; \
+	wal2json_pkg="wal2json_17" ; \
 	case $ARCH in \
 			amd64) \
 					yum -y install "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ; \
@@ -37,6 +38,7 @@ RUN --mount=type=secret,id=cs_token \
 					pg_squeeze_pkg="edb-pg17-pg-squeeze1" ; \
 					pgvector="edb-pg17-pgvector0" ; \
 					pg_audit_pkg="edb-pg17-pgaudit1" ; \
+					wal2json_pkg="edb-pg17-wal2json2" ; \
 					if [ "17" -gt "15" ]; then pg_audit_pkg="edb-pg17-pgaudit17"; fi ;; \
 			s390x) \
 					curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ; \
@@ -44,6 +46,7 @@ RUN --mount=type=secret,id=cs_token \
 					pg_squeeze_pkg="edb-pg17-pg-squeeze1" ; \
 					pgvector="edb-pg17-pgvector0" ; \
 					pg_audit_pkg="edb-pg17-pgaudit1" ; \
+					wal2json_pkg="edb-pg17-wal2json2" ; \
 					if [ "17" -gt "15" ]; then pg_audit_pkg="edb-pg17-pgaudit17"; fi ;; \
 			*) \
 					exit 1 ;; \
@@ -51,16 +54,17 @@ RUN --mount=type=secret,id=cs_token \
 	yum -y upgrade glibc-common ; \
 	yum -y reinstall glibc-common ; \
 	rm -fr /etc/rpm/macros.image-language-conf ; \
-	yum -y install hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
-	yum -y --setopt=tsflags=nodocs install \
-			postgresql17-17.0 \
-			postgresql17-contrib-17.0 \
-			postgresql17-server-17.0 \
-			postgresql17-libs-17.0 \
+	yum -y install --setopt=install_weak_deps=0 hostname rsync tar gettext bind-utils nss_wrapper glibc-locale-source glibc-langpack-en glibc-all-langpacks ; \
+	yum -y --setopt=tsflags=nodocs --setopt=install_weak_deps=0 install \
+			postgresql17-17.2 \
+			postgresql17-contrib-17.2 \
+			postgresql17-server-17.2 \
+			postgresql17-libs-17.2 \
 			"$pg_audit_pkg" \
 			"$pg_squeeze_pkg" \
 			"$pg_failover_slots_pkg" \
 			"$pgvector" \
+			"$wal2json_pkg" \
 	; \
 	rm -fr /etc/yum.repos.d/enterprisedb-*.repo ; \
 	rm -fr /tmp/* ; \
@@ -68,7 +72,7 @@ RUN --mount=type=secret,id=cs_token \
 
 # Install barman-cloud
 RUN set -xe ; \
-	yum -y install python3.11-pip python3.11-psycopg2 ; \
+	yum -y install --setopt=install_weak_deps=0 python3.11-pip python3.11-psycopg2 ; \
 	pip3.11 install --upgrade pip ; \
 	pip3.11 install -r requirements.txt ; \
 	yum -y clean all --enablerepo='*'
@@ -122,7 +126,8 @@ RUN --mount=type=secret,id=subscription,target=/run/secrets/subscription.sh \
 			*) \
 					exit 1 ;; \
 	esac ; \
-	yum -y install --enablerepo=ubi-8-codeready-builder,codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
+	yum -y install --setopt=install_weak_deps=0 \
+		--enablerepo=codeready-builder-for-rhel-8-${BUILDARCH}-rpms \
 		postgis35_17-3.5.0 \
 		"$pgrouting_pkg" \
 	; \
