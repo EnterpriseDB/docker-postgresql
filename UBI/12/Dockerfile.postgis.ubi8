@@ -7,7 +7,7 @@ LABEL name="PostgreSQL + PostGIS Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="12.22" \
-      release="9" \
+      release="10" \
       summary="PostgreSQL + PostGIS Container images." \
       description="This Docker image contains PostgreSQL, PostGIS and Barman Cloud based on RedHat Universal Base Images (UBI) 8."
 
