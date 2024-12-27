@@ -140,7 +140,6 @@ get_pgaudit_version() {
 	local pg_major="$1"; shift
 
 	case $pg_major in
-		12) pgaudit_version=14 ;;
 		13) pgaudit_version=15 ;;
 		14) pgaudit_version=16 ;;
 		15) pgaudit_version=17 ;;
