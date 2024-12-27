@@ -1,7 +1,7 @@
 # PostgreSQL Container Images by EnterpriseDB
 
 Maintenance scripts to generate Immutable Application Containers
-for all available PostgreSQL versions (12 to 17) based on
+for all available PostgreSQL versions (13 to 17) based on
 Red Hat Universal Base Images (UBI) 8 and 9:
 
 - Standard minimal image - amd64/arm64
